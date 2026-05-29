@@ -40,6 +40,13 @@ def is_italic(style):
     return "font-style:italic" in (style or "").replace(" ", "")
 
 
+def align(style):
+    m = re.search(r"text-align:\s*(left|right|center|justify)", style or "")
+    a = m.group(1) if m else None
+    # left is the default; only carry non-default alignment to match the source
+    return a if a in ("center", "right", "justify") else None
+
+
 def main():
     json_path, media_dir = sys.argv[1], sys.argv[2]
     data = json.loads(open(json_path, encoding="utf-8").read())
@@ -101,7 +108,8 @@ def main():
         if not content:
             continue
         tag = block.name
-        out.append(f"<{tag}>{content}</{tag}>")
+        attr = f' style="text-align:{align(block.get("style", ""))}"' if align(block.get("style", "")) else ""
+        out.append(f"<{tag}{attr}>{content}</{tag}>")
 
     sys.stdout.write("\n".join(out) + "\n")
 
