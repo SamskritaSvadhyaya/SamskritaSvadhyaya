@@ -240,40 +240,30 @@ body { font-family: var(--serif), var(--devanagari); }
 .content::before { top: 6px; }
 .content::after  { bottom: 6px; }
 
-.content p {
-  margin: 1rem 0;
-  text-align: justify;
-  hyphens: auto;
+/* The document's text colors are authored for a light page, so keep the reading
+   surface light (parchment) even in dark mode to preserve their legibility. */
+[data-theme="dark"] .content {
+  background: #fffaf0;
+  color: #2a1810;
 }
 
-/* Devanagari paragraphs: detect by checking if first character is Devanagari range.
-   We can't do that purely in CSS — instead, style strong (used heavily for Devanagari)
-   with the Devanagari font and accent color. */
+.content p {
+  margin: 1rem 0;
+  text-align: left;
+}
+
+/* Bold stays bold; the document's own inline text colors are preserved as-is
+   (do NOT set a color here, or it would override the source colors). */
 .content strong {
-  font-family: var(--devanagari);
-  color: var(--accent-strong);
   font-weight: 600;
 }
 
-.content p:first-child,
-.content p:nth-child(2) {
-  text-align: center;
-  font-size: 1.15em;
-  color: var(--accent-strong);
-}
-.content p:first-child strong,
-.content p:nth-child(2) strong {
-  color: var(--accent-strong);
-}
-
-/* Standalone Sanskrit verse paragraphs (paragraphs whose only content is <strong>)
-   styled as verse blocks */
-.content p:has(> strong:only-child) {
-  text-align: center;
-  font-size: 1.1em;
-  line-height: 1.9;
-  margin: 1.4rem 0;
-  letter-spacing: .01em;
+/* Section separators carried over from the document */
+.content hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  width: 55%;
+  margin: 1.6rem auto;
 }
 
 /* Image styling — overrides the inline width/height from pandoc */
