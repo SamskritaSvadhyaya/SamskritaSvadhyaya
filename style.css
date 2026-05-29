@@ -409,6 +409,78 @@ body { font-family: var(--serif), var(--devanagari); }
   border-color: var(--rule);
 }
 
+/* ---------- Breadcrumb ---------- */
+.hero .crumb {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: .95rem;
+  border-bottom: 1px dotted transparent;
+}
+.hero .crumb:hover {
+  color: var(--accent-strong);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Chapter index ---------- */
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.chapter-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.chapter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(192, 57, 43, 0.16);
+  border-color: var(--accent);
+}
+.chapter-num {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--devanagari);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+}
+.chapter-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.chapter-title-sa {
+  font-family: var(--devanagari);
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+.chapter-title {
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+.empty-note {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   text-align: center;
