@@ -360,5 +360,553 @@
     "title": "Shrimad Bhagavatam — Canto 10",
     "title_sa": "श्रीमद्भागवतमहापुराणम् · स्कन्ध १०",
     "subtitle": ""
+  },
+  {
+    "type": "parent",
+    "slug": "ramayana",
+    "works": [
+      {
+        "type": "work",
+        "slug": "kishkindhakanda",
+        "chapters": [
+          {
+            "slug": "sarga-66",
+            "title": "Sarga 66",
+            "title_sa": "सर्गः ६६",
+            "n": 66,
+            "image": "ramayana/kishkindhakanda/sarga-66/media/image1.png"
+          },
+          {
+            "slug": "sarga-67",
+            "title": "Sarga 67",
+            "title_sa": "सर्गः ६७",
+            "n": 67,
+            "image": "ramayana/kishkindhakanda/sarga-67/media/image1.png"
+          }
+        ],
+        "title": "Kishkindhakanda",
+        "title_sa": "किष्किन्धाकाण्डम्",
+        "subtitle": "Jambavan encourages Hanuman"
+      },
+      {
+        "type": "work",
+        "slug": "sundarakanda",
+        "chapters": [
+          {
+            "slug": "sarga-1",
+            "title": "Sarga 1",
+            "title_sa": "सर्गः १",
+            "n": 1,
+            "image": "ramayana/sundarakanda/sarga-1/media/image1.png"
+          },
+          {
+            "slug": "sarga-2",
+            "title": "Sarga 2",
+            "title_sa": "सर्गः २",
+            "n": 2,
+            "image": "ramayana/sundarakanda/sarga-2/media/image1.png"
+          },
+          {
+            "slug": "sarga-3",
+            "title": "Sarga 3",
+            "title_sa": "सर्गः ३",
+            "n": 3,
+            "image": "ramayana/sundarakanda/sarga-3/media/image1.png"
+          },
+          {
+            "slug": "sarga-4",
+            "title": "Sarga 4",
+            "title_sa": "सर्गः ४",
+            "n": 4,
+            "image": "ramayana/sundarakanda/sarga-4/media/image1.png"
+          },
+          {
+            "slug": "sarga-5",
+            "title": "Sarga 5",
+            "title_sa": "सर्गः ५",
+            "n": 5,
+            "image": "ramayana/sundarakanda/sarga-5/media/image1.png"
+          },
+          {
+            "slug": "sarga-6",
+            "title": "Sarga 6",
+            "title_sa": "सर्गः ६",
+            "n": 6,
+            "image": "ramayana/sundarakanda/sarga-6/media/image1.png"
+          },
+          {
+            "slug": "sarga-7",
+            "title": "Sarga 7",
+            "title_sa": "सर्गः ७",
+            "n": 7,
+            "image": "ramayana/sundarakanda/sarga-7/media/image1.png"
+          },
+          {
+            "slug": "sarga-8",
+            "title": "Sarga 8",
+            "title_sa": "सर्गः ८",
+            "n": 8,
+            "image": "ramayana/sundarakanda/sarga-8/media/image1.png"
+          },
+          {
+            "slug": "sarga-9",
+            "title": "Sarga 9",
+            "title_sa": "सर्गः ९",
+            "n": 9,
+            "image": "ramayana/sundarakanda/sarga-9/media/image1.png"
+          },
+          {
+            "slug": "sarga-10",
+            "title": "Sarga 10",
+            "title_sa": "सर्गः १०",
+            "n": 10,
+            "image": "ramayana/sundarakanda/sarga-10/media/image1.png"
+          },
+          {
+            "slug": "sarga-11",
+            "title": "Sarga 11",
+            "title_sa": "सर्गः ११",
+            "n": 11,
+            "image": "ramayana/sundarakanda/sarga-11/media/image1.png"
+          },
+          {
+            "slug": "sarga-12",
+            "title": "Sarga 12",
+            "title_sa": "सर्गः १२",
+            "n": 12,
+            "image": "ramayana/sundarakanda/sarga-12/media/image1.png"
+          },
+          {
+            "slug": "sarga-13",
+            "title": "Sarga 13",
+            "title_sa": "सर्गः १३",
+            "n": 13,
+            "image": "ramayana/sundarakanda/sarga-13/media/image1.png"
+          },
+          {
+            "slug": "sarga-14",
+            "title": "Sarga 14",
+            "title_sa": "सर्गः १४",
+            "n": 14,
+            "image": "ramayana/sundarakanda/sarga-14/media/image1.png"
+          },
+          {
+            "slug": "sarga-15",
+            "title": "Sarga 15",
+            "title_sa": "सर्गः १५",
+            "n": 15,
+            "image": "ramayana/sundarakanda/sarga-15/media/image1.png"
+          },
+          {
+            "slug": "sarga-16",
+            "title": "Sarga 16",
+            "title_sa": "सर्गः १६",
+            "n": 16,
+            "image": "ramayana/sundarakanda/sarga-16/media/image1.png"
+          },
+          {
+            "slug": "sarga-17",
+            "title": "Sarga 17",
+            "title_sa": "सर्गः १७",
+            "n": 17,
+            "image": "ramayana/sundarakanda/sarga-17/media/image1.png"
+          },
+          {
+            "slug": "sarga-18",
+            "title": "Sarga 18",
+            "title_sa": "सर्गः १८",
+            "n": 18,
+            "image": "ramayana/sundarakanda/sarga-18/media/image1.png"
+          },
+          {
+            "slug": "sarga-19",
+            "title": "Sarga 19",
+            "title_sa": "सर्गः १९",
+            "n": 19,
+            "image": "ramayana/sundarakanda/sarga-19/media/image1.png"
+          },
+          {
+            "slug": "sarga-20",
+            "title": "Sarga 20",
+            "title_sa": "सर्गः २०",
+            "n": 20,
+            "image": "ramayana/sundarakanda/sarga-20/media/image1.png"
+          },
+          {
+            "slug": "sarga-21",
+            "title": "Sarga 21",
+            "title_sa": "सर्गः २१",
+            "n": 21,
+            "image": "ramayana/sundarakanda/sarga-21/media/image1.png"
+          },
+          {
+            "slug": "sarga-22",
+            "title": "Sarga 22",
+            "title_sa": "सर्गः २२",
+            "n": 22,
+            "image": "ramayana/sundarakanda/sarga-22/media/image1.png"
+          },
+          {
+            "slug": "sarga-23",
+            "title": "Sarga 23",
+            "title_sa": "सर्गः २३",
+            "n": 23,
+            "image": "ramayana/sundarakanda/sarga-23/media/image1.png"
+          },
+          {
+            "slug": "sarga-24",
+            "title": "Sarga 24",
+            "title_sa": "सर्गः २४",
+            "n": 24,
+            "image": "ramayana/sundarakanda/sarga-24/media/image1.png"
+          },
+          {
+            "slug": "sarga-25",
+            "title": "Sarga 25",
+            "title_sa": "सर्गः २५",
+            "n": 25,
+            "image": "ramayana/sundarakanda/sarga-25/media/image1.png"
+          },
+          {
+            "slug": "sarga-26",
+            "title": "Sarga 26",
+            "title_sa": "सर्गः २६",
+            "n": 26,
+            "image": "ramayana/sundarakanda/sarga-26/media/image1.png"
+          },
+          {
+            "slug": "sarga-27",
+            "title": "Sarga 27",
+            "title_sa": "सर्गः २७",
+            "n": 27,
+            "image": "ramayana/sundarakanda/sarga-27/media/image1.png"
+          },
+          {
+            "slug": "sarga-28",
+            "title": "Sarga 28",
+            "title_sa": "सर्गः २८",
+            "n": 28,
+            "image": "ramayana/sundarakanda/sarga-28/media/image1.png"
+          },
+          {
+            "slug": "sarga-29",
+            "title": "Sarga 29",
+            "title_sa": "सर्गः २९",
+            "n": 29,
+            "image": "ramayana/sundarakanda/sarga-29/media/image1.png"
+          },
+          {
+            "slug": "sarga-30",
+            "title": "Sarga 30",
+            "title_sa": "सर्गः ३०",
+            "n": 30,
+            "image": "ramayana/sundarakanda/sarga-30/media/image1.png"
+          },
+          {
+            "slug": "sarga-31",
+            "title": "Sarga 31",
+            "title_sa": "सर्गः ३१",
+            "n": 31,
+            "image": "ramayana/sundarakanda/sarga-31/media/image1.png"
+          },
+          {
+            "slug": "sarga-32",
+            "title": "Sarga 32",
+            "title_sa": "सर्गः ३२",
+            "n": 32,
+            "image": "ramayana/sundarakanda/sarga-32/media/image1.png"
+          },
+          {
+            "slug": "sarga-33",
+            "title": "Sarga 33",
+            "title_sa": "सर्गः ३३",
+            "n": 33,
+            "image": "ramayana/sundarakanda/sarga-33/media/image1.png"
+          },
+          {
+            "slug": "sarga-34",
+            "title": "Sarga 34",
+            "title_sa": "सर्गः ३४",
+            "n": 34,
+            "image": "ramayana/sundarakanda/sarga-34/media/image1.png"
+          },
+          {
+            "slug": "sarga-35",
+            "title": "Sarga 35",
+            "title_sa": "सर्गः ३५",
+            "n": 35,
+            "image": "ramayana/sundarakanda/sarga-35/media/image1.png"
+          },
+          {
+            "slug": "sarga-36",
+            "title": "Sarga 36",
+            "title_sa": "सर्गः ३६",
+            "n": 36,
+            "image": "ramayana/sundarakanda/sarga-36/media/image1.png"
+          },
+          {
+            "slug": "sarga-37",
+            "title": "Sarga 37",
+            "title_sa": "सर्गः ३७",
+            "n": 37,
+            "image": "ramayana/sundarakanda/sarga-37/media/image1.png"
+          },
+          {
+            "slug": "sarga-38",
+            "title": "Sarga 38",
+            "title_sa": "सर्गः ३८",
+            "n": 38,
+            "image": "ramayana/sundarakanda/sarga-38/media/image1.png"
+          },
+          {
+            "slug": "sarga-39",
+            "title": "Sarga 39",
+            "title_sa": "सर्गः ३९",
+            "n": 39,
+            "image": "ramayana/sundarakanda/sarga-39/media/image1.png"
+          },
+          {
+            "slug": "sarga-40",
+            "title": "Sarga 40",
+            "title_sa": "सर्गः ४०",
+            "n": 40,
+            "image": "ramayana/sundarakanda/sarga-40/media/image1.png"
+          },
+          {
+            "slug": "sarga-41",
+            "title": "Sarga 41",
+            "title_sa": "सर्गः ४१",
+            "n": 41,
+            "image": "ramayana/sundarakanda/sarga-41/media/image1.png"
+          },
+          {
+            "slug": "sarga-42",
+            "title": "Sarga 42",
+            "title_sa": "सर्गः ४२",
+            "n": 42,
+            "image": "ramayana/sundarakanda/sarga-42/media/image1.png"
+          },
+          {
+            "slug": "sarga-43",
+            "title": "Sarga 43",
+            "title_sa": "सर्गः ४३",
+            "n": 43,
+            "image": "ramayana/sundarakanda/sarga-43/media/image1.png"
+          },
+          {
+            "slug": "sarga-44",
+            "title": "Sarga 44",
+            "title_sa": "सर्गः ४४",
+            "n": 44,
+            "image": "ramayana/sundarakanda/sarga-44/media/image1.png"
+          },
+          {
+            "slug": "sarga-45",
+            "title": "Sarga 45",
+            "title_sa": "सर्गः ४५",
+            "n": 45,
+            "image": "ramayana/sundarakanda/sarga-45/media/image1.png"
+          },
+          {
+            "slug": "sarga-46",
+            "title": "Sarga 46",
+            "title_sa": "सर्गः ४६",
+            "n": 46,
+            "image": "ramayana/sundarakanda/sarga-46/media/image1.png"
+          },
+          {
+            "slug": "sarga-47",
+            "title": "Sarga 47",
+            "title_sa": "सर्गः ४७",
+            "n": 47,
+            "image": "ramayana/sundarakanda/sarga-47/media/image1.png"
+          },
+          {
+            "slug": "sarga-48",
+            "title": "Sarga 48",
+            "title_sa": "सर्गः ४८",
+            "n": 48,
+            "image": "ramayana/sundarakanda/sarga-48/media/image1.png"
+          },
+          {
+            "slug": "sarga-49",
+            "title": "Sarga 49",
+            "title_sa": "सर्गः ४९",
+            "n": 49,
+            "image": "ramayana/sundarakanda/sarga-49/media/image1.png"
+          },
+          {
+            "slug": "sarga-50",
+            "title": "Sarga 50",
+            "title_sa": "सर्गः ५०",
+            "n": 50,
+            "image": "ramayana/sundarakanda/sarga-50/media/image1.png"
+          },
+          {
+            "slug": "sarga-51",
+            "title": "Sarga 51",
+            "title_sa": "सर्गः ५१",
+            "n": 51,
+            "image": "ramayana/sundarakanda/sarga-51/media/image1.png"
+          },
+          {
+            "slug": "sarga-52",
+            "title": "Sarga 52",
+            "title_sa": "सर्गः ५२",
+            "n": 52,
+            "image": "ramayana/sundarakanda/sarga-52/media/image1.png"
+          },
+          {
+            "slug": "sarga-53",
+            "title": "Sarga 53",
+            "title_sa": "सर्गः ५३",
+            "n": 53,
+            "image": "ramayana/sundarakanda/sarga-53/media/image1.png"
+          },
+          {
+            "slug": "sarga-54",
+            "title": "Sarga 54",
+            "title_sa": "सर्गः ५४",
+            "n": 54,
+            "image": "ramayana/sundarakanda/sarga-54/media/image1.png"
+          },
+          {
+            "slug": "sarga-55",
+            "title": "Sarga 55",
+            "title_sa": "सर्गः ५५",
+            "n": 55,
+            "image": "ramayana/sundarakanda/sarga-55/media/image1.png"
+          },
+          {
+            "slug": "sarga-56",
+            "title": "Sarga 56",
+            "title_sa": "सर्गः ५६",
+            "n": 56,
+            "image": "ramayana/sundarakanda/sarga-56/media/image1.png"
+          },
+          {
+            "slug": "sarga-57",
+            "title": "Sarga 57",
+            "title_sa": "सर्गः ५७",
+            "n": 57,
+            "image": "ramayana/sundarakanda/sarga-57/media/image1.jpg"
+          },
+          {
+            "slug": "sarga-58",
+            "title": "Sarga 58",
+            "title_sa": "सर्गः ५८",
+            "n": 58,
+            "image": "ramayana/sundarakanda/sarga-58/media/image1.png"
+          },
+          {
+            "slug": "sarga-59",
+            "title": "Sarga 59",
+            "title_sa": "सर्गः ५९",
+            "n": 59,
+            "image": "ramayana/sundarakanda/sarga-59/media/image1.png"
+          },
+          {
+            "slug": "sarga-60",
+            "title": "Sarga 60",
+            "title_sa": "सर्गः ६०",
+            "n": 60,
+            "image": "ramayana/sundarakanda/sarga-60/media/image1.png"
+          },
+          {
+            "slug": "sarga-61",
+            "title": "Sarga 61",
+            "title_sa": "सर्गः ६१",
+            "n": 61,
+            "image": "ramayana/sundarakanda/sarga-61/media/image1.png"
+          },
+          {
+            "slug": "sarga-62",
+            "title": "Sarga 62",
+            "title_sa": "सर्गः ६२",
+            "n": 62,
+            "image": "ramayana/sundarakanda/sarga-62/media/image1.png"
+          },
+          {
+            "slug": "sarga-63",
+            "title": "Sarga 63",
+            "title_sa": "सर्गः ६३",
+            "n": 63,
+            "image": "ramayana/sundarakanda/sarga-63/media/image1.png"
+          },
+          {
+            "slug": "sarga-64",
+            "title": "Sarga 64",
+            "title_sa": "सर्गः ६४",
+            "n": 64,
+            "image": "ramayana/sundarakanda/sarga-64/media/image1.png"
+          },
+          {
+            "slug": "sarga-65",
+            "title": "Sarga 65",
+            "title_sa": "सर्गः ६५",
+            "n": 65,
+            "image": "ramayana/sundarakanda/sarga-65/media/image1.png"
+          },
+          {
+            "slug": "sarga-66",
+            "title": "Sarga 66",
+            "title_sa": "सर्गः ६६",
+            "n": 66,
+            "image": "ramayana/sundarakanda/sarga-66/media/image1.png"
+          },
+          {
+            "slug": "sarga-67",
+            "title": "Sarga 67",
+            "title_sa": "सर्गः ६७",
+            "n": 67,
+            "image": "ramayana/sundarakanda/sarga-67/media/image1.png"
+          },
+          {
+            "slug": "sarga-68",
+            "title": "Sarga 68",
+            "title_sa": "सर्गः ६८",
+            "n": 68,
+            "image": "ramayana/sundarakanda/sarga-68/media/image1.png"
+          }
+        ],
+        "title": "Sundarakanda",
+        "title_sa": "सुन्दरकाण्डम्",
+        "subtitle": "Hanuman crosses the ocean, sees Sita, returns"
+      },
+      {
+        "type": "work",
+        "slug": "yudhdhakanda",
+        "chapters": [
+          {
+            "slug": "sarga-74",
+            "title": "Sarga 74",
+            "title_sa": "सर्गः ७४",
+            "n": 74,
+            "image": "ramayana/yudhdhakanda/sarga-74/media/image1.png"
+          },
+          {
+            "slug": "sarga-101",
+            "title": "Sarga 101",
+            "title_sa": "सर्गः १०१",
+            "n": 101,
+            "image": "ramayana/yudhdhakanda/sarga-101/media/image1.png"
+          },
+          {
+            "slug": "sarga-128",
+            "title": "Sarga 128",
+            "title_sa": "सर्गः १२८",
+            "n": 128,
+            "image": "ramayana/yudhdhakanda/sarga-128/media/image1.png"
+          }
+        ],
+        "title": "Yudhdhakanda",
+        "title_sa": "युद्धकाण्डम्",
+        "subtitle": "the Sanjivani episodes and Rama's coronation"
+      }
+    ],
+    "title": "Rāmāyaṇa — The Story of Hanuman",
+    "title_sa": "रामायणम्",
+    "subtitle": "selected sargas from Vālmīki Rāmāyaṇa",
+    "note_html": "<p style=\"text-align:center\"><span style=\"color:#1c4587\"><strong>॥ॐ॥</strong></span></p>\n<p style=\"text-align:center\"><span style=\"color:#1c4587\"><strong>मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्।</strong></span></p>\n<p style=\"text-align:center\"><span style=\"color:#1c4587\"><strong>वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये॥</strong></span></p>\n\n<h2>Why this collection</h2>\n<p>Sundarakanda is one of the most beloved sections of the Valmiki Ramayana. It narrates the heroic journey of Lord Hanuman as he crosses the ocean, discovers Sita in Lanka, delivers Lord Rama's message, consoles her in her time of distress, and returns with news of her whereabouts. More than a tale of adventure and courage, Sundarakanda is a profound spiritual journey that illustrates devotion, faith, perseverance, wisdom, and selfless service.</p>\n<p>Among all the characters of the Ramayana, Hanuman stands as the perfect embodiment of strength guided by humility, power tempered by wisdom, and unwavering devotion to Lord Rama. His actions throughout Sundarakanda demonstrate how faith in God and dedication to a noble purpose can overcome even the greatest obstacles.</p>\n<p>I chose to undertake this project because Sundarakanda has long held a special place in my heart. In particular, the events leading up to Hanuman's leap across the ocean serve as a powerful reminder that we often possess far greater strength than we realize. Just as Jambavan helped Hanuman rediscover his hidden potential, we too are blessed at times with guides, teachers, friends, or well-wishers who encourage us when we face seemingly impossible challenges.</p>\n<p>By including selected sargas from Kishkindhakanda and Yuddhakanda alongside Sundarakanda, I hope to present a more complete picture of Hanuman's inspiring journey — from the awakening of his confidence, to his heroic service in Lanka, and finally to his selfless efforts in service of Lord Rama. My prayer is that the study and recitation of these sacred verses may inspire the same faith, courage, devotion, and determination in all who read them.</p>\n\n<h3>Sargas 66 and 67 of Kishkindhakanda</h3>\n<p>Before Hanuman prepares to leap across the ocean in search of Sita, the vanaras are overcome with despair. Faced with what appears to be an impossible task, they lose hope of success. Hanuman himself remains unaware of the immense strength and potential that lie dormant within him. At this crucial moment, in Sarga 66, Jambavan steps forward and reminds him of his true nature, his divine gifts, and his extraordinary capabilities.</p>\n<p>In Sarga 67, Hanuman awakens to his own strength. His confidence is restored, his doubts disappear, and he finds the courage to undertake the seemingly impossible journey across the vast ocean.</p>\n<p>We encounter similar moments in our own lives. There are times when challenges appear insurmountable and we feel that all hope is lost. Yet, by the grace of God, we are sometimes blessed with someone who believes in us, encourages us, and helps us rediscover the strength that was within us all along. With renewed confidence and faith, we find the courage to face our difficulties and overcome them.</p>\n<p>It is for this reason that I have chosen to include these two sargas from Kishkindhakanda as a prelude to Sundarakanda. They beautifully set the stage for Hanuman's extraordinary journey and remind us of the transformative power of faith, encouragement, and self-discovery.</p>\n<p>Just as Lord Hanuman successfully fulfilled the mission entrusted to him by Lord Rama, may he bless us with the strength, courage, devotion, and determination to fulfil the duties and responsibilities entrusted to us in our own lives.</p>\n\n<h3>The Sanjivani Episodes</h3>\n<p>Sarga 74 of Yuddhakanda is another important chapter in Hanuman's story. During the great war, when Lakshmana and many of the vanara heroes are struck down by Indrajit's powerful weapons, Hanuman brings the Sanjivani-bearing mountain to restore them and enable Rama's mission to continue. Hanuman's glorious service to Rama cannot be fully appreciated without this episode.</p>\n<p>Later, in Sarga 101 of Yuddhakanda, when Lakshmana is once again grievously wounded in battle, Hanuman undertakes the same heroic mission and brings the Sanjivani-bearing mountain once more. These episodes represent some of the finest moments in Hanuman's life, where he places the welfare of Rama, Lakshmana, and the vanara army above everything else. They demonstrate not only his extraordinary power but also his unwavering devotion and selfless service to his Lord.</p>\n<p>I chose to include these episodes because Hanuman's story does not end with the discovery of Sita in Lanka. His devotion to Lord Rama continues to manifest itself through ever-greater acts of courage, strength, and sacrifice. For Sarga 101, however, I have included only those shlokas that describe Hanuman's journey to bring the mountain, in order to maintain the focus on Hanuman.</p>\n\n<h3>The Coronation of Rama</h3>\n<p>I have also included the coronation of Lord Rama as the concluding chapter of this collection. Every great journey deserves a fitting conclusion, and Hanuman's story finds its fulfilment in Rama's victory and return to Ayodhya. The coronation marks the triumph of dharma, the successful completion of Rama's mission, and the joyous culmination of all the efforts and sacrifices made by Hanuman and countless others in Rama's service.</p>\n<p>It therefore serves as a natural and auspicious ending to <em>The Story of Hanuman</em>, reminding us that sincere devotion and selfless service ultimately lead to the victory of righteousness and the fulfilment of the Divine Will.</p>\n\n<p style=\"text-align:center\"><strong>॥ <span style=\"color:#222222\">जय श्री हनुमान्</span> ॥</strong></p>\n<p style=\"text-align:center\"><strong>॥ <span style=\"color:#222222\">सर्वं श्री कृष्णार्पणमस्तु</span> ॥</strong></p>\n"
   }
 ]

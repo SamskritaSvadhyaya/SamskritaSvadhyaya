@@ -12,11 +12,11 @@
 set -euo pipefail
 
 if [ "$#" -lt 4 ]; then
-  echo "Usage: $0 <tool-result.json> <work-slug|-> <slug> <n> [\"<Title>\"] [\"<Title SA>\"]" >&2
+  echo "Usage: $0 <tool-result.json> <work-slug|-> <slug> <n> [\"<Title>\"] [\"<Title SA>\"] [<parent-slug>]" >&2
   exit 1
 fi
 
-json="$1"; work="$2"; slug="$3"; n="$4"; title="${5:-}"; title_sa="${6:-}"
+json="$1"; work="$2"; slug="$3"; n="$4"; title="${5:-}"; title_sa="${6:-}"; parent="${7:-}"
 here="$(cd "$(dirname "$0")" && pwd)"
 
 if [ -z "$title" ]; then title="Chapter $n"; fi
@@ -25,7 +25,9 @@ if [ -z "$title_sa" ]; then
   title_sa="अध्यायः $dev"
 fi
 
-if [ "$work" = "-" ]; then
+if [ -n "$parent" ]; then
+  outdir="$parent/$work/$slug"
+elif [ "$work" = "-" ]; then
   outdir="$slug"
 else
   outdir="$work/$slug"
@@ -50,7 +52,10 @@ case "$mime" in
     ;;
 esac
 
-if [ "$work" = "-" ]; then
+if [ -n "$parent" ]; then
+  python3 "$here/build.py" page --parent "$parent" --work "$work" --slug "$slug" --n "$n" \
+    --title "$title" --title-sa "$title_sa" --body "$tmp_body"
+elif [ "$work" = "-" ]; then
   python3 "$here/build.py" page --slug "$slug" \
     --title "$title" --title-sa "$title_sa" --body "$tmp_body"
 else

@@ -399,6 +399,39 @@ body { font-family: var(--serif), var(--devanagari); }
   border-color: var(--rule);
 }
 
+/* ---------- Preamble / Note section on parent landing pages ---------- */
+.preamble {
+  max-width: var(--content-width);
+  margin: 0 auto 2.5rem;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+  line-height: 1.7;
+}
+[data-theme="dark"] .preamble {
+  background: #fffaf0;
+  color: #2a1810;
+}
+.preamble p { margin: .85rem 0; }
+.preamble p:first-child { margin-top: 0; }
+.preamble h2 {
+  color: var(--accent-strong);
+  font-weight: 600;
+  margin: 1.6rem 0 .5rem;
+  font-size: 1.4rem;
+}
+.preamble h3 {
+  color: var(--accent-strong);
+  font-weight: 600;
+  margin: 1.3rem 0 .4rem;
+  font-size: 1.15rem;
+}
+.preamble strong { font-weight: 600; }
+.preamble em { font-style: italic; }
+
 /* ---------- Breadcrumb ---------- */
 .hero .crumb {
   display: inline-block;

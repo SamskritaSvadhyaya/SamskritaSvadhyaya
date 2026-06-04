@@ -1,29 +1,39 @@
 #!/usr/bin/env python3
 """Static-site generator for the Samskrita Svadhyaya text library.
 
-The library (texts.json) holds two kinds of top-level entries:
+The library (texts.json) holds three kinds of top-level entries:
 
-  - "text": a standalone text -> /<slug>/index.html
-  - "work": a multi-chapter work -> /<slug>/index.html (chapter index)
-            with chapters at /<slug>/<ch-slug>/index.html
+  - "text":   a standalone text  -> /<slug>/index.html
+  - "work":   a multi-chapter work -> /<slug>/index.html (chapter index)
+                                       with chapters at /<slug>/<ch-slug>/index.html
+  - "parent": a curated collection -> /<slug>/index.html (landing page)
+                                      containing child works at /<slug>/<work-slug>/...
+                                      and sargas at /<slug>/<work-slug>/<ch-slug>/...
 
 Commands:
 
-  build.py page --slug <s> [--work <w>] --title <t> --title-sa <sa>
+  build.py page --slug <s> [--work <w>] [--parent <p>] --title <t> --title-sa <sa>
                 [--subtitle <s>] [--n <int>] --body <file.html>
-      Wrap a pandoc HTML body in the site template. With --work, the page is a
-      chapter under that work; without, it's a standalone text. Updates texts.json.
+      Wrap a content body in the site template. With --parent + --work, the page
+      is a chapter under that parent's work; with --work alone, a chapter under a
+      top-level work; with neither, a standalone text.
 
-  build.py set-work --slug <s> --title <t> --title-sa <sa> [--subtitle <s>]
-      Create/update a work entry (preserving its chapters).
+  build.py set-work --slug <s> [--parent <p>] --title <t> --title-sa <sa>
+                    [--subtitle <s>]
+      Create/update a work entry (preserving its chapters), optionally inside a parent.
 
-  build.py work-index --slug <s>
-      Regenerate <slug>/index.html (the chapter index) for a work.
+  build.py set-parent --slug <s> --title <t> --title-sa <sa> [--subtitle <s>]
+                      [--note <file.html>]
+      Create/update a parent entry, optionally embedding an HTML note preamble.
+
+  build.py work-index --slug <s> [--parent <p>]
+      Regenerate the chapter-index for a work (under a parent if specified).
+
+  build.py parent-index --slug <s>
+      Regenerate the landing page for a parent (Note preamble + child cards).
 
   build.py home
       Regenerate the root index.html (top-level card grid).
-
-Normally driven by convert.sh, not run by hand.
 """
 
 import argparse
@@ -129,15 +139,30 @@ def find_entry(entries, slug):
     return None
 
 
+def find_parent(entries, slug):
+    for e in entries:
+        if e.get("slug") == slug and is_parent(e):
+            return e
+    return None
+
+
+def find_work_in(works, slug):
+    for w in works or []:
+        if w.get("slug") == slug:
+            return w
+    return None
+
+
 def is_work(entry):
     return entry.get("type") == "work" or "chapters" in entry
 
 
+def is_parent(entry):
+    return entry.get("type") == "parent" or "works" in entry
+
+
 def clean_body(body):
-    # Extracted media always lands in <page-dir>/media/; rewrite any absolute or
-    # nested src down to a path relative to the page.
     body = re.sub(r'src="[^"]*?/media/', 'src="media/', body)
-    # Drop pandoc's inline width/height (the stylesheet controls image sizing).
     body = re.sub(r'\s*style="width:[^"]*"', "", body)
     return body
 
@@ -154,88 +179,8 @@ def fill(template, **kw):
     return out
 
 
-def build_page(args):
-    body = clean_body(Path(args.body).read_text(encoding="utf-8"))
-    entries = load_manifest()
-
-    if args.work:
-        rel = "../../"
-        page_dir = ROOT / args.work / args.slug
-        rel_from_root = f"{args.work}/{args.slug}"
-        work = find_entry(entries, args.work)
-        if work is None or not is_work(work):
-            raise SystemExit(f"Run set-work for '{args.work}' before adding chapters.")
-        crumb = (
-            f'    <a class="crumb" href="../">↩ {work["title"]}</a>\n'
-        )
-    else:
-        rel = "../"
-        page_dir = ROOT / args.slug
-        rel_from_root = args.slug
-        crumb = ""
-
-    image = first_image(body, rel_from_root)
-    subtitle = args.subtitle or ""
-
-    html = (
-        fill(DOC_OPEN, REL=rel,
-             HTML_TITLE=f"{args.title} — {args.title_sa}",
-             DESC=f"{args.title} — Sanskrit text with word-by-word meaning, anvaya, and translation.")
-        + HEADER.replace("{{REL}}", rel)
-        + fill(PAGE_HERO,
-               BREADCRUMB=crumb,
-               TITLE=args.title,
-               TITLE_SA=args.title_sa,
-               SUBTITLE=subtitle,
-               SUBSEP=" · " if subtitle else "")
-        + body
-        + "  </main>\n"
-        + FOOTER.replace("{{REL}}", rel)
-    )
-
-    page_dir.mkdir(parents=True, exist_ok=True)
-    (page_dir / "index.html").write_text(html, encoding="utf-8")
-
-    if args.work:
-        chapters = [c for c in work.get("chapters", []) if c.get("slug") != args.slug]
-        chapters.append({
-            "slug": args.slug,
-            "title": args.title,
-            "title_sa": args.title_sa,
-            "n": args.n if args.n is not None else len(chapters) + 1,
-            "image": image,
-        })
-        chapters.sort(key=lambda c: c.get("n", 0))
-        work["chapters"] = chapters
-    else:
-        entries = [e for e in entries if e.get("slug") != args.slug]
-        entries.append({
-            "type": "text",
-            "slug": args.slug,
-            "title": args.title,
-            "title_sa": args.title_sa,
-            "subtitle": subtitle,
-            "image": image,
-        })
-        entries.sort(key=lambda e: e["title"].lower())
-
-    save_manifest(entries)
-    print(f"Wrote {rel_from_root}/index.html and updated texts.json")
-
-
-def set_work(args):
-    entries = load_manifest()
-    work = find_entry(entries, args.slug)
-    if work is None:
-        work = {"type": "work", "slug": args.slug, "chapters": []}
-        entries.append(work)
-    work["type"] = "work"
-    work["title"] = args.title
-    work["title_sa"] = args.title_sa
-    work["subtitle"] = args.subtitle or ""
-    work.setdefault("chapters", [])
-    save_manifest(entries)
-    print(f"Set work '{args.slug}'")
+def rel_for(depth):
+    return "../" * depth
 
 
 def render_chrome(title, desc, rel, hero, body_main):
@@ -248,12 +193,152 @@ def render_chrome(title, desc, rel, hero, body_main):
     )
 
 
+def build_page(args):
+    body = clean_body(Path(args.body).read_text(encoding="utf-8"))
+    entries = load_manifest()
+
+    if args.parent:
+        if not args.work:
+            raise SystemExit("--parent requires --work (chapter lives at parent/work/slug)")
+        parent = find_parent(entries, args.parent)
+        if parent is None:
+            raise SystemExit(f"Run set-parent for '{args.parent}' first.")
+        work = find_work_in(parent.get("works", []), args.work)
+        if work is None:
+            raise SystemExit(
+                f"Run set-work --parent {args.parent} --slug {args.work} first."
+            )
+        depth = 3
+        page_dir = ROOT / args.parent / args.work / args.slug
+        rel_from_root = f"{args.parent}/{args.work}/{args.slug}"
+        crumb = f'    <a class="crumb" href="../">↩ {work["title"]}</a>\n'
+    elif args.work:
+        work = find_entry(entries, args.work)
+        if work is None or not is_work(work):
+            raise SystemExit(f"Run set-work for '{args.work}' before adding chapters.")
+        depth = 2
+        page_dir = ROOT / args.work / args.slug
+        rel_from_root = f"{args.work}/{args.slug}"
+        crumb = f'    <a class="crumb" href="../">↩ {work["title"]}</a>\n'
+    else:
+        work = None
+        depth = 1
+        page_dir = ROOT / args.slug
+        rel_from_root = args.slug
+        crumb = ""
+
+    rel = rel_for(depth)
+    image = first_image(body, rel_from_root)
+    subtitle = args.subtitle or ""
+
+    html = (
+        fill(DOC_OPEN, REL=rel,
+             HTML_TITLE=f"{args.title} — {args.title_sa}",
+             DESC=f"{args.title} — Sanskrit text with word-by-word meaning, anvaya, and translation.")
+        + HEADER.replace("{{REL}}", rel)
+        + fill(PAGE_HERO, BREADCRUMB=crumb, TITLE=args.title, TITLE_SA=args.title_sa,
+               SUBTITLE=subtitle, SUBSEP=" · " if subtitle else "")
+        + body
+        + "  </main>\n"
+        + FOOTER.replace("{{REL}}", rel)
+    )
+
+    page_dir.mkdir(parents=True, exist_ok=True)
+    (page_dir / "index.html").write_text(html, encoding="utf-8")
+
+    chapter_entry = {
+        "slug": args.slug,
+        "title": args.title,
+        "title_sa": args.title_sa,
+        "n": args.n if args.n is not None else 0,
+        "image": image,
+    }
+
+    if work is not None:
+        chapters = [c for c in work.get("chapters", []) if c.get("slug") != args.slug]
+        if chapter_entry["n"] == 0:
+            chapter_entry["n"] = len(chapters) + 1
+        chapters.append(chapter_entry)
+        chapters.sort(key=lambda c: c.get("n", 0))
+        work["chapters"] = chapters
+    else:
+        entries = [e for e in entries if e.get("slug") != args.slug]
+        entries.append({
+            "type": "text",
+            "slug": args.slug,
+            "title": args.title,
+            "title_sa": args.title_sa,
+            "subtitle": subtitle,
+            "image": image,
+        })
+        entries.sort(key=lambda e: e.get("title", "").lower())
+
+    save_manifest(entries)
+    print(f"Wrote {rel_from_root}/index.html and updated texts.json")
+
+
+def set_work(args):
+    entries = load_manifest()
+    if args.parent:
+        parent = find_parent(entries, args.parent)
+        if parent is None:
+            raise SystemExit(f"Run set-parent for '{args.parent}' first.")
+        work = find_work_in(parent.get("works", []), args.slug)
+        if work is None:
+            work = {"type": "work", "slug": args.slug, "chapters": []}
+            parent.setdefault("works", []).append(work)
+    else:
+        work = find_entry(entries, args.slug)
+        if work is None:
+            work = {"type": "work", "slug": args.slug, "chapters": []}
+            entries.append(work)
+    work["type"] = "work"
+    work["title"] = args.title
+    work["title_sa"] = args.title_sa
+    work["subtitle"] = args.subtitle or ""
+    work.setdefault("chapters", [])
+    save_manifest(entries)
+    print(f"Set work '{args.slug}'" + (f" under parent '{args.parent}'" if args.parent else ""))
+
+
+def set_parent(args):
+    entries = load_manifest()
+    parent = find_parent(entries, args.slug)
+    if parent is None:
+        parent = {"type": "parent", "slug": args.slug, "works": []}
+        entries.append(parent)
+    parent["type"] = "parent"
+    parent["title"] = args.title
+    parent["title_sa"] = args.title_sa
+    parent["subtitle"] = args.subtitle or ""
+    if args.note:
+        parent["note_html"] = Path(args.note).read_text(encoding="utf-8")
+    parent.setdefault("works", [])
+    save_manifest(entries)
+    print(f"Set parent '{args.slug}'")
+
+
 def build_work_index(args):
     entries = load_manifest()
-    work = find_entry(entries, args.slug)
-    if work is None or not is_work(work):
-        raise SystemExit(f"No work named '{args.slug}'.")
+    if args.parent:
+        parent = find_parent(entries, args.parent)
+        if parent is None:
+            raise SystemExit(f"No parent '{args.parent}'.")
+        work = find_work_in(parent.get("works", []), args.slug)
+        if work is None or not is_work(work):
+            raise SystemExit(f"No work '{args.slug}' under parent '{args.parent}'.")
+        depth = 2
+        out_dir = ROOT / args.parent / args.slug
+        crumb = f'    <a class="crumb" href="../">↩ {parent["title"]}</a>\n'
+    else:
+        work = find_entry(entries, args.slug)
+        if work is None or not is_work(work):
+            raise SystemExit(f"No work named '{args.slug}'.")
+        depth = 1
+        out_dir = ROOT / args.slug
+        crumb = '    <a class="crumb" href="../index.html">↩ All texts</a>\n'
 
+    rel = rel_for(depth)
     chapters = sorted(work.get("chapters", []), key=lambda c: c.get("n", 0))
     cards = "\n".join(
         """      <a class="chapter-card" href="{slug}/">
@@ -274,7 +359,7 @@ def build_work_index(args):
     sub = work.get("subtitle", "")
     hero = fill(
         PAGE_HERO.replace('<main class="content" id="content">', '<main class="home">'),
-        BREADCRUMB='    <a class="crumb" href="../index.html">↩ All texts</a>\n',
+        BREADCRUMB=crumb,
         TITLE=work["title"],
         TITLE_SA=work["title_sa"],
         SUBTITLE=sub,
@@ -285,19 +370,83 @@ def build_work_index(args):
     html = render_chrome(
         f'{work["title"]} — {work["title_sa"]}',
         f'{work["title"]} — chapter index',
-        "../",
+        rel,
         hero,
         body_main,
     )
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "index.html").write_text(html, encoding="utf-8")
+    where = f"{args.parent}/{args.slug}" if args.parent else args.slug
+    print(f"Wrote {where}/index.html ({len(chapters)} chapter(s))")
+
+
+def build_parent_index(args):
+    entries = load_manifest()
+    parent = find_parent(entries, args.slug)
+    if parent is None:
+        raise SystemExit(f"No parent named '{args.slug}'.")
+
+    rel = "../"
+    works = parent.get("works", [])
+    cards = "\n".join(
+        """      <a class="text-card" href="{slug}/">
+        <div class="card-emblem">ॐ</div>
+        <div class="card-body">
+          <span class="card-title-sa" lang="sa">{title_sa}</span>
+          <span class="card-title">{title}</span>
+          <span class="card-sub">{subtitle}</span>
+        </div>
+      </a>""".format(
+            slug=w["slug"],
+            title=w.get("title", ""),
+            title_sa=w.get("title_sa", ""),
+            subtitle=(w.get("subtitle") or
+                      (f"{len(w.get('chapters', []))} sarga"
+                       f"{'s' if len(w.get('chapters', [])) != 1 else ''}")),
+        )
+        for w in works
+    ) or '      <p class="empty-note">No works yet.</p>'
+
+    note_html = parent.get("note_html", "")
+    preamble = (f'    <section class="preamble">\n{note_html}\n    </section>\n'
+                if note_html else '')
+
+    sub = parent.get("subtitle", "")
+    hero = fill(
+        PAGE_HERO.replace('<main class="content" id="content">', '<main class="home">'),
+        BREADCRUMB='    <a class="crumb" href="../index.html">↩ All texts</a>\n',
+        TITLE=parent["title"],
+        TITLE_SA=parent["title_sa"],
+        SUBTITLE=sub,
+        SUBSEP=" · " if sub else "",
+    )
+    body_main = f'{preamble}    <div class="home-grid">\n{cards}\n    </div>\n  </main>\n'
+
+    html = render_chrome(
+        f'{parent["title"]} — {parent["title_sa"]}',
+        parent["title"],
+        rel,
+        hero,
+        body_main,
+    )
+    (ROOT / args.slug).mkdir(parents=True, exist_ok=True)
     (ROOT / args.slug / "index.html").write_text(html, encoding="utf-8")
-    print(f"Wrote {args.slug}/index.html ({len(chapters)} chapter(s))")
+    print(f"Wrote {args.slug}/index.html (parent with {len(works)} work(s))")
 
 
 def build_home(_args=None):
     entries = load_manifest()
     cards = []
     for e in entries:
-        if is_work(e):
+        if is_parent(e):
+            n_chap = sum(len(w.get("chapters", [])) for w in e.get("works", []))
+            n_works = len(e.get("works", []))
+            sub = e.get("subtitle") or f"{n_works} works · {n_chap} sargas"
+            emblem = (
+                f'<img src="{e["image"]}" alt="" loading="lazy" />'
+                if e.get("image") else "ॐ"
+            )
+        elif is_work(e):
             count = len(e.get("chapters", []))
             sub = e.get("subtitle") or f"{count} chapter{'s' if count != 1 else ''}"
             emblem = (
@@ -365,6 +514,7 @@ def main():
     p = sub.add_parser("page")
     p.add_argument("--slug", required=True)
     p.add_argument("--work", default=None)
+    p.add_argument("--parent", default=None)
     p.add_argument("--title", required=True)
     p.add_argument("--title-sa", required=True, dest="title_sa")
     p.add_argument("--subtitle", default="")
@@ -374,14 +524,28 @@ def main():
 
     w = sub.add_parser("set-work")
     w.add_argument("--slug", required=True)
+    w.add_argument("--parent", default=None)
     w.add_argument("--title", required=True)
     w.add_argument("--title-sa", required=True, dest="title_sa")
     w.add_argument("--subtitle", default="")
     w.set_defaults(func=set_work)
 
+    sp = sub.add_parser("set-parent")
+    sp.add_argument("--slug", required=True)
+    sp.add_argument("--title", required=True)
+    sp.add_argument("--title-sa", required=True, dest="title_sa")
+    sp.add_argument("--subtitle", default="")
+    sp.add_argument("--note", default=None, help="path to an HTML body to embed as preamble")
+    sp.set_defaults(func=set_parent)
+
     wi = sub.add_parser("work-index")
     wi.add_argument("--slug", required=True)
+    wi.add_argument("--parent", default=None)
     wi.set_defaults(func=build_work_index)
+
+    pi = sub.add_parser("parent-index")
+    pi.add_argument("--slug", required=True)
+    pi.set_defaults(func=build_parent_index)
 
     h = sub.add_parser("home")
     h.set_defaults(func=build_home)
