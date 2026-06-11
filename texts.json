@@ -38,330 +38,6 @@
     "image": "ganapati-atharvashirsha/media/image1.jpg"
   },
   {
-    "type": "work",
-    "slug": "shrimad-bhagavatam-canto-10",
-    "chapters": [
-      {
-        "slug": "ch-1",
-        "title": "Chapter 1",
-        "title_sa": "अध्यायः १",
-        "n": 1,
-        "image": "shrimad-bhagavatam-canto-10/ch-1/media/image1.jpg"
-      },
-      {
-        "slug": "ch-2",
-        "title": "Chapter 2",
-        "title_sa": "अध्यायः २",
-        "n": 2,
-        "image": "shrimad-bhagavatam-canto-10/ch-2/media/image1.jpg"
-      },
-      {
-        "slug": "ch-3",
-        "title": "Chapter 3",
-        "title_sa": "अध्यायः ३",
-        "n": 3,
-        "image": "shrimad-bhagavatam-canto-10/ch-3/media/image1.jpg"
-      },
-      {
-        "slug": "ch-4",
-        "title": "Chapter 4",
-        "title_sa": "अध्यायः ४",
-        "n": 4,
-        "image": "shrimad-bhagavatam-canto-10/ch-4/media/image1.jpg"
-      },
-      {
-        "slug": "ch-5",
-        "title": "Chapter 5",
-        "title_sa": "अध्यायः ५",
-        "n": 5,
-        "image": "shrimad-bhagavatam-canto-10/ch-5/media/image1.jpg"
-      },
-      {
-        "slug": "ch-6",
-        "title": "Chapter 6",
-        "title_sa": "अध्यायः ६",
-        "n": 6,
-        "image": "shrimad-bhagavatam-canto-10/ch-6/media/image1.jpg"
-      },
-      {
-        "slug": "ch-7",
-        "title": "Chapter 7",
-        "title_sa": "अध्यायः ७",
-        "n": 7,
-        "image": "shrimad-bhagavatam-canto-10/ch-7/media/image1.jpg"
-      },
-      {
-        "slug": "ch-8",
-        "title": "Chapter 8",
-        "title_sa": "अध्यायः ८",
-        "n": 8,
-        "image": "shrimad-bhagavatam-canto-10/ch-8/media/image1.jpg"
-      },
-      {
-        "slug": "ch-9",
-        "title": "Chapter 9",
-        "title_sa": "अध्यायः ९",
-        "n": 9,
-        "image": "shrimad-bhagavatam-canto-10/ch-9/media/image1.jpg"
-      },
-      {
-        "slug": "ch-10",
-        "title": "Chapter 10",
-        "title_sa": "अध्यायः १०",
-        "n": 10,
-        "image": "shrimad-bhagavatam-canto-10/ch-10/media/image1.jpg"
-      },
-      {
-        "slug": "ch-11",
-        "title": "Chapter 11",
-        "title_sa": "अध्यायः ११",
-        "n": 11,
-        "image": "shrimad-bhagavatam-canto-10/ch-11/media/image1.jpg"
-      },
-      {
-        "slug": "ch-12",
-        "title": "Chapter 12",
-        "title_sa": "अध्यायः १२",
-        "n": 12,
-        "image": "shrimad-bhagavatam-canto-10/ch-12/media/image1.jpg"
-      },
-      {
-        "slug": "ch-13",
-        "title": "Chapter 13",
-        "title_sa": "अध्यायः १३",
-        "n": 13,
-        "image": "shrimad-bhagavatam-canto-10/ch-13/media/image1.jpg"
-      },
-      {
-        "slug": "ch-14",
-        "title": "Chapter 14",
-        "title_sa": "अध्यायः १४",
-        "n": 14,
-        "image": "shrimad-bhagavatam-canto-10/ch-14/media/image1.jpg"
-      },
-      {
-        "slug": "ch-15",
-        "title": "Chapter 15",
-        "title_sa": "अध्यायः १५",
-        "n": 15,
-        "image": "shrimad-bhagavatam-canto-10/ch-15/media/image1.jpg"
-      },
-      {
-        "slug": "ch-16",
-        "title": "Chapter 16",
-        "title_sa": "अध्यायः १६",
-        "n": 16,
-        "image": "shrimad-bhagavatam-canto-10/ch-16/media/image1.jpg"
-      },
-      {
-        "slug": "ch-17",
-        "title": "Chapter 17",
-        "title_sa": "अध्यायः १७",
-        "n": 17,
-        "image": "shrimad-bhagavatam-canto-10/ch-17/media/image1.jpg"
-      },
-      {
-        "slug": "ch-18",
-        "title": "Chapter 18",
-        "title_sa": "अध्यायः १८",
-        "n": 18,
-        "image": "shrimad-bhagavatam-canto-10/ch-18/media/image1.jpg"
-      },
-      {
-        "slug": "ch-19",
-        "title": "Chapter 19",
-        "title_sa": "अध्यायः १९",
-        "n": 19,
-        "image": "shrimad-bhagavatam-canto-10/ch-19/media/image1.jpg"
-      },
-      {
-        "slug": "ch-20",
-        "title": "Chapter 20",
-        "title_sa": "अध्यायः २०",
-        "n": 20,
-        "image": "shrimad-bhagavatam-canto-10/ch-20/media/image1.jpg"
-      },
-      {
-        "slug": "ch-21",
-        "title": "Chapter 21",
-        "title_sa": "अध्यायः २१",
-        "n": 21,
-        "image": "shrimad-bhagavatam-canto-10/ch-21/media/image1.jpg"
-      },
-      {
-        "slug": "ch-22",
-        "title": "Chapter 22",
-        "title_sa": "अध्यायः २२",
-        "n": 22,
-        "image": "shrimad-bhagavatam-canto-10/ch-22/media/image1.jpg"
-      },
-      {
-        "slug": "ch-23",
-        "title": "Chapter 23",
-        "title_sa": "अध्यायः २३",
-        "n": 23,
-        "image": "shrimad-bhagavatam-canto-10/ch-23/media/image1.jpg"
-      },
-      {
-        "slug": "ch-24",
-        "title": "Chapter 24",
-        "title_sa": "अध्यायः २४",
-        "n": 24,
-        "image": "shrimad-bhagavatam-canto-10/ch-24/media/image1.jpg"
-      },
-      {
-        "slug": "ch-25",
-        "title": "Chapter 25",
-        "title_sa": "अध्यायः २५",
-        "n": 25,
-        "image": "shrimad-bhagavatam-canto-10/ch-25/media/image1.jpg"
-      },
-      {
-        "slug": "ch-26",
-        "title": "Chapter 26",
-        "title_sa": "अध्यायः २६",
-        "n": 26,
-        "image": "shrimad-bhagavatam-canto-10/ch-26/media/image1.jpg"
-      },
-      {
-        "slug": "ch-27",
-        "title": "Chapter 27",
-        "title_sa": "अध्यायः २७",
-        "n": 27,
-        "image": "shrimad-bhagavatam-canto-10/ch-27/media/image1.jpg"
-      },
-      {
-        "slug": "ch-28",
-        "title": "Chapter 28",
-        "title_sa": "अध्यायः २८",
-        "n": 28,
-        "image": "shrimad-bhagavatam-canto-10/ch-28/media/image1.jpg"
-      },
-      {
-        "slug": "ch-29",
-        "title": "Chapter 29",
-        "title_sa": "अध्यायः २९",
-        "n": 29,
-        "image": "shrimad-bhagavatam-canto-10/ch-29/media/image1.jpg"
-      },
-      {
-        "slug": "ch-30",
-        "title": "Chapter 30",
-        "title_sa": "अध्यायः ३०",
-        "n": 30,
-        "image": "shrimad-bhagavatam-canto-10/ch-30/media/image1.jpg"
-      },
-      {
-        "slug": "ch-31",
-        "title": "Chapter 31",
-        "title_sa": "अध्यायः ३१",
-        "n": 31,
-        "image": "shrimad-bhagavatam-canto-10/ch-31/media/image1.jpg"
-      },
-      {
-        "slug": "ch-32",
-        "title": "Chapter 32",
-        "title_sa": "अध्यायः ३२",
-        "n": 32,
-        "image": "shrimad-bhagavatam-canto-10/ch-32/media/image1.jpg"
-      },
-      {
-        "slug": "ch-33",
-        "title": "Chapter 33",
-        "title_sa": "अध्यायः ३३",
-        "n": 33,
-        "image": "shrimad-bhagavatam-canto-10/ch-33/media/image1.jpg"
-      },
-      {
-        "slug": "ch-34",
-        "title": "Chapter 34",
-        "title_sa": "अध्यायः ३४",
-        "n": 34,
-        "image": "shrimad-bhagavatam-canto-10/ch-34/media/image1.jpg"
-      },
-      {
-        "slug": "ch-35",
-        "title": "Chapter 35",
-        "title_sa": "अध्यायः ३५",
-        "n": 35,
-        "image": "shrimad-bhagavatam-canto-10/ch-35/media/image1.jpg"
-      },
-      {
-        "slug": "ch-36",
-        "title": "Chapter 36",
-        "title_sa": "अध्यायः ३६",
-        "n": 36,
-        "image": "shrimad-bhagavatam-canto-10/ch-36/media/image1.jpg"
-      },
-      {
-        "slug": "ch-37",
-        "title": "Chapter 37",
-        "title_sa": "अध्यायः ३७",
-        "n": 37,
-        "image": "shrimad-bhagavatam-canto-10/ch-37/media/image1.jpg"
-      },
-      {
-        "slug": "ch-38",
-        "title": "Chapter 38",
-        "title_sa": "अध्यायः ३८",
-        "n": 38,
-        "image": "shrimad-bhagavatam-canto-10/ch-38/media/image1.jpg"
-      },
-      {
-        "slug": "ch-39",
-        "title": "Chapter 39",
-        "title_sa": "अध्यायः ३९",
-        "n": 39,
-        "image": "shrimad-bhagavatam-canto-10/ch-39/media/image1.jpg"
-      },
-      {
-        "slug": "ch-40",
-        "title": "Chapter 40",
-        "title_sa": "अध्यायः ४०",
-        "n": 40,
-        "image": "shrimad-bhagavatam-canto-10/ch-40/media/image1.jpg"
-      },
-      {
-        "slug": "ch-41",
-        "title": "Chapter 41",
-        "title_sa": "अध्यायः ४१",
-        "n": 41,
-        "image": "shrimad-bhagavatam-canto-10/ch-41/media/image1.jpg"
-      },
-      {
-        "slug": "ch-42",
-        "title": "Chapter 42",
-        "title_sa": "अध्यायः ४२",
-        "n": 42,
-        "image": "shrimad-bhagavatam-canto-10/ch-42/media/image1.jpg"
-      },
-      {
-        "slug": "ch-43",
-        "title": "Chapter 43",
-        "title_sa": "अध्यायः ४३",
-        "n": 43,
-        "image": "shrimad-bhagavatam-canto-10/ch-43/media/image1.jpg"
-      },
-      {
-        "slug": "ch-44",
-        "title": "Chapter 44",
-        "title_sa": "अध्यायः ४४",
-        "n": 44,
-        "image": "shrimad-bhagavatam-canto-10/ch-44/media/image1.jpg"
-      },
-      {
-        "slug": "ch-45",
-        "title": "Chapter 45",
-        "title_sa": "अध्यायः ४५",
-        "n": 45,
-        "image": "shrimad-bhagavatam-canto-10/ch-45/media/image1.jpg"
-      }
-    ],
-    "title": "Shrimad Bhagavatam — Canto 10",
-    "title_sa": "श्रीमद्भागवतमहापुराणम् · स्कन्ध १०",
-    "subtitle": ""
-  },
-  {
     "type": "parent",
     "slug": "ramayana",
     "works": [
@@ -908,5 +584,366 @@
     "title_sa": "हनुमतः कथा",
     "subtitle": "selected sargas from Vālmīki Rāmāyaṇa",
     "note_html": "<p style=\"text-align:center\"><span style=\"color:#1c4587\"><strong>॥ॐ॥</strong></span></p>\n<p style=\"text-align:center\"><span style=\"color:#1c4587\"><strong>मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्।</strong></span></p>\n<p style=\"text-align:center\"><span style=\"color:#1c4587\"><strong>वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये॥</strong></span></p>\n\n<h2>Why this collection</h2>\n<p>Sundarakanda is one of the most beloved sections of the Valmiki Ramayana. It narrates the heroic journey of Lord Hanuman as he crosses the ocean, discovers Sita in Lanka, delivers Lord Rama's message, consoles her in her time of distress, and returns with news of her whereabouts. More than a tale of adventure and courage, Sundarakanda is a profound spiritual journey that illustrates devotion, faith, perseverance, wisdom, and selfless service.</p>\n<p>Among all the characters of the Ramayana, Hanuman stands as the perfect embodiment of strength guided by humility, power tempered by wisdom, and unwavering devotion to Lord Rama. His actions throughout Sundarakanda demonstrate how faith in God and dedication to a noble purpose can overcome even the greatest obstacles.</p>\n<p>I chose to undertake this project because Sundarakanda has long held a special place in my heart. In particular, the events leading up to Hanuman's leap across the ocean serve as a powerful reminder that we often possess far greater strength than we realize. Just as Jambavan helped Hanuman rediscover his hidden potential, we too are blessed at times with guides, teachers, friends, or well-wishers who encourage us when we face seemingly impossible challenges.</p>\n<p>By including selected sargas from Kishkindhakanda and Yuddhakanda alongside Sundarakanda, I hope to present a more complete picture of Hanuman's inspiring journey — from the awakening of his confidence, to his heroic service in Lanka, and finally to his selfless efforts in service of Lord Rama. My prayer is that the study and recitation of these sacred verses may inspire the same faith, courage, devotion, and determination in all who read them.</p>\n\n<h3>Sargas 66 and 67 of Kishkindhakanda</h3>\n<p>Before Hanuman prepares to leap across the ocean in search of Sita, the vanaras are overcome with despair. Faced with what appears to be an impossible task, they lose hope of success. Hanuman himself remains unaware of the immense strength and potential that lie dormant within him. At this crucial moment, in Sarga 66, Jambavan steps forward and reminds him of his true nature, his divine gifts, and his extraordinary capabilities.</p>\n<p>In Sarga 67, Hanuman awakens to his own strength. His confidence is restored, his doubts disappear, and he finds the courage to undertake the seemingly impossible journey across the vast ocean.</p>\n<p>We encounter similar moments in our own lives. There are times when challenges appear insurmountable and we feel that all hope is lost. Yet, by the grace of God, we are sometimes blessed with someone who believes in us, encourages us, and helps us rediscover the strength that was within us all along. With renewed confidence and faith, we find the courage to face our difficulties and overcome them.</p>\n<p>It is for this reason that I have chosen to include these two sargas from Kishkindhakanda as a prelude to Sundarakanda. They beautifully set the stage for Hanuman's extraordinary journey and remind us of the transformative power of faith, encouragement, and self-discovery.</p>\n<p>Just as Lord Hanuman successfully fulfilled the mission entrusted to him by Lord Rama, may he bless us with the strength, courage, devotion, and determination to fulfil the duties and responsibilities entrusted to us in our own lives.</p>\n\n<h3>The Sanjivani Episodes</h3>\n<p>Sarga 74 of Yuddhakanda is another important chapter in Hanuman's story. During the great war, when Lakshmana and many of the vanara heroes are struck down by Indrajit's powerful weapons, Hanuman brings the Sanjivani-bearing mountain to restore them and enable Rama's mission to continue. Hanuman's glorious service to Rama cannot be fully appreciated without this episode.</p>\n<p>Later, in Sarga 101 of Yuddhakanda, when Lakshmana is once again grievously wounded in battle, Hanuman undertakes the same heroic mission and brings the Sanjivani-bearing mountain once more. These episodes represent some of the finest moments in Hanuman's life, where he places the welfare of Rama, Lakshmana, and the vanara army above everything else. They demonstrate not only his extraordinary power but also his unwavering devotion and selfless service to his Lord.</p>\n<p>I chose to include these episodes because Hanuman's story does not end with the discovery of Sita in Lanka. His devotion to Lord Rama continues to manifest itself through ever-greater acts of courage, strength, and sacrifice. For Sarga 101, however, I have included only those shlokas that describe Hanuman's journey to bring the mountain, in order to maintain the focus on Hanuman.</p>\n\n<h3>The Coronation of Rama</h3>\n<p>I have also included the coronation of Lord Rama as the concluding chapter of this collection. Every great journey deserves a fitting conclusion, and Hanuman's story finds its fulfilment in Rama's victory and return to Ayodhya. The coronation marks the triumph of dharma, the successful completion of Rama's mission, and the joyous culmination of all the efforts and sacrifices made by Hanuman and countless others in Rama's service.</p>\n<p>It therefore serves as a natural and auspicious ending to <em>The Story of Hanuman</em>, reminding us that sincere devotion and selfless service ultimately lead to the victory of righteousness and the fulfilment of the Divine Will.</p>\n\n<p style=\"text-align:center\"><strong>॥ <span style=\"color:#222222\">जय श्री हनुमान्</span> ॥</strong></p>\n<p style=\"text-align:center\"><strong>॥ <span style=\"color:#222222\">सर्वं श्री कृष्णार्पणमस्तु</span> ॥</strong></p>\n"
+  },
+  {
+    "type": "parent",
+    "slug": "shrimad-bhagavatam-canto-10",
+    "works": [
+      {
+        "type": "work",
+        "slug": "book-1",
+        "chapters": [
+          {
+            "slug": "ch-1",
+            "title": "Chapter 1",
+            "title_sa": "अध्यायः १",
+            "n": 1,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-1/media/image1.jpg"
+          },
+          {
+            "slug": "ch-2",
+            "title": "Chapter 2",
+            "title_sa": "अध्यायः २",
+            "n": 2,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-2/media/image1.jpg"
+          },
+          {
+            "slug": "ch-3",
+            "title": "Chapter 3",
+            "title_sa": "अध्यायः ३",
+            "n": 3,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-3/media/image1.jpg"
+          },
+          {
+            "slug": "ch-4",
+            "title": "Chapter 4",
+            "title_sa": "अध्यायः ४",
+            "n": 4,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-4/media/image1.jpg"
+          },
+          {
+            "slug": "ch-5",
+            "title": "Chapter 5",
+            "title_sa": "अध्यायः ५",
+            "n": 5,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-5/media/image1.jpg"
+          },
+          {
+            "slug": "ch-6",
+            "title": "Chapter 6",
+            "title_sa": "अध्यायः ६",
+            "n": 6,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-6/media/image1.jpg"
+          },
+          {
+            "slug": "ch-7",
+            "title": "Chapter 7",
+            "title_sa": "अध्यायः ७",
+            "n": 7,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-7/media/image1.jpg"
+          },
+          {
+            "slug": "ch-8",
+            "title": "Chapter 8",
+            "title_sa": "अध्यायः ८",
+            "n": 8,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-8/media/image1.jpg"
+          },
+          {
+            "slug": "ch-9",
+            "title": "Chapter 9",
+            "title_sa": "अध्यायः ९",
+            "n": 9,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-9/media/image1.jpg"
+          },
+          {
+            "slug": "ch-10",
+            "title": "Chapter 10",
+            "title_sa": "अध्यायः १०",
+            "n": 10,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-10/media/image1.jpg"
+          },
+          {
+            "slug": "ch-11",
+            "title": "Chapter 11",
+            "title_sa": "अध्यायः ११",
+            "n": 11,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-11/media/image1.jpg"
+          },
+          {
+            "slug": "ch-12",
+            "title": "Chapter 12",
+            "title_sa": "अध्यायः १२",
+            "n": 12,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-12/media/image1.jpg"
+          },
+          {
+            "slug": "ch-13",
+            "title": "Chapter 13",
+            "title_sa": "अध्यायः १३",
+            "n": 13,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-13/media/image1.jpg"
+          },
+          {
+            "slug": "ch-14",
+            "title": "Chapter 14",
+            "title_sa": "अध्यायः १४",
+            "n": 14,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-14/media/image1.jpg"
+          },
+          {
+            "slug": "ch-15",
+            "title": "Chapter 15",
+            "title_sa": "अध्यायः १५",
+            "n": 15,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-15/media/image1.jpg"
+          },
+          {
+            "slug": "ch-16",
+            "title": "Chapter 16",
+            "title_sa": "अध्यायः १६",
+            "n": 16,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-16/media/image1.jpg"
+          },
+          {
+            "slug": "ch-17",
+            "title": "Chapter 17",
+            "title_sa": "अध्यायः १७",
+            "n": 17,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-17/media/image1.jpg"
+          },
+          {
+            "slug": "ch-18",
+            "title": "Chapter 18",
+            "title_sa": "अध्यायः १८",
+            "n": 18,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-18/media/image1.jpg"
+          },
+          {
+            "slug": "ch-19",
+            "title": "Chapter 19",
+            "title_sa": "अध्यायः १९",
+            "n": 19,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-19/media/image1.jpg"
+          },
+          {
+            "slug": "ch-20",
+            "title": "Chapter 20",
+            "title_sa": "अध्यायः २०",
+            "n": 20,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-20/media/image1.jpg"
+          },
+          {
+            "slug": "ch-21",
+            "title": "Chapter 21",
+            "title_sa": "अध्यायः २१",
+            "n": 21,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-21/media/image1.jpg"
+          },
+          {
+            "slug": "ch-22",
+            "title": "Chapter 22",
+            "title_sa": "अध्यायः २२",
+            "n": 22,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-22/media/image1.jpg"
+          },
+          {
+            "slug": "ch-23",
+            "title": "Chapter 23",
+            "title_sa": "अध्यायः २३",
+            "n": 23,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-23/media/image1.jpg"
+          },
+          {
+            "slug": "ch-24",
+            "title": "Chapter 24",
+            "title_sa": "अध्यायः २४",
+            "n": 24,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-24/media/image1.jpg"
+          },
+          {
+            "slug": "ch-25",
+            "title": "Chapter 25",
+            "title_sa": "अध्यायः २५",
+            "n": 25,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-25/media/image1.jpg"
+          },
+          {
+            "slug": "ch-26",
+            "title": "Chapter 26",
+            "title_sa": "अध्यायः २६",
+            "n": 26,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-26/media/image1.jpg"
+          },
+          {
+            "slug": "ch-27",
+            "title": "Chapter 27",
+            "title_sa": "अध्यायः २७",
+            "n": 27,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-27/media/image1.jpg"
+          },
+          {
+            "slug": "ch-28",
+            "title": "Chapter 28",
+            "title_sa": "अध्यायः २८",
+            "n": 28,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-28/media/image1.jpg"
+          },
+          {
+            "slug": "ch-29",
+            "title": "Chapter 29",
+            "title_sa": "अध्यायः २९",
+            "n": 29,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-29/media/image1.jpg"
+          },
+          {
+            "slug": "ch-30",
+            "title": "Chapter 30",
+            "title_sa": "अध्यायः ३०",
+            "n": 30,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-30/media/image1.jpg"
+          },
+          {
+            "slug": "ch-31",
+            "title": "Chapter 31",
+            "title_sa": "अध्यायः ३१",
+            "n": 31,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-31/media/image1.jpg"
+          },
+          {
+            "slug": "ch-32",
+            "title": "Chapter 32",
+            "title_sa": "अध्यायः ३२",
+            "n": 32,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-32/media/image1.jpg"
+          },
+          {
+            "slug": "ch-33",
+            "title": "Chapter 33",
+            "title_sa": "अध्यायः ३३",
+            "n": 33,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-33/media/image1.jpg"
+          },
+          {
+            "slug": "ch-34",
+            "title": "Chapter 34",
+            "title_sa": "अध्यायः ३४",
+            "n": 34,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-34/media/image1.jpg"
+          },
+          {
+            "slug": "ch-35",
+            "title": "Chapter 35",
+            "title_sa": "अध्यायः ३५",
+            "n": 35,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-35/media/image1.jpg"
+          },
+          {
+            "slug": "ch-36",
+            "title": "Chapter 36",
+            "title_sa": "अध्यायः ३६",
+            "n": 36,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-36/media/image1.jpg"
+          },
+          {
+            "slug": "ch-37",
+            "title": "Chapter 37",
+            "title_sa": "अध्यायः ३७",
+            "n": 37,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-37/media/image1.jpg"
+          },
+          {
+            "slug": "ch-38",
+            "title": "Chapter 38",
+            "title_sa": "अध्यायः ३८",
+            "n": 38,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-38/media/image1.jpg"
+          },
+          {
+            "slug": "ch-39",
+            "title": "Chapter 39",
+            "title_sa": "अध्यायः ३९",
+            "n": 39,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-39/media/image1.jpg"
+          },
+          {
+            "slug": "ch-40",
+            "title": "Chapter 40",
+            "title_sa": "अध्यायः ४०",
+            "n": 40,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-40/media/image1.jpg"
+          },
+          {
+            "slug": "ch-41",
+            "title": "Chapter 41",
+            "title_sa": "अध्यायः ४१",
+            "n": 41,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-41/media/image1.jpg"
+          },
+          {
+            "slug": "ch-42",
+            "title": "Chapter 42",
+            "title_sa": "अध्यायः ४२",
+            "n": 42,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-42/media/image1.jpg"
+          },
+          {
+            "slug": "ch-43",
+            "title": "Chapter 43",
+            "title_sa": "अध्यायः ४३",
+            "n": 43,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-43/media/image1.jpg"
+          },
+          {
+            "slug": "ch-44",
+            "title": "Chapter 44",
+            "title_sa": "अध्यायः ४४",
+            "n": 44,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-44/media/image1.jpg"
+          },
+          {
+            "slug": "ch-45",
+            "title": "Chapter 45",
+            "title_sa": "अध्यायः ४५",
+            "n": 45,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-45/media/image1.jpg"
+          },
+          {
+            "slug": "ch-46",
+            "title": "Chapter 46",
+            "title_sa": "अध्यायः ४६",
+            "n": 46,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-46/media/image1.jpg"
+          },
+          {
+            "slug": "ch-47",
+            "title": "Chapter 47",
+            "title_sa": "अध्यायः ४७",
+            "n": 47,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-47/media/image1.jpg"
+          },
+          {
+            "slug": "ch-48",
+            "title": "Chapter 48",
+            "title_sa": "अध्यायः ४८",
+            "n": 48,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-48/media/image1.jpg"
+          },
+          {
+            "slug": "ch-49",
+            "title": "Chapter 49",
+            "title_sa": "अध्यायः ४९",
+            "n": 49,
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-49/media/image1.jpg"
+          }
+        ],
+        "title": "Book 1 — पूर्वार्धः",
+        "title_sa": "पूर्वार्धः",
+        "subtitle": "Ch.1–49 · Krishna's childhood pastimes in Gokula and Vṛndāvana"
+      }
+    ],
+    "title": "Shrimad Bhagavatam — Canto 10",
+    "title_sa": "श्रीमद्भागवतमहापुराणम् · स्कन्ध १०",
+    "subtitle": "Krishna's pastimes — organised into Books"
   }
 ]
