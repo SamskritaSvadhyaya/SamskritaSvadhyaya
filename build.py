@@ -19,8 +19,9 @@ Commands:
       top-level work; with neither, a standalone text.
 
   build.py set-work --slug <s> [--parent <p>] --title <t> --title-sa <sa>
-                    [--subtitle <s>]
-      Create/update a work entry (preserving its chapters), optionally inside a parent.
+                    [--subtitle <s>] [--note <file.html>]
+      Create/update a work entry (preserving its chapters), optionally inside a parent,
+      optionally embedding an HTML note preamble above the chapter grid.
 
   build.py set-parent --slug <s> --title <t> --title-sa <sa> [--subtitle <s>]
                       [--note <file.html>]
@@ -296,6 +297,8 @@ def set_work(args):
     work["title"] = args.title
     work["title_sa"] = args.title_sa
     work["subtitle"] = args.subtitle or ""
+    if args.note:
+        work["note_html"] = Path(args.note).read_text(encoding="utf-8")
     work.setdefault("chapters", [])
     save_manifest(entries)
     print(f"Set work '{args.slug}'" + (f" under parent '{args.parent}'" if args.parent else ""))
@@ -365,7 +368,10 @@ def build_work_index(args):
         SUBTITLE=sub,
         SUBSEP=" · " if sub else "",
     )
-    body_main = f'    <div class="chapter-grid">\n{cards}\n    </div>\n  </main>\n'
+    note_html = work.get("note_html", "")
+    preamble = (f'    <section class="preamble">\n{note_html}\n    </section>\n'
+                if note_html else '')
+    body_main = f'{preamble}    <div class="chapter-grid">\n{cards}\n    </div>\n  </main>\n'
 
     html = render_chrome(
         f'{work["title"]} — {work["title_sa"]}',
@@ -528,6 +534,7 @@ def main():
     w.add_argument("--title", required=True)
     w.add_argument("--title-sa", required=True, dest="title_sa")
     w.add_argument("--subtitle", default="")
+    w.add_argument("--note", default=None, help="path to an HTML body to embed as preamble")
     w.set_defaults(func=set_work)
 
     sp = sub.add_parser("set-parent")

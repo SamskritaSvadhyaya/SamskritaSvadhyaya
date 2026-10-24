@@ -945,5 +945,715 @@
     "title": "Shrimad Bhagavatam — Canto 10",
     "title_sa": "श्रीमद्भागवतमहापुराणम् · स्कन्ध १०",
     "subtitle": "Krishna's pastimes — organised into Books"
+  },
+  {
+    "type": "work",
+    "slug": "narayaneeyam",
+    "chapters": [
+      {
+        "slug": "dashaka-1",
+        "title": "Glory of the Lord",
+        "title_sa": "दशकम् १",
+        "n": 1,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-2",
+        "title": "Form of the Lord",
+        "title_sa": "दशकम् २",
+        "n": 2,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-3",
+        "title": "The Prayer of the Devotee",
+        "title_sa": "दशकम् ३",
+        "n": 3,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-4",
+        "title": "The progress of the spiritual aspirant",
+        "title_sa": "दशकम् ४",
+        "n": 4,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-5",
+        "title": "The Cosmic Evolution",
+        "title_sa": "दशकम् ५",
+        "n": 5,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-6",
+        "title": "Cosmos as the form of the Lord",
+        "title_sa": "दशकम् ६",
+        "n": 6,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-7",
+        "title": "The Lord commands Brahma to create",
+        "title_sa": "दशकम् ७",
+        "n": 7,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-8",
+        "title": "The dawn of creation",
+        "title_sa": "दशकम् ८",
+        "n": 8,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-9",
+        "title": "Brahma in his creative role",
+        "title_sa": "दशकम् ९",
+        "n": 9,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-10",
+        "title": "Diversification of creation",
+        "title_sa": "दशकम् १०",
+        "n": 10,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-11",
+        "title": "Prelude to the first incarnation",
+        "title_sa": "दशकम् ११",
+        "n": 11,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-12",
+        "title": "Incarnation as boar (Varaha avatara)",
+        "title_sa": "दशकम् १२",
+        "n": 12,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-13",
+        "title": "Destruction of Hiranyaksha",
+        "title_sa": "दशकम् १३",
+        "n": 13,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-14",
+        "title": "Incarnation as Kapila",
+        "title_sa": "दशकम् १४",
+        "n": 14,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-15",
+        "title": "The message of Kapila",
+        "title_sa": "दशकम् १५",
+        "n": 15,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-16",
+        "title": "Nara-Narayana and Daksha-Yagna",
+        "title_sa": "दशकम् १६",
+        "n": 16,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-17",
+        "title": "The Story of Dhruva",
+        "title_sa": "दशकम् १७",
+        "n": 17,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-18",
+        "title": "The Story of Prithu",
+        "title_sa": "दशकम् १८",
+        "n": 18,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-19",
+        "title": "The Story of the Prachetas",
+        "title_sa": "दशकम् १९",
+        "n": 19,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-20",
+        "title": "The Story of Rishabha Deva",
+        "title_sa": "दशकम् २०",
+        "n": 20,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-21",
+        "title": "Worship in different places and forms",
+        "title_sa": "दशकम् २१",
+        "n": 21,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-22",
+        "title": "The story of Ajamila",
+        "title_sa": "दशकम् २२",
+        "n": 22,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-23",
+        "title": "The story of Chitraketu",
+        "title_sa": "दशकम् २३",
+        "n": 23,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-24",
+        "title": "The story of Prahlada",
+        "title_sa": "दशकम् २४",
+        "n": 24,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-25",
+        "title": "The Incarnation as Narasimha",
+        "title_sa": "दशकम् २५",
+        "n": 25,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-26",
+        "title": "The liberation of Gajendra (Gajendra Moksha)",
+        "title_sa": "दशकम् २६",
+        "n": 26,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-27",
+        "title": "Churning the ocean for nectar",
+        "title_sa": "दशकम् २७",
+        "n": 27,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-28",
+        "title": "The gifts of the ocean",
+        "title_sa": "दशकम् २८",
+        "n": 28,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-29",
+        "title": "The incarnation as Mohini",
+        "title_sa": "दशकम् २९",
+        "n": 29,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-30",
+        "title": "The incarnation as Vamana",
+        "title_sa": "दशकम् ३०",
+        "n": 30,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-31",
+        "title": "Vamana blesses Bali",
+        "title_sa": "दशकम् ३१",
+        "n": 31,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-32",
+        "title": "The incarnation as Fish (Matsya Avatara)",
+        "title_sa": "दशकम् ३२",
+        "n": 32,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-33",
+        "title": "The story of Ambarisha",
+        "title_sa": "दशकम् ३३",
+        "n": 33,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-34",
+        "title": "The incarnation as Rama",
+        "title_sa": "दशकम् ३४",
+        "n": 34,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-35",
+        "title": "The incarnation as Rama (contd.)",
+        "title_sa": "दशकम् ३५",
+        "n": 35,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-36",
+        "title": "The incarnation as Parashurama",
+        "title_sa": "दशकम् ३६",
+        "n": 36,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-37",
+        "title": "Prelude to the incarnation of Krishna",
+        "title_sa": "दशकम् ३७",
+        "n": 37,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-38",
+        "title": "Birth of Krishna",
+        "title_sa": "दशकम् ३८",
+        "n": 38,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-39",
+        "title": "The story of Yogmaya",
+        "title_sa": "दशकम् ३९",
+        "n": 39,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-40",
+        "title": "Salvation of Putana",
+        "title_sa": "दशकम् ४०",
+        "n": 40,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-41",
+        "title": "Cremation of Putana",
+        "title_sa": "दशकम् ४१",
+        "n": 41,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-42",
+        "title": "Destruction of Shakatasura",
+        "title_sa": "दशकम् ४२",
+        "n": 42,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-43",
+        "title": "Destruction of Trinavarta",
+        "title_sa": "दशकम् ४३",
+        "n": 43,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-44",
+        "title": "The naming ceremony (of Krishna)",
+        "title_sa": "दशकम् ४४",
+        "n": 44,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-45",
+        "title": "Childhood pranks of Krishna",
+        "title_sa": "दशकम् ४५",
+        "n": 45,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-46",
+        "title": "Krishna reveals the Vishwaroopa form to Yashoda",
+        "title_sa": "दशकम् ४६",
+        "n": 46,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-47",
+        "title": "Krishna bound to the mortar",
+        "title_sa": "दशकम् ४७",
+        "n": 47,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-48",
+        "title": "Salvation of Nalakubara and Manigriva",
+        "title_sa": "दशकम् ४८",
+        "n": 48,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-49",
+        "title": "Going to Vrindavana",
+        "title_sa": "दशकम् ४९",
+        "n": 49,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-50",
+        "title": "Krishna slays Vatsasura and Bakasura",
+        "title_sa": "दशकम् ५०",
+        "n": 50,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-51",
+        "title": "Krishna slays Aghasura",
+        "title_sa": "दशकम् ५१",
+        "n": 51,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-52",
+        "title": "Krishna humbles Brahma’s pride",
+        "title_sa": "दशकम् ५२",
+        "n": 52,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-53",
+        "title": "Krishna slays Dhenukasura",
+        "title_sa": "दशकम् ५३",
+        "n": 53,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-54",
+        "title": "Kaliya troubles the people of Vrindavana",
+        "title_sa": "दशकम् ५४",
+        "n": 54,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-55",
+        "title": "Krishna subdues Kaliya",
+        "title_sa": "दशकम् ५५",
+        "n": 55,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-56",
+        "title": "Krishna bestows grace upon Kaliya",
+        "title_sa": "दशकम् ५६",
+        "n": 56,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-57",
+        "title": "Balarama slays Pralambasura",
+        "title_sa": "दशकम् ५७",
+        "n": 57,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-58",
+        "title": "Krishna rescues everyone from the wild fire",
+        "title_sa": "दशकम् ५८",
+        "n": 58,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-59",
+        "title": "The song of the flute",
+        "title_sa": "दशकम् ५९",
+        "n": 59,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-60",
+        "title": "Krishna steals the clothes of the gopis",
+        "title_sa": "दशकम् ६०",
+        "n": 60,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-61",
+        "title": "Krishna blesses the wives of the brahmanas",
+        "title_sa": "दशकम् ६१",
+        "n": 61,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-62",
+        "title": "Krishna prevents the sacrifice for Indra",
+        "title_sa": "दशकम् ६२",
+        "n": 62,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-63",
+        "title": "Krishna lifts Govardhana",
+        "title_sa": "दशकम् ६३",
+        "n": 63,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-64",
+        "title": "Krishna crowned as Govinda",
+        "title_sa": "दशकम् ६४",
+        "n": 64,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-65",
+        "title": "Gopis come to Krishna for rasa-lila",
+        "title_sa": "दशकम् ६५",
+        "n": 65,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-66",
+        "title": "Krishna plays Rasa-Lila with the gopis",
+        "title_sa": "दशकम् ६६",
+        "n": 66,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-67",
+        "title": "Krishna disappears and reappears",
+        "title_sa": "दशकम् ६७",
+        "n": 67,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-68",
+        "title": "Krishna’s reunion with the gopis",
+        "title_sa": "दशकम् ६८",
+        "n": 68,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-69",
+        "title": "Krishna’s Rasa-Dance with the gopis",
+        "title_sa": "दशकम् ६९",
+        "n": 69,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-70",
+        "title": "Salvation of Sudarshana and Destruction of Shankhachuda and Arishta",
+        "title_sa": "दशकम् ७०",
+        "n": 70,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-71",
+        "title": "Destruction of Keshi and Vyomasura",
+        "title_sa": "दशकम् ७१",
+        "n": 71,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-72",
+        "title": "Akrura visits Vraja",
+        "title_sa": "दशकम् ७२",
+        "n": 72,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-73",
+        "title": "Krishna’s journey to Mathura",
+        "title_sa": "दशकम् ७३",
+        "n": 73,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-74",
+        "title": "Krishna’s entry into Mathura",
+        "title_sa": "दशकम् ७४",
+        "n": 74,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-75",
+        "title": "Krishna kills Kamsa",
+        "title_sa": "दशकम् ७५",
+        "n": 75,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-76",
+        "title": "Krishna sends a message to the gopis through Uddhava",
+        "title_sa": "दशकम् ७६",
+        "n": 76,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-77",
+        "title": "Krishna bestows grace on Trivakra. Jarasandha’s invasion",
+        "title_sa": "दशकम् ७७",
+        "n": 77,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-78",
+        "title": "Rukmini’s message to Krishna",
+        "title_sa": "दशकम् ७८",
+        "n": 78,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-79",
+        "title": "Krishna’s marriage to Rukmini",
+        "title_sa": "दशकम् ७९",
+        "n": 79,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-80",
+        "title": "Incident of the Syamantaka gem. Krishna's marriage to Jambavati and Satyabhama",
+        "title_sa": "दशकम् ८०",
+        "n": 80,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-81",
+        "title": "Krishna’s marriage to Kalindi, Mitravinda, Satya (Nagnajiti), Bhadra and Lakshmanaa. Salvation of Narakasura, taking away of the Parijata tree from Indra and Krishna’s marriage to sixteen thousand women who were held captive by Narakasura",
+        "title_sa": "दशकम् ८१",
+        "n": 81,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-82",
+        "title": "Conquest over Bana and salvation of Nriga",
+        "title_sa": "दशकम् ८२",
+        "n": 82,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-83",
+        "title": "Salvation of Paundraka. Destruction of Sudakshina (the son of the king of Kashi) and Vividha (Dvividha)",
+        "title_sa": "दशकम् ८३",
+        "n": 83,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-84",
+        "title": "Journey to Samantapanchaka and meeting with the friends and relatives",
+        "title_sa": "दशकम् ८४",
+        "n": 84,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-85",
+        "title": "Destruction of Jarasandha. Krishna kills Shishupala during the Rajasuya sacrifice. Duryodhana humiliated",
+        "title_sa": "दशकम् ८५",
+        "n": 85,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-86",
+        "title": "Destruction of Salva. Krishna saves Draupadi’s honor during the game of dice and from the wrath of Sage Durvasa. Battle of Kurukshetra",
+        "title_sa": "दशकम् ८६",
+        "n": 86,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-87",
+        "title": "Krishna bestows grace on Kuchela",
+        "title_sa": "दशकम् ८७",
+        "n": 87,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-88",
+        "title": "Krishna brings the dead children of Vasudeva and Devaki and of the brahmana back to life. Krishna shows Vaikuntha to Arjuna",
+        "title_sa": "दशकम् ८८",
+        "n": 88,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-89",
+        "title": "The story of Vrikasura and the test of Brigu",
+        "title_sa": "दशकम् ८९",
+        "n": 89,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-90",
+        "title": "Establishing the glory of Vishnu",
+        "title_sa": "दशकम् ९०",
+        "n": 90,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-91",
+        "title": "The glory of Bhakti",
+        "title_sa": "दशकम् ९१",
+        "n": 91,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-92",
+        "title": "Bhakti in Kaliyuga",
+        "title_sa": "दशकम् ९२",
+        "n": 92,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-93",
+        "title": "The learnings from the twenty-four teachers in life",
+        "title_sa": "दशकम् ९३",
+        "n": 93,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-94",
+        "title": "Enlightenment through Bhakti",
+        "title_sa": "दशकम् ९४",
+        "n": 94,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-95",
+        "title": "Supremacy of the path of Bhakti",
+        "title_sa": "दशकम् ९५",
+        "n": 95,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-96",
+        "title": "Bhakti as a self-sufficient path",
+        "title_sa": "दशकम् ९६",
+        "n": 96,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-97",
+        "title": "The story of Markandeya",
+        "title_sa": "दशकम् ९७",
+        "n": 97,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-98",
+        "title": "Praise of the Absolute Brahman",
+        "title_sa": "दशकम् ९८",
+        "n": 98,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      },
+      {
+        "slug": "dashaka-99",
+        "title": "Praise to the Lord in the form of the Vedas",
+        "title_sa": "दशकम् ९९",
+        "n": 99,
+        "image": "narayaneeyam/media/8d1bcf8a3f55.jpg"
+      },
+      {
+        "slug": "dashaka-100",
+        "title": "Description of Krishna",
+        "title_sa": "दशकम् १००",
+        "n": 100,
+        "image": "narayaneeyam/media/bd9307332be3.jpg"
+      }
+    ],
+    "title": "Narayaneeyam",
+    "title_sa": "नारायणीयम्",
+    "subtitle": "Melpathur Narayana Bhattathiri · 100 dashakas",
+    "note_html": "<h2>A Short Summary</h2>\n<p><strong>Narayaneeyam</strong> is a devotional Sanskrit poem of <strong>1,036 verses</strong> divided into <strong>100 dashakas (cantos)</strong>, composed by <strong>Melpathur Narayana Bhattathiri</strong> in the late 16th century. It is a condensed retelling of the <strong>Shrimad Bhagavatam</strong>, especially emphasizing devotion (bhakti) to Lord Krishna as the Supreme Being.</p>\n<p>The work begins by describing the supreme, transcendental nature of <strong>Narayana</strong>, the creation of the universe, and the various incarnations of <strong>Vishnu</strong>. It then narrates the lives of great devotees and sages before devoting nearly half the work to Krishna's life, from His birth, childhood sports in Gokula and Vrindavana, lifting Govardhana, subduing various asuras, the Rasa-lila, His life in Mathura and Dwaraka, and many episodes from the Tenth Canto of the Bhagavatam.</p>\n<p>Throughout the poem, Bhattathiri interweaves philosophical teachings of Vedanta with intense devotion, presenting Krishna as both the Supreme Brahman and the most lovable personal deity. The final dasakas culminate in a magnificent meditation on the beautiful form of <strong>Guruvayurappan</strong> (Krishna of Guruvayoor), concluding with the poet's heartfelt prayer for devotion, spiritual liberation, and freedom from disease.</p>\n<p>Traditionally, the <strong>Narayaneeyam</strong> is recited as an act of devotion, and it is especially revered at the Guruvayoor Temple in Kerala. According to tradition, Bhattathiri composed it while suffering from severe rheumatism, offering one dashaka each day to Lord Guruvayurappan, and is believed to have regained his health upon completing the hundredth dashaka.</p>\n<h3>Story of how Guruvayoor came to be</h3>\n<p>According to tradition, at the end of Dvapara Yuga, when Dwaraka was about to be submerged, Uddhava was inconsolable, saying that if Krishna goes away, who will guide the world. Then Krishna asks Uddhava to take the sacred idol of Lord Vishnu that had been worshipped in Vaikuntha and later by Vasudeva and Krishna Himself. Krishna entrusted the idol to Brihaspati (Guru), the preceptor of the Devas, asking him to find a suitable place in the South and establish it for worship.</p>\n<p>Guru, accompanied by his disciple Vayu, the Lord of Winds, journeyed southward and, guided by Lord Parasurama, reached a beautiful, verdant spot beside a lotus-filled lake. There they installed the sacred idol. The place came to be known as Guruvayoor, combining the names of Guru and Vayu. “Oor” means city. Because the deity came from Dwaraka and continued the worship of Lord Krishna, Guruvayoor is revered as the \"Dwaraka of the South.\"</p>\n"
   }
 ]
