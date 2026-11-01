@@ -60,18 +60,27 @@ def font_size_em(style):
     return em if em != 1.0 else None
 
 
-# The opening dhyana shloka (मनोजवं … / वातात्मजं …) is typed as two separate
-# paragraphs in the docs, which the site spaces apart. Join its two halves into one
-# centred couplet (line break, no paragraph gap), like the other prayer verses.
-_DHYANA = re.compile(
-    r'(<p[^>]*>)((?:(?!</p>).)*मनोजवं(?:(?!</p>).)*)</p>\s*'
-    r'<p[^>]*>((?:(?!</p>).)*वातात्मजं(?:(?!</p>).)*)</p>',
-    re.S,
-)
+# The opening dhyana shlokas are typed as two separate paragraphs in the docs, which
+# the site spaces apart. Join each one's two halves into one centred couplet (line
+# break, no paragraph gap), like the other prayer verses. Pairs: (first half, second half).
+_DHYANA_PAIRS = [
+    ("मनोजवं", "वातात्मजं"),            # Story of Hanuman
+    ("वसुदेवसुतं", "देवकीपरमानन्दं"),    # Narayaneeyam
+]
+_DHYANA = [
+    re.compile(
+        rf'(<p[^>]*>)((?:(?!</p>).)*{a}(?:(?!</p>).)*)</p>\s*'
+        rf'<p[^>]*>((?:(?!</p>).)*{b}(?:(?!</p>).)*)</p>',
+        re.S,
+    )
+    for a, b in _DHYANA_PAIRS
+]
 
 
 def join_dhyana(html_text):
-    return _DHYANA.sub(lambda m: f"{m.group(1)}{m.group(2)}<br>{m.group(3)}</p>", html_text)
+    for pat in _DHYANA:
+        html_text = pat.sub(lambda m: f"{m.group(1)}{m.group(2)}<br>{m.group(3)}</p>", html_text)
+    return html_text
 
 
 def main():
