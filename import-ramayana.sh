@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Import all downloaded sargas under the Ramayana parent (ramayana/<kanda>/sarga-N/).
+# Import all downloaded sargas under the Ramayana parent (thestoryofhanuman/<kanda>/sarga-N/).
 # Scans the tool-results dir, filters by document-title pattern per kanda, and
 # calls import-chapter.sh with the parent + work slugs.
 #
@@ -9,7 +9,7 @@
 set -euo pipefail
 dir="$1"
 here="$(cd "$(dirname "$0")" && pwd)"
-parent="ramayana"
+parent="thestoryofhanuman"
 
 dev() {
   python3 -c "import sys;print(str(int(sys.argv[1])).translate(str.maketrans('0123456789','०१२३४५६७८९')))" "$1"
