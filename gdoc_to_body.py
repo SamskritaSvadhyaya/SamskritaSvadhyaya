@@ -60,6 +60,20 @@ def font_size_em(style):
     return em if em != 1.0 else None
 
 
+# The opening dhyana shloka (मनोजवं … / वातात्मजं …) is typed as two separate
+# paragraphs in the docs, which the site spaces apart. Join its two halves into one
+# centred couplet (line break, no paragraph gap), like the other prayer verses.
+_DHYANA = re.compile(
+    r'(<p[^>]*>)((?:(?!</p>).)*मनोजवं(?:(?!</p>).)*)</p>\s*'
+    r'<p[^>]*>((?:(?!</p>).)*वातात्मजं(?:(?!</p>).)*)</p>',
+    re.S,
+)
+
+
+def join_dhyana(html_text):
+    return _DHYANA.sub(lambda m: f"{m.group(1)}{m.group(2)}<br>{m.group(3)}</p>", html_text)
+
+
 def main():
     json_path, media_dir = sys.argv[1], sys.argv[2]
     data = json.loads(open(json_path, encoding="utf-8").read())
@@ -142,7 +156,7 @@ def main():
         attr = f' style="{";".join(props)}"' if props else ""
         out.append(f"<{tag}{attr}>{content}</{tag}>")
 
-    sys.stdout.write("\n".join(out) + "\n")
+    sys.stdout.write(join_dhyana("\n".join(out)) + "\n")
 
 
 if __name__ == "__main__":
