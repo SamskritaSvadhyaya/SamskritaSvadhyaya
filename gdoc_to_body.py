@@ -65,6 +65,7 @@ def font_size_em(style):
 # break, no paragraph gap), like the other prayer verses. Pairs: (first half, second half).
 _DHYANA_PAIRS = [
     ("मनोजवं", "वातात्मजं"),            # Story of Hanuman
+    ("असाध्यसाधकस्वामिन्", "रामदूत कृपासिन्धो"),  # Story of Hanuman (second invocation)
     ("वसुदेवसुतं", "देवकीपरमानन्दं"),    # Narayaneeyam
     ("काले वर्षतु", "देशोऽयं"),          # Kavyakusumanjali (Eclectic Collection)
 ]
