@@ -66,6 +66,7 @@ def font_size_em(style):
 _DHYANA_PAIRS = [
     ("मनोजवं", "वातात्मजं"),            # Story of Hanuman
     ("वसुदेवसुतं", "देवकीपरमानन्दं"),    # Narayaneeyam
+    ("काले वर्षतु", "देशोऽयं"),          # Kavyakusumanjali (Eclectic Collection)
 ]
 _DHYANA = [
     re.compile(
