@@ -13,6 +13,11 @@ Static site of Sanskrit texts, published with GitHub Pages.
   "Generated with Claude Code" footer. The user has explicitly corrected this ("No co author").
 - Push with `env -u GITHUB_TOKEN git push` (and `env -u GITHUB_TOKEN gh ...` for gh).
 - Check `git status` before committing; descriptive commit messages.
+- **Shlokas are tight couplets/blocks**: each shloka's lines go in one centred `<p>` joined
+  with `<br>` (no paragraph gap between its lines). `gdoc_to_body.py` does this on every
+  Drive import (`join_dhyana` → `join_verses`). For any other source (.docx via pandoc or a
+  hand converter), run the body through `gdoc_to_body.join_dhyana()` before `build.py page`.
+  It is safe to re-run on existing pages; text must be unchanged apart from `<p>`/`<br>`.
 
 ## Layout
 
