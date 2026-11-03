@@ -83,7 +83,72 @@ _DHYANA = [
 def join_dhyana(html_text):
     for pat in _DHYANA:
         html_text = pat.sub(lambda m: f"{m.group(1)}{m.group(2)}<br>{m.group(3)}</p>", html_text)
-    return html_text
+    return join_verses(html_text)
+
+
+# Every shloka is typed one line per paragraph in the docs, which the site spaces a
+# paragraph apart. Join each shloka's lines into one centred block (line breaks, no
+# gaps). A shloka line is a centred paragraph of coloured Devanagari (verses are green,
+# invocations blue; headings are uncoloured and never joined) that doesn't start with
+# "(" (metre / shloka-count notes). Consecutive lines with the same styling form a run;
+# the run is split into shlokas after each line ending in ॥. If the run's last line does
+# not end in ॥ (the doc groups part-verses together above one meaning, e.g. 3-line
+# Ramayana verses), the whole run is one block. Safe to re-run on its own output.
+_CENTRED_P = re.compile(r'<p style="text-align:center">(.*)</p>')
+_DEVANAGARI = re.compile(r"[ऀ-ॿ]")
+
+
+def _verse_line(inner):
+    text = html.unescape(re.sub(r"<[^>]+>", "", inner)).strip()
+    if not _DEVANAGARI.search(text) or text.startswith("("):
+        return None
+    # Coloured styling of the Devanagari text itself (ignores spans holding only spaces,
+    # and stray uncoloured words inside an otherwise coloured line).
+    styles = tuple(sorted({
+        style for style, body in re.findall(r'<span style="([^"]*)">(.*?)</span>', inner, re.S)
+        if _DEVANAGARI.search(body) and "color:" in style
+    }))
+    if not styles:
+        return None
+    return styles, text.endswith("॥")
+
+
+def join_verses(html_text):
+    nl = "\r\n" if "\r\n" in html_text else "\n"
+    out, run = [], []  # run: [(original line, inner html, styles, ends_with_double_danda)]
+
+    def emit(seg):
+        if len(seg) > 1:
+            out.append('<p style="text-align:center">' + "<br>".join(r[1] for r in seg) + "</p>")
+        else:
+            out.extend(r[0] for r in seg)
+
+    def flush():
+        segs, cur = [], []
+        for r in run:
+            cur.append(r)
+            if r[3]:
+                segs.append(cur)
+                cur = []
+        if cur:  # run doesn't end in ॥: the doc groups it all above one meaning
+            segs = [list(run)]
+        for seg in segs:
+            emit(seg)
+        run.clear()
+
+    for line in html_text.split(nl):
+        m = _CENTRED_P.fullmatch(line)
+        info = _verse_line(m.group(1)) if m else None
+        if info is None:
+            flush()
+            out.append(line)
+            continue
+        styles, ends = info
+        if run and styles != run[-1][2]:
+            flush()
+        run.append((line, m.group(1), styles, ends))
+    flush()
+    return nl.join(out)
 
 
 def main():
