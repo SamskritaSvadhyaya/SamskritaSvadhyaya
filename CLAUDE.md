@@ -39,6 +39,11 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - `<collection>/cover.jpg` — 240px square home-page tile picture (set as the top-level entry's
   `image` in texts.json; cropped from a chapter picture). Kept outside chapter folders so
   re-importing a chapter can't break it.
+- `seo.py` — search metadata: descriptive `<title>`/description (work, chapter no., subject line
+  from the page, Sanskrit name), canonical URL and link-preview tags in a `<!-- seo -->` block,
+  plus `sitemap.xml` of all published pages. Runs automatically at the end of `build.py home`
+  (so every build/release keeps it current); safe to run by hand. Sitemap URL for Google
+  Search Console: https://samskritasvadhyaya.github.io/SamskritaSvadhyaya/sitemap.xml
 - `dedupe-media.py <work>` — collapses repeated chapter images into `<work>/media/<sha1>.<ext>`.
 - Downloading many Drive docs in parallel: tool-result files finishing in the same millisecond
   overwrite each other — copy each result out right after download and verify none is missing.

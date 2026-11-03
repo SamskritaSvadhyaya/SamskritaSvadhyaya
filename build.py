@@ -512,6 +512,10 @@ def build_home(_args=None):
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     print(f"Wrote index.html (home) with {len(entries)} entr(y/ies)")
 
+    # Every build flow ends with `home`, so refresh search metadata + sitemap here.
+    import seo
+    seo.main()
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
