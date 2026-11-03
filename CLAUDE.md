@@ -31,6 +31,9 @@ Static site of Sanskrit texts, published with GitHub Pages.
   Must be run with all 100 downloads at once (dedupe rebuilds `narayaneeyam/media/` from
   scratch). Re-running it republishes all 100 — run `release.py hold narayaneeyam --after <n>`
   afterwards.
+- `<collection>/cover.jpg` — 240px square home-page tile picture (set as the top-level entry's
+  `image` in texts.json; cropped from a chapter picture). Kept outside chapter folders so
+  re-importing a chapter can't break it.
 - `dedupe-media.py <work>` — collapses repeated chapter images into `<work>/media/<sha1>.<ext>`.
 - Downloading many Drive docs in parallel: tool-result files finishing in the same millisecond
   overwrite each other — copy each result out right after download and verify none is missing.
