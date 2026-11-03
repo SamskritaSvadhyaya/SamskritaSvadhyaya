@@ -1,3 +1,6 @@
 .claude/
 *.docx
 _unreleased/
+*.diff
+.import-body.html
+__pycache__/

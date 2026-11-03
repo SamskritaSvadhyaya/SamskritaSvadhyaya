@@ -29,6 +29,12 @@ Static site of Sanskrit texts, published with GitHub Pages.
   `thestoryofhanuman/`, no stub is needed.
 - `build.py` — `page`, `set-work` (`--note file.html` adds a preamble), `set-parent`,
   `work-index`, `parent-index`, `home`.
+- **`import-drive.py <download.json>`** — the standard way to (re-)upload one chapter from Drive:
+  works out the target from the doc title (Dashaka N / Sundarakanda Sarga N / KK - Sarga N /
+  Yudhdhakanda - Sarga N), replaces the old page, refreshes the name (Narayaneeyam: from the doc
+  title) and description from the doc, rebuilds indexes, home, SEO and sitemap. `--dry-run` shows
+  what would change. Refuses withheld dashakas (release first) and unknown docs. Keep scratch
+  files (diffs, staging) OUT of the repo — `*.diff` is gitignored after strays got published.
 - `gdoc_to_body.py` — converts a Drive `download_file_content` (text/html export) result JSON
   into a page body, keeping colours, alignment, sizes.
 - `import-chapter.sh`, `import-all.sh`, `import-ramayana.sh`, `convert.sh` — importers.
