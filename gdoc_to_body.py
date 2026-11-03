@@ -68,6 +68,7 @@ _DHYANA_PAIRS = [
     ("असाध्यसाधकस्वामिन्", "रामदूत कृपासिन्धो"),  # Story of Hanuman (second invocation)
     ("वसुदेवसुतं", "देवकीपरमानन्दं"),    # Narayaneeyam
     ("काले वर्षतु", "देशोऽयं"),          # Kavyakusumanjali (Eclectic Collection)
+    ("रामाय रामभद्राय", "रघुनाथाय नाथाय"),  # Raghuvamsha / Kishkindhakanda invocation
 ]
 _DHYANA = [
     re.compile(
