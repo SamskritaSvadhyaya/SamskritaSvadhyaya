@@ -44,6 +44,9 @@ Static site of Sanskrit texts, published with GitHub Pages.
   plus `sitemap.xml` of all published pages. Runs automatically at the end of `build.py home`
   (so every build/release keeps it current); safe to run by hand. Sitemap URL for Google
   Search Console: https://samskritasvadhyaya.github.io/SamskritaSvadhyaya/sitemap.xml
+- `googleeeb64c879486498d.html` — Google Search Console ownership file (property: URL prefix
+  https://samskritasvadhyaya.github.io/SamskritaSvadhyaya/). Never delete or edit it; Google
+  re-checks it periodically.
 - `dedupe-media.py <work>` — collapses repeated chapter images into `<work>/media/<sha1>.<ext>`.
 - Downloading many Drive docs in parallel: tool-result files finishing in the same millisecond
   overwrite each other — copy each result out right after download and verify none is missing.
