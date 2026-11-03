@@ -74,14 +74,27 @@ def intro_of(entry):
     return ""
 
 
-def pages():
-    """Yield (path, url_path, info) for every published page."""
-    entries = json.loads(MANIFEST.read_text(encoding="utf-8"))
+def skip_set(entries):
+    """Collection/work names that a chapter's subject line can't be."""
     skip = {NAME.lower()}
     for e in entries:
         skip |= {e["title"].lower(), short(e["title"]).lower()}
         for w in e.get("works", []):
             skip |= {w["title"].lower(), short(w["title"]).lower()}
+    return skip
+
+
+def chapter_subject(page_or_body, entries, chapter_title):
+    """Subject line of a chapter (e.g. "Hanuman crosses the ocean, reaches Lanka"),
+    or "" when there is none or it merely repeats the chapter's own title."""
+    subj = subject_of(page_or_body, skip_set(entries))
+    return "" if subj.lower() == chapter_title.strip().lower() else subj
+
+
+def pages():
+    """Yield (path, url_path, info) for every published page."""
+    entries = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    skip = skip_set(entries)
 
     yield "index.html", "", {
         "title": f"{NAME} — Sanskrit texts with meaning, anvaya and translation",
@@ -121,7 +134,7 @@ def pages():
                 sa = f"{wsa} {c.get('title_sa', '')}".strip()
             else:
                 base, sa = c["title"], c.get("title_sa", "")
-            subj = subject_of(f.read_text(encoding="utf-8"), skip)
+            subj = c.get("subject") or subject_of(f.read_text(encoding="utf-8"), skip)
             if not subj and m and c["title"] != base.split(" ", 1)[-1] and not re.search(r"\d", c["title"]):
                 subj = c["title"]  # e.g. Narayaneeyam: the chapter title is the subject
             head = f"{base}: {subj}" if subj else base

@@ -40,6 +40,7 @@ Commands:
 import argparse
 import json
 import re
+from html import escape as html_escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -230,7 +231,14 @@ def build_page(args):
 
     rel = rel_for(depth)
     image = first_image(body, rel_from_root)
-    subtitle = args.subtitle or ""
+    # A chapter's short description (the subject line under its heading in the doc,
+    # e.g. "Hanuman crosses the ocean, reaches Lanka") is shown under the page title
+    # and on the chapter card, and used for search titles.
+    subject = ""
+    if work is not None and not args.subtitle:
+        import seo
+        subject = seo.chapter_subject(body, entries, args.title)
+    subtitle = args.subtitle or (html_escape(seo.brief(subject, 110), quote=False) if subject else "")
 
     html = (
         fill(DOC_OPEN, REL=rel,
@@ -254,6 +262,8 @@ def build_page(args):
         "n": args.n if args.n is not None else 0,
         "image": image,
     }
+    if subject:
+        chapter_entry["subject"] = subject
 
     if work is not None:
         chapters = [c for c in work.get("chapters", []) if c.get("slug") != args.slug]
@@ -321,6 +331,11 @@ def set_parent(args):
     print(f"Set parent '{args.slug}'")
 
 
+def _brief(text):
+    import seo
+    return seo.brief(text, 110)
+
+
 def build_work_index(args):
     entries = load_manifest()
     if args.parent:
@@ -348,13 +363,18 @@ def build_work_index(args):
         <span class="chapter-num">{num}</span>
         <span class="chapter-meta">
           <span class="chapter-title-sa" lang="sa">{title_sa}</span>
-          <span class="chapter-title">{title}</span>
+          <span class="chapter-title">{title}</span>{subject}
         </span>
       </a>""".format(
             slug=c["slug"],
             num=dev_num(c.get("n", 0)),
             title_sa=c.get("title_sa", ""),
             title=c.get("title", ""),
+            subject=(
+                '\n          <span class="chapter-subject">{}</span>'.format(
+                    html_escape(_brief(c["subject"]), quote=False))
+                if c.get("subject") else ""
+            ),
         )
         for c in chapters
     ) or '      <p class="empty-note">No chapters yet.</p>'

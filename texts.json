@@ -8,21 +8,24 @@
         "title": "Sarga 10",
         "title_sa": "सर्गः १०",
         "n": 10,
-        "image": "raghuvamsha/sarga-10/media/image1.png"
+        "image": "raghuvamsha/sarga-10/media/image1.png",
+        "subject": "Birth of Rama"
       },
       {
         "slug": "sarga-11",
         "title": "Sarga 11",
         "title_sa": "सर्गः ११",
         "n": 11,
-        "image": "raghuvamsha/sarga-11/media/image1.png"
+        "image": "raghuvamsha/sarga-11/media/image1.png",
+        "subject": "Description of Rama and Sita’s wedding"
       },
       {
         "slug": "sarga-12",
         "title": "Sarga 12",
         "title_sa": "सर्गः १२",
         "n": 12,
-        "image": "raghuvamsha/sarga-12/media/image1.png"
+        "image": "raghuvamsha/sarga-12/media/image1.png",
+        "subject": "Rama kills Ravana"
       }
     ],
     "title": "Raghuvaṃśa — Kālidāsa's Ramayana",
@@ -51,14 +54,16 @@
             "title": "Sarga 66",
             "title_sa": "सर्गः ६६",
             "n": 66,
-            "image": "thestoryofhanuman/kishkindhakanda/sarga-66/media/image1.png"
+            "image": "thestoryofhanuman/kishkindhakanda/sarga-66/media/image1.png",
+            "subject": "Description of Hanuman's glory"
           },
           {
             "slug": "sarga-67",
             "title": "Sarga 67",
             "title_sa": "सर्गः ६७",
             "n": 67,
-            "image": "thestoryofhanuman/kishkindhakanda/sarga-67/media/image1.png"
+            "image": "thestoryofhanuman/kishkindhakanda/sarga-67/media/image1.png",
+            "subject": "Hanuman displays his immeasurable might and proceeds to mount Mahendra"
           }
         ],
         "title": "Kishkindhakanda",
@@ -74,476 +79,544 @@
             "title": "Sarga 1",
             "title_sa": "सर्गः १",
             "n": 1,
-            "image": "thestoryofhanuman/sundarakanda/sarga-1/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-1/media/image1.png",
+            "subject": "Hanuman crosses the ocean, reaches Lanka"
           },
           {
             "slug": "sarga-2",
             "title": "Sarga 2",
             "title_sa": "सर्गः २",
             "n": 2,
-            "image": "thestoryofhanuman/sundarakanda/sarga-2/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-2/media/image1.png",
+            "subject": "Hanuman reaches the main entrance of Lanka assuming a diminutive form"
           },
           {
             "slug": "sarga-3",
             "title": "Sarga 3",
             "title_sa": "सर्गः ३",
             "n": 3,
-            "image": "thestoryofhanuman/sundarakanda/sarga-3/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-3/media/image1.png",
+            "subject": "﻿Hanuman's confrontation with Lankini, the spirit of Lanka"
           },
           {
             "slug": "sarga-4",
             "title": "Sarga 4",
             "title_sa": "सर्गः ४",
             "n": 4,
-            "image": "thestoryofhanuman/sundarakanda/sarga-4/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-4/media/image1.png",
+            "subject": "Hanuman witnesses Ravana's strength at Lanka"
           },
           {
             "slug": "sarga-5",
             "title": "Sarga 5",
             "title_sa": "सर्गः ५",
             "n": 5,
-            "image": "thestoryofhanuman/sundarakanda/sarga-5/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-5/media/image1.png",
+            "subject": "Hanuman finds rakshasas all over Lanka, unable to find Sita, feels sad"
           },
           {
             "slug": "sarga-6",
             "title": "Sarga 6",
             "title_sa": "सर्गः ६",
             "n": 6,
-            "image": "thestoryofhanuman/sundarakanda/sarga-6/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-6/media/image1.png",
+            "subject": "﻿Hanuman enters the palace of Ravana, description of the palace"
           },
           {
             "slug": "sarga-7",
             "title": "Sarga 7",
             "title_sa": "सर्गः ७",
             "n": 7,
-            "image": "thestoryofhanuman/sundarakanda/sarga-7/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-7/media/image1.png",
+            "subject": "Description of the aerial car Pushpaka"
           },
           {
             "slug": "sarga-8",
             "title": "Sarga 8",
             "title_sa": "सर्गः ८",
             "n": 8,
-            "image": "thestoryofhanuman/sundarakanda/sarga-8/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-8/media/image1.png",
+            "subject": "Further description of the aerial car, Pushpaka"
           },
           {
             "slug": "sarga-9",
             "title": "Sarga 9",
             "title_sa": "सर्गः ९",
             "n": 9,
-            "image": "thestoryofhanuman/sundarakanda/sarga-9/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-9/media/image1.png",
+            "subject": "Description of the harem of Ravana"
           },
           {
             "slug": "sarga-10",
             "title": "Sarga 10",
             "title_sa": "सर्गः १०",
             "n": 10,
-            "image": "thestoryofhanuman/sundarakanda/sarga-10/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-10/media/image1.png",
+            "subject": "Hanuman chances upon Mandodari, wife of Ravana, mistakes her for Sita on account of her beauty and charm"
           },
           {
             "slug": "sarga-11",
             "title": "Sarga 11",
             "title_sa": "सर्गः ११",
             "n": 11,
-            "image": "thestoryofhanuman/sundarakanda/sarga-11/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-11/media/image1.png",
+            "subject": "Hanuman mistakes Mandodari for Sita, soon dismisses his wrong inference, sees the women of harem lying in disorder, cannot find Sita"
           },
           {
             "slug": "sarga-12",
             "title": "Sarga 12",
             "title_sa": "सर्गः १२",
             "n": 12,
-            "image": "thestoryofhanuman/sundarakanda/sarga-12/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-12/media/image1.png",
+            "subject": "Hanuman makes a thorough search of Ravana's palace for Sita"
           },
           {
             "slug": "sarga-13",
             "title": "Sarga 13",
             "title_sa": "सर्गः १३",
             "n": 13,
-            "image": "thestoryofhanuman/sundarakanda/sarga-13/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-13/media/image1.png",
+            "subject": "Hanuman's soliloquy in despondency"
           },
           {
             "slug": "sarga-14",
             "title": "Sarga 14",
             "title_sa": "सर्गः १४",
             "n": 14,
-            "image": "thestoryofhanuman/sundarakanda/sarga-14/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-14/media/image1.png",
+            "subject": "Hanuman ascends the Shimshupa tree in the Ashoka grove and watches"
           },
           {
             "slug": "sarga-15",
             "title": "Sarga 15",
             "title_sa": "सर्गः १५",
             "n": 15,
-            "image": "thestoryofhanuman/sundarakanda/sarga-15/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-15/media/image1.png",
+            "subject": "Hanuman sees Sita"
           },
           {
             "slug": "sarga-16",
             "title": "Sarga 16",
             "title_sa": "सर्गः १६",
             "n": 16,
-            "image": "thestoryofhanuman/sundarakanda/sarga-16/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-16/media/image1.png",
+            "subject": "Hanuman's grief over Sita's state"
           },
           {
             "slug": "sarga-17",
             "title": "Sarga 17",
             "title_sa": "सर्गः १७",
             "n": 17,
-            "image": "thestoryofhanuman/sundarakanda/sarga-17/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-17/media/image1.png",
+            "subject": "Hanuman hiding on the Shimshupa tree, experiences the presence of rakshasis"
           },
           {
             "slug": "sarga-18",
             "title": "Sarga 18",
             "title_sa": "सर्गः १८",
             "n": 18,
-            "image": "thestoryofhanuman/sundarakanda/sarga-18/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-18/media/image1.png",
+            "subject": "Ravana comes to see Sita"
           },
           {
             "slug": "sarga-19",
             "title": "Sarga 19",
             "title_sa": "सर्गः १९",
             "n": 19,
-            "image": "thestoryofhanuman/sundarakanda/sarga-19/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-19/media/image1.png",
+            "subject": "Description of Sita who was overcome with grief"
           },
           {
             "slug": "sarga-20",
             "title": "Sarga 20",
             "title_sa": "सर्गः २०",
             "n": 20,
-            "image": "thestoryofhanuman/sundarakanda/sarga-20/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-20/media/image1.png",
+            "subject": "Ravana attempts to tempt Sita"
           },
           {
             "slug": "sarga-21",
             "title": "Sarga 21",
             "title_sa": "सर्गः २१",
             "n": 21,
-            "image": "thestoryofhanuman/sundarakanda/sarga-21/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-21/media/image1.png",
+            "subject": "Sita spurns Ravana's submission"
           },
           {
             "slug": "sarga-22",
             "title": "Sarga 22",
             "title_sa": "सर्गः २२",
             "n": 22,
-            "image": "thestoryofhanuman/sundarakanda/sarga-22/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-22/media/image1.png",
+            "subject": "Ravana appeals to Sita, asks the rakshasi guards to change her mind, gives ultimatum to Sita"
           },
           {
             "slug": "sarga-23",
             "title": "Sarga 23",
             "title_sa": "सर्गः २३",
             "n": 23,
-            "image": "thestoryofhanuman/sundarakanda/sarga-23/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-23/media/image1.png",
+            "subject": "The rakshasis attempt to convince Sita"
           },
           {
             "slug": "sarga-24",
             "title": "Sarga 24",
             "title_sa": "सर्गः २४",
             "n": 24,
-            "image": "thestoryofhanuman/sundarakanda/sarga-24/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-24/media/image1.png",
+            "subject": "The rakshasis chide Sita who resolutely condemns Ravana"
           },
           {
             "slug": "sarga-25",
             "title": "Sarga 25",
             "title_sa": "सर्गः २५",
             "n": 25,
-            "image": "thestoryofhanuman/sundarakanda/sarga-25/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-25/media/image1.png",
+            "subject": "Sita wails over her misery"
           },
           {
             "slug": "sarga-26",
             "title": "Sarga 26",
             "title_sa": "सर्गः २६",
             "n": 26,
-            "image": "thestoryofhanuman/sundarakanda/sarga-26/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-26/media/image1.png",
+            "subject": "Sita decides to end her sad life"
           },
           {
             "slug": "sarga-27",
             "title": "Sarga 27",
             "title_sa": "सर्गः २७",
             "n": 27,
-            "image": "thestoryofhanuman/sundarakanda/sarga-27/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-27/media/image1.png",
+            "subject": "Trijata narrates her dream"
           },
           {
             "slug": "sarga-28",
             "title": "Sarga 28",
             "title_sa": "सर्गः २८",
             "n": 28,
-            "image": "thestoryofhanuman/sundarakanda/sarga-28/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-28/media/image1.png",
+            "subject": "Sita's wailings, finally finds some auspicious signs"
           },
           {
             "slug": "sarga-29",
             "title": "Sarga 29",
             "title_sa": "सर्गः २९",
             "n": 29,
-            "image": "thestoryofhanuman/sundarakanda/sarga-29/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-29/media/image1.png",
+            "subject": "Sita feels happy seeing auspicious signs"
           },
           {
             "slug": "sarga-30",
             "title": "Sarga 30",
             "title_sa": "सर्गः ३०",
             "n": 30,
-            "image": "thestoryofhanuman/sundarakanda/sarga-30/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-30/media/image1.png",
+            "subject": "Hanuman decides to praise Rama within Sita's earshot"
           },
           {
             "slug": "sarga-31",
             "title": "Sarga 31",
             "title_sa": "सर्गः ३१",
             "n": 31,
-            "image": "thestoryofhanuman/sundarakanda/sarga-31/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-31/media/image1.png",
+            "subject": "Hanuman sings the story of glory of Rama within Sita's hearing"
           },
           {
             "slug": "sarga-32",
             "title": "Sarga 32",
             "title_sa": "सर्गः ३२",
             "n": 32,
-            "image": "thestoryofhanuman/sundarakanda/sarga-32/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-32/media/image1.png",
+            "subject": "Sita's conjecture"
           },
           {
             "slug": "sarga-33",
             "title": "Sarga 33",
             "title_sa": "सर्गः ३३",
             "n": 33,
-            "image": "thestoryofhanuman/sundarakanda/sarga-33/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-33/media/image1.png",
+            "subject": "Sita reveals her story to Hanuman"
           },
           {
             "slug": "sarga-34",
             "title": "Sarga 34",
             "title_sa": "सर्गः ३४",
             "n": 34,
-            "image": "thestoryofhanuman/sundarakanda/sarga-34/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-34/media/image1.png",
+            "subject": "Hanuman tells the story of Rama to Sita"
           },
           {
             "slug": "sarga-35",
             "title": "Sarga 35",
             "title_sa": "सर्गः ३५",
             "n": 35,
-            "image": "thestoryofhanuman/sundarakanda/sarga-35/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-35/media/image1.png",
+            "subject": "Hanuman narrates his story to Sita. Gives description of Rama and Lakshmana"
           },
           {
             "slug": "sarga-36",
             "title": "Sarga 36",
             "title_sa": "सर्गः ३६",
             "n": 36,
-            "image": "thestoryofhanuman/sundarakanda/sarga-36/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-36/media/image1.png",
+            "subject": "Hanuman hands over the signet ring to Sita"
           },
           {
             "slug": "sarga-37",
             "title": "Sarga 37",
             "title_sa": "सर्गः ३७",
             "n": 37,
-            "image": "thestoryofhanuman/sundarakanda/sarga-37/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-37/media/image1.png",
+            "subject": "Hanuman offers to carry Sita back to Rama. Sita politely declines, and appeals to Hanuman to get Rama to take her"
           },
           {
             "slug": "sarga-38",
             "title": "Sarga 38",
             "title_sa": "सर्गः ३८",
             "n": 38,
-            "image": "thestoryofhanuman/sundarakanda/sarga-38/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-38/media/image1.png",
+            "subject": "Hanuman asks Sita for a token to carry back to Rama. Sita narrates the episode of Kakasura and gives Chudamani as a mark of identification"
           },
           {
             "slug": "sarga-39",
             "title": "Sarga 39",
             "title_sa": "सर्गः ३९",
             "n": 39,
-            "image": "thestoryofhanuman/sundarakanda/sarga-39/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-39/media/image1.png",
+            "subject": "Sita further appeals to Hanuman"
           },
           {
             "slug": "sarga-40",
             "title": "Sarga 40",
             "title_sa": "सर्गः ४०",
             "n": 40,
-            "image": "thestoryofhanuman/sundarakanda/sarga-40/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-40/media/image1.png",
+            "subject": "Sita permits Hanuman to depart"
           },
           {
             "slug": "sarga-41",
             "title": "Sarga 41",
             "title_sa": "सर्गः ४१",
             "n": 41,
-            "image": "thestoryofhanuman/sundarakanda/sarga-41/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-41/media/image1.png",
+            "subject": "Hanuman decides to meet Ravana and measure his strength"
           },
           {
             "slug": "sarga-42",
             "title": "Sarga 42",
             "title_sa": "सर्गः ४२",
             "n": 42,
-            "image": "thestoryofhanuman/sundarakanda/sarga-42/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-42/media/image1.png",
+            "subject": "Hanuman ruins Ashoka garden. Kills eighty thousand kinkaras"
           },
           {
             "slug": "sarga-43",
             "title": "Sarga 43",
             "title_sa": "सर्गः ४३",
             "n": 43,
-            "image": "thestoryofhanuman/sundarakanda/sarga-43/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-43/media/image1.png",
+            "subject": "Hanuman destroys the rakshasas in the palace"
           },
           {
             "slug": "sarga-44",
             "title": "Sarga 44",
             "title_sa": "सर्गः ४४",
             "n": 44,
-            "image": "thestoryofhanuman/sundarakanda/sarga-44/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-44/media/image1.png",
+            "subject": "Hanuman kills Jambumali"
           },
           {
             "slug": "sarga-45",
             "title": "Sarga 45",
             "title_sa": "सर्गः ४५",
             "n": 45,
-            "image": "thestoryofhanuman/sundarakanda/sarga-45/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-45/media/image1.png",
+            "subject": "Hanuman kills the seven sons of Ravana's chief minister"
           },
           {
             "slug": "sarga-46",
             "title": "Sarga 46",
             "title_sa": "सर्गः ४६",
             "n": 46,
-            "image": "thestoryofhanuman/sundarakanda/sarga-46/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-46/media/image1.png",
+            "subject": "Hanuman kills the five generals of Ravana (Durdhara, Praghasa, Virupaksha,Yupaksha, Bhaskarna)"
           },
           {
             "slug": "sarga-47",
             "title": "Sarga 47",
             "title_sa": "सर्गः ४७",
             "n": 47,
-            "image": "thestoryofhanuman/sundarakanda/sarga-47/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-47/media/image1.png",
+            "subject": "Hanuman kills Prince Aksha"
           },
           {
             "slug": "sarga-48",
             "title": "Sarga 48",
             "title_sa": "सर्गः ४८",
             "n": 48,
-            "image": "thestoryofhanuman/sundarakanda/sarga-48/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-48/media/image1.png",
+            "subject": "Combat between Hanuman and Ravana's son, Indrajit - Indrajit captures Hanuman by Brahmastra and gets him to Ravana"
           },
           {
             "slug": "sarga-49",
             "title": "Sarga 49",
             "title_sa": "सर्गः ४९",
             "n": 49,
-            "image": "thestoryofhanuman/sundarakanda/sarga-49/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-49/media/image1.png",
+            "subject": "Hanuman wonders at the splendour and glory of Ravana"
           },
           {
             "slug": "sarga-50",
             "title": "Sarga 50",
             "title_sa": "सर्गः ५०",
             "n": 50,
-            "image": "thestoryofhanuman/sundarakanda/sarga-50/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-50/media/image1.png",
+            "subject": "On the command of Ravana, Prahasta enquires Hanuman the purpose of his visit. Hanuman reveals that he is a vanara and a messenger of Rama"
           },
           {
             "slug": "sarga-51",
             "title": "Sarga 51",
             "title_sa": "सर्गः ५१",
             "n": 51,
-            "image": "thestoryofhanuman/sundarakanda/sarga-51/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-51/media/image1.png",
+            "subject": "Hanuman tenders both sound advice and stern warning to Ravana"
           },
           {
             "slug": "sarga-52",
             "title": "Sarga 52",
             "title_sa": "सर्गः ५२",
             "n": 52,
-            "image": "thestoryofhanuman/sundarakanda/sarga-52/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-52/media/image1.png",
+            "subject": "Vibhishana advises Ravana against slaying of an emissary - elaborates on the code of conduct of a king"
           },
           {
             "slug": "sarga-53",
             "title": "Sarga 53",
             "title_sa": "सर्गः ५३",
             "n": 53,
-            "image": "thestoryofhanuman/sundarakanda/sarga-53/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-53/media/image1.png",
+            "subject": "Ravana orders the rakshasas to put Hanuman's tail on fire and take him around Lanka with his burning tail"
           },
           {
             "slug": "sarga-54",
             "title": "Sarga 54",
             "title_sa": "सर्गः ५४",
             "n": 54,
-            "image": "thestoryofhanuman/sundarakanda/sarga-54/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-54/media/image1.png",
+            "subject": "Hanuman destroys the Ashoka garden. Sets fire to Lanka. Kills the rakshasas"
           },
           {
             "slug": "sarga-55",
             "title": "Sarga 55",
             "title_sa": "सर्गः ५५",
             "n": 55,
-            "image": "thestoryofhanuman/sundarakanda/sarga-55/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-55/media/image1.png",
+            "subject": "Hanuman perceiving the damage caused by him to the City of Lanka, thinks of Sita and begins to blame himself - on seeing good omens he presumes that Sita would have been protected by her chastity"
           },
           {
             "slug": "sarga-56",
             "title": "Sarga 56",
             "title_sa": "सर्गः ५६",
             "n": 56,
-            "image": "thestoryofhanuman/sundarakanda/sarga-56/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-56/media/image1.png",
+            "subject": "Hanuman takes leave of Sita. Sets out for the northern shore. Description of Arishta mountain"
           },
           {
             "slug": "sarga-57",
             "title": "Sarga 57",
             "title_sa": "सर्गः ५७",
             "n": 57,
-            "image": "thestoryofhanuman/sundarakanda/sarga-57/media/image1.jpg"
+            "image": "thestoryofhanuman/sundarakanda/sarga-57/media/image1.jpg",
+            "subject": "Hanuman reaches the northern shore. Announces to vanaras, Angada and Jambavan about his seeing Sita. Every one rejoices to hear the news of Sita"
           },
           {
             "slug": "sarga-58",
             "title": "Sarga 58",
             "title_sa": "सर्गः ५८",
             "n": 58,
-            "image": "thestoryofhanuman/sundarakanda/sarga-58/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-58/media/image1.png",
+            "subject": "Hanuman narrates all the incidents starting from his departure for Lanka till his return"
           },
           {
             "slug": "sarga-59",
             "title": "Sarga 59",
             "title_sa": "सर्गः ५९",
             "n": 59,
-            "image": "thestoryofhanuman/sundarakanda/sarga-59/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-59/media/image1.png",
+            "subject": "Hanuman gives an account of the plight of Sita in Lanka; incites the vanaras to be ready for the next course of action"
           },
           {
             "slug": "sarga-60",
             "title": "Sarga 60",
             "title_sa": "सर्गः ६०",
             "n": 60,
-            "image": "thestoryofhanuman/sundarakanda/sarga-60/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-60/media/image1.png",
+            "subject": "Jambavan says it is advisable to follow Rama's instruction"
           },
           {
             "slug": "sarga-61",
             "title": "Sarga 61",
             "title_sa": "सर्गः ६१",
             "n": 61,
-            "image": "thestoryofhanuman/sundarakanda/sarga-61/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-61/media/image1.png",
+            "subject": "Monkey leaders enter Madhuvan on the outskirts of Kishkinda and destroy it in their drunkenness"
           },
           {
             "slug": "sarga-62",
             "title": "Sarga 62",
             "title_sa": "सर्गः ६२",
             "n": 62,
-            "image": "thestoryofhanuman/sundarakanda/sarga-62/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-62/media/image1.png",
+            "subject": "Guards of Madhuvanam headed by Dadhimukha move to report to Sugriva"
           },
           {
             "slug": "sarga-63",
             "title": "Sarga 63",
             "title_sa": "सर्गः ६३",
             "n": 63,
-            "image": "thestoryofhanuman/sundarakanda/sarga-63/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-63/media/image1.png",
+            "subject": "Sugriva tells Dadhimukha not to worry about the destruction of Madhuvanam. He asks him to send Hanuman, Angada and others"
           },
           {
             "slug": "sarga-64",
             "title": "Sarga 64",
             "title_sa": "सर्गः ६४",
             "n": 64,
-            "image": "thestoryofhanuman/sundarakanda/sarga-64/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-64/media/image1.png",
+            "subject": "Hanuman and Angada along with others approach Sugriva. Hanuman tells Rama about the discovery of Sita"
           },
           {
             "slug": "sarga-65",
             "title": "Sarga 65",
             "title_sa": "सर्गः ६५",
             "n": 65,
-            "image": "thestoryofhanuman/sundarakanda/sarga-65/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-65/media/image1.png",
+            "subject": "Hanuman apprises Sri Rama of Sita's presence under the Simsupa tree surrounded by rakshasis and presents the Chudamani to Rama in the presence of Sugriva"
           },
           {
             "slug": "sarga-66",
             "title": "Sarga 66",
             "title_sa": "सर्गः ६६",
             "n": 66,
-            "image": "thestoryofhanuman/sundarakanda/sarga-66/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-66/media/image1.png",
+            "subject": "Rama laments piteously after seeing the token chudamani"
           },
           {
             "slug": "sarga-67",
             "title": "Sarga 67",
             "title_sa": "सर्गः ६७",
             "n": 67,
-            "image": "thestoryofhanuman/sundarakanda/sarga-67/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-67/media/image1.png",
+            "subject": "Hanuman once again narrates Sita's condition to Rama"
           },
           {
             "slug": "sarga-68",
             "title": "Sarga 68",
             "title_sa": "सर्गः ६८",
             "n": 68,
-            "image": "thestoryofhanuman/sundarakanda/sarga-68/media/image1.png"
+            "image": "thestoryofhanuman/sundarakanda/sarga-68/media/image1.png",
+            "subject": "Hanuman describes to Rama the manner in which he warded off Sita's doubts regarding the vanaras crossing the ocean and rescuing her"
           }
         ],
         "title": "Sundarakanda",
@@ -559,21 +632,24 @@
             "title": "Sarga 74",
             "title_sa": "सर्गः ७४",
             "n": 74,
-            "image": "thestoryofhanuman/yudhdhakanda/sarga-74/media/image1.png"
+            "image": "thestoryofhanuman/yudhdhakanda/sarga-74/media/image1.png",
+            "subject": "Instructed by Jambavan, Hanuman goes to the Himalayas, gets the herbs along with the hillock. Inhaling the fragrance of the herbs Rama and Lakshmana regain their senses. The Vanaras lying unconscious, are healed by the fragrance, relieved of pain and awakened"
           },
           {
             "slug": "sarga-101",
             "title": "Sarga 101",
             "title_sa": "सर्गः १०१",
             "n": 101,
-            "image": "thestoryofhanuman/yudhdhakanda/sarga-101/media/image1.png"
+            "image": "thestoryofhanuman/yudhdhakanda/sarga-101/media/image1.png",
+            "subject": "Hanuman is directed by Sushena to go to the Himalayas and get herbs for treating Lakshmana. Hanuman gets the herbs and on inhalation of the herbs Lakshmana recovers"
           },
           {
             "slug": "sarga-128",
             "title": "Sarga 128",
             "title_sa": "सर्गः १२८",
             "n": 128,
-            "image": "thestoryofhanuman/yudhdhakanda/sarga-128/media/image1.png"
+            "image": "thestoryofhanuman/yudhdhakanda/sarga-128/media/image1.png",
+            "subject": "Coronation of Rama"
           }
         ],
         "title": "Yudhdhakanda",
@@ -600,343 +676,392 @@
             "title": "Chapter 1",
             "title_sa": "अध्यायः १",
             "n": 1,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-1/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-1/media/image1.jpg",
+            "subject": "The advent of Krishna"
           },
           {
             "slug": "ch-2",
             "title": "Chapter 2",
             "title_sa": "अध्यायः २",
             "n": 2,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-2/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-2/media/image1.jpg",
+            "subject": "Vishnu enters the womb of Devaki and is extolled by Brahma and the gods"
           },
           {
             "slug": "ch-3",
             "title": "Chapter 3",
             "title_sa": "अध्यायः ३",
             "n": 3,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-3/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-3/media/image1.jpg",
+            "subject": "The birth of Krishna"
           },
           {
             "slug": "ch-4",
             "title": "Chapter 4",
             "title_sa": "अध्यायः ४",
             "n": 4,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-4/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-4/media/image1.jpg",
+            "subject": "Yogamaya slips from the grip of Kamsa, ascends to the heavens and utters a prophecy. Atrocities of Kamsa"
           },
           {
             "slug": "ch-5",
             "title": "Chapter 5",
             "title_sa": "अध्यायः ५",
             "n": 5,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-5/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-5/media/image1.jpg",
+            "subject": "The meeting of Nanda and Vasudeva"
           },
           {
             "slug": "ch-6",
             "title": "Chapter 6",
             "title_sa": "अध्यायः ६",
             "n": 6,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-6/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-6/media/image1.jpg",
+            "subject": "Deliverance of Putana"
           },
           {
             "slug": "ch-7",
             "title": "Chapter 7",
             "title_sa": "अध्यायः ७",
             "n": 7,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-7/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-7/media/image1.jpg",
+            "subject": "Deliverance of Trinavarta"
           },
           {
             "slug": "ch-8",
             "title": "Chapter 8",
             "title_sa": "अध्यायः ८",
             "n": 8,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-8/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-8/media/image1.jpg",
+            "subject": "Krishna Shows the Universal Form Within His Mouth"
           },
           {
             "slug": "ch-9",
             "title": "Chapter 9",
             "title_sa": "अध्यायः ९",
             "n": 9,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-9/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-9/media/image1.jpg",
+            "subject": "Grace showered on Gopi Yashoda"
           },
           {
             "slug": "ch-10",
             "title": "Chapter 10",
             "title_sa": "अध्यायः १०",
             "n": 10,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-10/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-10/media/image1.jpg",
+            "subject": "The curse of Narada on the sons of Kubera and their deliverance (who were in the form of the two Arjuna Trees)"
           },
           {
             "slug": "ch-11",
             "title": "Chapter 11",
             "title_sa": "अध्यायः ११",
             "n": 11,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-11/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-11/media/image1.jpg",
+            "subject": "Story of Krishna gracing the fruit seller and"
           },
           {
             "slug": "ch-12",
             "title": "Chapter 12",
             "title_sa": "अध्यायः १२",
             "n": 12,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-12/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-12/media/image1.jpg",
+            "subject": "The deliverance of Aghasura"
           },
           {
             "slug": "ch-13",
             "title": "Chapter 13",
             "title_sa": "अध्यायः १३",
             "n": 13,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-13/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-13/media/image1.jpg",
+            "subject": "Brahma is seized with and ultimately rid of infatuation"
           },
           {
             "slug": "ch-14",
             "title": "Chapter 14",
             "title_sa": "अध्यायः १४",
             "n": 14,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-14/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-14/media/image1.jpg",
+            "subject": "Brahma extolls the Lord"
           },
           {
             "slug": "ch-15",
             "title": "Chapter 15",
             "title_sa": "अध्यायः १५",
             "n": 15,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-15/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-15/media/image1.jpg",
+            "subject": "Krishna slays Dhenuka"
           },
           {
             "slug": "ch-16",
             "title": "Chapter 16",
             "title_sa": "अध्यायः १६",
             "n": 16,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-16/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-16/media/image1.jpg",
+            "subject": "The deliverance of Kaliya"
           },
           {
             "slug": "ch-17",
             "title": "Chapter 17",
             "title_sa": "अध्यायः १७",
             "n": 17,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-17/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-17/media/image1.jpg",
+            "subject": "History of Kaliya and Krishna rescues the inhabitants of Vraja from a wild fire"
           },
           {
             "slug": "ch-18",
             "title": "Chapter 18",
             "title_sa": "अध्यायः १८",
             "n": 18,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-18/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-18/media/image1.jpg",
+            "subject": "Balarama slays Pralamba"
           },
           {
             "slug": "ch-19",
             "title": "Chapter 19",
             "title_sa": "अध्यायः १९",
             "n": 19,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-19/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-19/media/image1.jpg",
+            "subject": "Krishna swallows up a wild fire (again)"
           },
           {
             "slug": "ch-20",
             "title": "Chapter 20",
             "title_sa": "अध्यायः २०",
             "n": 20,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-20/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-20/media/image1.jpg",
+            "subject": "A description of the Rains and Autumn"
           },
           {
             "slug": "ch-21",
             "title": "Chapter 21",
             "title_sa": "अध्यायः २१",
             "n": 21,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-21/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-21/media/image1.jpg",
+            "subject": "The Song Inspired by the Flute"
           },
           {
             "slug": "ch-22",
             "title": "Chapter 22",
             "title_sa": "अध्यायः २२",
             "n": 22,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-22/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-22/media/image1.jpg",
+            "subject": "Krishna steals the garments of cowherd maids"
           },
           {
             "slug": "ch-23",
             "title": "Chapter 23",
             "title_sa": "अध्यायः २३",
             "n": 23,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-23/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-23/media/image1.jpg",
+            "subject": "Redemption of the wives of some Brahmanas engaged in a sacrifice"
           },
           {
             "slug": "ch-24",
             "title": "Chapter 24",
             "title_sa": "अध्यायः २४",
             "n": 24,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-24/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-24/media/image1.jpg",
+            "subject": "Krishna stops the sacrifice to Indra"
           },
           {
             "slug": "ch-25",
             "title": "Chapter 25",
             "title_sa": "अध्यायः २५",
             "n": 25,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-25/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-25/media/image1.jpg",
+            "subject": "Krishna lifts up Mount Govardhana"
           },
           {
             "slug": "ch-26",
             "title": "Chapter 26",
             "title_sa": "अध्यायः २६",
             "n": 26,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-26/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-26/media/image1.jpg",
+            "subject": "Nanda’s conversation with the cowherds about Krishna's glory"
           },
           {
             "slug": "ch-27",
             "title": "Chapter 27",
             "title_sa": "अध्यायः २७",
             "n": 27,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-27/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-27/media/image1.jpg",
+            "subject": "Indra extolls Krishna"
           },
           {
             "slug": "ch-28",
             "title": "Chapter 28",
             "title_sa": "अध्यायः २८",
             "n": 28,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-28/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-28/media/image1.jpg",
+            "subject": "Krishna rescues Nanda from the realm of Varuna"
           },
           {
             "slug": "ch-29",
             "title": "Chapter 29",
             "title_sa": "अध्यायः २९",
             "n": 29,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-29/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-29/media/image1.jpg",
+            "subject": "A description of the celebrated Rasa Play of Krishna"
           },
           {
             "slug": "ch-30",
             "title": "Chapter 30",
             "title_sa": "अध्यायः ३०",
             "n": 30,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-30/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-30/media/image1.jpg",
+            "subject": "The Gopis' Quest for Krishna during the Rasa Play"
           },
           {
             "slug": "ch-31",
             "title": "Chapter 31",
             "title_sa": "अध्यायः ३१",
             "n": 31,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-31/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-31/media/image1.jpg",
+            "subject": "The Gopis' Song at the Krishna’s disappearance during the Rasa Play"
           },
           {
             "slug": "ch-32",
             "title": "Chapter 32",
             "title_sa": "अध्यायः ३२",
             "n": 32,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-32/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-32/media/image1.jpg",
+            "subject": "Krishna comforts the Gopis during the Rasa Play"
           },
           {
             "slug": "ch-33",
             "title": "Chapter 33",
             "title_sa": "अध्यायः ३३",
             "n": 33,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-33/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-33/media/image1.jpg",
+            "subject": "A Description of the Rasa Play"
           },
           {
             "slug": "ch-34",
             "title": "Chapter 34",
             "title_sa": "अध्यायः ३४",
             "n": 34,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-34/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-34/media/image1.jpg",
+            "subject": "Deliverance of Sudarshana and slaying of Shankhachuda by Krishna"
           },
           {
             "slug": "ch-35",
             "title": "Chapter 35",
             "title_sa": "अध्यायः ३५",
             "n": 35,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-35/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-35/media/image1.jpg",
+            "subject": "The Gopis' song in pairs of verses"
           },
           {
             "slug": "ch-36",
             "title": "Chapter 36",
             "title_sa": "अध्यायः ३६",
             "n": 36,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-36/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-36/media/image1.jpg",
+            "subject": "Krishna slays Arishta"
           },
           {
             "slug": "ch-37",
             "title": "Chapter 37",
             "title_sa": "अध्यायः ३७",
             "n": 37,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-37/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-37/media/image1.jpg",
+            "subject": "Krishna slays Keshi and Vyomasura"
           },
           {
             "slug": "ch-38",
             "title": "Chapter 38",
             "title_sa": "अध्यायः ३८",
             "n": 38,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-38/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-38/media/image1.jpg",
+            "subject": "Akrura’s arrival in Vraja"
           },
           {
             "slug": "ch-39",
             "title": "Chapter 39",
             "title_sa": "अध्यायः ३९",
             "n": 39,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-39/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-39/media/image1.jpg",
+            "subject": "Akrura’s return to Mathura (along with Krishna and Balarama)"
           },
           {
             "slug": "ch-40",
             "title": "Chapter 40",
             "title_sa": "अध्यायः ४०",
             "n": 40,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-40/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-40/media/image1.jpg",
+            "subject": "Akrura’s eulogy of the Lord"
           },
           {
             "slug": "ch-41",
             "title": "Chapter 41",
             "title_sa": "अध्यायः ४१",
             "n": 41,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-41/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-41/media/image1.jpg",
+            "subject": "Entry of Krishna and Balarama into Mathura"
           },
           {
             "slug": "ch-42",
             "title": "Chapter 42",
             "title_sa": "अध्यायः ४२",
             "n": 42,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-42/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-42/media/image1.jpg",
+            "subject": "Krishna’s grace on the hunchback woman, breaking of the sacrificial bow, fear of Kamsa, and a description of the amphitheatre for wrestlers"
           },
           {
             "slug": "ch-43",
             "title": "Chapter 43",
             "title_sa": "अध्यायः ४३",
             "n": 43,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-43/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-43/media/image1.jpg",
+            "subject": "Krishna slays the elephant Kuvalayapida"
           },
           {
             "slug": "ch-44",
             "title": "Chapter 44",
             "title_sa": "अध्यायः ४४",
             "n": 44,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-44/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-44/media/image1.jpg",
+            "subject": "Krishna slays Kamsa"
           },
           {
             "slug": "ch-45",
             "title": "Chapter 45",
             "title_sa": "अध्यायः ४५",
             "n": 45,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-45/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-45/media/image1.jpg",
+            "subject": "Krishna brings back His preceptor's son from the abode of Death and obtains Panchajanya conch"
           },
           {
             "slug": "ch-46",
             "title": "Chapter 46",
             "title_sa": "अध्यायः ४६",
             "n": 46,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-46/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-46/media/image1.jpg",
+            "subject": "Krishna relieves the agony of Nanda (by sending Uddhava to Vraja with a message of endearment)"
           },
           {
             "slug": "ch-47",
             "title": "Chapter 47",
             "title_sa": "अध्यायः ४७",
             "n": 47,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-47/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-47/media/image1.jpg",
+            "subject": "Dialogue between Uddhava and the Gopis and ode to a black bee"
           },
           {
             "slug": "ch-48",
             "title": "Chapter 48",
             "title_sa": "अध्यायः ४८",
             "n": 48,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-48/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-48/media/image1.jpg",
+            "subject": "Krishna pays a visit to the homes of Kubja and Akrura"
           },
           {
             "slug": "ch-49",
             "title": "Chapter 49",
             "title_sa": "अध्यायः ४९",
             "n": 49,
-            "image": "shrimad-bhagavatam-canto-10/book-1/ch-49/media/image1.jpg"
+            "image": "shrimad-bhagavatam-canto-10/book-1/ch-49/media/image1.jpg",
+            "subject": "Akrura’s visit to Hastinapura"
           }
         ],
         "title": "Book 1 — पूर्वार्धः",
@@ -1109,7 +1234,8 @@
         "title": "Kishkindhakanda Sarga 28",
         "title_sa": "किष्किन्धाकाण्डम् · सर्गः २८",
         "n": 1,
-        "image": null
+        "image": null,
+        "subject": "Rama describes the beauty of the rainy season to Lakshmana"
       }
     ],
     "title": "Eclectic Collection",

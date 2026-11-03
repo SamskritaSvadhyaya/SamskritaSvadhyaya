@@ -499,6 +499,13 @@ body { font-family: var(--serif), var(--devanagari); }
   font-size: .9rem;
   color: var(--ink-soft);
 }
+.chapter-subject {
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.35;
+  margin-top: .15rem;
+}
 .empty-note {
   color: var(--ink-soft);
   font-style: italic;

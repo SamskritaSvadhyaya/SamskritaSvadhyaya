@@ -39,6 +39,11 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - `<collection>/cover.jpg` — 240px square home-page tile picture (set as the top-level entry's
   `image` in texts.json; cropped from a chapter picture). Kept outside chapter folders so
   re-importing a chapter can't break it.
+- Chapter descriptions: `build.py page` reads each chapter's subject line from its doc (the
+  English line under the "Sundarakanda Sarga N" heading, e.g. "Hanuman crosses the ocean,
+  reaches Lanka"), stores it as the chapter's `subject` in texts.json, and shows it under the
+  page title and on the chapter card (first sentence, ≤110 chars). Narayaneeyam titles already
+  are the subject, so they get none. Editing the line in the doc + re-importing updates it.
 - `seo.py` — search metadata: descriptive `<title>`/description (work, chapter no., subject line
   from the page, Sanskrit name), canonical URL and link-preview tags in a `<!-- seo -->` block,
   plus `sitemap.xml` of all published pages. Runs automatically at the end of `build.py home`
