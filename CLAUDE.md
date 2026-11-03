@@ -67,7 +67,11 @@ env -u GITHUB_TOKEN git push
 Then verify the Pages deploy (`env -u GITHUB_TOKEN gh run list -L 1`) and that the last
 released dashaka returns 200 and the next one 404.
 
-History: 1–10 live 2026-10-22; 11–20 released 2026-11-01.
+History: 1–10 live 2026-10-22; 11–20 released 2026-11-01, then 16–20 withheld again the same
+day; 16–17 re-released 2026-11-01, 18 on 11-01, 19 on 11-02, 20 on 11-03 (20 live, next 21).
+Lately the user releases one or two at a time, each from its latest Drive revision: after
+`release.py next`, rebuild the page from the downloaded Drive doc (gdoc_to_body + build.py page
+with the manifest's title), then `dedupe-media.py narayaneeyam`, `work-index`, `home`.
 
 ## Windows (PowerShell)
 
