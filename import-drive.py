@@ -35,11 +35,14 @@ MANIFEST = ROOT / "texts.json"
 DEV = str.maketrans("0123456789", "०१२३४५६७८९")
 
 PATTERNS = [
-    # (regex on doc title, parent, work, slug prefix, Sanskrit unit, name from title?)
-    (r"Dashaka\s+(\d+)\s*-\s*(.+)", None, "narayaneeyam", "dashaka", "दशकम्", True),
-    (r"Sundarakanda\s+Sarga\s+(\d+)\b.*", "thestoryofhanuman", "sundarakanda", "sarga", "सर्गः", False),
-    (r"KK\s*-\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "kishkindhakanda", "sarga", "सर्गः", False),
-    (r"Yudh+akanda\s*-?\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "yudhdhakanda", "sarga", "सर्गः", False),
+    # (regex on doc title, parent, work, slug prefix, English unit, Sanskrit unit,
+    #  name from title?, highest chapter number allowed)
+    (r"Dashaka\s+(\d+)\s*-\s*(.+)", None, "narayaneeyam", "dashaka", "Dashaka", "दशकम्", True, 100),
+    (r"Sundarakanda\s+Sarga\s+(\d+)\b.*", "thestoryofhanuman", "sundarakanda", "sarga", "Sarga", "सर्गः", False, 68),
+    (r"KK\s*-\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "kishkindhakanda", "sarga", "Sarga", "सर्गः", False, 67),
+    (r"Yudh+akanda\s*-?\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "yudhdhakanda", "sarga", "Sarga", "सर्गः", False, 128),
+    # Shrimad Bhagavatam Canto 10 docs: "श्रीमद्भागवतमहापुराणम् Ch.N" — Book 1 is chapters 1–49.
+    (r"श्रीमद्भागवतमहापुराणम्\s*Ch\.?\s*(\d+)\b.*", "shrimad-bhagavatam-canto-10", "book-1", "ch", "Chapter", "अध्यायः", False, 49),
 ]
 
 
@@ -59,13 +62,16 @@ def main():
         raise SystemExit("Download must be an HTML export (exportMimeType: text/html).")
     title = doc.get("title", "").replace("﻿", "").strip()
 
-    for pat, parent, work, prefix, unit_sa, name_from_title in PATTERNS:
+    for pat, parent, work, prefix, unit_en, unit_sa, name_from_title, max_n in PATTERNS:
         m = re.fullmatch(pat, title)
         if m:
             break
     else:
         raise SystemExit(f"Don't know where '{title}' belongs; add a pattern to import-drive.py.")
     n = int(m.group(1))
+    if n > max_n:
+        raise SystemExit(f"'{title}': {unit_en} {n} is beyond {work} (max {max_n}); "
+                         "add a pattern for where it belongs.")
     slug = f"{prefix}-{n}"
 
     entries = json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -79,7 +85,7 @@ def main():
         if parent is None:
             raise SystemExit(f"{work}/{slug} is not on the site yet.")
 
-    new_title = m.group(2).strip() if name_from_title else f"Sarga {n}"
+    new_title = m.group(2).strip() if name_from_title else f"{unit_en} {n}"
     new_title_sa = f"{unit_sa} {str(n).translate(DEV)}"
     page_dir = ROOT / (f"{parent}/" if parent else "") / work / slug
     print(f"{title}  ->  {page_dir.relative_to(ROOT).as_posix()}/")
