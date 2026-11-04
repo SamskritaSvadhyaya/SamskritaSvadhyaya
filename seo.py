@@ -245,7 +245,9 @@ def main():
         xml.append(f"  <url><loc>{html.escape(loc)}</loc><lastmod>{mod}</lastmod></url>")
     xml.append("</urlset>")
     (ROOT / "sitemap.xml").write_text("\n".join(xml) + "\n", encoding="utf-8")
-    print(f"SEO tags on {len(urls)} page(s); wrote sitemap.xml")
+    # Same list as plain text (one URL per line) — also accepted by Google Search Console.
+    (ROOT / "sitemap.txt").write_text("".join(f"{loc}\n" for loc, _ in urls), encoding="utf-8")
+    print(f"SEO tags on {len(urls)} page(s); wrote sitemap.xml and sitemap.txt")
 
 
 if __name__ == "__main__":
