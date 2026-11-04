@@ -23,7 +23,9 @@ Static site of Sanskrit texts, published with GitHub Pages.
 
 - `texts.json` — manifest. Top-level entries: `raghuvamsha` (work), `ganapati-atharvashirsha`
   (text), `thestoryofhanuman` (parent: Kishkindhakanda/Sundarakanda/Yudhdhakanda sargas),
-  `shrimad-bhagavatam-canto-10` (parent), `narayaneeyam` (work), `eclectic-collection` (work).
+  `shrimad-bhagavatam-canto-10` (parent: `book-1` पूर्वार्धः ch-1–49, `book-2` उत्तरार्धः
+  ch-50–90; Drive folders "Book1 - …" / "Book2 - …" under "Shrimad Bhagavatam Canto 10", docs
+  "श्रीमद्भागवतमहापुराणम् Ch.N"), `narayaneeyam` (work), `eclectic-collection` (work).
 - `ramayana/` — redirect-only stubs (one per page) sending old `/ramayana/...` links to
   `/thestoryofhanuman/...` (renamed 2026-11-01). Not built by `build.py`; if pages are added under
   `thestoryofhanuman/`, no stub is needed.

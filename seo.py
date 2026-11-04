@@ -42,15 +42,31 @@ def subject_of(page_html, skip):
     """The chapter's subject line: the first centred English heading above the
     verses that isn't a number heading ("Sarga 2", "Canto 10") or a work name."""
     body = page_html.split('id="content">', 1)[-1]
+    lines = []
     for inner in _CENTRED.findall(body):
         if "#274e13" in inner:  # first verse reached
             break
-        text = plain(inner)
-        if (not text or _DEV.search(text) or text.startswith("(") or re.search(r"\d", text)
-                or text.lower().strip(" .") in skip or "<img" in inner):
+        lines.append((plain(inner), "<img" in inner))
+
+    def english(text, img):
+        return bool(text) and not img and not _DEV.search(text) and not text.startswith("(")
+
+    for i, (text, img) in enumerate(lines):
+        if (not english(text, img) or re.search(r"\d", text) or text.lower().strip(" .") in skip):
             continue
+        # A heading typed over two lines ("…Daily Routine and" / "the sending of…"):
+        # join the next line when this one ends in a joining word or the next starts lowercase.
+        for nxt, nimg in lines[i + 1:]:
+            if not english(nxt, nimg) or re.search(r"\d", nxt):
+                break
+            if not (_JOINER.search(text) or nxt[:1].islower()):
+                break
+            text = f"{text} {nxt}"
         return text.rstrip(" .")
     return ""
+
+
+_JOINER = re.compile(r"\b(and|or|of|the|to|with|by|in|for|from|at|on|a|an|as)\s*$", re.I)
 
 
 def attr(value):

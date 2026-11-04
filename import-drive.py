@@ -34,15 +34,18 @@ ROOT = Path(__file__).resolve().parent
 MANIFEST = ROOT / "texts.json"
 DEV = str.maketrans("0123456789", "०१२३४५६७८९")
 
+_SB = r"श्रीमद्भागवतमहापुराणम्\s*Ch\.?\s*(\d+)\b.*"
 PATTERNS = [
     # (regex on doc title, parent, work, slug prefix, English unit, Sanskrit unit,
-    #  name from title?, highest chapter number allowed)
-    (r"Dashaka\s+(\d+)\s*-\s*(.+)", None, "narayaneeyam", "dashaka", "Dashaka", "दशकम्", True, 100),
-    (r"Sundarakanda\s+Sarga\s+(\d+)\b.*", "thestoryofhanuman", "sundarakanda", "sarga", "Sarga", "सर्गः", False, 68),
-    (r"KK\s*-\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "kishkindhakanda", "sarga", "Sarga", "सर्गः", False, 67),
-    (r"Yudh+akanda\s*-?\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "yudhdhakanda", "sarga", "Sarga", "सर्गः", False, 128),
-    # Shrimad Bhagavatam Canto 10 docs: "श्रीमद्भागवतमहापुराणम् Ch.N" — Book 1 is chapters 1–49.
-    (r"श्रीमद्भागवतमहापुराणम्\s*Ch\.?\s*(\d+)\b.*", "shrimad-bhagavatam-canto-10", "book-1", "ch", "Chapter", "अध्यायः", False, 49),
+    #  name from title?, (lowest, highest) chapter number for this work)
+    (r"Dashaka\s+(\d+)\s*-\s*(.+)", None, "narayaneeyam", "dashaka", "Dashaka", "दशकम्", True, (1, 100)),
+    (r"Sundarakanda\s+Sarga\s+(\d+)\b.*", "thestoryofhanuman", "sundarakanda", "sarga", "Sarga", "सर्गः", False, (1, 68)),
+    (r"KK\s*-\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "kishkindhakanda", "sarga", "Sarga", "सर्गः", False, (1, 67)),
+    (r"Yudh+akanda\s*-?\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "yudhdhakanda", "sarga", "Sarga", "सर्गः", False, (1, 128)),
+    # Shrimad Bhagavatam Canto 10 docs: "श्रीमद्भागवतमहापुराणम् Ch.N".
+    # Book 1 (पूर्वार्धः) is chapters 1–49, Book 2 (उत्तरार्धः) chapters 50–90.
+    (_SB, "shrimad-bhagavatam-canto-10", "book-1", "ch", "Chapter", "अध्यायः", False, (1, 49)),
+    (_SB, "shrimad-bhagavatam-canto-10", "book-2", "ch", "Chapter", "अध्यायः", False, (50, 90)),
 ]
 
 
@@ -62,16 +65,13 @@ def main():
         raise SystemExit("Download must be an HTML export (exportMimeType: text/html).")
     title = doc.get("title", "").replace("﻿", "").strip()
 
-    for pat, parent, work, prefix, unit_en, unit_sa, name_from_title, max_n in PATTERNS:
+    for pat, parent, work, prefix, unit_en, unit_sa, name_from_title, (lo, hi) in PATTERNS:
         m = re.fullmatch(pat, title)
-        if m:
+        if m and lo <= int(m.group(1)) <= hi:
             break
     else:
         raise SystemExit(f"Don't know where '{title}' belongs; add a pattern to import-drive.py.")
     n = int(m.group(1))
-    if n > max_n:
-        raise SystemExit(f"'{title}': {unit_en} {n} is beyond {work} (max {max_n}); "
-                         "add a pattern for where it belongs.")
     slug = f"{prefix}-{n}"
 
     entries = json.loads(MANIFEST.read_text(encoding="utf-8"))

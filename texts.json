@@ -1067,6 +1067,343 @@
         "title": "Book 1 — पूर्वार्धः",
         "title_sa": "पूर्वार्धः",
         "subtitle": "Ch.1–49 · Krishna's childhood pastimes in Gokula and Vṛndāvana"
+      },
+      {
+        "type": "work",
+        "slug": "book-2",
+        "chapters": [
+          {
+            "slug": "ch-50",
+            "title": "Chapter 50",
+            "title_sa": "अध्यायः ५०",
+            "n": 50,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-50/media/image1.jpg",
+            "subject": "Battle between Krishna and Jarasandha. Krishna Establishes the City of Dwaraka"
+          },
+          {
+            "slug": "ch-51",
+            "title": "Chapter 51",
+            "title_sa": "अध्यायः ५१",
+            "n": 51,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-51/media/image1.jpg",
+            "subject": "Burning of Kalayavana, Muchukunda’s story and Muchukunda’s Eulogy of the Lord"
+          },
+          {
+            "slug": "ch-52",
+            "title": "Chapter 52",
+            "title_sa": "अध्यायः ५२",
+            "n": 52,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-52/media/image1.jpg",
+            "subject": "Krishna's entry to Dwaraka; Balarama's marriage; Rukmini sends a Brahmana with a message to Krishna"
+          },
+          {
+            "slug": "ch-53",
+            "title": "Chapter 53",
+            "title_sa": "अध्यायः ५३",
+            "n": 53,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-53/media/image1.jpg",
+            "subject": "Krishna carries away Rukmini"
+          },
+          {
+            "slug": "ch-54",
+            "title": "Chapter 54",
+            "title_sa": "अध्यायः ५४",
+            "n": 54,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-54/media/image1.jpg",
+            "subject": "Discomfiture of Shishupala's allies and Rukmi, and the wedding of Krishna and Rukmini"
+          },
+          {
+            "slug": "ch-55",
+            "title": "Chapter 55",
+            "title_sa": "अध्यायः ५५",
+            "n": 55,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-55/media/image1.jpg",
+            "subject": "The story of Pradyumna’s birth and the destruction of the asura Shambara"
+          },
+          {
+            "slug": "ch-56",
+            "title": "Chapter 56",
+            "title_sa": "अध्यायः ५६",
+            "n": 56,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-56/media/image1.jpg",
+            "subject": "The story of the Syamantaka gem; Krishna weds Jambavati and Satyabhama"
+          },
+          {
+            "slug": "ch-57",
+            "title": "Chapter 57",
+            "title_sa": "अध्यायः ५७",
+            "n": 57,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-57/media/image1.jpg",
+            "subject": "Syamantaka stolen; Shatadhanva killed and Akrura recalled to Dwaraka"
+          },
+          {
+            "slug": "ch-58",
+            "title": "Chapter 58",
+            "title_sa": "अध्यायः ५८",
+            "n": 58,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-58/media/image1.jpg",
+            "subject": "Krishna marriage to the rest of his five principal wives"
+          },
+          {
+            "slug": "ch-59",
+            "title": "Chapter 59",
+            "title_sa": "अध्यायः ५९",
+            "n": 59,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-59/media/image1.jpg",
+            "subject": "Krishna takes away Parijata tree by force from heaven, kills Narakasura - the son of Mother Earth. Description of how Krishna behaves like an ordinary householder in each of His palaces"
+          },
+          {
+            "slug": "ch-60",
+            "title": "Chapter 60",
+            "title_sa": "अध्यायः ६०",
+            "n": 60,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-60/media/image1.jpg",
+            "subject": "A dialogue between Krishna and Rukmini"
+          },
+          {
+            "slug": "ch-61",
+            "title": "Chapter 61",
+            "title_sa": "अध्यायः ६१",
+            "n": 61,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-61/media/image1.jpg",
+            "subject": "A description of Krishna’s progeny"
+          },
+          {
+            "slug": "ch-62",
+            "title": "Chapter 62",
+            "title_sa": "अध्यायः ६२",
+            "n": 62,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-62/media/image1.jpg",
+            "subject": "Meeting of Usha and Aniruddha"
+          },
+          {
+            "slug": "ch-63",
+            "title": "Chapter 63",
+            "title_sa": "अध्यायः ६३",
+            "n": 63,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-63/media/image1.jpg",
+            "subject": "Fight between Krishna and Banasura. Aniruddha’s rescue"
+          },
+          {
+            "slug": "ch-64",
+            "title": "Chapter 64",
+            "title_sa": "अध्यायः ६४",
+            "n": 64,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-64/media/image1.jpg",
+            "subject": "The Story of King Nriga"
+          },
+          {
+            "slug": "ch-65",
+            "title": "Chapter 65",
+            "title_sa": "अध्यायः ६५",
+            "n": 65,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-65/media/image1.jpg",
+            "subject": "Balarama visits Vraja. Diverts Yamuna from her course"
+          },
+          {
+            "slug": "ch-66",
+            "title": "Chapter 66",
+            "title_sa": "अध्यायः ६६",
+            "n": 66,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-66/media/image1.jpg",
+            "subject": "Krishna kills Paundraka and the others"
+          },
+          {
+            "slug": "ch-67",
+            "title": "Chapter 67",
+            "title_sa": "अध्यायः ६७",
+            "n": 67,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-67/media/image1.jpg",
+            "subject": "Balarama kills Dwivida"
+          },
+          {
+            "slug": "ch-68",
+            "title": "Chapter 68",
+            "title_sa": "अध्यायः ६८",
+            "n": 68,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-68/media/image1.jpg",
+            "subject": "The triumph of Sankarshana (Balarama) in the form of dragging Hastinapura and Samba’s wedding"
+          },
+          {
+            "slug": "ch-69",
+            "title": "Chapter 69",
+            "title_sa": "अध्यायः ६९",
+            "n": 69,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-69/media/image1.jpg",
+            "subject": "A glimpse into the household life of Krishna by Narada"
+          },
+          {
+            "slug": "ch-70",
+            "title": "Chapter 70",
+            "title_sa": "अध्यायः ७०",
+            "n": 70,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-70/media/image1.jpg",
+            "subject": "Krishna's Daily Routine and the sending of the messenger by the kings imprisoned by Jarasandha"
+          },
+          {
+            "slug": "ch-71",
+            "title": "Chapter 71",
+            "title_sa": "अध्यायः ७१",
+            "n": 71,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-71/media/image1.jpg",
+            "subject": "Krishna's visit to Indraprastha"
+          },
+          {
+            "slug": "ch-72",
+            "title": "Chapter 72",
+            "title_sa": "अध्यायः ७२",
+            "n": 72,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-72/media/image1.jpg",
+            "subject": "Jarasandha killed"
+          },
+          {
+            "slug": "ch-73",
+            "title": "Chapter 73",
+            "title_sa": "अध्यायः ७३",
+            "n": 73,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-73/media/image1.jpg",
+            "subject": "Krishna blesses the liberated kings and returns to Indraprastha"
+          },
+          {
+            "slug": "ch-74",
+            "title": "Chapter 74",
+            "title_sa": "अध्यायः ७४",
+            "n": 74,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-74/media/image1.jpg",
+            "subject": "First honor of Krishna and Krishna kills Shishupala"
+          },
+          {
+            "slug": "ch-75",
+            "title": "Chapter 75",
+            "title_sa": "अध्यायः ७५",
+            "n": 75,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-75/media/image1.jpg",
+            "subject": "Conclusion of the Rajasuya sacrifice and Duryodhana’s humiliation"
+          },
+          {
+            "slug": "ch-76",
+            "title": "Chapter 76",
+            "title_sa": "अध्यायः ७६",
+            "n": 76,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-76/media/image1.jpg",
+            "subject": "Battle between Shalva and Yadavas"
+          },
+          {
+            "slug": "ch-77",
+            "title": "Chapter 77",
+            "title_sa": "अध्यायः ७७",
+            "n": 77,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-77/media/image1.jpg",
+            "subject": "The deliverance of Shalva"
+          },
+          {
+            "slug": "ch-78",
+            "title": "Chapter 78",
+            "title_sa": "अध्यायः ७८",
+            "n": 78,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-78/media/image1.jpg",
+            "subject": "Deliverance of Dantavaktra and Viduratha"
+          },
+          {
+            "slug": "ch-79",
+            "title": "Chapter 79",
+            "title_sa": "अध्यायः ७९",
+            "n": 79,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-79/media/image1.jpg",
+            "subject": "Balvala killed and an account of the pilgrimage of Balarama"
+          },
+          {
+            "slug": "ch-80",
+            "title": "Chapter 80",
+            "title_sa": "अध्यायः ८०",
+            "n": 80,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-80/media/image1.jpg",
+            "subject": "The story of Sudama"
+          },
+          {
+            "slug": "ch-81",
+            "title": "Chapter 81",
+            "title_sa": "अध्यायः ८१",
+            "n": 81,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-81/media/image1.jpg",
+            "subject": "The story of flattened rice brought as a present to Krishna by Sudama. Krishna blesses Sudama"
+          },
+          {
+            "slug": "ch-82",
+            "title": "Chapter 82",
+            "title_sa": "अध्यायः ८२",
+            "n": 82,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-82/media/image1.jpg",
+            "subject": "The Meeting of Krishna and Balarama with the Gopas and Gopis of Vraja"
+          },
+          {
+            "slug": "ch-83",
+            "title": "Chapter 83",
+            "title_sa": "अध्यायः ८३",
+            "n": 83,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-83/media/image1.jpg",
+            "subject": "Conversation between Krishna's wives and Draupadi"
+          },
+          {
+            "slug": "ch-84",
+            "title": "Chapter 84",
+            "title_sa": "अध्यायः ८४",
+            "n": 84,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-84/media/image1.jpg",
+            "subject": "The teachings of the sages; Vasudeva conducts a grand sacrifice"
+          },
+          {
+            "slug": "ch-85",
+            "title": "Chapter 85",
+            "title_sa": "अध्यायः ८५",
+            "n": 85,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-85/media/image1.jpg",
+            "subject": "Krishna’s teachings to Vasudeva and bringing back of His six elder brothers (who were killed by Kamsa) to life"
+          },
+          {
+            "slug": "ch-86",
+            "title": "Chapter 86",
+            "title_sa": "अध्यायः ८६",
+            "n": 86,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-86/media/image1.jpg",
+            "subject": "Arjuna carries away Subhadra. Krishna’s grace upon Shrutadeva and Bahulashva"
+          },
+          {
+            "slug": "ch-87",
+            "title": "Chapter 87",
+            "title_sa": "अध्यायः ८७",
+            "n": 87,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-87/media/image1.jpg",
+            "subject": "The song of the praises by the Vedas personified in the dialogue between Narada and Narayana"
+          },
+          {
+            "slug": "ch-88",
+            "title": "Chapter 88",
+            "title_sa": "अध्यायः ८८",
+            "n": 88,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-88/media/image1.jpg",
+            "subject": "Lord Rudra saved from Vrikasura"
+          },
+          {
+            "slug": "ch-89",
+            "title": "Chapter 89",
+            "title_sa": "अध्यायः ८९",
+            "n": 89,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-89/media/image1.jpg",
+            "subject": "The three Lords (Brahma, Vishnu and Shiva) put to test by Sage Bhrigu. The dead sons of brahmana brought back to life by Krishna and Arjuna"
+          },
+          {
+            "slug": "ch-90",
+            "title": "Chapter 90",
+            "title_sa": "अध्यायः ९०",
+            "n": 90,
+            "image": "shrimad-bhagavatam-canto-10/book-2/ch-90/media/image1.jpg",
+            "subject": "Krishna’s pastimes with His wives, their lamentations on separation from Krishna and an account of Krishna’s descendants"
+          }
+        ],
+        "title": "Book 2 — उत्तरार्धः",
+        "title_sa": "उत्तरार्धः",
+        "subtitle": "Ch.50–90 · Krishna's pastimes in Mathura and Dwaraka"
       }
     ],
     "title": "Shrimad Bhagavatam — Canto 10",
