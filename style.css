@@ -252,6 +252,24 @@ body { font-family: var(--serif), var(--devanagari); }
   text-align: left;
 }
 
+/* Reading text — word-by-word, anvaya, meanings, introductions. Cormorant is thin at its
+   regular weight, so use its medium weight, a deeper ink and a ~10% larger size. Centred
+   shloka blocks keep their own sizes. (.content is always parchment, even in dark mode;
+   .preamble follows the theme.) */
+.content p:not([style*="text-align:center"]),
+.content li {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #1e110a;
+}
+.preamble p,
+.preamble li {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--ink-read, #1e110a);
+}
+[data-theme="dark"] { --ink-read: #f6ead2; }
+
 /* Bold stays bold; the document's own inline text colors are preserved as-is
    (do NOT set a color here, or it would override the source colors). */
 .content strong {
