@@ -238,7 +238,7 @@ def build_page(args):
     if work is not None and not args.subtitle:
         import seo
         subject = seo.chapter_subject(body, entries, args.title)
-    subtitle = args.subtitle or (html_escape(seo.brief(subject, 110), quote=False) if subject else "")
+    subtitle = args.subtitle or (html_escape(subject, quote=False) if subject else "")
 
     html = (
         fill(DOC_OPEN, REL=rel,
@@ -331,11 +331,6 @@ def set_parent(args):
     print(f"Set parent '{args.slug}'")
 
 
-def _brief(text):
-    import seo
-    return seo.brief(text, 110)
-
-
 def build_work_index(args):
     entries = load_manifest()
     if args.parent:
@@ -372,7 +367,7 @@ def build_work_index(args):
             title=c.get("title", ""),
             subject=(
                 '\n          <span class="chapter-subject">{}</span>'.format(
-                    html_escape(_brief(c["subject"]), quote=False))
+                    html_escape(c["subject"], quote=False))
                 if c.get("subject") else ""
             ),
         )

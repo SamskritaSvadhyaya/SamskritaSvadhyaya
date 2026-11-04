@@ -155,7 +155,7 @@ def pages():
                 subj = c["title"]  # e.g. Narayaneeyam: the chapter title is the subject
             head = f"{base}: {subj}" if subj else base
             yield path, f"{prefix}{c['slug']}/", {
-                "title": f"{base}: {brief(subj)} — {sa} | {NAME}" if subj else f"{base} — {sa} | {NAME}",
+                "title": f"{base}: {subj} — {sa} | {NAME}" if subj else f"{base} — {sa} | {NAME}",
                 "desc": f"{head.rstrip('.')}, from {collection_name}. {TAGLINE}",
                 "image": c.get("image") or work.get("image") or (parent or {}).get("image") or "",
                 "type": "article",

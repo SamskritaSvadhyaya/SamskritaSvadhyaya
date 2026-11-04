@@ -50,7 +50,8 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - Chapter descriptions: `build.py page` reads each chapter's subject line from its doc (the
   English line under the "Sundarakanda Sarga N" heading, e.g. "Hanuman crosses the ocean,
   reaches Lanka"), stores it as the chapter's `subject` in texts.json, and shows it under the
-  page title and on the chapter card (first sentence, ≤110 chars). Narayaneeyam titles already
+  page title and on the chapter card — always IN FULL (the user wants complete descriptions;
+  never shorten them). A heading typed over two lines in the doc is joined. Narayaneeyam titles already
   are the subject, so they get none. Editing the line in the doc + re-importing updates it.
 - `seo.py` — search metadata: descriptive `<title>`/description (work, chapter no., subject line
   from the page, Sanskrit name), canonical URL and link-preview tags in a `<!-- seo -->` block,
