@@ -82,7 +82,9 @@ Then verify the Pages deploy (`env -u GITHUB_TOKEN gh run list -L 1`) and that t
 released dashaka returns 200 and the next one 404.
 
 History: 1–10 live 2026-10-22; 11–20 released 2026-11-01, then 16–20 withheld again the same
-day; 16–17 re-released 2026-11-01, 18 on 11-01, 19 on 11-02, 20 on 11-03 (20 live, next 21).
+day; 16–17 re-released 2026-11-01, 18 on 11-01, 19 on 11-02, 20 on 11-03; **21–100 all released
+2026-11-04** (from their Drive docs). All 100 are live; `_unreleased/narayaneeyam/` is empty, so
+the weekly-release steps above no longer apply — update a dashaka with `import-drive.py`.
 Lately the user releases one or two at a time, each from its latest Drive revision: after
 `release.py next`, rebuild the page from the downloaded Drive doc (gdoc_to_body + build.py page
 with the manifest's title), then `dedupe-media.py narayaneeyam`, `work-index`, `home`.

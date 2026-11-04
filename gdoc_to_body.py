@@ -222,6 +222,10 @@ def main():
         plain = block.get_text(strip=True)
         if re.fullmatch(r"Tab \d+(\.\d+)*", plain):
             continue
+        # A picture inside a line of text (e.g. a number pasted as an image) is part of
+        # the sentence: mark it inline so it renders at text size, not as an illustration.
+        if "<img" in content and plain:
+            content = content.replace("<img ", '<img class="inline" ')
         tag = block.name
         props = []
         a = align(bstyle)
