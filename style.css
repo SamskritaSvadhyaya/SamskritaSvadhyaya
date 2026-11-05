@@ -1,5 +1,17 @@
 /* ---------- Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Tiro+Devanagari+Sanskrit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Sanskrit&display=swap');
+
+/* Bookman for the English reading text: the original "Bookman Old Style" where installed
+   (Windows + Office), otherwise TeX Gyre Bonum — a free Bookman recreation hosted here
+   (fonts/README.md). */
+@font-face { font-family: 'Bonum'; src: url('fonts/bonum-regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Bonum'; src: url('fonts/bonum-bold.woff2') format('woff2');
+  font-weight: 600 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Bonum'; src: url('fonts/bonum-italic.woff2') format('woff2');
+  font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Bonum'; src: url('fonts/bonum-bolditalic.woff2') format('woff2');
+  font-weight: 600 700; font-style: italic; font-display: swap; }
 
 /* ---------- Tokens (light) ---------- */
 :root {
@@ -13,8 +25,8 @@
   --rule: #e6d3a3;
   --shadow: 0 10px 30px rgba(90, 40, 10, 0.10), 0 2px 6px rgba(90, 40, 10, 0.06);
   --serif: 'Cormorant Garamond', Georgia, serif;
-  /* Reading text: a sturdy screen serif (Cormorant is too thin for running text). */
-  --read: 'Noto Serif', Georgia, serif;
+  /* Reading text: Bookman (Cormorant is too thin for running text). */
+  --read: 'Bookman Old Style', 'Bonum', Georgia, serif;
   --devanagari: 'Tiro Devanagari Sanskrit', 'Noto Sans Devanagari', serif;
   --content-width: 760px;
   --radius: 12px;
@@ -254,7 +266,7 @@ body { font-family: var(--serif), var(--devanagari); }
   text-align: left;
 }
 
-/* Reading text — word-by-word, anvaya, meanings, introductions — in Noto Serif (readers
+/* Reading text — word-by-word, anvaya, meanings, introductions — in Bookman (readers
    found Cormorant too light), with a deep ink. Centred shloka blocks and headings keep
    their own fonts and sizes. The family list ends like the old one (Georgia, serif), so
    Devanagari words inside render exactly as before. The second selector reaches the
