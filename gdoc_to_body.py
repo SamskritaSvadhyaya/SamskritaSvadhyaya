@@ -151,6 +151,10 @@ def join_verses(html_text):
     return nl.join(out)
 
 
+_MEANING_LABEL = re.compile(
+    r"\s*(Word[\s-]*by[\s-]*word meaning|Anvaya?|Literal meaning|Simple meaning)\b", re.I)
+
+
 def main():
     json_path, media_dir = sys.argv[1], sys.argv[2]
     data = json.loads(open(json_path, encoding="utf-8").read())
@@ -227,12 +231,17 @@ def main():
         if "<img" in content and plain:
             content = content.replace("<img ", '<img class="inline" ')
         tag = block.name
+        # A meaning paragraph accidentally given a Heading style in the doc ("Anvaya: …"
+        # as Heading 2) is still body text: render it as a normal paragraph.
+        mislabelled = tag != "p" and bool(_MEANING_LABEL.match(plain))
+        if mislabelled:
+            tag = "p"
         props = []
         a = align(bstyle)
         if a:
             props.append(f"text-align:{a}")
         size = font_size_em(bstyle)
-        if size:
+        if size and not mislabelled:
             props.append(f"font-size:{size}em")
         attr = f' style="{";".join(props)}"' if props else ""
         out.append(f"<{tag}{attr}>{content}</{tag}>")
