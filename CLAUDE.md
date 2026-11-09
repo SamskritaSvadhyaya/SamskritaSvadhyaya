@@ -79,7 +79,8 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
 - Data: `users/{uid}` (profile, `lastPage`), `users/{uid}/pages/{path with / -> |}`
   (bookmarked/studied/note, plus `verses: {n: {t: first 40 chars of the shloka, note}}` — per-shloka
   notes, matched back by `t` then position; a shloka = centred Devanagari block followed by a
-  left-aligned meaning paragraph), `subscribers/{uid}` (announcements list; the site owner gets a CSV
+  left-aligned meaning paragraph; `mark: {n, t}` = the shloka the reader ribboned as "I stopped
+  here", also copied into `lastPage.mark` so continue-reading jumps to it), `subscribers/{uid}` (announcements list; the site owner gets a CSV
   download button on the Account page).
 - Security rules: `firestore.rules` (gitignored — names the owner's email); paste into Firebase
   console → Firestore → Rules → Publish after any change.

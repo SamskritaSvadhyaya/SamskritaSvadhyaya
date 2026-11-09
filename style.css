@@ -693,6 +693,31 @@ body { font-family: var(--serif), var(--devanagari); }
 .my-notes textarea:focus, .acct-form input:focus { outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); border-color: var(--accent); }
 .my-notes-status { color: var(--ink-soft); font-size: .85rem; min-height: 1.2em; margin-top: .3rem; }
 
+/* "I stopped here" ribbon beside each shloka */
+.content p.has-verse-mark, .content p:has(> .verse-mark) { position: relative; scroll-margin-top: 90px; }
+.verse-mark {
+  position: absolute; top: .15rem; right: -2.4rem;
+  width: 30px; height: 30px; padding: 0; display: grid; place-items: center;
+  background: none; border: none; border-radius: 50%; cursor: pointer;
+  color: #b9a27a; opacity: .7; transition: color .2s, opacity .2s, background .2s;
+}
+.verse-mark svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.verse-mark:hover { opacity: 1; color: #c0392b; background: rgba(192, 57, 43, .08); }
+.verse-mark[aria-pressed="true"] { color: #c0392b; opacity: 1; }
+.verse-mark[aria-pressed="true"] svg { fill: currentColor; }
+.content p.is-mark {
+  background: rgba(192, 57, 43, .07);
+  box-shadow: 0 0 0 .6rem rgba(192, 57, 43, .07);
+  border-radius: 4px;
+}
+.content p.is-mark::before {
+  content: "🔖 You stopped here"; display: block; font-family: var(--read);
+  font-size: .78rem; color: #8b1e1e; margin-bottom: .2rem; letter-spacing: .02em;
+}
+.continue-mark { display: block; font-size: .85rem; color: var(--ink-soft); margin-top: .15rem; }
+@media (max-width: 600px) { .verse-mark { right: -1.55rem; width: 24px; height: 24px; } .verse-mark svg { width: 17px; height: 17px; } }
+@media print { .verse-mark { display: none !important; } .content p.is-mark { background: none; box-shadow: none; } .content p.is-mark::before { content: none; } }
+
 .verse-note { text-align: right; margin: .2rem 0 .6rem; font-family: var(--read); }
 .verse-note :is(button, label, textarea, div) { font-family: var(--read); }
 .verse-note-add {

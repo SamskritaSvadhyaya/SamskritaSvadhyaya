@@ -101,13 +101,66 @@ function readingPage(user) {
     await setDoc(ref, { ...fields, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true });
   }
 
-  getDoc(ref).then(snap => {
+  const uref = userRef(user.uid);
+  let shlokas = [];
+  const loaded = getDoc(ref).then(snap => {
     if (snap.exists()) state = { ...state, ...snap.data() };
     ta.value = state.note || '';
     bBtn.disabled = sBtn.disabled = ta.disabled = false;
     paint();
     verseNotes(user, ref, info, state.verses || {});
-  }).catch(err => { status.textContent = 'Couldn’t load your notes: ' + friendly(err); });
+    shlokas = findShlokas();
+    placeMarks();
+    return state;
+  }).catch(err => { status.textContent = 'Couldn’t load your notes: ' + friendly(err); return state; });
+
+  // ---- "I stopped here" ribbon beside each shloka (one per chapter) ----
+  const RIBBON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
+  const markIndex = () => matchShloka(shlokas, state.mark);
+  function paintMarks() {
+    const mi = markIndex();
+    shlokas.forEach((sh, i) => {
+      const on = i === mi;
+      sh.el.classList.toggle('is-mark', on);
+      const b = sh.el.querySelector('.verse-mark');
+      b.setAttribute('aria-pressed', String(on));
+      b.title = on ? 'You stopped here — tap to remove' : 'I stopped here (bookmark this shloka)';
+      b.setAttribute('aria-label', b.title);
+    });
+    let resume = bar.querySelector('.sb-resume');
+    if (mi >= 0 && !resume) {
+      bar.insertAdjacentHTML('beforeend', '<button type="button" class="sb-btn sb-resume">🔖 Go to where I stopped</button>');
+      bar.querySelector('.sb-resume').addEventListener('click', () => goToMark('smooth'));
+    } else if (mi < 0 && resume) resume.remove();
+  }
+  function goToMark(behavior = 'instant') {
+    const mi = markIndex();
+    if (mi < 0) return false;
+    shlokas[mi].el.scrollIntoView({ block: 'start', behavior });
+    return true;
+  }
+  async function setMark(i) {
+    const m = i == null ? null : { n: i + 1, t: firstWords(shlokas[i].el) };
+    state.mark = m;
+    paintMarks();
+    await setDoc(ref, { mark: m, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true });
+    // The marked shloka becomes the "continue where you left off" point.
+    lastSaved = scrollFrac();
+    await setDoc(uref, { lastPage: { path: PATH, title: info.title, sub: info.sub, scroll: lastSaved, mark: m, at: serverTimestamp() } }, { merge: true });
+  }
+  function placeMarks() {
+    shlokas.forEach((sh, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'verse-mark';
+      b.innerHTML = RIBBON;
+      b.addEventListener('click', () => {
+        setMark(markIndex() === i ? null : i).catch(e => alert(friendly(e)));
+      });
+      sh.el.appendChild(b);
+    });
+    paintMarks();
+  }
 
   bBtn.addEventListener('click', () => { save({ bookmarked: !state.bookmarked }).catch(e => alert(friendly(e))); paint(); });
   sBtn.addEventListener('click', () => { save({ studied: !state.studied }).catch(e => alert(friendly(e))); paint(); });
@@ -125,7 +178,6 @@ function readingPage(user) {
   ta.addEventListener('blur', saveNote);
 
   // "Continue where you left off": remember this page and how far down the reader is.
-  const uref = userRef(user.uid);
   let lastSaved = -1;
   const scrollFrac = () => {
     const h = document.documentElement;
@@ -136,17 +188,18 @@ function readingPage(user) {
     const f = scrollFrac();
     if (Math.abs(f - lastSaved) < 0.01) return;
     lastSaved = f;
-    setDoc(uref, { lastPage: { path: PATH, title: info.title, sub: info.sub, scroll: f, at: serverTimestamp() } }, { merge: true }).catch(() => {});
+    setDoc(uref, { lastPage: { path: PATH, title: info.title, sub: info.sub, scroll: f, mark: state.mark || null, at: serverTimestamp() } }, { merge: true }).catch(() => {});
   };
-  getDoc(uref).then(snap => {
+  Promise.all([loaded, getDoc(uref)]).then(([, snap]) => {
     const lp = snap.exists() && snap.data().lastPage;
     if (lp && lp.path === PATH) {
       // Same page as last time: keep the saved place until the reader scrolls.
       lastSaved = lp.scroll;
-      if (location.hash === '#continue' && lp.scroll > 0) {
+      if (location.hash === '#continue') {
         const go = () => {
+          if (goToMark()) return;   // the shloka the reader marked, else how far down they were
           const h = document.documentElement;
-          window.scrollTo({ top: lp.scroll * (h.scrollHeight - h.clientHeight), behavior: 'instant' });
+          if (lp.scroll > 0) window.scrollTo({ top: lp.scroll * (h.scrollHeight - h.clientHeight), behavior: 'instant' });
         };
         if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
       }
@@ -168,6 +221,13 @@ function readingPage(user) {
 // on the right shloka when the chapter is re-imported.
 const verseText = el => (el.innerText || el.textContent).replace(/\s+/g, ' ').trim();
 const firstWords = el => verseText(el).slice(0, 40);
+
+function matchShloka(shlokas, ref) {
+  if (!ref) return -1;
+  const i = shlokas.findIndex(s => firstWords(s.el) === ref.t);
+  if (i >= 0) return i;
+  return ref.n >= 1 && ref.n <= shlokas.length ? ref.n - 1 : -1;
+}
 
 function findShlokas() {
   const main = document.getElementById('content');
@@ -255,6 +315,9 @@ async function markIndex(user) {
     `<p class="index-progress">Your progress: <strong>${studied}</strong> of ${cards.length} studied</p>`);
 }
 
+const markLine = lp => lp.mark && lp.mark.t
+  ? `<span class="continue-mark">🔖 from the shloka <span lang="sa">“${esc(lp.mark.t.split(/[।॥|]/)[0].trim())}…”</span></span>` : '';
+
 // ---------------------------------------------------------------- home page: continue reading
 async function homeContinue(user) {
   const grid = document.querySelector('.home-grid');
@@ -266,7 +329,7 @@ async function homeContinue(user) {
   box.className = 'continue-box';
   box.innerHTML = (lp ? `
     <span class="continue-label">${first ? `Namaste ${first} — c` : 'C'}ontinue where you left off</span>
-    <a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(lp.title)}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a>`
+    <a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(lp.title)}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a>${markLine(lp)}`
     : `<span class="continue-label">${first ? `Namaste ${first}! ` : ''}Pick a text below to begin.</span>`)
     + `<a class="continue-account" href="${BASE}account/">My bookmarks, progress &amp; notes</a>`;
   grid.before(box);
@@ -377,7 +440,7 @@ function accountPage() {
       </div>
 
       ${lp ? `<section class="acct-section"><h2>Continue where you left off</h2>
-        <p><a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(lp.title)}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a></p></section>` : ''}
+        <p><a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(lp.title)}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a>${markLine(lp)}</p></section>` : ''}
 
       <section class="acct-section"><h2>★ Bookmarks <span class="acct-count">${bookmarks.length}</span></h2>
         ${bookmarks.length ? `<ul class="acct-list">${bookmarks.map(p => `<li>${link(p)}</li>`).join('')}</ul>`
