@@ -697,11 +697,11 @@ body { font-family: var(--serif), var(--devanagari); }
 .content p.has-verse-mark, .content p:has(> .verse-mark) { position: relative; scroll-margin-top: 90px; }
 .verse-mark {
   position: absolute; top: .15rem; right: -2.4rem;
-  width: 30px; height: 30px; padding: 0; display: grid; place-items: center;
+  width: 34px; height: 34px; padding: 0; display: grid; place-items: center;
   background: none; border: none; border-radius: 50%; cursor: pointer;
-  color: #b9a27a; opacity: .7; transition: color .2s, opacity .2s, background .2s;
+  color: #c0392b; opacity: .85; transition: color .2s, opacity .2s, background .2s;
 }
-.verse-mark svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.verse-mark svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linejoin: round; }
 .verse-mark:hover { opacity: 1; color: #c0392b; background: rgba(192, 57, 43, .08); }
 .verse-mark[aria-pressed="true"] { color: #c0392b; opacity: 1; }
 .verse-mark[aria-pressed="true"] svg { fill: currentColor; }
@@ -715,7 +715,7 @@ body { font-family: var(--serif), var(--devanagari); }
   font-size: .78rem; color: #8b1e1e; margin-bottom: .2rem; letter-spacing: .02em;
 }
 .continue-mark { display: block; font-size: .85rem; color: var(--ink-soft); margin-top: .15rem; }
-@media (max-width: 600px) { .verse-mark { right: -1.55rem; width: 24px; height: 24px; } .verse-mark svg { width: 17px; height: 17px; } }
+@media (max-width: 600px) { .verse-mark { right: -1.6rem; width: 26px; height: 26px; } .verse-mark svg { width: 20px; height: 20px; } }
 @media print { .verse-mark { display: none !important; } .content p.is-mark { background: none; box-shadow: none; } .content p.is-mark::before { content: none; } }
 
 .verse-note { text-align: right; margin: .2rem 0 .6rem; font-family: var(--read); }
