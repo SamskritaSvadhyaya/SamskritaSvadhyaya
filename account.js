@@ -81,7 +81,7 @@ function readingPage(user) {
   notes.className = 'my-notes';
   notes.id = 'my-notes';
   notes.innerHTML = `
-    <h2>My notes</h2>
+    <h2>My notes on this page</h2>
     <p class="my-notes-hint">Private — only you can see these. Saved automatically.</p>
     <textarea rows="6" maxlength="20000" placeholder="Your notes on this page…" disabled></textarea>
     <div class="my-notes-status" aria-live="polite"></div>`;
@@ -106,6 +106,7 @@ function readingPage(user) {
     ta.value = state.note || '';
     bBtn.disabled = sBtn.disabled = ta.disabled = false;
     paint();
+    verseNotes(user, ref, info, state.verses || {});
   }).catch(err => { status.textContent = 'Couldn’t load your notes: ' + friendly(err); });
 
   bBtn.addEventListener('click', () => { save({ bookmarked: !state.bookmarked }).catch(e => alert(friendly(e))); paint(); });
@@ -160,6 +161,80 @@ function readingPage(user) {
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && moved) savePos(); });
 }
 
+// ---------------------------------------------------------------- notes on each shloka
+// A shloka is a centred Devanagari block directly followed by its (left-aligned) meaning.
+// Notes are stored on the page's document as verses: { n: { t: first words, note } } and
+// matched back by the shloka's first words (falling back to its position), so they stay
+// on the right shloka when the chapter is re-imported.
+const verseText = el => (el.innerText || el.textContent).replace(/\s+/g, ' ').trim();
+const firstWords = el => verseText(el).slice(0, 40);
+
+function findShlokas() {
+  const main = document.getElementById('content');
+  if (!main) return [];
+  const els = [...main.children];
+  const centred = el => el.tagName === 'P' && /text-align:\s*center/.test(el.getAttribute('style') || '');
+  const out = [];
+  els.forEach((el, i) => {
+    const next = els[i + 1];
+    if (centred(el) && /[ऀ-ॿ]/.test(el.textContent) && next && next.tagName === 'P' && !centred(next)) {
+      // The note goes at the end of this shloka's explanation (before the <hr> / next shloka).
+      let end = next, j = i + 1;
+      while (els[j + 1] && els[j + 1].tagName === 'P' && !centred(els[j + 1])) end = els[++j];
+      out.push({ el, end });
+    }
+  });
+  return out;
+}
+
+function verseNotes(user, ref, info, saved) {
+  const shlokas = findShlokas();
+  if (!shlokas.length) return;
+  // Match saved notes to shlokas: by first words, else by position.
+  const byWords = new Map(shlokas.map((s, i) => [firstWords(s.el), i]));
+  const notes = new Array(shlokas.length).fill('');
+  for (const [n, v] of Object.entries(saved)) {
+    if (!v || !(v.note || '').trim()) continue;
+    const i = byWords.has(v.t) ? byWords.get(v.t) : Number(n) - 1;
+    if (i >= 0 && i < shlokas.length && !notes[i]) notes[i] = v.note;
+  }
+  shlokas.forEach((s, i) => {
+    const n = String(i + 1);
+    const box = document.createElement('div');
+    box.className = 'verse-note';
+    s.end.after(box);
+    let current = notes[i];
+    const open = () => {
+      box.innerHTML = `<label class="verse-note-label">✎ My note on this shloka</label>
+        <textarea rows="3" maxlength="5000" placeholder="Your note on this shloka…"></textarea>
+        <div class="verse-note-status" aria-live="polite"></div>`;
+      const ta = box.querySelector('textarea');
+      const st = box.querySelector('.verse-note-status');
+      ta.value = current;
+      let timer = null;
+      const saveIt = () => {
+        clearTimeout(timer);
+        if (ta.value === current) return;
+        const val = ta.value;
+        st.textContent = 'Saving…';
+        setDoc(ref, { verses: { [n]: { t: firstWords(s.el), note: val } }, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true })
+          .then(() => { current = val; st.textContent = 'Saved'; })
+          .catch(e => { st.textContent = 'Not saved — ' + friendly(e); });
+      };
+      ta.addEventListener('input', () => { st.textContent = ''; clearTimeout(timer); timer = setTimeout(saveIt, 1200); });
+      ta.addEventListener('blur', () => { saveIt(); if (!ta.value.trim() && !current.trim()) setTimeout(closed, 300); });
+      return ta;
+    };
+    const closed = () => {
+      box.innerHTML = '<button type="button" class="verse-note-add">✎ Note on this shloka</button>';
+      box.querySelector('button').addEventListener('click', () => open().focus());
+    };
+    if (current.trim()) open(); else closed();
+  });
+}
+
+const hasVerseNotes = d => Object.values(d.verses || {}).some(v => (v?.note || '').trim());
+
 // ---------------------------------------------------------------- index pages: ✓ / ★ on chapter cards
 async function markIndex(user) {
   const cards = [...document.querySelectorAll('a.chapter-card')];
@@ -172,7 +247,7 @@ async function markIndex(user) {
     const d = byPath.get(p);
     if (!d) continue;
     if (d.studied) studied++;
-    const marks = [d.studied && '<span title="Studied">✓</span>', d.bookmarked && '<span title="Bookmarked">★</span>', d.note && '<span title="You have notes here">✎</span>'].filter(Boolean);
+    const marks = [d.studied && '<span title="Studied">✓</span>', d.bookmarked && '<span title="Bookmarked">★</span>', (d.note || hasVerseNotes(d)) && '<span title="You have notes here">✎</span>'].filter(Boolean);
     if (marks.length) a.insertAdjacentHTML('beforeend', `<span class="card-marks">${marks.join('')}</span>`);
   }
   const grid = document.querySelector('.chapter-grid');
@@ -276,7 +351,10 @@ function accountPage() {
     const link = p => `<a href="${esc(BASE + p.path)}">${esc(p.title || p.path)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}`;
     const bookmarks = pages.filter(p => p.bookmarked).sort(byTime);
     const studied = pages.filter(p => p.studied);
-    const notes = pages.filter(p => (p.note || '').trim()).sort(byTime);
+    const notes = pages.filter(p => (p.note || '').trim() || hasVerseNotes(p)).sort(byTime);
+    const verseList = p => Object.entries(p.verses || {}).filter(([, v]) => (v?.note || '').trim())
+      .sort((a, b) => a[0] - b[0])
+      .map(([, v]) => `<div class="acct-snippet"><span class="acct-verse" lang="sa">${esc(v.t)}…</span> — ${esc(v.note.slice(0, 160))}${v.note.length > 160 ? '…' : ''}</div>`).join('');
     const lp = profile.lastPage;
 
     // Studied count per collection (first path segment).
@@ -310,8 +388,8 @@ function accountPage() {
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
       <section class="acct-section"><h2>✎ My notes <span class="acct-count">${notes.length}</span></h2>
-        ${notes.length ? `<ul class="acct-list acct-notes">${notes.map(p => `<li>${link(p)}<div class="acct-snippet">${esc(p.note.slice(0, 220))}${p.note.length > 220 ? '…' : ''}</div></li>`).join('')}</ul>`
-          : '<p class="acct-empty">No notes yet. Each chapter has a private “My notes” box at the end.</p>'}</section>
+        ${notes.length ? `<ul class="acct-list acct-notes">${notes.map(p => `<li>${link(p)}${(p.note || '').trim() ? `<div class="acct-snippet">${esc(p.note.slice(0, 220))}${p.note.length > 220 ? '…' : ''}</div>` : ''}${verseList(p)}</li>`).join('')}</ul>`
+          : '<p class="acct-empty">No notes yet. Every shloka has a “✎ Note on this shloka” button, and each chapter a “My notes” box at the end.</p>'}</section>
 
       <section class="acct-section"><h2>Settings</h2>
         <label class="acct-check"><input type="checkbox" class="acct-announce" ${profile.announcements ? 'checked' : ''}> Email me when new chapters are released</label>

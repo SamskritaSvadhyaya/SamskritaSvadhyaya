@@ -693,6 +693,22 @@ body { font-family: var(--serif), var(--devanagari); }
 .my-notes textarea:focus, .acct-form input:focus { outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); border-color: var(--accent); }
 .my-notes-status { color: var(--ink-soft); font-size: .85rem; min-height: 1.2em; margin-top: .3rem; }
 
+.verse-note { text-align: right; margin: .2rem 0 .6rem; font-family: var(--read); }
+.verse-note :is(button, label, textarea, div) { font-family: var(--read); }
+.verse-note-add {
+  font-size: .8rem; color: var(--ink-soft); background: none; cursor: pointer;
+  border: 1px dashed var(--rule); border-radius: 999px; padding: .2rem .7rem; opacity: .75;
+}
+.verse-note-add:hover { opacity: 1; color: var(--accent-strong); border-color: var(--accent); }
+.verse-note-label { display: block; text-align: left; font-size: .85rem; color: var(--accent-strong); margin-bottom: .25rem; }
+.verse-note textarea {
+  width: 100%; font-size: .95rem; line-height: 1.45; color: #1e110a; background: #fff8e8;
+  border: 1px solid #e6d3a3; border-left: 3px solid var(--accent); border-radius: 6px; padding: .5rem .65rem; resize: vertical;
+}
+.verse-note textarea:focus { outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+.verse-note-status { text-align: left; font-size: .78rem; color: #5a4030; min-height: 1.1em; }
+.acct-verse { font-style: normal; color: var(--ink); }
+@media print { .verse-note-add { display: none !important; } }
 .chapter-card { position: relative; }
 .card-marks { position: absolute; top: .45rem; right: .6rem; display: flex; gap: .25rem; color: var(--accent); font-size: .95rem; }
 .index-progress { text-align: center; font-family: var(--read); color: var(--ink-soft); margin: 0 auto 1.25rem; }
