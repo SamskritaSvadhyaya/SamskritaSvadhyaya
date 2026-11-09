@@ -495,7 +495,6 @@ function accountPage() {
           <div class="acct-email">${esc(user.email || '')}</div>
           ${unverified ? `<div class="acct-note">Please confirm your email address — we sent you a link. <button type="button" class="acct-link acct-resend">Send it again</button></div>` : ''}
         </div>
-        <button type="button" class="acct-secondary acct-signout">Sign out</button>
       </div>
 
       ${lp ? `<section class="acct-section"><h2>Continue where you left off</h2>
@@ -522,7 +521,9 @@ function accountPage() {
         <p class="acct-fine"><a href="${BASE}privacy/">Privacy policy</a> ·
           <button type="button" class="acct-link acct-danger acct-delete">Delete my account</button></p>
       </section>
-      <div class="acct-admin"></div>`;
+      <div class="acct-admin"></div>
+      <div class="home-signout acct-bottom-signout"><span>Signed in as <strong>${esc(user.displayName || user.email || '')}</strong></span>
+        <button type="button" class="acct-secondary acct-signout">Sign out</button></div>`;
 
     root.querySelector('.acct-signout').addEventListener('click', () => signOut(auth));
     root.querySelector('.acct-resend')?.addEventListener('click', e => {
