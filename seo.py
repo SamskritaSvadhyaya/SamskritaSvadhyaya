@@ -117,7 +117,7 @@ def pages():
         "desc": "A self-study library of Sanskrit texts: Valmiki Ramayana (Sundarakanda), "
                 "Narayaneeyam, Shrimad Bhagavatam, Kalidasa's Raghuvamsha, Ganapati "
                 "Atharvashirsha and more. " + TAGLINE,
-        "image": "thestoryofhanuman/cover.jpg", "type": "website",
+        "image": "og-image.png", "type": "website",
     }
 
     def collection(e, prefix, parent=None):
@@ -185,7 +185,8 @@ def apply(path, url_path, info):
     s = f.read_text(encoding="utf-8")
     url = SITE + url_path
     desc = info["desc"][:300]
-    image = SITE + info["image"] if info.get("image") else ""
+    # Pages without a picture of their own share the ॐ preview picture.
+    image = SITE + (info.get("image") or "og-image.png")
     tags = [
         f'<link rel="canonical" href="{attr(url)}" />',
         f'<meta property="og:site_name" content="{attr(NAME)}" />',
