@@ -81,9 +81,11 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   notes, matched back by `t` then position; a shloka = centred Devanagari block followed by a
   left-aligned meaning paragraph; `mark: {n, t}` = the shloka the reader ribboned as "I stopped
   here" + `markAt`, also copied into `lastPage.mark`; home + Account list the latest mark per
-  top-level text ("Where I stopped", links `#mark`); bump `ACCOUNT_JS_VERSION` in script.js on
-  every account.js change), `subscribers/{uid}` (announcements list; the site owner gets a CSV
-  download button on the Account page).
+  top-level text ("Where I stopped", links `#mark`)), `subscribers/{uid}` (announcements list;
+  the site owner gets a CSV download button on the Account page).
+- Cache-busting: `build.py home` (`stamp_assets`) adds `?v=<content hash>` to every page's
+  style.css / script.js link and sets script.js's `ACCOUNT_JS_VERSION` from account.js's hash —
+  so after editing any of those three files, run `python build.py home` before committing.
 - Security rules: `firestore.rules` (gitignored — names the owner's email); paste into Firebase
   console → Firestore → Rules → Publish after any change.
 
