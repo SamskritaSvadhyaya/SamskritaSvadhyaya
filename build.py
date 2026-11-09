@@ -527,9 +527,51 @@ def build_home(_args=None):
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     print(f"Wrote index.html (home) with {len(entries)} entr(y/ies)")
 
+    build_static_pages()
+
     # Every build flow ends with `home`, so refresh search metadata + sitemap here.
     import seo
     seo.main()
+
+
+STATIC_HERO = """
+  <section class="hero">
+    <div class="om-large">ॐ</div>
+    <h1>{{TITLE}}</h1>
+    <p class="subtitle">{{SUBTITLE}}</p>
+    <div class="divider"><span class="om">ॐ</span></div>
+  </section>
+"""
+
+
+def build_static_pages():
+    """Reader account page (sign-in / bookmarks / notes, driven by account.js) and the
+    privacy policy (body from _privacy_body.html)."""
+    pages = [
+        ("account", "Your account", "Bookmarks, progress and private notes",
+         "Your account | Samskrita Svadhyaya",
+         "Sign in to Samskrita Svadhyaya to keep bookmarks, track your progress and write private notes.",
+         '  <main class="account" id="content">\n    <div id="account-app">'
+         '<p class="acct-loading">Loading…</p>'
+         '<noscript><p>Please turn on JavaScript to sign in.</p></noscript></div>\n  </main>\n',
+         True),
+        ("privacy", "Privacy policy", "What we keep when you sign in, and what we never do",
+         "Privacy policy | Samskrita Svadhyaya",
+         "How Samskrita Svadhyaya handles reader accounts, bookmarks, notes and announcement emails.",
+         '  <main class="content static-page" id="content">\n'
+         + (ROOT / "_privacy_body.html").read_text(encoding="utf-8").strip()
+         + "\n  </main>\n",
+         False),
+    ]
+    for slug, title, subtitle, html_title, desc, main_html, noindex in pages:
+        html = render_chrome(html_title, desc, "../", fill(STATIC_HERO, TITLE=title, SUBTITLE=subtitle), main_html)
+        head = f'  <link rel="canonical" href="https://samskritasvadhyaya.github.io/SamskritaSvadhyaya/{slug}/" />\n'
+        if noindex:
+            head += '  <meta name="robots" content="noindex" />\n'
+        html = html.replace("</head>", head + "</head>", 1)
+        out = ROOT / slug / "index.html"
+        out.parent.mkdir(exist_ok=True)
+        out.write_text(html, encoding="utf-8")
 
 
 def main():

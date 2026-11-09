@@ -4,3 +4,4 @@ _unreleased/
 *.diff
 .import-body.html
 __pycache__/
+firestore.rules
