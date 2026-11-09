@@ -714,6 +714,18 @@ body { font-family: var(--serif), var(--devanagari); }
   content: "🔖 You stopped here"; display: block; font-family: var(--read);
   font-size: .78rem; color: #8b1e1e; margin-bottom: .2rem; letter-spacing: .02em;
 }
+.controls .signout-btn[hidden] { display: none; }
+@media (max-width: 600px) {
+  .nav-inner { gap: .5rem; padding-left: .6rem; padding-right: .6rem; }
+  .controls { gap: .25rem; }
+  .controls button, .controls .home-link { padding: .3rem .4rem; font-size: .76rem; }
+}
+.controls button, .controls .home-link { white-space: nowrap; flex-shrink: 0; }
+@media (max-width: 400px) {
+  .brand .om { font-size: 1.3rem; }
+  .controls { gap: .2rem; flex-wrap: wrap; justify-content: flex-end; row-gap: .3rem; }
+  .controls button, .controls .home-link { padding: .28rem .32rem; font-size: .72rem; }
+}
 .home-signout {
   display: flex; align-items: center; justify-content: center; gap: .9rem; flex-wrap: wrap;
   margin: -1.5rem auto 2.5rem; padding: 0 1rem; font-family: var(--read); color: var(--ink-soft); font-size: .92rem;

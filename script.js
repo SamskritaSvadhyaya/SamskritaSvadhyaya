@@ -90,7 +90,7 @@
   // the account page or for readers who have signed in on this device before.
   const AUTH_FLAG = 'ss-signed-in';
   // Bump when account.js changes so browsers fetch the new copy instead of a cached one.
-  const ACCOUNT_JS_VERSION = '2026-11-09f';
+  const ACCOUNT_JS_VERSION = '2026-11-09g';
   const scriptEl = document.currentScript || document.querySelector('script[src$="script.js"]');
   const base = scriptEl.src.replace(/script\.js(\?.*)?$/, '');
   const pathOf = url => {
@@ -109,6 +109,23 @@
   acctLink.href = base + 'account/' + (isAccountPage || !path ? '' : '?next=' + encodeURIComponent(path));
   acctLink.textContent = flagged() ? 'Account' : 'Sign in';
   if (controls) controls.insertBefore(acctLink, controls.querySelector('button'));
+
+  // Header "Sign out", shown on every page while signed in.
+  const outBtn = document.createElement('button');
+  outBtn.type = 'button';
+  outBtn.className = 'signout-btn';
+  outBtn.textContent = 'Sign out';
+  outBtn.title = 'Sign out';
+  outBtn.hidden = !flagged();
+  outBtn.addEventListener('click', async () => {
+    outBtn.disabled = true;
+    try {
+      if (!window.ssUI.signOut) await import(base + 'account.js?v=' + ACCOUNT_JS_VERSION);
+      await window.ssUI.signOut();
+    } catch { try { localStorage.removeItem(AUTH_FLAG); } catch {} }
+    location.reload();
+  });
+  if (controls) acctLink.after(outBtn);
 
   // A readable page (chapter, sarga, dashaka, single text) — not an index or the account page.
   const main = document.querySelector('main.content');
@@ -141,6 +158,7 @@
       try { user ? localStorage.setItem(AUTH_FLAG, '1') : localStorage.removeItem(AUTH_FLAG); } catch {}
       acctLink.textContent = user ? 'Account' : 'Sign in';
       if (user) acctLink.href = base + 'account/';
+      outBtn.hidden = !user;
     },
   };
 

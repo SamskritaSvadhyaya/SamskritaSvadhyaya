@@ -30,6 +30,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const UI = window.ssUI;            // helpers from script.js
+UI.signOut = () => signOut(auth);   // used by the header Sign out button
 const BASE = UI.base;              // site root URL, ends with "/"
 const PATH = UI.path;              // this page's path from the site root ("" = home)
 
