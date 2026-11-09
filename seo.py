@@ -185,8 +185,8 @@ def apply(path, url_path, info):
     s = f.read_text(encoding="utf-8")
     url = SITE + url_path
     desc = info["desc"][:300]
-    # Pages without a picture of their own share the ॐ preview picture.
-    image = SITE + (info.get("image") or "og-image.png")
+    # Every page shares the ॐ preview picture (the owner's choice for link previews).
+    image = SITE + "og-image.png"
     tags = [
         f'<link rel="canonical" href="{attr(url)}" />',
         f'<meta property="og:site_name" content="{attr(NAME)}" />',
