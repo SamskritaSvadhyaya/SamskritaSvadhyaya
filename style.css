@@ -714,6 +714,11 @@ body { font-family: var(--serif), var(--devanagari); }
   content: "🔖 You stopped here"; display: block; font-family: var(--read);
   font-size: .78rem; color: #8b1e1e; margin-bottom: .2rem; letter-spacing: .02em;
 }
+.stopped-box { margin-top: .6rem; padding-top: .6rem; border-top: 1px dashed var(--rule); }
+.stopped-list { margin: .3rem 0 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: .5rem; font-family: var(--read); }
+.stopped-list a { color: var(--accent-strong); font-weight: 600; }
+.stopped-list :is(span, div, a) { font-family: var(--read); }
+.stopped-shloka { font-size: .85rem; color: var(--ink-soft); margin-top: .1rem; }
 .continue-mark { display: block; font-size: .85rem; color: var(--ink-soft); margin-top: .15rem; }
 @media (max-width: 600px) { .verse-mark { right: -1.6rem; width: 26px; height: 26px; } .verse-mark svg { width: 20px; height: 20px; } }
 @media print { .verse-mark { display: none !important; } .content p.is-mark { background: none; box-shadow: none; } .content p.is-mark::before { content: none; } }

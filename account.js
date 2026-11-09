@@ -111,6 +111,10 @@ function readingPage(user) {
     verseNotes(user, ref, info, state.verses || {});
     shlokas = findShlokas();
     placeMarks();
+    if (location.hash === '#mark') {
+      const go = () => goToMark();
+      if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
+    }
     return state;
   }).catch(err => { status.textContent = 'Couldn’t load your notes: ' + friendly(err); return state; });
 
@@ -143,7 +147,7 @@ function readingPage(user) {
     const m = i == null ? null : { n: i + 1, t: firstWords(shlokas[i].el) };
     state.mark = m;
     paintMarks();
-    await setDoc(ref, { mark: m, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true });
+    await setDoc(ref, { mark: m, markAt: serverTimestamp(), path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true });
     // The marked shloka becomes the "continue where you left off" point.
     lastSaved = scrollFrac();
     await setDoc(uref, { lastPage: { path: PATH, title: info.title, sub: info.sub, scroll: lastSaved, mark: m, at: serverTimestamp() } }, { merge: true });
@@ -318,12 +322,48 @@ async function markIndex(user) {
 const markLine = lp => lp.mark && lp.mark.t
   ? `<span class="continue-mark">🔖 from the shloka <span lang="sa">“${esc(lp.mark.t.split(/[।॥|]/)[0].trim())}…”</span></span>` : '';
 
+const COLLECTIONS = {
+  'thestoryofhanuman': 'The Story of Hanuman',
+  'narayaneeyam': 'Narayaneeyam',
+  'shrimad-bhagavatam-canto-10': 'Shrimad Bhagavatam',
+  'raghuvamsha': 'Raghuvamsha',
+  'ganapati-atharvashirsha': 'Ganapati Atharvashirsha',
+  'eclectic-collection': 'Eclectic Collection',
+};
+const collectionOf = path => path.split('/')[0];
+
+// The latest marked shloka in each text, most recent first.
+function stoppedPlaces(pages) {
+  const best = new Map();
+  const when = p => (p.markAt || p.updated)?.seconds || 0;
+  for (const p of pages) {
+    if (!p.mark || !p.mark.t) continue;
+    const c = collectionOf(p.path);
+    if (!best.has(c) || when(p) > when(best.get(c))) best.set(c, p);
+  }
+  return [...best.values()].sort((a, b) => when(b) - when(a));
+}
+
+function stoppedItem(p) {
+  const col = COLLECTIONS[collectionOf(p.path)] || '';
+  const title = p.title || p.path;
+  const label = col && !title.startsWith(col) ? `${col} — ${title}` : title;
+  const first = p.mark.t.split(/[।॥|]/)[0].trim();
+  return `<li><a href="${esc(BASE + p.path)}#mark">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}
+    <div class="stopped-shloka">🔖 <span lang="sa">“${esc(first)}…”</span></div></li>`;
+}
+
 // ---------------------------------------------------------------- home page: continue reading
 async function homeContinue(user) {
   const grid = document.querySelector('.home-grid');
   if (!grid || PATH !== '') return;
-  const snap = await getDoc(userRef(user.uid));
+  const [snap, pagesSnap] = await Promise.all([
+    getDoc(userRef(user.uid)),
+    getDocs(collection(db, 'users', user.uid, 'pages')),
+  ]);
   const lp = snap.exists() && snap.data().lastPage;
+  const others = stoppedPlaces(pagesSnap.docs.map(d => d.data()))
+    .filter(p => !lp || collectionOf(p.path) !== collectionOf(lp.path));
   const first = esc((user.displayName || '').split(' ')[0]);
   const box = document.createElement('div');
   box.className = 'continue-box';
@@ -331,6 +371,8 @@ async function homeContinue(user) {
     <span class="continue-label">${first ? `Namaste ${first} — c` : 'C'}ontinue where you left off</span>
     <a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(lp.title)}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a>${markLine(lp)}`
     : `<span class="continue-label">${first ? `Namaste ${first}! ` : ''}Pick a text below to begin.</span>`)
+    + (others.length ? `<div class="stopped-box"><span class="continue-label">Where I stopped in my other texts</span>
+        <ul class="stopped-list">${others.map(stoppedItem).join('')}</ul></div>` : '')
     + `<a class="continue-account" href="${BASE}account/">My bookmarks, progress &amp; notes</a>`;
   grid.before(box);
 }
@@ -413,6 +455,7 @@ function accountPage() {
     const byTime = (a, b) => (b.updated?.seconds || 0) - (a.updated?.seconds || 0);
     const link = p => `<a href="${esc(BASE + p.path)}">${esc(p.title || p.path)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}`;
     const bookmarks = pages.filter(p => p.bookmarked).sort(byTime);
+    const stopped = stoppedPlaces(pages);
     const studied = pages.filter(p => p.studied);
     const notes = pages.filter(p => (p.note || '').trim() || hasVerseNotes(p)).sort(byTime);
     const verseList = p => Object.entries(p.verses || {}).filter(([, v]) => (v?.note || '').trim())
@@ -441,6 +484,9 @@ function accountPage() {
 
       ${lp ? `<section class="acct-section"><h2>Continue where you left off</h2>
         <p><a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(lp.title)}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a>${markLine(lp)}</p></section>` : ''}
+
+      ${stopped.length ? `<section class="acct-section"><h2>🔖 Where I stopped <span class="acct-count">one per text</span></h2>
+        <ul class="acct-list stopped-list">${stopped.map(stoppedItem).join('')}</ul></section>` : ''}
 
       <section class="acct-section"><h2>★ Bookmarks <span class="acct-count">${bookmarks.length}</span></h2>
         ${bookmarks.length ? `<ul class="acct-list">${bookmarks.map(p => `<li>${link(p)}</li>`).join('')}</ul>`
