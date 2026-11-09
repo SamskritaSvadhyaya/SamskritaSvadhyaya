@@ -378,22 +378,6 @@ async function homeContinue(user) {
   grid.before(box);
 }
 
-// ---------------------------------------------------------------- home page: sign-out line at the bottom
-function homeSignOut(user) {
-  const main = document.querySelector('main.home');
-  if (!main || PATH !== '' || document.querySelector('.home-signout')) return;
-  const who = user.displayName || user.email || '';
-  const div = document.createElement('div');
-  div.className = 'home-signout';
-  div.innerHTML = `<span>Signed in${who ? ' as <strong>' + esc(who) + '</strong>' : ''}</span>
-    <button type="button" class="acct-secondary">Sign out</button>`;
-  div.querySelector('button').addEventListener('click', async () => {
-    await signOut(auth);
-    location.reload();
-  });
-  main.after(div);
-}
-
 // ---------------------------------------------------------------- account page
 function accountPage() {
   const root = document.getElementById('account-app');
@@ -445,7 +429,7 @@ function accountPage() {
           signingUp = true;
           const cred = await createUserWithEmailAndPassword(auth, email, pw);
           const name = form.name.value.trim();
-          if (name) await updateProfile(cred.user, { displayName: name });
+          if (name) { await updateProfile(cred.user, { displayName: name }); UI.setSignedIn(cred.user); }
           sendEmailVerification(cred.user).catch(() => {});
           await ensureUser(cred.user);
           signingUp = false;
@@ -522,11 +506,8 @@ function accountPage() {
         <p class="acct-fine"><a href="${BASE}privacy/">Privacy policy</a> ·
           <button type="button" class="acct-link acct-danger acct-delete">Delete my account</button></p>
       </section>
-      <div class="acct-admin"></div>
-      <div class="home-signout acct-bottom-signout"><span>Signed in as <strong>${esc(user.displayName || user.email || '')}</strong></span>
-        <button type="button" class="acct-secondary acct-signout">Sign out</button></div>`;
+      <div class="acct-admin"></div>`;
 
-    root.querySelector('.acct-signout').addEventListener('click', () => signOut(auth));
     root.querySelector('.acct-resend')?.addEventListener('click', e => {
       sendEmailVerification(user).then(() => { e.target.outerHTML = '<em>Sent — check your inbox.</em>'; }).catch(err => alert(friendly(err)));
     });
@@ -616,6 +597,5 @@ if (UI.isAccountPage) {
     if (UI.studyBar) readingPage(user);
     markIndex(user).catch(() => {});
     homeContinue(user).catch(() => {});
-    homeSignOut(user);
   });
 }

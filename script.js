@@ -90,7 +90,7 @@
   // the account page or for readers who have signed in on this device before.
   const AUTH_FLAG = 'ss-signed-in';
   // Bump when account.js changes so browsers fetch the new copy instead of a cached one.
-  const ACCOUNT_JS_VERSION = '2026-11-09g';
+  const ACCOUNT_JS_VERSION = '2026-11-09h';
   const scriptEl = document.currentScript || document.querySelector('script[src$="script.js"]');
   const base = scriptEl.src.replace(/script\.js(\?.*)?$/, '');
   const pathOf = url => {
@@ -110,7 +110,19 @@
   acctLink.textContent = flagged() ? 'Account' : 'Sign in';
   if (controls) controls.insertBefore(acctLink, controls.querySelector('button'));
 
-  // Header "Sign out", shown on every page while signed in.
+  // Header "Signed in as <name>" + "Sign out", shown on every page while signed in.
+  const NAME_KEY = 'ss-name';
+  const savedName = () => { try { return localStorage.getItem(NAME_KEY) || ''; } catch { return ''; } };
+  const whoEl = document.createElement('span');
+  whoEl.className = 'signed-in-as';
+  const showWho = name => {
+    whoEl.textContent = '';
+    whoEl.append('Signed in' + (name ? ' as ' : ''));
+    if (name) { const b = document.createElement('strong'); b.textContent = name; whoEl.append(b); }
+    whoEl.title = name ? 'Signed in as ' + name : 'Signed in';
+  };
+  showWho(savedName());
+  whoEl.hidden = !flagged();
   const outBtn = document.createElement('button');
   outBtn.type = 'button';
   outBtn.className = 'signout-btn';
@@ -122,10 +134,11 @@
     try {
       if (!window.ssUI.signOut) await import(base + 'account.js?v=' + ACCOUNT_JS_VERSION);
       await window.ssUI.signOut();
-    } catch { try { localStorage.removeItem(AUTH_FLAG); } catch {} }
+    } catch {}
+    try { localStorage.removeItem(AUTH_FLAG); localStorage.removeItem(NAME_KEY); } catch {}
     location.reload();
   });
-  if (controls) acctLink.after(outBtn);
+  if (controls) { acctLink.after(whoEl); whoEl.after(outBtn); }
 
   // A readable page (chapter, sarga, dashaka, single text) — not an index or the account page.
   const main = document.querySelector('main.content');
@@ -158,7 +171,10 @@
       try { user ? localStorage.setItem(AUTH_FLAG, '1') : localStorage.removeItem(AUTH_FLAG); } catch {}
       acctLink.textContent = user ? 'Account' : 'Sign in';
       if (user) acctLink.href = base + 'account/';
-      outBtn.hidden = !user;
+      outBtn.hidden = whoEl.hidden = !user;
+      const name = user ? (user.displayName || user.email || '') : '';
+      try { name ? localStorage.setItem(NAME_KEY, name) : localStorage.removeItem(NAME_KEY); } catch {}
+      showWho(name);
     },
   };
 
