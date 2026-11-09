@@ -377,6 +377,22 @@ async function homeContinue(user) {
   grid.before(box);
 }
 
+// ---------------------------------------------------------------- home page: sign-out line at the bottom
+function homeSignOut(user) {
+  const main = document.querySelector('main.home');
+  if (!main || PATH !== '' || document.querySelector('.home-signout')) return;
+  const who = user.displayName || user.email || '';
+  const div = document.createElement('div');
+  div.className = 'home-signout';
+  div.innerHTML = `<span>Signed in${who ? ' as <strong>' + esc(who) + '</strong>' : ''}</span>
+    <button type="button" class="acct-secondary">Sign out</button>`;
+  div.querySelector('button').addEventListener('click', async () => {
+    await signOut(auth);
+    location.reload();
+  });
+  main.after(div);
+}
+
 // ---------------------------------------------------------------- account page
 function accountPage() {
   const root = document.getElementById('account-app');
@@ -598,5 +614,6 @@ if (UI.isAccountPage) {
     if (UI.studyBar) readingPage(user);
     markIndex(user).catch(() => {});
     homeContinue(user).catch(() => {});
+    homeSignOut(user);
   });
 }
