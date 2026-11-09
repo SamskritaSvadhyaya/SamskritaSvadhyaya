@@ -528,6 +528,7 @@ def build_home(_args=None):
     print(f"Wrote index.html (home) with {len(entries)} entr(y/ies)")
 
     build_static_pages()
+    stamp_assets()
 
     # Every build flow ends with `home`, so refresh search metadata + sitemap here.
     import seo
@@ -542,6 +543,41 @@ STATIC_HERO = """
     <div class="divider"><span class="om">ॐ</span></div>
   </section>
 """
+
+
+def stamp_assets():
+    """Version-stamp the shared files so browsers fetch new copies as soon as they change
+    (GitHub Pages lets browsers reuse cached files for 10 minutes otherwise).
+
+    - script.js's ACCOUNT_JS_VERSION is set to a hash of account.js;
+    - every page's style.css / script.js reference gets ?v=<hash of that file>.
+    Only files whose text actually changes are rewritten (line endings preserved)."""
+    import hashlib
+
+    def short_hash(path):
+        return hashlib.sha1(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()[:10]
+
+    script = ROOT / "script.js"
+    raw = script.read_bytes()
+    new = re.sub(rb"const ACCOUNT_JS_VERSION = '[^']*';",
+                 b"const ACCOUNT_JS_VERSION = '" + short_hash(ROOT / "account.js").encode() + b"';", raw)
+    if new != raw:
+        script.write_bytes(new)
+
+    versions = {name: short_hash(ROOT / name).encode() for name in ("style.css", "script.js")}
+    pat = re.compile(rb'((?:href|src)="(?:\.\./)*)(style\.css|script\.js)(?:\?v=[^"]*)?"')
+    changed = 0
+    for page in ROOT.rglob("*.html"):
+        rel = page.relative_to(ROOT).parts
+        if rel[0] in (".git", "_unreleased"):
+            continue
+        data = page.read_bytes()
+        out = pat.sub(lambda m: m.group(1) + m.group(2) + b"?v=" + versions[m.group(2).decode()] + b'"', data)
+        if out != data:
+            page.write_bytes(out)
+            changed += 1
+    if changed:
+        print(f"Version-stamped style.css/script.js on {changed} page(s)")
 
 
 def build_static_pages():
