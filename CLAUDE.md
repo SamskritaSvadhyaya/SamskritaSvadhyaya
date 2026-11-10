@@ -70,6 +70,14 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - Downloading many Drive docs in parallel: tool-result files finishing in the same millisecond
   overwrite each other — copy each result out right after download and verify none is missing.
 
+## Disclaimer and Credits
+
+`disclaimer/` page, built by `build.py home` (`build_static_pages`) from `_disclaimer_body.html`,
+which reproduces the owner's Drive doc "Disclaimer and Credits" (id
+`1biGLjg1QIBtBIhn-Y9okwwvoSImMBaP8EFWUU8F4Hf8`) word for word. script.js adds the
+"Disclaimer and Credits" button under every page's footer. To update: re-read the doc,
+rewrite `_disclaimer_body.html`, `python build.py home`.
+
 ## Reader accounts (optional sign-in)
 
 Reading stays open to everyone; signing in adds bookmarks, "studied" marks, continue-reading and

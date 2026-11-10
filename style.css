@@ -962,3 +962,22 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
   .chapter-nav-top { display: none; }
 }
 @media print { .side-nav, .chapter-nav-top { display: none !important; } }
+
+/* ---------- Footer: Disclaimer and Credits button (script.js) ---------- */
+.site-footer a.footer-disclaimer {
+  display: inline-block;
+  margin-top: .9rem;
+  padding: .45rem 1.1rem;
+  font-family: var(--read);
+  font-size: .88rem;
+  color: var(--accent-strong);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: var(--bg-card);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.site-footer a.footer-disclaimer:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.static-page ol.source-list { padding-left: 1.6rem; }
+.static-page ol.source-list li { margin: .3rem 0; overflow-wrap: anywhere; }
+.static-page ol.source-list a { color: var(--accent-strong); }

@@ -663,6 +663,15 @@ def build_static_pages():
          + (ROOT / "_privacy_body.html").read_text(encoding="utf-8").strip()
          + "\n  </main>\n",
          False),
+        # From the owner's Drive doc "Disclaimer and Credits" (body in _disclaimer_body.html).
+        ("disclaimer", "Disclaimer and Credits", "About this work, and the sources it draws on",
+         "Disclaimer and Credits | Samskrita Svadhyaya",
+         "About Samskrita Svadhyaya: a self-study of Sanskrit texts — the sources consulted, and "
+         "the word-by-word meanings, anvaya and translations as the author's own work.",
+         '  <main class="content static-page" id="content">\n'
+         + (ROOT / "_disclaimer_body.html").read_text(encoding="utf-8").strip()
+         + "\n  </main>\n",
+         False),
     ]
     for slug, title, subtitle, html_title, desc, main_html, noindex in pages:
         html = render_chrome(html_title, desc, "../", fill(STATIC_HERO, TITLE=title, SUBTITLE=subtitle), main_html)
