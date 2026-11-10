@@ -478,6 +478,14 @@ body { font-family: var(--serif), var(--devanagari); }
 [data-theme="dark"] .preamble {
   background: #fffaf0;
   color: #2a1810;
+  /* The box stays parchment in dark mode, so its text keeps the light-theme inks
+     (otherwise the dark theme's cream text is invisible on it). */
+  --ink-read: #1e110a;
+  --ink: #2a1810;
+  --ink-soft: #5a4030;
+  --accent: #c0392b;
+  --accent-strong: #8b1e1e;
+  --rule: #e6d3a3;
 }
 .preamble p { margin: .85rem 0; }
 .preamble p:first-child { margin-top: 0; }
