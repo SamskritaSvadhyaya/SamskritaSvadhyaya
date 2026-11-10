@@ -289,6 +289,25 @@ function verseNotes(user, ref, info, saved) {
     }
   }
   if (Object.keys(backfill).length) setDoc(ref, { verses: backfill }, { merge: true }).catch(() => {});
+
+  // Links from the Account page: #shloka-10.4.19 (by printed number) or #note-<key>.
+  const hash = decodeURIComponent(location.hash.slice(1));
+  let target = -1;
+  if (hash.startsWith('shloka-')) target = shlokas.findIndex(s => verseNum(s.el) === hash.slice(7));
+  else if (hash.startsWith('note-') && saved[hash.slice(5)]) {
+    const v = saved[hash.slice(5)];
+    target = byWords.has(v.t) ? byWords.get(v.t) : Number(hash.slice(5)) - 1;
+  }
+  if (target >= 0 && target < shlokas.length) {
+    const el = shlokas[target].el;
+    const go = () => {
+      el.classList.add('flash');   // first: it also keeps the shloka clear of the sticky header
+      el.scrollIntoView({ block: 'start', behavior: 'instant' });
+      setTimeout(() => el.classList.remove('flash'), 2600);
+    };
+    if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
+  }
+
   shlokas.forEach((s, i) => {
     const n = String(i + 1);
     const box = document.createElement('div');
@@ -489,11 +508,13 @@ function accountPage() {
     const stopped = stoppedPlaces(pages);
     const studied = pages.filter(p => p.studied);
     const notes = pages.filter(p => (p.note || '').trim() || hasVerseNotes(p)).sort(byTime);
+    // Each shloka label links to that shloka in its chapter (#shloka-10.4.19, or #note-<key>
+    // for texts without shloka numbers).
     const verseList = p => Object.entries(p.verses || {}).filter(([, v]) => (v?.note || '').trim())
       .sort((a, b) => a[0] - b[0])
-      .map(([, v]) => `<div class="acct-snippet">${v.num
-        ? `<span class="acct-verse-num">Shloka ${esc(v.num)}</span>`
-        : `<span class="acct-verse" lang="sa">${esc(v.t)}…</span>`} — ${esc(v.note.slice(0, 160))}${v.note.length > 160 ? '…' : ''}</div>`).join('');
+      .map(([key, v]) => `<div class="acct-snippet">${v.num
+        ? `<a class="acct-verse-num" href="${esc(BASE + p.path)}#shloka-${esc(v.num)}" title="Read shloka ${esc(v.num)}">Shloka ${esc(v.num)}</a>`
+        : `<a class="acct-verse" lang="sa" href="${esc(BASE + p.path)}#note-${esc(key)}">${esc(v.t)}…</a>`} — ${esc(v.note.slice(0, 160))}${v.note.length > 160 ? '…' : ''}</div>`).join('');
     const lp = profile.lastPage;
 
     // Studied count per collection (first path segment).

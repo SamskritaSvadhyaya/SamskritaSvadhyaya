@@ -135,6 +135,7 @@ body { font-family: var(--serif), var(--devanagari); }
 }
 .brand .title {
   font-size: 1.05rem;
+  white-space: nowrap;
 }
 .controls {
   margin-left: auto;
@@ -759,6 +760,11 @@ body { font-family: var(--serif), var(--devanagari); }
 .verse-note-status { text-align: left; font-size: .78rem; color: #5a4030; min-height: 1.1em; }
 .acct-verse { font-style: normal; color: var(--ink); }
 .acct-verse-num { font-style: normal; font-weight: 600; color: var(--accent-strong); white-space: nowrap; }
+a.acct-verse-num, a.acct-verse { text-decoration: underline; text-underline-offset: 2px; }
+a.acct-verse-num:hover, a.acct-verse:hover { color: var(--accent); }
+/* Shloka opened from a link on the Account page: brief highlight. */
+@keyframes shloka-flash { 0%, 35% { background: rgba(201, 162, 39, .32); } 100% { background: transparent; } }
+.content p.flash { animation: shloka-flash 2.6s ease-out; border-radius: 4px; scroll-margin-top: 90px; }
 @media print { .verse-note-add { display: none !important; } }
 .chapter-card { position: relative; }
 .card-marks { position: absolute; top: .45rem; right: .6rem; display: flex; gap: .25rem; color: var(--accent); font-size: .95rem; }
