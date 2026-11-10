@@ -986,3 +986,5 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
    surface stays light in dark mode too, so the colour is fixed rather than themed. */
 .content a, .static-page ol.source-list a { color: #c0392b; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
 .content a:hover, .static-page ol.source-list a:hover { color: #8b1e1e; }
+/* Long web addresses wrap instead of running off narrow screens. */
+.content a { overflow-wrap: anywhere; }
