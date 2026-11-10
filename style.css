@@ -981,3 +981,8 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
 .static-page ol.source-list { padding-left: 1.6rem; }
 .static-page ol.source-list li { margin: .3rem 0; overflow-wrap: anywhere; }
 .static-page ol.source-list a { color: var(--accent-strong); }
+
+/* Links inside the reading area use the site's saffron, not browser blue. The reading
+   surface stays light in dark mode too, so the colour is fixed rather than themed. */
+.content a, .static-page ol.source-list a { color: #c0392b; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+.content a:hover, .static-page ol.source-list a:hover { color: #8b1e1e; }
