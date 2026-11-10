@@ -110,8 +110,6 @@ def main():
     run("build.py", *page, quiet=True)
     body.unlink()
 
-    if work == "narayaneeyam":
-        run("dedupe-media.py", work, quiet=True)
     run("build.py", "work-index", *(["--parent", parent] if parent else []), "--slug", work, quiet=True)
     if parent:
         run("build.py", "parent-index", "--slug", parent, quiet=True)

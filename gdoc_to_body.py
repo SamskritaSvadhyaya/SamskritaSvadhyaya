@@ -19,6 +19,9 @@ import sys
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
+# Pictures in the docs are not shown on the site.
+KEEP_IMAGES = False
+
 # Colors we drop (let text inherit the default dark ink): pure black, and white
 # (which would be invisible on the light reading surface).
 DEFAULT_COLORS = {"#000000", "#000", "#ffffff", "#fff"}
@@ -162,10 +165,14 @@ def main():
     raw = base64.b64decode(data["content"]).decode("utf-8", "replace")
     soup = BeautifulSoup(raw, "html.parser")
     body = soup.body or soup
-    os.makedirs(media_dir, exist_ok=True)
     img_n = [0]
 
     def handle_img(node):
+        # The site shows no pictures (owner's decision, 2026-11-09): every picture in a doc
+        # is left out. A paragraph holding only a picture then becomes empty and is skipped.
+        if not KEEP_IMAGES:
+            return ""
+        os.makedirs(media_dir, exist_ok=True)
         src = node.get("src", "")
         m = re.match(r"data:image/([\w.+-]+);base64,(.*)", src, re.S)
         if not m:

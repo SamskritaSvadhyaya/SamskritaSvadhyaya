@@ -35,6 +35,5 @@ for f in $(ls -t "$dir"/*.json "$dir"/*download_file_content*.txt 2>/dev/null); 
 done
 echo "Imported $count dashaka(s)"
 
-python3 "$here/dedupe-media.py" "$work"
 python3 "$here/build.py" work-index --slug "$work"
 python3 "$here/build.py" home

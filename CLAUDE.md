@@ -39,14 +39,14 @@ Static site of Sanskrit texts, published with GitHub Pages.
   files (diffs, staging) OUT of the repo — `*.diff` is gitignored after strays got published.
 - `gdoc_to_body.py` — converts a Drive `download_file_content` (text/html export) result JSON
   into a page body, keeping colours, alignment, sizes.
+- **No pictures anywhere on the site** (owner's decision 2026-11-09): `gdoc_to_body.py` drops every
+  picture in a doc (`KEEP_IMAGES = False`), texts.json has no `image` fields, home/collection tiles
+  show ॐ. If a doc has a picture that is really part of a sentence (e.g. a number pasted as an
+  image), type it into the page as text. The only image file is `og-image.png` (ॐ link preview
+  used by every page via seo.py — not shown on the site).
 - `import-chapter.sh`, `import-all.sh`, `import-ramayana.sh`, `convert.sh` — importers.
-- `import-narayaneeyam.sh <download-dir>` — imports all 100 dashakas, then `dedupe-media.py`.
-  Must be run with all 100 downloads at once (dedupe rebuilds `narayaneeyam/media/` from
-  scratch). Re-running it republishes all 100 — run `release.py hold narayaneeyam --after <n>`
-  afterwards.
-- `<collection>/cover.jpg` — 240px square home-page tile picture (set as the top-level entry's
-  `image` in texts.json; cropped from a chapter picture). Kept outside chapter folders so
-  re-importing a chapter can't break it.
+- `import-narayaneeyam.sh <download-dir>` — imports all 100 dashakas. Re-running it republishes
+  all 100 — run `release.py hold narayaneeyam --after <n>` afterwards.
 - Chapter descriptions: `build.py page` reads each chapter's subject line from its doc (the
   English line under the "Sundarakanda Sarga N" heading, e.g. "Hanuman crosses the ocean,
   reaches Lanka"), stores it as the chapter's `subject` in texts.json, and shows it under the
@@ -61,7 +61,6 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - `googleeeb64c879486498d.html` — Google Search Console ownership file (property: URL prefix
   https://samskritasvadhyaya.github.io/SamskritaSvadhyaya/). Never delete or edit it; Google
   re-checks it periodically.
-- `dedupe-media.py <work>` — collapses repeated chapter images into `<work>/media/<sha1>.<ext>`.
 - Downloading many Drive docs in parallel: tool-result files finishing in the same millisecond
   overwrite each other — copy each result out right after download and verify none is missing.
 
@@ -111,7 +110,7 @@ day; 16–17 re-released 2026-11-01, 18 on 11-01, 19 on 11-02, 20 on 11-03; **21
 the weekly-release steps above no longer apply — update a dashaka with `import-drive.py`.
 Lately the user releases one or two at a time, each from its latest Drive revision: after
 `release.py next`, rebuild the page from the downloaded Drive doc (gdoc_to_body + build.py page
-with the manifest's title), then `dedupe-media.py narayaneeyam`, `work-index`, `home`.
+with the manifest's title), then `work-index`, `home`.
 
 ## Windows (PowerShell)
 
