@@ -15,7 +15,7 @@ import {
   updateProfile, deleteUser,
 } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 import {
-  getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs, serverTimestamp, writeBatch,
+  getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, serverTimestamp, writeBatch,
 } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore-lite.js';
 
 const app = initializeApp({
@@ -166,11 +166,13 @@ function readingPage(user) {
     });
     paintMarks();
     const mi = markIndex();
-    if (mi >= 0 && state.mark && !state.mark.num) {
-      const num = verseNum(shlokas[mi].el);
-      if (num) {
-        state.mark = { ...state.mark, num };
-        setDoc(ref, { mark: state.mark }, { merge: true }).catch(() => {});
+    // Re-file the ribbon under its shloka's current position, opening words and number
+    // (after a re-import that moved or reworded shlokas, or a mark saved before numbers).
+    if (mi >= 0 && state.mark) {
+      const fresh = { n: mi + 1, t: firstWords(shlokas[mi].el), num: verseNum(shlokas[mi].el) };
+      if (fresh.n !== state.mark.n || fresh.t !== state.mark.t || fresh.num !== (state.mark.num || '')) {
+        state.mark = fresh;
+        setDoc(ref, { mark: fresh }, { merge: true }).catch(() => {});
       }
     }
   }
@@ -205,7 +207,8 @@ function readingPage(user) {
   };
   Promise.all([loaded, getDoc(uref)]).then(([, snap]) => {
     const lp = snap.exists() && snap.data().lastPage;
-    if (lp && lp.path === PATH && lp.mark && !lp.mark.num && state.mark?.num)
+    if (lp && lp.path === PATH && lp.mark && state.mark &&
+        (lp.mark.n !== state.mark.n || lp.mark.t !== state.mark.t || (lp.mark.num || '') !== state.mark.num))
       setDoc(uref, { lastPage: { mark: state.mark } }, { merge: true }).catch(() => {});
     if (lp && lp.path === PATH) {
       // Same page as last time: keep the saved place until the reader scrolls.
@@ -246,10 +249,17 @@ function verseNum(el) {
   return ns[0] + '–' + last.slice(last.lastIndexOf('.') + 1);
 }
 
+// Find a saved shloka ({t: opening words, num: printed number, n: position}) on the page:
+// by opening words (follows a shloka that was moved), then by its printed number (follows a
+// reworded one), then by position.
 function matchShloka(shlokas, ref) {
   if (!ref) return -1;
-  const i = shlokas.findIndex(s => firstWords(s.el) === ref.t);
+  let i = ref.t ? shlokas.findIndex(s => firstWords(s.el) === ref.t) : -1;
   if (i >= 0) return i;
+  if (ref.num) {
+    i = shlokas.findIndex(s => verseNum(s.el) === ref.num);
+    if (i >= 0) return i;
+  }
   return ref.n >= 1 && ref.n <= shlokas.length ? ref.n - 1 : -1;
 }
 
@@ -274,21 +284,28 @@ function findShlokas() {
 function verseNotes(user, ref, info, saved) {
   const shlokas = findShlokas();
   if (!shlokas.length) return;
-  // Match saved notes to shlokas: by first words, else by position.
-  const byWords = new Map(shlokas.map((s, i) => [firstWords(s.el), i]));
+  // Match saved notes to shlokas (opening words, then printed number, then position), so a
+  // note follows its shloka when the chapter is re-imported with shlokas reworded or reordered.
   const notes = new Array(shlokas.length).fill('');
-  const backfill = {};
-  for (const [n, v] of Object.entries(saved)) {
-    if (!v || !(v.note || '').trim()) continue;
-    const i = byWords.has(v.t) ? byWords.get(v.t) : Number(n) - 1;
-    if (i >= 0 && i < shlokas.length && !notes[i]) {
-      notes[i] = v.note;
-      // Notes saved before shloka numbers were recorded: add the number now.
-      const num = verseNum(shlokas[i].el);
-      if (num && v.num !== num) backfill[n] = { num };
-    }
+  const placed = {};      // the notes re-filed under each shloka's current position
+  let moved = false;
+  // Exact opening-words matches first, so a moved shloka can't be claimed by position.
+  const entries = Object.entries(saved).filter(([, v]) => v && (v.note || '').trim());
+  const order = [...entries].sort(([, a], [, b]) =>
+    (shlokas.some(s => firstWords(s.el) === b.t) ? 1 : 0) - (shlokas.some(s => firstWords(s.el) === a.t) ? 1 : 0));
+  for (const [n, v] of order) {
+    let i = matchShloka(shlokas, { t: v.t, num: v.num, n: Number(n) });
+    if (i >= 0 && notes[i]) i = -1;              // that shloka already has its own note
+    if (i < 0) { placed[n] = v; continue; }      // keep unmatched notes as they were
+    notes[i] = v.note;
+    const key = String(i + 1);
+    const fresh = { t: firstWords(shlokas[i].el), num: verseNum(shlokas[i].el), note: v.note };
+    if (key !== n || fresh.t !== v.t || fresh.num !== (v.num || '')) moved = true;
+    placed[key] = fresh;
   }
-  if (Object.keys(backfill).length) setDoc(ref, { verses: backfill }, { merge: true }).catch(() => {});
+  // Rewrite the whole map (not a merge) so old keys of moved notes are removed.
+  if (moved) updateDoc(ref, { verses: placed }).catch(() => {});
+  const byWords = new Map(shlokas.map((s, i) => [firstWords(s.el), i]));
 
   // Links from the Account page: #shloka-10.4.19 (by printed number) or #note-<key>.
   const hash = decodeURIComponent(location.hash.slice(1));
@@ -296,7 +313,7 @@ function verseNotes(user, ref, info, saved) {
   if (hash.startsWith('shloka-')) target = shlokas.findIndex(s => verseNum(s.el) === hash.slice(7));
   else if (hash.startsWith('note-') && saved[hash.slice(5)]) {
     const v = saved[hash.slice(5)];
-    target = byWords.has(v.t) ? byWords.get(v.t) : Number(hash.slice(5)) - 1;
+    target = matchShloka(shlokas, { t: v.t, num: v.num, n: Number(hash.slice(5)) });
   }
   if (target >= 0 && target < shlokas.length) {
     const el = shlokas[target].el;

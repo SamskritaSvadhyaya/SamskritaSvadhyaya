@@ -91,7 +91,9 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   text is `_privacy_body.html` (update its date when edited).
 - Data: `users/{uid}` (profile, `lastPage`), `users/{uid}/pages/{path with / -> |}`
   (bookmarked/studied/note, plus `verses: {n: {t: first 40 chars of the shloka, note}}` — per-shloka
-  notes, matched back by `t` then position; a shloka = centred Devanagari block followed by a
+  notes, matched back by `t` (opening words), then `num` (printed shloka number), then position —
+  so notes/ribbons follow shlokas that are moved or reworded on re-import, and are re-filed under
+  the new position (verses map rewritten with updateDoc, so no duplicates); a shloka = centred Devanagari block followed by a
   left-aligned meaning paragraph; `mark: {n, t}` = the shloka the reader ribboned as "I stopped
   here" + `markAt`, also copied into `lastPage.mark`; home + Account list the latest mark per
   top-level text ("Where I stopped", links `#mark`)), `subscribers/{uid}` (announcements list;
