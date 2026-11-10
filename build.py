@@ -188,7 +188,7 @@ def rel_for(depth):
 def render_chrome(title, desc, rel, hero, body_main):
     return (
         fill(DOC_OPEN, REL=rel, HTML_TITLE=title, DESC=desc)
-        + HEADER.replace("{{REL}}", rel)
+        + HEADER.replace("{{REL}}index.html", rel or "./").replace("{{REL}}", rel)
         + hero
         + body_main
         + FOOTER.replace("{{REL}}", rel)
@@ -244,7 +244,7 @@ def build_page(args):
         fill(DOC_OPEN, REL=rel,
              HTML_TITLE=f"{args.title} — {args.title_sa}",
              DESC=f"{args.title} — Sanskrit text with word-by-word meaning, anvaya, and translation.")
-        + HEADER.replace("{{REL}}", rel)
+        + HEADER.replace("{{REL}}index.html", rel or "./").replace("{{REL}}", rel)
         + fill(PAGE_HERO, BREADCRUMB=crumb, TITLE=args.title, TITLE_SA=args.title_sa,
                SUBTITLE=subtitle, SUBSEP=" · " if subtitle else "")
         + body
@@ -349,7 +349,7 @@ def build_work_index(args):
             raise SystemExit(f"No work named '{args.slug}'.")
         depth = 1
         out_dir = ROOT / args.slug
-        crumb = '    <a class="crumb" href="../index.html">↩ All texts</a>\n'
+        crumb = '    <a class="crumb" href="../">↩ All texts</a>\n'
 
     rel = rel_for(depth)
     chapters = sorted(work.get("chapters", []), key=lambda c: c.get("n", 0))
@@ -435,7 +435,7 @@ def build_parent_index(args):
     sub = parent.get("subtitle", "")
     hero = fill(
         PAGE_HERO.replace('<main class="content" id="content">', '<main class="home">'),
-        BREADCRUMB='    <a class="crumb" href="../index.html">↩ All texts</a>\n',
+        BREADCRUMB='    <a class="crumb" href="../">↩ All texts</a>\n',
         TITLE=parent["title"],
         TITLE_SA=parent["title_sa"],
         SUBTITLE=sub,
