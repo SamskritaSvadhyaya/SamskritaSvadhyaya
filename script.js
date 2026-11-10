@@ -84,6 +84,64 @@
     if (devRe.test(el.textContent)) el.setAttribute('lang', 'sa');
   });
 
+  // ---- Previous / Next without scrolling to the bottom ----
+  // Built from the bottom buttons (build.py chapter_nav), so they always agree:
+  // side arrows on wide screens, a small link row under the heading on narrow ones,
+  // and the ← / → keys.
+  const bottomNav = document.querySelector('.chapter-nav');
+  if (bottomNav) {
+    const prevA = bottomNav.querySelector('a.cn-prev');
+    const nextA = bottomNav.querySelector('a.cn-next');
+    const allA = bottomNav.querySelector('a.cn-all');
+    const describe = a => {
+      const t = a.querySelector('.cn-title')?.textContent || '';
+      const s = a.querySelector('.cn-sub')?.textContent || '';
+      return s ? `${t} — ${s}` : t;
+    };
+
+    // Side arrows (shown by CSS only where the margins are wide enough).
+    for (const [a, side, arrow, word] of [[prevA, 'left', '‹', 'Previous'], [nextA, 'right', '›', 'Next']]) {
+      if (!a) continue;
+      const el = document.createElement('a');
+      el.className = `side-nav side-nav-${side}`;
+      el.href = a.href;
+      el.setAttribute('aria-label', `${word}: ${describe(a)}`);
+      el.innerHTML = `<span class="side-nav-arrow" aria-hidden="true">${arrow}</span>`;
+      const tip = document.createElement('span');
+      tip.className = 'side-nav-tip';
+      tip.innerHTML = `<b></b><span></span>`;
+      tip.querySelector('b').textContent = `${word}: ${a.querySelector('.cn-title')?.textContent || ''}`;
+      tip.querySelector('span').textContent = a.querySelector('.cn-sub')?.textContent || '';
+      el.appendChild(tip);
+      document.body.appendChild(el);
+    }
+
+    // Small row under the heading (narrow screens).
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      const row = document.createElement('nav');
+      row.className = 'chapter-nav-top';
+      row.setAttribute('aria-label', 'Previous and next');
+      const piece = (a, text) => {
+        if (!a) return '<span class="cnt-empty"></span>';
+        return `<a href="${a.getAttribute('href')}">${text}</a>`;
+      };
+      row.innerHTML = piece(prevA, '‹ Previous')
+        + (allA ? `<a class="cnt-all" href="${allA.getAttribute('href')}">${allA.textContent}</a>` : '')
+        + piece(nextA, 'Next ›');
+      hero.after(row);
+    }
+
+    // Keyboard: ← / → (not while typing, not with modifier keys).
+    document.addEventListener('keydown', e => {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      const t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      const a = e.key === 'ArrowLeft' ? prevA : e.key === 'ArrowRight' ? nextA : null;
+      if (a) location.href = a.href;
+    });
+  }
+
   // ---- Reader accounts (optional sign-in) ----
   // Every page stays open to everyone. This adds a "Sign in" link, and on chapter pages a
   // bar for bookmarks / progress / notes. The Firebase code (account.js) is only loaded on

@@ -51,6 +51,8 @@ Static site of Sanskrit texts, published with GitHub Pages.
   rewrites a `<!-- chapter-nav -->` block after `</main>` on each chapter, in texts.json order,
   running on across a parent's works (Kishkindhakanda → Sundarakanda → Yudhdhakanda; Book 1 →
   Book 2). Automatic for new/re-imported chapters; stable on re-runs.
+  script.js builds from that block: fixed side arrows ‹ › (screens ≥1000px, hover label), a
+  ‹ Previous · All · Next › row under the heading (narrower screens), and the ← / → keys.
 - Chapter descriptions: `build.py page` reads each chapter's subject line from its doc (the
   English line under the "Sundarakanda Sarga N" heading, e.g. "Hanuman crosses the ocean,
   reaches Lanka"), stores it as the chapter's `subject` in texts.json, and shows it under the
