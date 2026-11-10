@@ -528,6 +528,7 @@ def build_home(_args=None):
     print(f"Wrote index.html (home) with {len(entries)} entr(y/ies)")
 
     build_static_pages()
+    chapter_nav()
     stamp_assets()
 
     # Every build flow ends with `home`, so refresh search metadata + sitemap here.
@@ -543,6 +544,70 @@ STATIC_HERO = """
     <div class="divider"><span class="om">ॐ</span></div>
   </section>
 """
+
+
+NAV_RE = re.compile(r"\s*<!-- chapter-nav -->.*?<!-- /chapter-nav -->", re.S)
+UNITS = {"sarga": "sargas", "dashaka": "dashakas", "ch": "chapters"}
+
+
+def chapter_nav():
+    """Previous / Next buttons at the bottom of every chapter page, in texts.json order.
+    Within a parent collection the sequence runs on across its works (Kishkindhakanda ->
+    Sundarakanda -> Yudhdhakanda; Book 1 -> Book 2). Rewritten on every build, so new or
+    re-imported chapters always get correct links."""
+    import os
+
+    def label(ch, work_title, cross):
+        title, sub = ch.get("title", ""), ch.get("subject", "")
+        if ch.get("slug", "").startswith("dashaka"):        # Narayaneeyam: the title is the subject
+            title, sub = f"Dashaka {ch['n']}", title
+        if cross:
+            title = f"{work_title} · {title}"
+        return title, sub
+
+    for top in load_manifest():
+        if is_parent(top):
+            seq = [(f"{top['slug']}/{w['slug']}", w.get("title", ""), c)
+                   for w in top.get("works", []) for c in w.get("chapters", [])]
+        elif is_work(top):
+            seq = [(top["slug"], top.get("title", ""), c) for c in top.get("chapters", [])]
+        else:
+            continue
+        for i, (work_dir, work_title, ch) in enumerate(seq):
+            page = ROOT / work_dir / ch["slug"] / "index.html"
+            if not page.exists():
+                continue
+            here = f"{work_dir}/{ch['slug']}"
+
+            def link(j, cls, arrow_left):
+                if not 0 <= j < len(seq):
+                    return f'    <span class="cn-{cls} cn-empty"></span>\n'
+                wd, wt, c = seq[j]
+                href = os.path.relpath(f"{wd}/{c['slug']}", here).replace(os.sep, "/") + "/"
+                title, sub = label(c, wt, wd != work_dir)
+                word = "Previous" if arrow_left else "Next"
+                return (f'    <a class="cn-{cls}" href="{html_escape(href)}" rel="{"prev" if arrow_left else "next"}">'
+                        f'<span class="cn-dir">{"← " if arrow_left else ""}{word}{"" if arrow_left else " →"}</span>'
+                        f'<span class="cn-title">{html_escape(title)}</span>'
+                        + (f'<span class="cn-sub">{html_escape(sub)}</span>' if sub else "") + "</a>\n")
+
+            unit = UNITS.get(ch["slug"].split("-")[0], "chapters")
+            block = ("  <!-- chapter-nav -->\n  <nav class=\"chapter-nav\" aria-label=\"Chapter navigation\">\n"
+                     + link(i - 1, "prev", True)
+                     + f'    <a class="cn-all" href="../">☰ All {unit}</a>\n'
+                     + link(i + 1, "next", False)
+                     + "  </nav>\n  <!-- /chapter-nav -->\n")
+            raw = page.read_bytes()
+            crlf = b"\r\n" in raw
+            text = raw.decode("utf-8").replace("\r\n", "\n")
+            # Always the same shape: "</main>" blank line, nav block, blank line, rest.
+            stripped = NAV_RE.sub("", text)
+            end = stripped.find("</main>") + len("</main>")
+            if end < len("</main>"):
+                continue
+            new = stripped[:end] + "\n\n" + block + "\n" + stripped[end:].lstrip("\n")
+            if new != text:
+                page.write_bytes((new.replace("\n", "\r\n") if crlf else new).encode("utf-8"))
 
 
 def stamp_assets():

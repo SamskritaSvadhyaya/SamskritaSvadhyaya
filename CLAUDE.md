@@ -47,6 +47,10 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - `import-chapter.sh`, `import-all.sh`, `import-ramayana.sh`, `convert.sh` — importers.
 - `import-narayaneeyam.sh <download-dir>` — imports all 100 dashakas. Re-running it republishes
   all 100 — run `release.py hold narayaneeyam --after <n>` afterwards.
+- Previous / Next buttons at the bottom of every chapter page: `build.py home` (`chapter_nav`)
+  rewrites a `<!-- chapter-nav -->` block after `</main>` on each chapter, in texts.json order,
+  running on across a parent's works (Kishkindhakanda → Sundarakanda → Yudhdhakanda; Book 1 →
+  Book 2). Automatic for new/re-imported chapters; stable on re-runs.
 - Chapter descriptions: `build.py page` reads each chapter's subject line from its doc (the
   English line under the "Sundarakanda Sarga N" heading, e.g. "Hanuman crosses the ocean,
   reaches Lanka"), stores it as the chapter's `subject` in texts.json, and shows it under the
