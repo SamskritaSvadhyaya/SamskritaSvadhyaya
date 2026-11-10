@@ -145,7 +145,7 @@ function readingPage(user) {
     return true;
   }
   async function setMark(i) {
-    const m = i == null ? null : { n: i + 1, t: firstWords(shlokas[i].el) };
+    const m = i == null ? null : { n: i + 1, t: firstWords(shlokas[i].el), num: verseNum(shlokas[i].el) };
     state.mark = m;
     paintMarks();
     await setDoc(ref, { mark: m, markAt: serverTimestamp(), path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true });
@@ -165,6 +165,14 @@ function readingPage(user) {
       sh.el.appendChild(b);
     });
     paintMarks();
+    const mi = markIndex();
+    if (mi >= 0 && state.mark && !state.mark.num) {
+      const num = verseNum(shlokas[mi].el);
+      if (num) {
+        state.mark = { ...state.mark, num };
+        setDoc(ref, { mark: state.mark }, { merge: true }).catch(() => {});
+      }
+    }
   }
 
   bBtn.addEventListener('click', () => { save({ bookmarked: !state.bookmarked }).catch(e => alert(friendly(e))); paint(); });
@@ -197,6 +205,8 @@ function readingPage(user) {
   };
   Promise.all([loaded, getDoc(uref)]).then(([, snap]) => {
     const lp = snap.exists() && snap.data().lastPage;
+    if (lp && lp.path === PATH && lp.mark && !lp.mark.num && state.mark?.num)
+      setDoc(uref, { lastPage: { mark: state.mark } }, { merge: true }).catch(() => {});
     if (lp && lp.path === PATH) {
       // Same page as last time: keep the saved place until the reader scrolls.
       lastSaved = lp.scroll;
@@ -337,8 +347,12 @@ async function markIndex(user) {
     `<p class="index-progress">Your progress: <strong>${studied}</strong> of ${cards.length} studied</p>`);
 }
 
+// "shloka 10.4.19", or the opening words for texts without shloka numbers.
+const markWhere = mark => mark.num
+  ? `shloka <strong>${esc(mark.num)}</strong>`
+  : `the shloka <span lang="sa">“${esc(mark.t.split(/[।॥|]/)[0].trim())}…”</span>`;
 const markLine = lp => lp.mark && lp.mark.t
-  ? `<span class="continue-mark">🔖 from the shloka <span lang="sa">“${esc(lp.mark.t.split(/[।॥|]/)[0].trim())}…”</span></span>` : '';
+  ? `<span class="continue-mark">🔖 from ${markWhere(lp.mark)}</span>` : '';
 
 const COLLECTIONS = {
   'thestoryofhanuman': 'The Story of Hanuman',
@@ -366,9 +380,8 @@ function stoppedItem(p) {
   const col = COLLECTIONS[collectionOf(p.path)] || '';
   const title = p.title || p.path;
   const label = col && !title.startsWith(col) ? `${col} — ${title}` : title;
-  const first = p.mark.t.split(/[।॥|]/)[0].trim();
   return `<li><a href="${esc(BASE + p.path)}#mark">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}
-    <div class="stopped-shloka">🔖 <span lang="sa">“${esc(first)}…”</span></div></li>`;
+    <div class="stopped-shloka">🔖 from ${markWhere(p.mark)}</div></li>`;
 }
 
 // ---------------------------------------------------------------- home page: continue reading

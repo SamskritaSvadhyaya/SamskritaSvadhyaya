@@ -738,6 +738,7 @@ body { font-family: var(--serif), var(--devanagari); }
 .stopped-list a { color: var(--accent-strong); font-weight: 600; }
 .stopped-list :is(span, div, a) { font-family: var(--read); }
 .stopped-shloka { font-size: .85rem; color: var(--ink-soft); margin-top: .1rem; }
+:is(.stopped-shloka, .continue-mark) strong { color: var(--accent-strong); font-weight: 600; font-family: var(--read); }
 .continue-mark { display: block; font-size: .85rem; color: var(--ink-soft); margin-top: .15rem; }
 @media (max-width: 600px) { .verse-mark { right: -1.6rem; width: 26px; height: 26px; } .verse-mark svg { width: 20px; height: 20px; } }
 @media print { .verse-mark { display: none !important; } .content p.is-mark { background: none; box-shadow: none; } .content p.is-mark::before { content: none; } }
