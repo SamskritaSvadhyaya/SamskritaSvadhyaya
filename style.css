@@ -757,6 +757,7 @@ body { font-family: var(--serif), var(--devanagari); }
 .verse-note textarea:focus { outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent); }
 .verse-note-status { text-align: left; font-size: .78rem; color: #5a4030; min-height: 1.1em; }
 .acct-verse { font-style: normal; color: var(--ink); }
+.acct-verse-num { font-style: normal; font-weight: 600; color: var(--accent-strong); white-space: nowrap; }
 @media print { .verse-note-add { display: none !important; } }
 .chapter-card { position: relative; }
 .card-marks { position: absolute; top: .45rem; right: .6rem; display: flex; gap: .25rem; color: var(--accent); font-size: .95rem; }

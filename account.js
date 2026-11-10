@@ -226,6 +226,15 @@ function readingPage(user) {
 // on the right shloka when the chapter is re-imported.
 const verseText = el => (el.innerText || el.textContent).replace(/\s+/g, ' ').trim();
 const firstWords = el => verseText(el).slice(0, 40);
+// The shloka's own number as printed in the text (॥10.4.19॥, ॥24.1॥); a block holding two
+// numbered verses gives a range (5.58.14–15). Empty if the text has no numbers.
+function verseNum(el) {
+  const ns = [...verseText(el).matchAll(/॥\s*([0-9०-९]+(?:\.[0-9०-९]+)+)\s*॥/g)].map(m => m[1]);
+  if (!ns.length) return '';
+  if (ns.length === 1) return ns[0];
+  const last = ns[ns.length - 1];
+  return ns[0] + '–' + last.slice(last.lastIndexOf('.') + 1);
+}
 
 function matchShloka(shlokas, ref) {
   if (!ref) return -1;
@@ -258,19 +267,27 @@ function verseNotes(user, ref, info, saved) {
   // Match saved notes to shlokas: by first words, else by position.
   const byWords = new Map(shlokas.map((s, i) => [firstWords(s.el), i]));
   const notes = new Array(shlokas.length).fill('');
+  const backfill = {};
   for (const [n, v] of Object.entries(saved)) {
     if (!v || !(v.note || '').trim()) continue;
     const i = byWords.has(v.t) ? byWords.get(v.t) : Number(n) - 1;
-    if (i >= 0 && i < shlokas.length && !notes[i]) notes[i] = v.note;
+    if (i >= 0 && i < shlokas.length && !notes[i]) {
+      notes[i] = v.note;
+      // Notes saved before shloka numbers were recorded: add the number now.
+      const num = verseNum(shlokas[i].el);
+      if (num && v.num !== num) backfill[n] = { num };
+    }
   }
+  if (Object.keys(backfill).length) setDoc(ref, { verses: backfill }, { merge: true }).catch(() => {});
   shlokas.forEach((s, i) => {
     const n = String(i + 1);
     const box = document.createElement('div');
     box.className = 'verse-note';
     s.end.after(box);
     let current = notes[i];
+    const num = verseNum(s.el);
     const open = () => {
-      box.innerHTML = `<label class="verse-note-label">✎ My note on this shloka</label>
+      box.innerHTML = `<label class="verse-note-label">✎ My note on ${num ? 'shloka ' + esc(num) : 'this shloka'}</label>
         <textarea rows="3" maxlength="5000" placeholder="Your note on this shloka…"></textarea>
         <div class="verse-note-status" aria-live="polite"></div>`;
       const ta = box.querySelector('textarea');
@@ -282,7 +299,7 @@ function verseNotes(user, ref, info, saved) {
         if (ta.value === current) return;
         const val = ta.value;
         st.textContent = 'Saving…';
-        setDoc(ref, { verses: { [n]: { t: firstWords(s.el), note: val } }, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true })
+        setDoc(ref, { verses: { [n]: { t: firstWords(s.el), num, note: val } }, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true })
           .then(() => { current = val; st.textContent = 'Saved'; })
           .catch(e => { st.textContent = 'Not saved — ' + friendly(e); });
       };
@@ -461,7 +478,9 @@ function accountPage() {
     const notes = pages.filter(p => (p.note || '').trim() || hasVerseNotes(p)).sort(byTime);
     const verseList = p => Object.entries(p.verses || {}).filter(([, v]) => (v?.note || '').trim())
       .sort((a, b) => a[0] - b[0])
-      .map(([, v]) => `<div class="acct-snippet"><span class="acct-verse" lang="sa">${esc(v.t)}…</span> — ${esc(v.note.slice(0, 160))}${v.note.length > 160 ? '…' : ''}</div>`).join('');
+      .map(([, v]) => `<div class="acct-snippet">${v.num
+        ? `<span class="acct-verse-num">Shloka ${esc(v.num)}</span>`
+        : `<span class="acct-verse" lang="sa">${esc(v.t)}…</span>`} — ${esc(v.note.slice(0, 160))}${v.note.length > 160 ? '…' : ''}</div>`).join('');
     const lp = profile.lastPage;
 
     // Studied count per collection (first path segment).
