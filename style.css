@@ -1064,3 +1064,5 @@ main.account .acct-small .acct-link { font-size: inherit; }
 .acct-small-row { align-items: stretch; }
 .acct-small-row > .acct-admin { display: flex; }
 .acct-small-row > .acct-admin > .acct-small { flex: 1; }
+/* Account page: "Namaste, <name>" as plain text, no box */
+main.account .acct-card.acct-me { background: none; border: none; box-shadow: none; padding: 0 .2rem; margin-bottom: 1rem; }
