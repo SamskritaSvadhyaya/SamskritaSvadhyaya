@@ -1013,3 +1013,16 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
   padding-bottom: .2rem; border-bottom: 1px solid var(--rule); }
 .acct-text-head:first-of-type { margin-top: .2rem; }
 .acct-text-head .acct-count { font-family: var(--read); }
+
+/* Account page: My notes — one tab per text */
+.note-tabs { display: flex; flex-wrap: wrap; gap: .45rem; margin: .2rem 0 .9rem; }
+.note-tab {
+  font-family: var(--read); font-size: .9rem; cursor: pointer;
+  padding: .4rem .85rem; border-radius: 999px;
+  color: var(--accent-strong); background: var(--bg); border: 1px solid var(--rule);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.note-tab:hover { border-color: var(--accent); }
+.note-tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.note-tab-count { font-size: .78rem; opacity: .8; margin-left: .2rem; }
+.note-panel { padding-top: .2rem; }

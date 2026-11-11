@@ -552,7 +552,7 @@ function accountPage() {
       for (const p of list) {
         const parts = p.path.split('/').filter(Boolean);
         const key = parts.length > 1 ? parts.slice(0, -1).join('/') : parts[0];
-        if (!byText.has(key)) byText.set(key, { label: workOf(p) || key, items: [] });
+        if (!byText.has(key)) byText.set(key, { key, label: workOf(p) || key, items: [] });
         byText.get(key).items.push(p);
       }
       const groupsOut = [...byText.values()];
@@ -635,8 +635,13 @@ function accountPage() {
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
       <section class="acct-section"><h2>✎ My notes <span class="acct-count">${notes.length}</span></h2>
-        ${notes.length ? noteGroups(notes).map(g => `<h3 class="acct-text-head">${esc(g.label)} <span class="acct-count">${g.items.length}</span></h3>
-          <ul class="acct-list acct-notes">${g.items.map(p => `<li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet">${esc(p.note.slice(0, 220))}${p.note.length > 220 ? '…' : ''}</div>` : ''}${verseList(p)}</li>`).join('')}</ul>`).join('')
+        ${notes.length ? (() => {
+          const gs = noteGroups(notes);
+          return `<div class="note-tabs" role="tablist" aria-label="Notes by text">${gs.map((g, i) =>
+            `<button type="button" class="note-tab" role="tab" id="note-tab-${i}" aria-controls="note-panel-${i}" aria-selected="false" data-key="${esc(g.key)}">${esc(g.label)} <span class="note-tab-count">${g.items.length}</span></button>`).join('')}</div>`
+            + gs.map((g, i) => `<div class="note-panel" role="tabpanel" id="note-panel-${i}" aria-labelledby="note-tab-${i}" hidden>
+              <ul class="acct-list acct-notes">${g.items.map(p => `<li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet">${esc(p.note.slice(0, 220))}${p.note.length > 220 ? '…' : ''}</div>` : ''}${verseList(p)}</li>`).join('')}</ul></div>`).join('');
+        })()
           : '<p class="acct-empty">No notes yet. Every shloka has a “✎ Note on this shloka” button, and each chapter a “My notes” box at the end.</p>'}</section>
 
       <section class="acct-section"><h2>Settings</h2>
@@ -657,6 +662,21 @@ function accountPage() {
       catch (e) { ann.checked = !ann.checked; saved.textContent = friendly(e); }
     });
     root.querySelector('.acct-delete').addEventListener('click', () => deleteAccount(user, pages));
+    const tabs = [...root.querySelectorAll('.note-tab')];
+    if (tabs.length) {
+      const show = (tab, remember = true) => {
+        tabs.forEach(t => {
+          const on = t === tab;
+          t.setAttribute('aria-selected', String(on));
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+        if (remember) { try { localStorage.setItem('ss-notes-tab', tab ? tab.dataset.key : ''); } catch {} }
+      };
+      tabs.forEach(t => t.addEventListener('click', () => show(t.getAttribute('aria-selected') === 'true' ? null : t)));
+      let saved = null;
+      try { saved = localStorage.getItem('ss-notes-tab'); } catch {}
+      show(saved === '' ? null : (tabs.find(t => t.dataset.key === saved) || tabs[0]), false);
+    }
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
       const g = groups.get(btn.dataset.key);
       if (!g) return;
