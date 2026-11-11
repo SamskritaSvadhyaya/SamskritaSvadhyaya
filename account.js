@@ -644,13 +644,15 @@ function accountPage() {
         })()
           : '<p class="acct-empty">No notes yet. Every shloka has a “✎ Note on this shloka” button, and each chapter a “My notes” box at the end.</p>'}</section>
 
-      <section class="acct-section"><h2>Settings</h2>
+      <div class="acct-small-row">
+      <section class="acct-section acct-small"><h2>Settings</h2>
         <label class="acct-check"><input type="checkbox" class="acct-announce" ${profile.announcements ? 'checked' : ''}> Email me when new chapters are released</label>
         <span class="acct-saved" aria-live="polite"></span>
         <p class="acct-fine"><a href="${BASE}privacy/">Privacy policy</a> ·
           <button type="button" class="acct-link acct-danger acct-delete">Delete my account</button></p>
       </section>
-      <div class="acct-admin"></div>`;
+      <div class="acct-admin"></div>
+      </div>`;
 
     root.querySelector('.acct-resend')?.addEventListener('click', e => {
       sendEmailVerification(user).then(() => { e.target.outerHTML = '<em>Sent — check your inbox.</em>'; }).catch(err => alert(friendly(err)));
@@ -744,9 +746,9 @@ async function adminPanel(el) {
   let snap;
   try { snap = await getDocs(collection(db, 'subscribers')); } catch { return; }
   const rows = snap.docs.map(d => d.data()).sort((a, b) => (a.at?.seconds || 0) - (b.at?.seconds || 0));
-  el.innerHTML = `<section class="acct-section"><h2>Site owner</h2>
+  el.innerHTML = `<section class="acct-section acct-small"><h2>Site owner</h2>
     <p>Announcements list: <strong>${rows.length}</strong> reader${rows.length === 1 ? '' : 's'} opted in.</p>
-    <button type="button" class="acct-secondary">Download list (CSV for Excel / Google Sheets)</button></section>`;
+    <button type="button" class="acct-secondary">Download list (CSV)</button></section>`;
   el.querySelector('button').addEventListener('click', () => {
     const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
     const csv = 'Name,Email,Joined\r\n' + rows.map(r => [r.name, r.email, r.at ? new Date(r.at.seconds * 1000).toISOString().slice(0, 10) : ''].map(q).join(',')).join('\r\n');

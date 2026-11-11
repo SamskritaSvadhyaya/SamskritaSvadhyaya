@@ -1030,3 +1030,13 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
 /* Account page is content-width; the signed-out sign-in box stays a comfortable form width. */
 main.account .acct-card:has(.acct-form) { max-width: 560px; margin-left: auto; margin-right: auto; }
 .acct-bar { max-width: 420px; }
+
+/* Account page: Settings and Site owner — compact boxes in a slim row at the bottom */
+.acct-small-row { display: flex; flex-wrap: wrap; gap: .9rem; align-items: flex-start; margin-top: 2rem; }
+.acct-small-row > .acct-small, .acct-small-row > .acct-admin { flex: 1 1 280px; min-width: 0; }
+.acct-small-row .acct-admin:empty { display: none; }
+main.account .acct-section.acct-small { padding: .8rem 1.1rem; margin-bottom: 0; font-size: .9rem; box-shadow: none; }
+main.account .acct-small h2 { font-size: 1.05rem; margin: 0 0 .45rem; }
+main.account .acct-small :is(p, label, .acct-fine) { font-size: .88rem; margin: .3rem 0 0; }
+main.account .acct-small .acct-check input { width: .95rem; height: .95rem; }
+main.account .acct-small .acct-secondary { font-size: .85rem; padding: .35rem .8rem; margin-top: .45rem; }
