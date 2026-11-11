@@ -1091,3 +1091,10 @@ main.account .acct-card.acct-me { background: none; border: none; box-shadow: no
 /* Header: the button for the current part of the site */
 .controls .home-link.is-current { background: var(--accent); border-color: var(--accent); color: #fff; }
 .controls .home-link.is-current:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: #fff; }
+
+/* Progress box: "Begin reading N" as a small link, no box */
+main.account .acct-progress-list .acct-again {
+  background: none; border: none; padding: 0; margin: 0;
+  font-size: .82rem; color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; cursor: pointer;
+}
+main.account .acct-progress-list .acct-again:hover { color: var(--accent); }
