@@ -196,7 +196,14 @@
     try { localStorage.removeItem(AUTH_FLAG); localStorage.removeItem(NAME_KEY); } catch {}
     location.reload();
   });
-  if (controls) acctLink.after(outBtn);   // (no "Signed in as …" in the header, at the owner's request)
+  if (controls) acctLink.after(outBtn);
+
+  // Highlight the header button for the part of the site you're on: Account on the account
+  // page, Texts on the home page and every collection / chapter page.
+  const textsLink = controls && controls.querySelector('.home-link:not(.account-link)');
+  const here = (path.split('/')[0] || '');
+  const current = isAccountPage ? acctLink : (['privacy', 'disclaimer'].includes(here) ? null : textsLink);
+  if (current) { current.classList.add('is-current'); current.setAttribute('aria-current', 'page'); }   // (no "Signed in as …" in the header, at the owner's request)
 
   // A readable page (chapter, sarga, dashaka, single text) — not an index or the account page.
   const main = document.querySelector('main.content');

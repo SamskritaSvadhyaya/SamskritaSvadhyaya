@@ -1087,3 +1087,7 @@ main.account .acct-card.acct-me { background: none; border: none; box-shadow: no
 .acct-progress-list .acct-progress { grid-template-columns: minmax(9rem, 15rem) 1fr 9.5rem; }
 .acct-progress-list .ap-count { text-align: right; }
 @media (max-width: 600px) { .acct-progress-list .acct-progress { grid-template-columns: 1fr 8.5rem; } }
+
+/* Header: the button for the current part of the site */
+.controls .home-link.is-current { background: var(--accent); border-color: var(--accent); color: #fff; }
+.controls .home-link.is-current:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: #fff; }
