@@ -649,11 +649,10 @@ function accountPage() {
           : '<p class="acct-empty">No notes yet. Every shloka has a “✎ Note on this shloka” button, and each chapter a “My notes” box at the end.</p>'}</section>
 
       <div class="acct-small-row">
-      <section class="acct-section acct-small"><h2>Settings</h2>
+      <section class="acct-section acct-small">
         <label class="acct-check"><input type="checkbox" class="acct-announce" ${profile.announcements ? 'checked' : ''}> Email me when new chapters are released</label>
         <span class="acct-saved" aria-live="polite"></span>
-        <p class="acct-fine"><a href="${BASE}privacy/">Privacy policy</a> ·
-          <button type="button" class="acct-link acct-danger acct-delete">Delete my account</button></p>
+        <p class="acct-fine"><button type="button" class="acct-link acct-danger acct-delete">Delete my account</button></p>
       </section>
       <div class="acct-admin"></div>
       </div>`;

@@ -148,7 +148,7 @@
   // the account page or for readers who have signed in on this device before.
   const AUTH_FLAG = 'ss-signed-in';
   // Bump when account.js changes so browsers fetch the new copy instead of a cached one.
-  const ACCOUNT_JS_VERSION = '676dd202dc';
+  const ACCOUNT_JS_VERSION = 'af7abceeb0';
   const scriptEl = document.currentScript || document.querySelector('script[src$="script.js"]');
   const base = scriptEl.src.replace(/script\.js(\?.*)?$/, '');
   const pathOf = url => {
@@ -196,7 +196,7 @@
     try { localStorage.removeItem(AUTH_FLAG); localStorage.removeItem(NAME_KEY); } catch {}
     location.reload();
   });
-  if (controls) { acctLink.after(whoEl); whoEl.after(outBtn); }
+  if (controls) acctLink.after(outBtn);   // (no "Signed in as …" in the header, at the owner's request)
 
   // A readable page (chapter, sarga, dashaka, single text) — not an index or the account page.
   const main = document.querySelector('main.content');
