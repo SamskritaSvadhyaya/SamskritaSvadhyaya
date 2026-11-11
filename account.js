@@ -615,7 +615,6 @@ function accountPage() {
       <div class="acct-card acct-me">
         <div>
           <div class="acct-hello">Namaste${user.displayName ? ', ' + esc(user.displayName) : ''}</div>
-          <div class="acct-email">${esc(user.email || '')}</div>
           ${unverified ? `<div class="acct-note">Please confirm your email address — we sent you a link. <button type="button" class="acct-link acct-resend">Send it again</button></div>` : ''}
         </div>
       </div>
