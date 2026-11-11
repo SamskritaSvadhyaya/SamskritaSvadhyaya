@@ -1040,3 +1040,23 @@ main.account .acct-small h2 { font-size: 1.05rem; margin: 0 0 .45rem; }
 main.account .acct-small :is(p, label, .acct-fine) { font-size: .88rem; margin: .3rem 0 0; }
 main.account .acct-small .acct-check input { width: .95rem; height: .95rem; }
 main.account .acct-small .acct-secondary { font-size: .85rem; padding: .35rem .8rem; margin-top: .45rem; }
+
+/* Account page, compact: smaller heading area so "Namaste" sits near the top, a slim
+   greeting strip, and small Settings / Site owner boxes. */
+.hero:has(+ main.account) { padding: 1.2rem 1rem .4rem; }
+.hero:has(+ main.account) .om-large { font-size: 2.4rem; }
+.hero:has(+ main.account) h1 { font-size: 1.6rem; margin: .3rem 0 0; }
+.hero:has(+ main.account) .subtitle { font-size: .9rem; margin: .2rem 0 0; }
+.hero:has(+ main.account) .divider { margin: .7rem auto; }
+main.account .acct-card.acct-me { padding: .6rem 1.1rem; box-shadow: none; margin-bottom: .9rem; }
+main.account .acct-me > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .8rem; }
+main.account .acct-hello { font-size: 1.2rem; }
+main.account .acct-email { font-size: .8rem; }
+main.account .acct-me .acct-note { flex-basis: 100%; margin-top: .1rem; font-size: .8rem; }
+.acct-small-row { margin-top: 1.4rem; gap: .6rem; }
+.acct-small-row > .acct-small, .acct-small-row > .acct-admin { flex: 1 1 240px; }
+main.account .acct-section.acct-small { padding: .5rem .8rem; font-size: .8rem; }
+main.account .acct-small h2 { font-size: .92rem; margin: 0 0 .25rem; }
+main.account .acct-small :is(p, label, .acct-fine) { font-size: .8rem; margin: .15rem 0 0; }
+main.account .acct-small .acct-secondary { font-size: .78rem; padding: .25rem .65rem; margin-top: .3rem; }
+main.account .acct-small .acct-link { font-size: inherit; }
