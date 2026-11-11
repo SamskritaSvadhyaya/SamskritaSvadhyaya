@@ -799,7 +799,7 @@ a.acct-verse-num:hover, a.acct-verse:hover { color: var(--accent); }
 
 /* Account page */
 main.account :is(p, li, label, span, div, a, button, input, textarea) { font-family: var(--read); }
-main.account { max-width: 560px; margin: 0 auto 4rem; padding: 0 1rem; font-family: var(--read); color: var(--ink); }
+main.account { max-width: var(--content-width); margin: 0 auto 4rem; padding: 0 1rem; font-family: var(--read); color: var(--ink); }
 .acct-card, .acct-section {
   background: var(--bg-card);
   border: 1px solid var(--rule);
@@ -1026,3 +1026,7 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
 .note-tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 .note-tab-count { font-size: .78rem; opacity: .8; margin-left: .2rem; }
 .note-panel { padding-top: .2rem; }
+
+/* Account page is content-width; the signed-out sign-in box stays a comfortable form width. */
+main.account .acct-card:has(.acct-form) { max-width: 560px; margin-left: auto; margin-right: auto; }
+.acct-bar { max-width: 420px; }
