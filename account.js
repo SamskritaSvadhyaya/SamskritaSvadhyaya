@@ -543,13 +543,23 @@ function accountPage() {
         : `<a class="acct-verse" lang="sa" href="${esc(BASE + p.path)}#note-${esc(key)}">${esc(v.t)}…</a>`} — ${esc(v.note.slice(0, 160))}${v.note.length > 160 ? '…' : ''}</div>`).join('');
     const lp = profile.lastPage;
 
-    // Studied count per collection (first path segment).
-    const groups = {};
+    // Studied count per text (the chapter's folder: narayaneeyam, thestoryofhanuman/sundarakanda,
+    // shrimad-bhagavatam-canto-10/book-1 …), out of that text's total from the build.
+    let totals = {};
+    try { totals = JSON.parse(document.getElementById('text-totals')?.textContent || '{}'); } catch {}
+    const groups = new Map();
     for (const p of studied) {
       const parts = p.path.split('/').filter(Boolean);
-      const g = workOf(p) || parts[0];
-      groups[g] = (groups[g] || 0) + 1;
+      const key = parts.length > 1 ? parts.slice(0, -1).join('/') : parts[0];
+      const g = groups.get(key) || { label: workOf(p) || parts[0], n: 0, total: totals[key] || 0 };
+      g.n += 1;
+      groups.set(key, g);
     }
+    const progressItem = g => {
+      const pct = g.total ? Math.min(100, Math.round((g.n / g.total) * 100)) : 0;
+      return `<li class="acct-progress"><span>${esc(g.label)}: <strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied</span>`
+        + (g.total ? `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>` : '') + '</li>';
+    };
 
     const unverified = user.providerData.some(p => p.providerId === 'password') && !user.emailVerified;
     root.innerHTML = `
@@ -572,7 +582,7 @@ function accountPage() {
           : '<p class="acct-empty">No bookmarks yet. Use “☆ Bookmark” at the top of any chapter.</p>'}</section>
 
       <section class="acct-section"><h2>✓ Progress <span class="acct-count">${studied.length} studied</span></h2>
-        ${studied.length ? `<ul class="acct-list">${Object.entries(groups).map(([g, n]) => `<li>${esc(g)}: <strong>${n}</strong> studied</li>`).join('')}</ul>`
+        ${studied.length ? `<ul class="acct-list">${[...groups.values()].map(progressItem).join('')}</ul>`
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
       <section class="acct-section"><h2>✎ My notes <span class="acct-count">${notes.length}</span></h2>

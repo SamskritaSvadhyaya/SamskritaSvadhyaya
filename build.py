@@ -648,13 +648,26 @@ def stamp_assets():
 def build_static_pages():
     """Reader account page (sign-in / bookmarks / notes, driven by account.js) and the
     privacy policy (body from _privacy_body.html)."""
+    # Chapters per text, keyed by folder, for the Account page's "N of TOTAL studied".
+    totals = {}
+    for top in load_manifest():
+        if is_parent(top):
+            for w in top.get("works", []):
+                totals[f"{top['slug']}/{w['slug']}"] = len(w.get("chapters", []))
+        elif is_work(top):
+            totals[top["slug"]] = len(top.get("chapters", []))
+        else:
+            totals[top["slug"]] = 1
+    totals_tag = ('<script type="application/json" id="text-totals">'
+                  + json.dumps(totals, separators=(",", ":")) + "</script>")
     pages = [
         ("account", "Your account", "Bookmarks, progress and private notes",
          "Your account | Samskrita Svadhyaya",
          "Sign in to Samskrita Svadhyaya to keep bookmarks, track your progress and write private notes.",
          '  <main class="account" id="content">\n    <div id="account-app">'
          '<p class="acct-loading">Loading…</p>'
-         '<noscript><p>Please turn on JavaScript to sign in.</p></noscript></div>\n  </main>\n',
+         '<noscript><p>Please turn on JavaScript to sign in.</p></noscript></div>\n    '
+         + totals_tag + '\n  </main>\n',
          True),
         ("privacy", "Privacy policy", "What we keep when you sign in, and what we never do",
          "Privacy policy | Samskrita Svadhyaya",

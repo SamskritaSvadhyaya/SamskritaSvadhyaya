@@ -996,3 +996,8 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
 .content a:hover, .static-page ol.source-list a:hover { color: #8b1e1e; }
 /* Long web addresses wrap instead of running off narrow screens. */
 .content a { overflow-wrap: anywhere; }
+
+/* Account page: progress per text ("26 of 100 studied") with a thin bar. */
+.acct-progress { display: flex; flex-direction: column; gap: .3rem; }
+.acct-bar { display: block; height: 6px; max-width: 320px; background: var(--rule); border-radius: 999px; overflow: hidden; }
+.acct-bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); border-radius: 999px; }
