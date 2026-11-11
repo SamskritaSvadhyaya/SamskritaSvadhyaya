@@ -538,6 +538,27 @@ function accountPage() {
     const stopped = stoppedPlaces(pages);
     const studied = pages.filter(p => p.studied);
     const notes = pages.filter(p => (p.note || '').trim() || hasVerseNotes(p)).sort(byTime);
+    // My notes grouped by text (Narayaneeyam, Sundarakanda, Shrimad Bhagavatam Book 1 …);
+    // texts with the latest note first, chapters in their own order (Dashaka 1, 2, 3 …).
+    // Inside a text's group the heading names the text, so show just "Sarga 2" / "The story of Prahlada".
+    const shortLink = p => {
+      const parts = displayTitle(p).split(' · ');
+      const label = parts.length > 1 ? parts.slice(1).join(' · ') : parts[0];
+      return `<a href="${esc(BASE + p.path)}">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}`;
+    };
+    const chapterNo = p => +((p.path.match(/(\d+)\/?$/) || [])[1] || 0);
+    const noteGroups = list => {
+      const byText = new Map();
+      for (const p of list) {
+        const parts = p.path.split('/').filter(Boolean);
+        const key = parts.length > 1 ? parts.slice(0, -1).join('/') : parts[0];
+        if (!byText.has(key)) byText.set(key, { label: workOf(p) || key, items: [] });
+        byText.get(key).items.push(p);
+      }
+      const groupsOut = [...byText.values()];
+      for (const g of groupsOut) g.items.sort((a, b) => chapterNo(a) - chapterNo(b));
+      return groupsOut;
+    };
     // Each shloka label links to that shloka in its chapter (#shloka-10.4.19, or #note-<key>
     // for texts without shloka numbers).
     const verseList = p => Object.entries(p.verses || {}).filter(([, v]) => (v?.note || '').trim())
@@ -614,7 +635,8 @@ function accountPage() {
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
       <section class="acct-section"><h2>✎ My notes <span class="acct-count">${notes.length}</span></h2>
-        ${notes.length ? `<ul class="acct-list acct-notes">${notes.map(p => `<li>${link(p)}${(p.note || '').trim() ? `<div class="acct-snippet">${esc(p.note.slice(0, 220))}${p.note.length > 220 ? '…' : ''}</div>` : ''}${verseList(p)}</li>`).join('')}</ul>`
+        ${notes.length ? noteGroups(notes).map(g => `<h3 class="acct-text-head">${esc(g.label)} <span class="acct-count">${g.items.length}</span></h3>
+          <ul class="acct-list acct-notes">${g.items.map(p => `<li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet">${esc(p.note.slice(0, 220))}${p.note.length > 220 ? '…' : ''}</div>` : ''}${verseList(p)}</li>`).join('')}</ul>`).join('')
           : '<p class="acct-empty">No notes yet. Every shloka has a “✎ Note on this shloka” button, and each chapter a “My notes” box at the end.</p>'}</section>
 
       <section class="acct-section"><h2>Settings</h2>

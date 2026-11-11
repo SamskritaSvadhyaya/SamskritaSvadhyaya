@@ -1007,3 +1007,9 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
 .acct-finished, .acct-readings { font-size: .85rem; color: var(--ink-soft); }
 .acct-readings { font-style: italic; }
 .acct-again { align-self: flex-start; margin-top: .25rem; padding: .4rem .9rem; font-size: .9rem; }
+
+/* Account page: My notes grouped by text */
+.acct-text-head { font-family: var(--serif); color: var(--accent-strong); font-size: 1.15rem; margin: 1rem 0 .4rem;
+  padding-bottom: .2rem; border-bottom: 1px solid var(--rule); }
+.acct-text-head:first-of-type { margin-top: .2rem; }
+.acct-text-head .acct-count { font-family: var(--read); }
