@@ -254,7 +254,9 @@ def main():
         attr = f' style="{";".join(props)}"' if props else ""
         out.append(f"<{tag}{attr}>{content}</{tag}>")
 
-    sys.stdout.write(join_dhyana("\n".join(out)) + "\n")
+    # Plain English spelling (Raghuvamsha, not Raghuvaṃśa) — the owner's style.
+    from plain_english import plain
+    sys.stdout.write(plain(join_dhyana("\n".join(out))) + "\n")
 
 
 if __name__ == "__main__":
