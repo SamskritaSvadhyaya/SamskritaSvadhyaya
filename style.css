@@ -1126,3 +1126,11 @@ main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
 }
 .preamble-toggle:hover { color: var(--accent); }
 @media print { .preamble.is-folded { max-height: none; } .preamble.is-folded::after, .preamble-toggle { display: none; } }
+
+/* Phones: long Sanskrit compounds in shlokas could be wider than the screen and make the
+   page scroll sideways. Give the reading card a little more room, and let an over-long word
+   wrap (between syllables) only when it doesn't fit. */
+.content { overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .content { padding-left: 1rem; padding-right: 1rem; }
+}
