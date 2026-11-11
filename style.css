@@ -1001,3 +1001,9 @@ main.account .acct-hello { font-family: var(--serif); font-size: 1.6rem; font-we
 .acct-progress { display: flex; flex-direction: column; gap: .3rem; }
 .acct-bar { display: block; height: 6px; max-width: 320px; background: var(--rule); border-radius: 999px; overflow: hidden; }
 .acct-bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); border-radius: 999px; }
+
+/* Completed readings (Account page) */
+.acct-progress.acct-complete strong { color: var(--accent-strong); }
+.acct-finished, .acct-readings { font-size: .85rem; color: var(--ink-soft); }
+.acct-readings { font-style: italic; }
+.acct-again { align-self: flex-start; margin-top: .25rem; padding: .4rem .9rem; font-size: .9rem; }

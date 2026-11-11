@@ -98,6 +98,12 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   here" + `markAt`, also copied into `lastPage.mark`; home + Account list the latest mark per
   top-level text ("Where I stopped", links `#mark`)), `subscribers/{uid}` (announcements list;
   the site owner gets a CSV download button on the Account page).
+- Readings: page docs get `studiedAt` when marked studied. A text whose every chapter is studied
+  shows "completed ॥ पूर्णम् ॥ Reading N finished on <date of last studiedAt>" + "Begin reading N+1",
+  which appends {cycle, finished} to `users/{uid}.readings["<text folder with / as |>"]` and clears
+  that text's `studied` flags (notes/bookmarks/ribbons kept). Totals per text are embedded in
+  account/index.html (`#text-totals`) by build_static_pages. Page docs are near the rules'
+  12-field limit (11 used) — raise it in firestore.rules before adding page fields.
 - Cache-busting: `build.py home` (`stamp_assets`) adds `?v=<content hash>` to every page's
   style.css / script.js link and sets script.js's `ACCOUNT_JS_VERSION` from account.js's hash —
   so after editing any of those three files, run `python build.py home` before committing.

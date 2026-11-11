@@ -15,7 +15,7 @@ import {
   updateProfile, deleteUser,
 } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 import {
-  getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, serverTimestamp, writeBatch,
+  getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, serverTimestamp, writeBatch, Timestamp,
 } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore-lite.js';
 
 const app = initializeApp({
@@ -178,7 +178,11 @@ function readingPage(user) {
   }
 
   bBtn.addEventListener('click', () => { save({ bookmarked: !state.bookmarked }).catch(e => alert(friendly(e))); paint(); });
-  sBtn.addEventListener('click', () => { save({ studied: !state.studied }).catch(e => alert(friendly(e))); paint(); });
+  sBtn.addEventListener('click', () => {
+    const on = !state.studied;
+    save(on ? { studied: true, studiedAt: serverTimestamp() } : { studied: false }).catch(e => alert(friendly(e)));
+    paint();
+  });
 
   let timer = null;
   const saveNote = () => {
@@ -547,18 +551,42 @@ function accountPage() {
     // shrimad-bhagavatam-canto-10/book-1 …), out of that text's total from the build.
     let totals = {};
     try { totals = JSON.parse(document.getElementById('text-totals')?.textContent || '{}'); } catch {}
+    // Finished readings per text: profile.readings[textKey] = [{ cycle, finished }]
+    // (textKey = the text's folder with "/" as "|"). Marking a whole text studied completes a
+    // reading; "Begin reading N" records it and clears that text's ✓ marks (notes, bookmarks
+    // and ribbons stay).
+    const readings = profile.readings || {};
+    const textKey = p => { const parts = p.path.split('/').filter(Boolean); return parts.length > 1 ? parts.slice(0, -1).join('/') : parts[0]; };
     const groups = new Map();
+    const group = (key, label) => {
+      if (!groups.has(key)) groups.set(key, { key, label, n: 0, total: totals[key] || 0, pages: [], last: 0, lastTs: null,
+        done: readings[key.replace(/\//g, '|')] || [] });
+      return groups.get(key);
+    };
     for (const p of studied) {
-      const parts = p.path.split('/').filter(Boolean);
-      const key = parts.length > 1 ? parts.slice(0, -1).join('/') : parts[0];
-      const g = groups.get(key) || { label: workOf(p) || parts[0], n: 0, total: totals[key] || 0 };
+      const g = group(textKey(p), workOf(p) || textKey(p));
       g.n += 1;
-      groups.set(key, g);
+      g.pages.push(p);
+      const ts = p.studiedAt || p.updated;
+      if (ts && ts.seconds > g.last) { g.last = ts.seconds; g.lastTs = ts; }
     }
+    // Texts read before but with nothing studied in the current reading.
+    for (const p of pages) if (readings[textKey(p).replace(/\//g, '|')]?.length) group(textKey(p), workOf(p) || textKey(p));
+    const fmt = ts => ts ? new Date(ts.seconds * 1000).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
     const progressItem = g => {
+      const cycle = g.done.length + 1;
+      const complete = g.total > 0 && g.n >= g.total;
+      const history = g.done.length ? `<span class="acct-readings">Completed: ${g.done.map(r =>
+        `Reading ${r.cycle} — ${esc(fmt(r.finished))}`).join(' · ')}</span>` : '';
+      if (complete) {
+        return `<li class="acct-progress acct-complete"><span>✓ <strong>${esc(g.label)} — completed</strong> <span lang="sa">॥ पूर्णम् ॥</span></span>
+          <span class="acct-finished">Reading ${cycle} finished on ${esc(fmt(g.lastTs)) || 'today'}</span>
+          <span class="acct-bar" aria-hidden="true"><span style="width:100%"></span></span>${history}
+          <button type="button" class="acct-secondary acct-again" data-key="${esc(g.key)}">Begin reading ${cycle + 1}</button></li>`;
+      }
       const pct = g.total ? Math.min(100, Math.round((g.n / g.total) * 100)) : 0;
-      return `<li class="acct-progress"><span>${esc(g.label)}: <strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied</span>`
-        + (g.total ? `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>` : '') + '</li>';
+      return `<li class="acct-progress"><span>${esc(g.label)}${g.done.length ? ` — reading ${cycle}` : ''}: <strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied</span>`
+        + (g.total ? `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>` : '') + history + '</li>';
     };
 
     const unverified = user.providerData.some(p => p.providerId === 'password') && !user.emailVerified;
@@ -607,6 +635,21 @@ function accountPage() {
       catch (e) { ann.checked = !ann.checked; saved.textContent = friendly(e); }
     });
     root.querySelector('.acct-delete').addEventListener('click', () => deleteAccount(user, pages));
+    root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
+      const g = groups.get(btn.dataset.key);
+      if (!g) return;
+      const cycle = g.done.length + 1;
+      if (!confirm(`Record reading ${cycle} of ${g.label} as finished on ${fmt(g.lastTs) || 'today'}, and start reading ${cycle + 1}?\n\nThe ✓ studied marks for ${g.label} will be cleared. Your bookmarks, notes and ribbons stay.`)) return;
+      btn.disabled = true;
+      try {
+        const done = [...g.done, { cycle, finished: g.lastTs || Timestamp.now() }];
+        await setDoc(userRef(user.uid), { readings: { [g.key.replace(/\//g, '|')]: done } }, { merge: true });
+        const batch = writeBatch(db);
+        for (const p of g.pages) batch.set(pageRef(user.uid, p.path), { studied: false }, { merge: true });
+        await batch.commit();
+        renderSignedIn(user);
+      } catch (e) { btn.disabled = false; alert(friendly(e)); }
+    }));
     adminPanel(root.querySelector('.acct-admin'));
   }
 
