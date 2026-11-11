@@ -604,7 +604,7 @@ function accountPage() {
       if (complete) {
         return `<li class="acct-progress acct-complete">
           <span class="ap-name">✓ <strong>${esc(g.label)}</strong></span>${bar(100)}
-          <span class="ap-count">completed <span lang="sa">॥ पूर्णम् ॥</span></span>
+          <span class="ap-count">completed</span>
           <span class="ap-extra"><span class="acct-finished">Reading ${cycle} finished on ${esc(fmt(g.lastTs)) || 'today'}</span>${history}
           <button type="button" class="acct-secondary acct-again" data-key="${esc(g.key)}">Begin reading ${cycle + 1}</button></span></li>`;
       }
