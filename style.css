@@ -1105,3 +1105,9 @@ main.account .acct-admin .acct-secondary {
   font-size: .8rem; color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; cursor: pointer;
 }
 main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
+
+/* Collection pages with only one or two cards (e.g. Bhagavatam's two Books): centre them. */
+.home-grid:not(:has(> :nth-child(3))) {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+  justify-content: center;
+}
