@@ -217,8 +217,8 @@
 
   const foot = document.querySelector('.site-footer div');
   if (foot) {
-    foot.insertAdjacentHTML('beforeend', ' · <a href="' + base + 'privacy/">Privacy</a>');
-    foot.insertAdjacentHTML('afterend', '<a class="footer-disclaimer" href="' + base + 'disclaimer/">Disclaimer and Credits</a>');
+    foot.insertAdjacentHTML('beforeend', ' · <a href="' + base + 'privacy/">Privacy</a>'
+      + ' · <a href="' + base + 'disclaimer/">Disclaimer and Credits</a>');
   }
 
   const renderSignedOut = () => {

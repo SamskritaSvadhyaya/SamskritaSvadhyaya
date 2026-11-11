@@ -75,7 +75,7 @@ Static site of Sanskrit texts, published with GitHub Pages.
 `disclaimer/` page, built by `build.py home` (`build_static_pages`) from `_disclaimer_body.html`,
 which reproduces the owner's Drive doc "Disclaimer and Credits" (id
 `1biGLjg1QIBtBIhn-Y9okwwvoSImMBaP8EFWUU8F4Hf8`) word for word. script.js adds the
-"Disclaimer and Credits" button under every page's footer. To update: re-read the doc,
+"Disclaimer and Credits" link to every page's footer line. To update: re-read the doc,
 rewrite `_disclaimer_body.html`, `python build.py home`.
 
 ## Reader accounts (optional sign-in)
