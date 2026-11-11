@@ -599,15 +599,20 @@ function accountPage() {
       const complete = g.total > 0 && g.n >= g.total;
       const history = g.done.length ? `<span class="acct-readings">Completed: ${g.done.map(r =>
         `Reading ${r.cycle} — ${esc(fmt(r.finished))}`).join(' · ')}</span>` : '';
+      // One row per text: name · bar across the box · "26 of 100 studied" in small letters.
+      const bar = pct => `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>`;
       if (complete) {
-        return `<li class="acct-progress acct-complete"><span>✓ <strong>${esc(g.label)} — completed</strong> <span lang="sa">॥ पूर्णम् ॥</span></span>
-          <span class="acct-finished">Reading ${cycle} finished on ${esc(fmt(g.lastTs)) || 'today'}</span>
-          <span class="acct-bar" aria-hidden="true"><span style="width:100%"></span></span>${history}
-          <button type="button" class="acct-secondary acct-again" data-key="${esc(g.key)}">Begin reading ${cycle + 1}</button></li>`;
+        return `<li class="acct-progress acct-complete">
+          <span class="ap-name">✓ <strong>${esc(g.label)}</strong></span>${bar(100)}
+          <span class="ap-count">completed <span lang="sa">॥ पूर्णम् ॥</span></span>
+          <span class="ap-extra"><span class="acct-finished">Reading ${cycle} finished on ${esc(fmt(g.lastTs)) || 'today'}</span>${history}
+          <button type="button" class="acct-secondary acct-again" data-key="${esc(g.key)}">Begin reading ${cycle + 1}</button></span></li>`;
       }
       const pct = g.total ? Math.min(100, Math.round((g.n / g.total) * 100)) : 0;
-      return `<li class="acct-progress"><span>${esc(g.label)}${g.done.length ? ` — reading ${cycle}` : ''}: <strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied</span>`
-        + (g.total ? `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>` : '') + history + '</li>';
+      return `<li class="acct-progress"><span class="ap-name">${esc(g.label)}${g.done.length ? ` <span class="ap-reading">reading ${cycle}</span>` : ''}</span>`
+        + (g.total ? bar(pct) : '<span></span>')
+        + `<span class="ap-count"><strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied</span>`
+        + (history ? `<span class="ap-extra">${history}</span>` : '') + '</li>';
     };
 
     const unverified = user.providerData.some(p => p.providerId === 'password') && !user.emailVerified;
@@ -630,7 +635,7 @@ function accountPage() {
           : '<p class="acct-empty">No bookmarks yet. Use “☆ Bookmark” at the top of any chapter.</p>'}</section>
 
       <section class="acct-section"><h2>✓ Progress <span class="acct-count">${studied.length} studied</span></h2>
-        ${studied.length ? `<ul class="acct-list">${[...groups.values()].map(progressItem).join('')}</ul>`
+        ${groups.size ? `<ul class="acct-progress-list">${[...groups.values()].map(progressItem).join('')}</ul>`
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
       <section class="acct-section"><h2>✎ My notes <span class="acct-count">${notes.length}</span></h2>

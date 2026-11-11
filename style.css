@@ -1066,3 +1066,24 @@ main.account .acct-small .acct-link { font-size: inherit; }
 .acct-small-row > .acct-admin > .acct-small { flex: 1; }
 /* Account page: "Namaste, <name>" as plain text, no box */
 main.account .acct-card.acct-me { background: none; border: none; box-shadow: none; padding: 0 .2rem; margin-bottom: 1rem; }
+
+/* Progress box: one row per text — name | bar across the box | small "26 of 100 studied" */
+.acct-progress-list { list-style: none; margin: .2rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .7rem; }
+.acct-progress-list .acct-progress {
+  display: grid; grid-template-columns: minmax(9rem, 15rem) 1fr auto; align-items: center; gap: .3rem 1rem;
+}
+.acct-progress-list .acct-bar { max-width: none; width: 100%; }
+.acct-progress-list .ap-name { font-size: .98rem; }
+.acct-progress-list .ap-reading { font-size: .8rem; color: var(--ink-soft); font-style: italic; }
+.acct-progress-list .ap-count { font-size: .8rem; color: var(--ink-soft); white-space: nowrap; }
+.acct-progress-list .ap-count strong { color: var(--accent-strong); }
+.acct-progress-list .ap-extra { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; }
+.acct-progress-list .acct-again { margin-top: 0; }
+@media (max-width: 600px) {
+  .acct-progress-list .acct-progress { grid-template-columns: 1fr auto; }
+  .acct-progress-list .ap-name { grid-column: 1 / -1; }
+}
+/* Same bar length on every row: fixed-width count column */
+.acct-progress-list .acct-progress { grid-template-columns: minmax(9rem, 15rem) 1fr 9.5rem; }
+.acct-progress-list .ap-count { text-align: right; }
+@media (max-width: 600px) { .acct-progress-list .acct-progress { grid-template-columns: 1fr 8.5rem; } }
