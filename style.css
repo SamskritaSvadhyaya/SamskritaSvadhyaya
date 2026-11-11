@@ -1098,3 +1098,10 @@ main.account .acct-progress-list .acct-again {
   font-size: .82rem; color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; cursor: pointer;
 }
 main.account .acct-progress-list .acct-again:hover { color: var(--accent); }
+
+/* Site owner box: "Download list (CSV)" as a small link, no box */
+main.account .acct-admin .acct-secondary {
+  background: none; border: none; padding: 0; margin: .2rem 0 0;
+  font-size: .8rem; color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; cursor: pointer;
+}
+main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
