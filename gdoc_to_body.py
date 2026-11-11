@@ -222,6 +222,10 @@ def main():
 
     out = []
     for block in body.find_all(["p", "h1", "h2", "h3", "h4", "h5", "h6", "hr"]):
+        # Google puts the doc's page header and footer in <div>s directly under <body>
+        # (the text itself is not in a div). They stay in the doc but are left off the site.
+        if any(par.name == "div" and par.parent is body for par in block.parents):
+            continue
         if block.name == "hr":
             out.append("<hr />")
             continue

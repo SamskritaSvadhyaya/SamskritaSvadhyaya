@@ -39,6 +39,8 @@ Static site of Sanskrit texts, published with GitHub Pages.
   files (diffs, staging) OUT of the repo — `*.diff` is gitignored after strays got published.
 - `gdoc_to_body.py` — converts a Drive `download_file_content` (text/html export) result JSON
   into a page body, keeping colours, alignment, sizes.
+- **No doc page headers/footers on the site**: gdoc_to_body.py skips Google's header/footer
+  (the `<div>`s directly under `<body>` in the HTML export); they stay in the docs.
 - **Plain English spelling, no diacritics** (owner's style): `plain_english.py` turns IAST letters into
   plain spelling (Raghuvaṃśa → Raghuvamsha, Kālidāsa → Kalidasa, Śrīla → Shrila; ś/ṣ → sh, ṛ → ri).
   gdoc_to_body.py applies it to every upload; `python plain_english.py` fixes the whole site.
