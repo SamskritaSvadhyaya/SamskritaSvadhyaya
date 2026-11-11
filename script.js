@@ -84,6 +84,29 @@
     if (devRe.test(el.textContent)) el.setAttribute('lang', 'sa');
   });
 
+  // ---- Collection introductions: folded to a few lines, "Read more" opens them ----
+  document.querySelectorAll('.preamble').forEach((pre, i) => {
+    if (pre.scrollHeight < 380) return;               // short enough to show in full
+    pre.classList.add('is-folded');
+    pre.id = pre.id || 'intro-' + i;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'preamble-toggle';
+    btn.setAttribute('aria-controls', pre.id);
+    const set = open => {
+      pre.classList.toggle('is-folded', !open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Show less ▴' : 'Read more ▾';
+    };
+    btn.addEventListener('click', () => {
+      const open = pre.classList.contains('is-folded');
+      set(open);
+      if (!open) pre.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+    set(false);
+    pre.after(btn);
+  });
+
   // ---- Previous / Next without scrolling to the bottom ----
   // Built from the bottom buttons (build.py chapter_nav), so they always agree:
   // side arrows on wide screens, a small link row under the heading on narrow ones,

@@ -1111,3 +1111,18 @@ main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
   grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
   justify-content: center;
 }
+
+/* Collection introductions folded to a few lines (script.js), with Read more / Show less */
+.preamble.is-folded { max-height: 15rem; overflow: hidden; position: relative; margin-bottom: 0; }
+.preamble.is-folded::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5rem; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 250, 240, 0), #fffaf0 85%);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.preamble-toggle {
+  display: block; margin: .6rem auto 2.2rem; padding: .3rem .9rem;
+  font-family: var(--read); font-size: .9rem; color: var(--accent-strong);
+  background: none; border: none; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+}
+.preamble-toggle:hover { color: var(--accent); }
+@media print { .preamble.is-folded { max-height: none; } .preamble.is-folded::after, .preamble-toggle { display: none; } }
