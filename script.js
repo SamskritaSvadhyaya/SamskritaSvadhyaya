@@ -171,7 +171,7 @@
   // the account page or for readers who have signed in on this device before.
   const AUTH_FLAG = 'ss-signed-in';
   // Bump when account.js changes so browsers fetch the new copy instead of a cached one.
-  const ACCOUNT_JS_VERSION = 'b41780d760';
+  const ACCOUNT_JS_VERSION = '8df7f558d1';
   const scriptEl = document.currentScript || document.querySelector('script[src$="script.js"]');
   const base = scriptEl.src.replace(/script\.js(\?.*)?$/, '');
   const pathOf = url => {
@@ -228,15 +228,16 @@
   const here = (path.split('/')[0] || '');
   // Site owner only (marked when the owner's account loads): a Tracker button.
   let trackerLink = null;
-  try {
-    if (flagged() && localStorage.getItem('ss-owner') === '1' && controls) {
-      trackerLink = document.createElement('a');
-      trackerLink.className = 'home-link tracker-link';
-      trackerLink.href = base + 'tracker/';
-      trackerLink.textContent = 'Tracker';
-      acctLink.before(trackerLink);
-    }
-  } catch {}
+  const addTrackerLink = () => {
+    if (trackerLink || !controls) return trackerLink;
+    trackerLink = document.createElement('a');
+    trackerLink.className = 'home-link tracker-link';
+    trackerLink.href = base + 'tracker/';
+    trackerLink.textContent = 'Tracker';
+    acctLink.before(trackerLink);
+    return trackerLink;
+  };
+  try { if (flagged() && localStorage.getItem('ss-owner') === '1') addTrackerLink(); } catch {}
   const current = isTrackerPage ? trackerLink : isAccountPage ? acctLink : (['privacy', 'disclaimer'].includes(here) ? null : textsLink);
   if (current) { current.classList.add('is-current'); current.setAttribute('aria-current', 'page'); }   // (no "Signed in as …" in the header, at the owner's request)
 
@@ -270,6 +271,8 @@
 
   window.ssUI = {
     base, path, pathOf, isAccountPage, isTrackerPage, studyBar, pageInfo, renderSignedOut,
+    // Called once the signed-in account is confirmed as the site owner.
+    markOwner() { try { localStorage.setItem('ss-owner', '1'); } catch {} addTrackerLink(); },
     setSignedIn(user) {
       try { user ? localStorage.setItem(AUTH_FLAG, '1') : (localStorage.removeItem(AUTH_FLAG), localStorage.removeItem('ss-owner')); } catch {}
       acctLink.textContent = user ? 'Account' : 'Sign in';

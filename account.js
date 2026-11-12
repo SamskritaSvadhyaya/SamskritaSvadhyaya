@@ -864,7 +864,7 @@ async function adminPanel(el) {
   let snap;
   try { snap = await getDocs(collection(db, 'subscribers')); } catch { return; }
   const rows = snap.docs.map(d => d.data()).sort((a, b) => (a.at?.seconds || 0) - (b.at?.seconds || 0));
-  try { localStorage.setItem('ss-owner', '1'); } catch {}
+  UI.markOwner && UI.markOwner();
   el.innerHTML = `<section class="acct-section acct-small"><h2>Site owner</h2>
     <p>Announcements list: <strong>${rows.length}</strong> reader${rows.length === 1 ? '' : 's'} opted in.</p>
     <button type="button" class="acct-secondary">Download list (CSV)</button></section>`;
@@ -912,7 +912,7 @@ function trackerPage() {
   async function load(user) {
     try { await getDocs(collection(db, 'subscribers')); }            // only the site owner may
     catch { root.innerHTML = '<p class="acct-empty">This page is private.</p>'; return; }
-    try { localStorage.setItem('ss-owner', '1'); } catch {}
+    UI.markOwner && UI.markOwner();
     const snap = await getDoc(userRef(user.uid));
     const tracker = (snap.exists() && snap.data().tracker) || {};
     let active = 0;
