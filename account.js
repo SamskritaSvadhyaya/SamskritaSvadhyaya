@@ -903,7 +903,13 @@ function trackerPage() {
     const tracker = (snap.exists() && snap.data().tracker) || {};
     let active = 0;
     try { active = Math.max(0, texts.findIndex(t => t.key === localStorage.getItem('ss-tracker-tab'))); } catch {}
-    const data = k => (tracker[k] = tracker[k] || { cycles: 1, cells: {} });
+    // A tab may have been saved with only some fields (e.g. a new cycle before any ticks).
+    const data = k => {
+      const d = (tracker[k] = tracker[k] || {});
+      d.cells = d.cells || {};
+      d.cycles = Math.max(1, +d.cycles || 1);
+      return d;
+    };
     const saveCell = (k, cell, value) => {
       data(k).cells[cell] = value;
       return setDoc(userRef(user.uid), { tracker: { [k]: { cells: { [cell]: value } } } }, { merge: true });
@@ -939,11 +945,25 @@ function trackerPage() {
         active = +b.dataset.i; try { localStorage.setItem('ss-tracker-tab', texts[active].key); } catch {}
         render();
       }));
-      root.querySelector('.tr-new').addEventListener('click', async () => {
-        if (!confirm(`Start cycle ${d.cycles + 1} of ${t.title}?`)) return;
-        d.cycles += 1;
-        await setDoc(userRef(user.uid), { tracker: { [t.key]: { cycles: d.cycles } } }, { merge: true });
-        render();
+      // "+ New cycle" asks on the page itself (no browser pop-up, which some browsers block).
+      root.querySelector('.tr-new').addEventListener('click', () => {
+        const bar = root.querySelector('.tr-actions');
+        bar.innerHTML = `<span class="tr-ask">Start cycle ${d.cycles + 1} of ${esc(t.title)}?</span>
+          <button type="button" class="acct-secondary tr-yes">Start cycle ${d.cycles + 1}</button>
+          <button type="button" class="acct-link tr-no">Cancel</button> <span class="tr-err" aria-live="polite"></span>`;
+        bar.querySelector('.tr-no').addEventListener('click', render);
+        bar.querySelector('.tr-yes').addEventListener('click', async e => {
+          e.target.disabled = true;
+          try {
+            await setDoc(userRef(user.uid), { tracker: { [t.key]: { cycles: d.cycles + 1 } } }, { merge: true });
+            d.cycles += 1;
+            render();
+          } catch (err) {
+            bar.querySelector('.tr-err').textContent = 'Couldn’t save — ' + friendly(err);
+            e.target.disabled = false;
+          }
+        });
+        bar.querySelector('.tr-yes').focus();
       });
       // Cell editor: empty cell -> done today; filled cell -> change date / done without date / clear.
       const ed = root.querySelector('.tr-editor');

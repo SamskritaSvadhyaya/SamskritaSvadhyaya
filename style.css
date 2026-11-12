@@ -1254,3 +1254,5 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
   .jump-inner label:nth-child(1) { flex-basis: 100%; }
   .jump-inner label { flex: 1 1 6.5rem; }
 }
+.tr-ask { font-size: .9rem; color: var(--ink); }
+.tr-err { font-size: .85rem; color: #a32020; }
