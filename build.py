@@ -660,7 +660,10 @@ def build_static_pages():
                 key = f"{top['slug']}/{w['slug']}"
                 totals[key] = len(w.get("chapters", []))
                 m = re.match(r"Book (\d+)", w.get("title", ""))
-                labels[key] = f"{short} Book {m.group(1)}" if m else w.get("title", "")
+                # Say which collection a part belongs to: "Shrimad Bhagavatam Book 1",
+                # "The Story of Hanuman — Kishkindhakanda" (not to be confused with the
+                # Eclectic Collection's Kishkindhakanda sarga).
+                labels[key] = f"{short} Book {m.group(1)}" if m else f"{short} — {w.get('title', '')}"
         elif is_work(top):
             totals[top["slug"]] = len(top.get("chapters", []))
             labels[top["slug"]] = top.get("title", "")

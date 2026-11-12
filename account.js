@@ -621,6 +621,10 @@ function accountPage() {
     const stopped = stoppedPlaces(pages);
     const studied = pages.filter(p => p.studied);
     const notes = pages.filter(p => (p.note || '').trim() || hasVerseNotes(p)).sort(byTime);
+    // Text names from the build (they say which collection a part belongs to).
+    let TEXT_LABELS = {};
+    try { TEXT_LABELS = JSON.parse(document.getElementById('text-labels')?.textContent || '{}'); } catch {}
+    const textName = (key, p) => TEXT_LABELS[key] || workOf(p) || key;
     // My notes grouped by text (Narayaneeyam, Sundarakanda, Shrimad Bhagavatam Book 1 …);
     // texts with the latest note first, chapters in their own order (Dashaka 1, 2, 3 …).
     // Inside a text's group the heading names the text, so show just "Sarga 2" / "The story of Prahlada".
@@ -648,7 +652,7 @@ function accountPage() {
       for (const p of list) {
         const parts = p.path.split('/').filter(Boolean);
         const key = parts.length > 1 ? parts.slice(0, -1).join('/') : parts[0];
-        if (!byText.has(key)) byText.set(key, { key, label: workOf(p) || key, items: [] });
+        if (!byText.has(key)) byText.set(key, { key, label: textName(key, p), items: [] });
         byText.get(key).items.push(p);
       }
       const groupsOut = [...byText.values()];
@@ -681,14 +685,14 @@ function accountPage() {
       return groups.get(key);
     };
     for (const p of studied) {
-      const g = group(textKey(p), workOf(p) || textKey(p));
+      const g = group(textKey(p), textName(textKey(p), p));
       g.n += 1;
       g.pages.push(p);
       const ts = p.studiedAt || p.updated;
       if (ts && ts.seconds > g.last) { g.last = ts.seconds; g.lastTs = ts; }
     }
     // Texts read before but with nothing studied in the current reading.
-    for (const p of pages) if (readings[textKey(p).replace(/\//g, '|')]?.length) group(textKey(p), workOf(p) || textKey(p));
+    for (const p of pages) if (readings[textKey(p).replace(/\//g, '|')]?.length) group(textKey(p), textName(textKey(p), p));
     let labels = {};
     try { labels = JSON.parse(document.getElementById('text-labels')?.textContent || '{}'); } catch {}
     for (const [k, list] of Object.entries(readings)) {
