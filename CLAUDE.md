@@ -115,6 +115,9 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   that text's `studied` flags (notes/bookmarks/ribbons kept). Totals per text are embedded in
   account/index.html (`#text-totals`) by build_static_pages. Page docs are near the rules'
   12-field limit (11 used) — raise it in firestore.rules before adding page fields.
+- Notes are formatted (bold / italics / underline / highlight): account.js `noteEditor` (toolbar +
+  contenteditable), stored as `<!--rich-->` + HTML cleaned by `cleanNote` (only b, i, u, mark, br);
+  older plain-text notes still display/edit (no marker). Paste is plain text only.
 - Cache-busting: `build.py home` (`stamp_assets`) adds `?v=<content hash>` to every page's
   style.css / script.js link and sets script.js's `ACCOUNT_JS_VERSION` from account.js's hash —
   so after editing any of those three files, run `python build.py home` before committing.

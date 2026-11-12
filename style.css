@@ -1134,3 +1134,32 @@ main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
 @media (max-width: 600px) {
   .content { padding-left: 1rem; padding-right: 1rem; }
 }
+
+/* ---------- Notes with formatting (account.js noteEditor) ---------- */
+.note-tools { display: flex; flex-wrap: wrap; gap: .3rem; margin: 0 0 .3rem; }
+.note-tools button {
+  min-width: 2rem; height: 1.9rem; padding: 0 .55rem; cursor: pointer;
+  font-family: var(--read); font-size: .9rem; color: #5a4030;
+  background: #fffaf0; border: 1px solid #e6d3a3; border-radius: 6px;
+}
+.note-tools button:hover { border-color: #c0392b; color: #8b1e1e; }
+.note-tools button[data-cmd="clear"] { font-size: .78rem; }
+.note-tools .hl-swatch { background: #fff1a8; padding: 0 .2rem; border-radius: 2px; }
+.note-editor {
+  min-height: 5.5rem; padding: .55rem .7rem; text-align: left; overflow-wrap: anywhere;
+  font-family: var(--read); font-size: 1rem; line-height: 1.5; color: #1e110a;
+  background: #fff8e8; border: 1px solid #e6d3a3; border-left: 3px solid #c0392b; border-radius: 6px;
+}
+.my-notes .note-editor { min-height: 8rem; background: var(--bg); color: var(--ink); }
+.note-editor:focus { outline: 2px solid color-mix(in srgb, #c0392b 40%, transparent); }
+.note-editor:empty::before { content: attr(data-placeholder); color: #9a8670; font-style: italic; pointer-events: none; }
+.note-editor :is(b, i, u, span) { font-family: var(--read); }
+.note-text mark, .note-editor mark { background: #fff1a8; color: inherit; padding: 0 .1em; border-radius: 2px; }
+.acct-snippet .note-text :is(b, i, u, mark) { font-family: var(--read); }
+.acct-snippet { white-space: normal; }
+@media (max-width: 600px) { .note-tools button { min-width: 2.4rem; height: 2.3rem; } }
+/* Phones: keep the shloka ribbon inside the (narrower-margined) reading card */
+@media (max-width: 600px) {
+  .verse-mark { right: -.95rem; width: 22px; height: 22px; }
+  .verse-mark svg { width: 17px; height: 17px; }
+}

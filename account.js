@@ -63,6 +63,101 @@ function nextUrl() {
   return n && !/^[a-z]+:|^\/\//i.test(n) ? BASE + n.replace(/^\/+/, '') : null;
 }
 
+// ---------------------------------------------------------------- rich notes
+// Notes can have bold, italics, underline and highlight. Stored as cleaned HTML behind a
+// marker ("<!--rich-->…"); older notes are plain text and are shown/edited as such.
+const RICH = '<!--rich-->';
+const HL = '#fff1a8';                       // highlighter yellow (rgb 255, 241, 168)
+
+// Keep only b / i / u / mark / line breaks; everything else becomes plain text.
+function cleanNote(html) {
+  const tpl = document.createElement('template');
+  tpl.innerHTML = html;
+  const walk = node => {
+    let out = '';
+    for (const c of node.childNodes) {
+      if (c.nodeType === 3) { out += esc(c.textContent); continue; }
+      if (c.nodeType !== 1) continue;
+      const tag = c.tagName.toLowerCase();
+      if (tag === 'br') { out += '<br>'; continue; }
+      if (['script', 'style', 'img', 'iframe', 'object', 'svg', 'video', 'audio'].includes(tag)) continue;
+      let inner = walk(c);
+      const st = c.getAttribute('style') || '';
+      const bg = st.match(/background(?:-color)?\s*:\s*([^;]+)/i);
+      const hl = tag === 'mark' || (bg && !/transparent|rgba\(\s*0,\s*0,\s*0,\s*0\s*\)|initial|inherit|none/i.test(bg[1]));
+      if (hl) inner = `<mark>${inner}</mark>`;
+      if (tag === 'u' || /text-decoration[^;]*underline/i.test(st)) inner = `<u>${inner}</u>`;
+      if (tag === 'i' || tag === 'em' || /font-style\s*:\s*italic/i.test(st)) inner = `<i>${inner}</i>`;
+      if (tag === 'b' || tag === 'strong' || /font-weight\s*:\s*(bold|[6-9]00)/i.test(st)) inner = `<b>${inner}</b>`;
+      if (['div', 'p', 'li'].includes(tag) && out && !out.endsWith('<br>')) inner = '<br>' + inner;
+      out += inner;
+    }
+    return out;
+  };
+  return walk(tpl.content).replace(/(<br>\s*)+$/, '');
+}
+// Stored note -> safe HTML for display.
+const noteHtml = note => !note ? '' : note.startsWith(RICH) ? cleanNote(note.slice(RICH.length)) : esc(note).replace(/\n/g, '<br>');
+
+// A note box with a formatting toolbar. Saves (after a pause, and on leaving the box) through
+// save(value) -> Promise; value is '' when the note is empty.
+function noteEditor(host, note, { placeholder, status, save, onBlurEmpty }) {
+  host.insertAdjacentHTML('beforeend', `<div class="note-tools" role="toolbar" aria-label="Formatting">
+      <button type="button" data-cmd="bold" title="Bold (Ctrl+B)" aria-label="Bold"><b>B</b></button>
+      <button type="button" data-cmd="italic" title="Italics (Ctrl+I)" aria-label="Italics"><i>I</i></button>
+      <button type="button" data-cmd="underline" title="Underline (Ctrl+U)" aria-label="Underline"><u>U</u></button>
+      <button type="button" data-cmd="hl" title="Highlight" aria-label="Highlight"><span class="hl-swatch">ab</span></button>
+      <button type="button" data-cmd="clear" title="Clear formatting" aria-label="Clear formatting">clear</button>
+    </div>
+    <div class="note-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true" data-placeholder="${esc(placeholder)}"></div>`);
+  const tools = host.querySelector('.note-tools');
+  const ed = host.querySelector('.note-editor');
+  ed.innerHTML = noteHtml(note).replace(/<mark>/g, `<span style="background-color: ${HL};">`).replace(/<\/mark>/g, '</span>');
+  let saved = note || '';
+  const value = () => ed.textContent.trim() ? RICH + cleanNote(ed.innerHTML) : '';
+  let timer = null;
+  const flush = () => {
+    clearTimeout(timer);
+    const v = value();
+    if (v === saved) return;
+    if (v.length > 19000) { status.textContent = 'This note is too long to save — please shorten it.'; return; }
+    status.textContent = 'Saving…';
+    save(v).then(() => { saved = v; status.textContent = 'Saved'; })
+      .catch(e => { status.textContent = 'Not saved — ' + friendly(e); });
+  };
+  const schedule = () => { status.textContent = ''; clearTimeout(timer); timer = setTimeout(flush, 1200); };
+  const css = on => { try { document.execCommand('styleWithCSS', false, on); } catch {} };
+  tools.addEventListener('mousedown', e => e.preventDefault());       // keep the text selection
+  tools.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    ed.focus();
+    const cmd = b.dataset.cmd;
+    if (cmd === 'hl') {
+      css(true);
+      const cur = String(document.queryCommandValue('backColor') || '').replace(/\s/g, '');
+      document.execCommand('backColor', false, cur === 'rgb(255,241,168)' ? 'transparent' : HL);
+      css(false);
+    } else if (cmd === 'clear') {
+      document.execCommand('removeFormat');
+      css(true); document.execCommand('backColor', false, 'transparent'); css(false);
+    } else {
+      css(false);
+      document.execCommand(cmd);
+    }
+    schedule();
+  });
+  // Paste as plain words (no fonts, colours, links or scripts from other pages).
+  ed.addEventListener('paste', e => {
+    e.preventDefault();
+    document.execCommand('insertText', false, (e.clipboardData || window.clipboardData).getData('text/plain'));
+  });
+  ed.addEventListener('drop', e => e.preventDefault());
+  ed.addEventListener('input', schedule);
+  ed.addEventListener('blur', () => { flush(); if (onBlurEmpty && !value() && !saved) setTimeout(onBlurEmpty, 300); });
+  return { ed, flush, focus: () => ed.focus() };
+}
+
 // ---------------------------------------------------------------- chapter pages
 function readingPage(user) {
   const bar = UI.studyBar;
@@ -84,10 +179,9 @@ function readingPage(user) {
   notes.innerHTML = `
     <h2>My notes on this page</h2>
     <p class="my-notes-hint">Private — only you can see these. Saved automatically.</p>
-    <textarea rows="6" maxlength="20000" placeholder="Your notes on this page…" disabled></textarea>
+    <div class="note-box"><p class="acct-loading">Loading your notes…</p></div>
     <div class="my-notes-status" aria-live="polite"></div>`;
   (document.getElementById('content') || bar).after(notes);
-  const ta = notes.querySelector('textarea');
   const status = notes.querySelector('.my-notes-status');
 
   function paint() {
@@ -106,8 +200,10 @@ function readingPage(user) {
   let shlokas = [];
   const loaded = getDoc(ref).then(snap => {
     if (snap.exists()) state = { ...state, ...snap.data() };
-    ta.value = state.note || '';
-    bBtn.disabled = sBtn.disabled = ta.disabled = false;
+    const noteBox = notes.querySelector('.note-box');
+    noteBox.innerHTML = '';
+    noteEditor(noteBox, state.note || '', { placeholder: 'Your notes on this page…', status, save: v => save({ note: v }) });
+    bBtn.disabled = sBtn.disabled = false;
     paint();
     verseNotes(user, ref, info, state.verses || {});
     shlokas = findShlokas();
@@ -184,17 +280,6 @@ function readingPage(user) {
     paint();
   });
 
-  let timer = null;
-  const saveNote = () => {
-    clearTimeout(timer);
-    if (ta.value === (state.note || '')) return;
-    status.textContent = 'Saving…';
-    save({ note: ta.value })
-      .then(() => { status.textContent = 'Saved'; })
-      .catch(e => { status.textContent = 'Not saved — ' + friendly(e); });
-  };
-  ta.addEventListener('input', () => { status.textContent = ''; clearTimeout(timer); timer = setTimeout(saveNote, 1200); });
-  ta.addEventListener('blur', saveNote);
 
   // "Continue where you left off": remember this page and how far down the reader is.
   let lastSaved = -1;
@@ -338,24 +423,14 @@ function verseNotes(user, ref, info, saved) {
     const num = verseNum(s.el);
     const open = () => {
       box.innerHTML = `<label class="verse-note-label">✎ My note on ${num ? 'shloka ' + esc(num) : 'this shloka'}</label>
-        <textarea rows="3" maxlength="5000" placeholder="Your note on this shloka…"></textarea>
+        <div class="note-box"></div>
         <div class="verse-note-status" aria-live="polite"></div>`;
-      const ta = box.querySelector('textarea');
       const st = box.querySelector('.verse-note-status');
-      ta.value = current;
-      let timer = null;
-      const saveIt = () => {
-        clearTimeout(timer);
-        if (ta.value === current) return;
-        const val = ta.value;
-        st.textContent = 'Saving…';
-        setDoc(ref, { verses: { [n]: { t: firstWords(s.el), num, note: val } }, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true })
-          .then(() => { current = val; st.textContent = 'Saved'; })
-          .catch(e => { st.textContent = 'Not saved — ' + friendly(e); });
-      };
-      ta.addEventListener('input', () => { st.textContent = ''; clearTimeout(timer); timer = setTimeout(saveIt, 1200); });
-      ta.addEventListener('blur', () => { saveIt(); if (!ta.value.trim() && !current.trim()) setTimeout(closed, 300); });
-      return ta;
+      return noteEditor(box.querySelector('.note-box'), current, {
+        placeholder: 'Your note on this shloka…', status: st, onBlurEmpty: closed,
+        save: v => setDoc(ref, { verses: { [n]: { t: firstWords(s.el), num, note: v } }, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true })
+          .then(() => { current = v; }),
+      });
     };
     const closed = () => {
       box.innerHTML = '<button type="button" class="verse-note-add">✎ Note on this shloka</button>';
@@ -565,7 +640,7 @@ function accountPage() {
       .sort((a, b) => a[0] - b[0])
       .map(([key, v]) => `<div class="acct-snippet">${v.num
         ? `<a class="acct-verse-num" href="${esc(BASE + p.path)}#shloka-${esc(v.num)}" title="Read shloka ${esc(v.num)}">Shloka ${esc(v.num)}</a>`
-        : `<a class="acct-verse" lang="sa" href="${esc(BASE + p.path)}#note-${esc(key)}">${esc(v.t)}…</a>`} — ${esc(v.note.slice(0, 160))}${v.note.length > 160 ? '…' : ''}</div>`).join('');
+        : `<a class="acct-verse" lang="sa" href="${esc(BASE + p.path)}#note-${esc(key)}">${esc(v.t)}…</a>`} — <span class="note-text">${noteHtml(v.note)}</span></div>`).join('');
     const lp = profile.lastPage;
 
     // Studied count per text (the chapter's folder: narayaneeyam, thestoryofhanuman/sundarakanda,
@@ -644,7 +719,7 @@ function accountPage() {
           return `<div class="note-tabs" role="tablist" aria-label="Notes by text">${gs.map((g, i) =>
             `<button type="button" class="note-tab" role="tab" id="note-tab-${i}" aria-controls="note-panel-${i}" aria-selected="false" data-key="${esc(g.key)}">${esc(g.label)} <span class="note-tab-count">${g.items.length}</span></button>`).join('')}</div>`
             + gs.map((g, i) => `<div class="note-panel" role="tabpanel" id="note-panel-${i}" aria-labelledby="note-tab-${i}" hidden>
-              <ul class="acct-list acct-notes">${g.items.map(p => `<li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet">${esc(p.note.slice(0, 220))}${p.note.length > 220 ? '…' : ''}</div>` : ''}${verseList(p)}</li>`).join('')}</ul></div>`).join('');
+              <ul class="acct-list acct-notes">${g.items.map(p => `<li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet"><span class="note-text">${noteHtml(p.note)}</span></div>` : ''}${verseList(p)}</li>`).join('')}</ul></div>`).join('');
         })()
           : '<p class="acct-empty">No notes yet. Every shloka has a “✎ Note on this shloka” button, and each chapter a “My notes” box at the end.</p>'}</section>
 
