@@ -654,13 +654,21 @@ def tracker_tag():
     num = re.compile(r"॥\s*\d+(?:\.\d+)*\.(\d+)\s*॥")
     entries = load_manifest()
 
+    def count_shlokas(nums):
+        # Shlokas on the page. A full sarga numbers every verse (a missing number or two still
+        # means the highest number is the count); a selection (e.g. Yudhdhakanda 101) is counted.
+        if not nums:
+            return ""
+        n, top = len(set(nums)), max(nums)
+        return top if top - n <= 2 else n
+
     def rows(prefix, chapters, label):
         out = []
         for c in chapters:
             page = ROOT / prefix / c["slug"] / "index.html"
             nums = [int(x) for x in num.findall(page.read_text(encoding="utf-8"))] if page.exists() else []
             out.append({"id": f"{prefix}/{c['slug']}", "no": label(c), "name": c.get("subject") or c.get("title", ""),
-                        "shlokas": max(nums) if nums else ""})
+                        "shlokas": count_shlokas(nums)})
         return out
 
     def work(parent, slug):
@@ -669,10 +677,12 @@ def tracker_tag():
 
     texts = []
     kk, sk = work("thestoryofhanuman", "kishkindhakanda"), work("thestoryofhanuman", "sundarakanda")
+    yk = work("thestoryofhanuman", "yudhdhakanda")
     if sk:
         texts.append({"key": "sundarakanda", "title": "Sundarakanda",
                       "rows": (rows("thestoryofhanuman/kishkindhakanda", kk["chapters"], lambda c: f"KK {c['n']}") if kk else [])
-                      + rows("thestoryofhanuman/sundarakanda", sk["chapters"], lambda c: str(c["n"]))})
+                      + rows("thestoryofhanuman/sundarakanda", sk["chapters"], lambda c: str(c["n"]))
+                      + (rows("thestoryofhanuman/yudhdhakanda", yk["chapters"], lambda c: f"YK {c['n']}") if yk else [])})
     nar = find_entry(entries, "narayaneeyam")
     if nar:
         texts.append({"key": "narayaneeyam", "title": "Narayaneeyam",

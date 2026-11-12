@@ -980,15 +980,25 @@ function trackerPage() {
         // Which row is which chapter: "KK-Sarga 66", "SK-Sarga 3", "3" (Bhagavatam: chapter numbers 1-90).
         const byNo = new Map();
         t.rows.forEach(r => byNo.set(r.no.toLowerCase().replace(/\s+/g, ''), r));
-        const rowFor = cell => {
+        // ... and if the number doesn't match (the sheet's "YK-Sarga 102" is the site's 101),
+        // by the chapter's name in the next column.
+        const norm = v => String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
+        const byName = new Map(t.rows.map(r => [norm(r.name), r]));
+        const rowFor = (cell, name) => {
           const x = String(cell || '').toLowerCase().replace(/\s+/g, '');
-          let m = x.match(/^kk-?sarga(\d+)$/); if (m) return byNo.get('kk' + m[1]);
-          m = x.match(/^(?:sk-?)?sarga(\d+)$/) || x.match(/^(?:dashak\w*|ch(?:apter)?\.?)?(\d+)$/);
-          return m ? byNo.get(m[1]) : null;
+          let m = x.match(/^(kk|yk)-?sarga(\d+)$/);
+          let r = m ? byNo.get(m[1] + m[2]) : null;
+          if (!m) {
+            m = x.match(/^(?:sk-?)?sarga(\d+)$/) || x.match(/^(?:dashak\w*|ch(?:apter)?\.?)?(\d+)$/);
+            r = m ? byNo.get(m[1]) : null;
+          }
+          const n = norm(name);
+          if (n && (!r || norm(r.name) !== n)) r = byName.get(n) || r;
+          return m || n ? r : null;
         };
         const cells = {}; let n = 0, maxC = d.cycles;
         for (const l of lines.slice(head + 1)) {
-          const r = rowFor(l[0]);
+          const r = rowFor(l[0], l[1]);
           if (!r) continue;
           for (const c of cols) {
             if (!(l[c.col] || '').trim() || (l[c.col] || '').trim() === '-') continue;
