@@ -160,6 +160,19 @@ Lately the user releases one or two at a time, each from its latest Drive revisi
 `release.py next`, rebuild the page from the downloaded Drive doc (gdoc_to_body + build.py page
 with the manifest's title), then `work-index`, `home`.
 
+## Hidden texts (work in progress)
+
+`python release.py hide-text <slug>` / `show-text <slug>` move a whole top-level text (folder +
+texts.json entry, at its old position) into / out of `_unreleased/texts/` (gitignored, this machine
+only) and rebuild home, sitemap and the shloka menu. **Bhagavad Geeta** (`bhagavad-geeta`, work,
+chapters `ch-N` "Chapter N" + `--subject` the yoga name, title-sa "अध्यायः N"; Drive folder
+"Bhagavad Geeta" id `1PqO2eeVDx5QnjBG-F83eXfZ8ZoXWsIeh`, docs "BG-N <name>") is hidden - the owner
+will say when to publish. To add/update a chapter: `show-text bhagavad-geeta`, gdoc_to_body +
+`build.py page --work bhagavad-geeta --slug ch-N --n N --title "Chapter N" --title-sa "अध्यायः N"
+--subject "<yoga>"`, `work-index`, then `hide-text bhagavad-geeta` - and DON'T commit in between.
+Afterwards `git checkout -- sitemap.xml sitemap-dates.json` (the brief show bumps the home
+page's date) and confirm `git status` shows nothing about it.
+
 ## Windows (PowerShell)
 
 The commands above are for Linux/bash. On Windows:

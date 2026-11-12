@@ -16,6 +16,15 @@ Commands:
 
   release.py status <work>
       Show what is live and what is still withheld.
+
+  release.py hide-text <slug>
+      Take a whole text off the site (work in progress): its folder and its texts.json
+      entry move to _unreleased/, then home / sitemap / shloka menu are rebuilt without it.
+
+  release.py show-text <slug>
+      Put a hidden text back (at its old place in texts.json) and rebuild. Also used,
+      without committing, to add chapters to a hidden text: show-text, build the pages,
+      hide-text.
 """
 
 import argparse
@@ -85,6 +94,43 @@ def release_next(args):
     rebuild(args.work)
 
 
+def hide_text(args):
+    entries = load(MANIFEST, [])
+    idx = next((i for i, e in enumerate(entries) if e.get("slug") == args.slug), None)
+    if idx is None:
+        raise SystemExit(f"No top-level text '{args.slug}' in texts.json.")
+    dest = HOLD / "texts" / args.slug
+    if dest.exists():
+        raise SystemExit(f"{dest} already exists - run show-text first.")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if (ROOT / args.slug).exists():
+        shutil.move(str(ROOT / args.slug), str(dest))
+    else:
+        dest.mkdir()
+    save(HOLD / "texts" / f"{args.slug}.json", {"index": idx, "entry": entries.pop(idx)})
+    save(MANIFEST, entries)
+    subprocess.run([sys.executable, str(ROOT / "build.py"), "home"], check=True)
+    print(f"{args.slug}: hidden (kept in {dest})")
+
+
+def show_text(args):
+    held = HOLD / "texts" / f"{args.slug}.json"
+    if not held.exists():
+        raise SystemExit(f"'{args.slug}' is not a hidden text.")
+    data = load(held, {})
+    entries = load(MANIFEST, [])
+    if any(e.get("slug") == args.slug for e in entries):
+        raise SystemExit(f"'{args.slug}' is already in texts.json.")
+    entries.insert(min(data["index"], len(entries)), data["entry"])
+    shutil.move(str(HOLD / "texts" / args.slug), str(ROOT / args.slug))
+    save(MANIFEST, entries)
+    held.unlink()
+    if data["entry"].get("chapters") is not None:
+        subprocess.run([sys.executable, str(ROOT / "build.py"), "work-index", "--slug", args.slug], check=True)
+    subprocess.run([sys.executable, str(ROOT / "build.py"), "home"], check=True)
+    print(f"{args.slug}: back on the site (commit + push to publish)")
+
+
 def status(args):
     work = find_work(load(MANIFEST, []), args.work)
     held = load(HOLD / f"{args.work}.json", [])
@@ -102,6 +148,8 @@ def main():
     n.set_defaults(func=release_next)
     s = sub.add_parser("status"); s.add_argument("work")
     s.set_defaults(func=status)
+    ht = sub.add_parser("hide-text"); ht.add_argument("slug"); ht.set_defaults(func=hide_text)
+    st = sub.add_parser("show-text"); st.add_argument("slug"); st.set_defaults(func=show_text)
     args = p.parse_args()
     args.func(args)
 
