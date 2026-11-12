@@ -642,7 +642,7 @@ def verse_index():
         nums = numbers(rel)
         if nums is None:
             return None
-        c = {"p": rel + "/", "l": title + (" — " + subject if subject else "")}
+        c = {"p": rel + "/", "l": title}             # just "Sarga 13" / "Dashaka 24" (names are long)
         if group:
             c["g"] = group
         c.update(nums)

@@ -64,7 +64,8 @@ Static site of Sanskrit texts, published with GitHub Pages.
   Book 2). Automatic for new/re-imported chapters; stable on re-runs.
   script.js builds from that block: fixed side arrows ‹ › (screens ≥1000px, hover label), a
   ‹ Previous · All · Next › row under the heading (narrower screens), and the ← / → keys.
-- "Go to shloka" header link (script.js): Text → Chapter → Shloka dropdowns, from `verses.json`
+- "Go to shloka" header link (script.js): Text → (Kanda/Book) → Chapter → Shloka dropdowns, from `verses.json`
+  plus a Kanda/Book level for The Story of Hanuman and the Bhagavatam; chapters listed by number only
   (written by `build.py home` → `verse_index`: each chapter's printed shloka numbers ॥5.13.41॥;
   fetched only when opened, cache-busted by script.js `VERSES_VERSION`). Every shloka has a
   shareable link `<chapter>/#shloka-5.13.41` (opens there, briefly highlighted).

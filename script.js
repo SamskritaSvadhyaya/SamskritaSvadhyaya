@@ -190,7 +190,7 @@
   addEventListener('hashchange', goToHash);
 
   // ---- Header "Go to shloka": text -> chapter -> shloka ----
-  const VERSES_VERSION = '0de75d3668';
+  const VERSES_VERSION = '4f29046f1c';
   (() => {
     const controls = document.querySelector('.controls');
     const header = document.querySelector('.site-header');
@@ -212,26 +212,31 @@
     panel.hidden = true;
     panel.innerHTML = `<form class="jump-inner">
         <label><span>Text</span><select class="j-text"></select></label>
+        <label><span>Part</span><select class="j-part"></select></label>
         <label><span>Chapter</span><select class="j-ch"></select></label>
         <label><span>Shloka</span><select class="j-v"></select></label>
         <button type="submit" class="j-go">Go</button>
         <button type="button" class="j-close" aria-label="Close">×</button></form>`;
     header.appendChild(panel);
-    const [tSel, cSel, vSel] = ['.j-text', '.j-ch', '.j-v'].map(q => panel.querySelector(q));
+    const [tSel, pSel, cSel, vSel] = ['.j-text', '.j-part', '.j-ch', '.j-v'].map(q => panel.querySelector(q));
     const esc = x => String(x).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
     let data = null;
     const unit = l => (l.match(/^(?:.*\s)?(Sarga|Dashaka|Chapter)\s/) || [])[1] || 'Chapter';
+    // The Story of Hanuman / Shrimad Bhagavatam: a Part level (Kishkindhakanda…, Book 1…).
+    const partsOf = t => [...new Set(t.c.map(c => c.g).filter(Boolean))];
+    const fillPart = () => {
+      const parts = partsOf(data[+tSel.value]);
+      pSel.innerHTML = parts.map(g => `<option value="${esc(g)}">${esc(g)}</option>`).join('');
+      pSel.closest('label').hidden = !parts.length;
+      pSel.closest('label').querySelector('span').textContent = parts.some(g => /^Book/.test(g)) ? 'Book' : 'Kanda';
+    };
     const fillCh = () => {
       const t = data[+tSel.value];
-      let html = '', group = null;
-      t.c.forEach((c, i) => {
-        if (c.g !== group) { if (group != null) html += '</optgroup>'; if (c.g) html += `<optgroup label="${esc(c.g)}">`; group = c.g; }
-        html += `<option value="${i}">${esc(c.l)}</option>`;
-      });
-      if (group) html += '</optgroup>';
-      cSel.innerHTML = html;
+      const g = pSel.closest('label').hidden ? null : pSel.value;
+      const list = t.c.map((c, i) => [c, i]).filter(([c]) => !g || c.g === g);
+      cSel.innerHTML = list.map(([c, i]) => `<option value="${i}">${esc(c.l)}</option>`).join('');
       cSel.closest('label').hidden = t.c.length === 1 && t.c[0].p === t.k + '/';   // a single-page text
-      cSel.closest('label').querySelector('span').textContent = unit(t.c[0].l);
+      cSel.closest('label').querySelector('span').textContent = unit(list[0][0].l);
     };
     const fillV = () => {
       const c = data[+tSel.value].c[+cSel.value];
@@ -248,7 +253,8 @@
         if (location.hash === target.hash) goToHash(); else location.hash = target.hash;
       } else location.href = target.href;
     };
-    tSel.addEventListener('change', () => { fillCh(); fillV(); });
+    tSel.addEventListener('change', () => { fillPart(); fillCh(); fillV(); });
+    pSel.addEventListener('change', () => { fillCh(); fillV(); });
     cSel.addEventListener('change', fillV);
     vSel.addEventListener('change', () => { if (vSel.value) go(); });
     panel.querySelector('form').addEventListener('submit', e => { e.preventDefault(); go(); });
@@ -267,8 +273,12 @@
         let ti = data.findIndex(t => t.c.some(c => c.p === here));
         if (ti < 0) ti = data.findIndex(t => here.startsWith(t.k + '/'));
         tSel.value = String(Math.max(0, ti));
+        fillPart();
+        const t = data[+tSel.value];
+        const ci = t.c.findIndex(c => c.p === here);
+        const inPart = here && t.c.find(c => c.g && c.p.startsWith(here));        // a part's own page
+        if (ci >= 0 && t.c[ci].g) pSel.value = t.c[ci].g; else if (inPart) pSel.value = inPart.g;
         fillCh();
-        const ci = data[+tSel.value].c.findIndex(c => c.p === here);
         if (ci >= 0) cSel.value = String(ci);
         fillV();
       }

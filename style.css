@@ -1240,9 +1240,8 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
   display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem .7rem; }
 .jump-inner label { display: flex; flex-direction: column; gap: .15rem; font-size: .75rem; color: var(--ink-soft); min-width: 0; }
 .jump-inner label[hidden] { display: none; }
-.jump-inner label:nth-child(1) { flex: 1 1 11rem; }
-.jump-inner label:nth-child(2) { flex: 3 1 16rem; }
-.jump-inner label:nth-child(3) { flex: 0 1 8rem; }
+.jump-inner label { flex: 1 1 9rem; }
+.jump-inner label:nth-child(1) { flex: 2 1 14rem; }
 .jump-inner select { width: 100%; font-family: var(--read); font-size: .88rem; padding: .35rem .4rem; color: var(--ink);
   background: var(--bg-card); border: 1px solid var(--rule); border-radius: 6px; }
 .jump-inner select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -1252,6 +1251,6 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
 .jump-inner .j-close { background: none; border: none; font-size: 1.3rem; line-height: 1; color: var(--ink-soft); cursor: pointer; padding: .3rem .4rem; }
 .jump-inner .j-close:hover { color: var(--accent-strong); }
 @media (max-width: 600px) {
-  .jump-inner label:nth-child(1), .jump-inner label:nth-child(2) { flex-basis: 100%; }
-  .jump-inner label:nth-child(3) { flex: 1 1 6rem; }
+  .jump-inner label:nth-child(1) { flex-basis: 100%; }
+  .jump-inner label { flex: 1 1 6.5rem; }
 }
