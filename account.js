@@ -689,12 +689,19 @@ function accountPage() {
     }
     // Texts read before but with nothing studied in the current reading.
     for (const p of pages) if (readings[textKey(p).replace(/\//g, '|')]?.length) group(textKey(p), workOf(p) || textKey(p));
+    let labels = {};
+    try { labels = JSON.parse(document.getElementById('text-labels')?.textContent || '{}'); } catch {}
+    for (const [k, list] of Object.entries(readings)) {
+      const key = k.replace(/\|/g, '/');
+      if (list?.length && !groups.has(key)) group(key, labels[key] || key);
+    }
+    const pastLabels = () => { try { return JSON.parse(document.getElementById('text-labels')?.textContent || '{}'); } catch { return {}; } };
     const fmt = ts => ts ? new Date(ts.seconds * 1000).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
     const progressItem = g => {
       const cycle = g.done.length + 1;
       const complete = g.total > 0 && g.n >= g.total;
-      const history = g.done.length ? `<span class="acct-readings">Completed: ${g.done.map(r =>
-        `Reading ${r.cycle} — ${esc(fmt(r.finished))}`).join(' · ')}</span>` : '';
+      const history = g.done.length ? `<span class="acct-readings">Completed: ${g.done.map((r, ri) =>
+        `Reading ${r.cycle} — ${esc(fmt(r.finished))}<button type="button" class="reading-del" data-key="${esc(g.key)}" data-i="${ri}" title="Remove this reading" aria-label="Remove reading ${r.cycle}">×</button>`).join(' · ')}</span>` : '';
       // One row per text: name · bar across the box · "26 of 100 studied" in small letters.
       const bar = pct => `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>`;
       if (complete) {
@@ -732,7 +739,14 @@ function accountPage() {
 
       <section class="acct-section"><h2>✓ Progress <span class="acct-count">${studied.length} studied</span></h2>
         ${groups.size ? `<ul class="acct-progress-list">${[...groups.values()].map(progressItem).join('')}</ul>`
-          : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
+          : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}
+        <button type="button" class="acct-link past-toggle">+ Add a reading you completed earlier</button>
+        <form class="past-form" hidden>
+          <label>Text <select name="text" required>${Object.entries(pastLabels()).map(([k, l]) => `<option value="${esc(k)}">${esc(l)}</option>`).join('')}</select></label>
+          <label>Finished on <input type="date" name="date" required max="${new Date().toISOString().slice(0, 10)}"></label>
+          <button type="submit" class="acct-secondary">Add</button>
+          <span class="past-msg" aria-live="polite"></span>
+        </form></section>
 
       <section class="acct-section"><h2>✎ My notes</h2>
         ${notes.length ? (() => {
@@ -806,6 +820,34 @@ function accountPage() {
         pick(sel, false);
       }
     }
+    // Past readings: add one (text + date) or remove one; readings are numbered by date.
+    const saveReadings = async (key, list) => {
+      list.sort((a, b) => (a.finished?.seconds || 0) - (b.finished?.seconds || 0));
+      list.forEach((r, i) => { r.cycle = i + 1; });
+      await setDoc(userRef(user.uid), { readings: { [key.replace(/\//g, '|')]: list } }, { merge: true });
+      renderSignedIn(user);
+    };
+    const pastForm = root.querySelector('.past-form');
+    root.querySelector('.past-toggle').addEventListener('click', () => { pastForm.hidden = !pastForm.hidden; });
+    pastForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const key = pastForm.text.value, day = pastForm.date.value;
+      const msg = pastForm.querySelector('.past-msg');
+      if (!day) { msg.textContent = 'Please choose the date you finished.'; return; }
+      pastForm.querySelector('button[type=submit]').disabled = true;
+      try {
+        const list = [...(readings[key.replace(/\//g, '|')] || [])];
+        list.push({ cycle: 0, finished: Timestamp.fromDate(new Date(day + 'T12:00:00')) });
+        await saveReadings(key, list);
+      } catch (err) { msg.textContent = friendly(err); pastForm.querySelector('button[type=submit]').disabled = false; }
+    });
+    root.querySelectorAll('.reading-del').forEach(b => b.addEventListener('click', async () => {
+      const key = b.dataset.key, list = [...(readings[key.replace(/\//g, '|')] || [])];
+      const r = list[+b.dataset.i];
+      if (!r || !confirm(`Remove reading ${r.cycle} (finished ${fmt(r.finished)})?`)) return;
+      list.splice(+b.dataset.i, 1);
+      try { await saveReadings(key, list); } catch (err) { alert(friendly(err)); }
+    }));
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
       const g = groups.get(btn.dataset.key);
       if (!g) return;

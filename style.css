@@ -1186,3 +1186,20 @@ main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
 }
 .ch-select:focus { outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent); border-color: var(--accent); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Progress box: add / remove readings completed earlier */
+main.account .past-toggle { margin-top: .8rem; font-size: .85rem; }
+.past-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem .8rem; margin-top: .6rem;
+  padding: .7rem .8rem; border: 1px dashed var(--rule); border-radius: 8px; }
+.past-form[hidden] { display: none; }
+.past-form label { display: flex; flex-direction: column; gap: .2rem; font-size: .82rem; color: var(--ink-soft); }
+.past-form :is(select, input) { font-family: var(--read); font-size: .9rem; padding: .35rem .5rem; color: var(--ink);
+  background: var(--bg-card); border: 1px solid var(--rule); border-radius: 6px; }
+main.account .past-form .acct-secondary { font-size: .88rem; padding: .4rem .9rem; }
+.past-msg { font-size: .82rem; color: #a32020; }
+.reading-del { background: none; border: none; padding: 0 .15rem; margin-left: .15rem; cursor: pointer;
+  color: var(--ink-soft); font-size: .9rem; line-height: 1; }
+.reading-del:hover { color: #a32020; }
+.past-form label { min-width: 0; max-width: 100%; }
+.past-form select { max-width: 100%; }
+@media (max-width: 600px) { .past-form label:first-child { flex: 1 1 100%; } .past-form select { width: 100%; } }

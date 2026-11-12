@@ -652,17 +652,25 @@ def build_static_pages():
     """Reader account page (sign-in / bookmarks / notes, driven by account.js) and the
     privacy policy (body from _privacy_body.html)."""
     # Chapters per text, keyed by folder, for the Account page's "N of TOTAL studied".
-    totals = {}
+    totals, labels = {}, {}
     for top in load_manifest():
         if is_parent(top):
+            short = top.get("title", "").split(" — ")[0]          # "Shrimad Bhagavatam"
             for w in top.get("works", []):
-                totals[f"{top['slug']}/{w['slug']}"] = len(w.get("chapters", []))
+                key = f"{top['slug']}/{w['slug']}"
+                totals[key] = len(w.get("chapters", []))
+                m = re.match(r"Book (\d+)", w.get("title", ""))
+                labels[key] = f"{short} Book {m.group(1)}" if m else w.get("title", "")
         elif is_work(top):
             totals[top["slug"]] = len(top.get("chapters", []))
+            labels[top["slug"]] = top.get("title", "")
         else:
             totals[top["slug"]] = 1
+            labels[top["slug"]] = top.get("title", "")
     totals_tag = ('<script type="application/json" id="text-totals">'
-                  + json.dumps(totals, separators=(",", ":")) + "</script>")
+                  + json.dumps(totals, separators=(",", ":")) + "</script>"
+                  + '<script type="application/json" id="text-labels">'
+                  + json.dumps(labels, ensure_ascii=False, separators=(",", ":")) + "</script>")
     pages = [
         ("account", "Your account", "Bookmarks, progress and private notes",
          "Your account | Samskrita Svadhyaya",
