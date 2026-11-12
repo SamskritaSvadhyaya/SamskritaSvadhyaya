@@ -165,6 +165,117 @@
     });
   }
 
+  // ---- Shloka links: #shloka-5.13.41 opens the page at that shloka (briefly highlighted) ----
+  const findVerse = num => {
+    const main = document.getElementById('content');
+    if (!main || !num) return null;
+    const re = new RegExp('॥\\s*' + num.replace(/\./g, '\\.') + '\\s*॥');
+    const ps = [...main.querySelectorAll('p')].filter(p => re.test(p.textContent));
+    return ps.find(p => /text-align:\s*center/.test(p.getAttribute('style') || '')) || ps[0] || null;
+  };
+  const goToHash = () => {
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (!h.startsWith('shloka-')) return;
+    const el = findVerse(h.slice(7));
+    if (!el) return;
+    const go = () => {
+      el.classList.remove('flash'); void el.offsetWidth;
+      el.classList.add('flash');
+      el.scrollIntoView({ block: 'start', behavior: 'instant' });
+      setTimeout(() => el.classList.remove('flash'), 2600);
+    };
+    if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
+  };
+  goToHash();
+  addEventListener('hashchange', goToHash);
+
+  // ---- Header "Go to shloka": text -> chapter -> shloka ----
+  const VERSES_VERSION = '0de75d3668';
+  (() => {
+    const controls = document.querySelector('.controls');
+    const header = document.querySelector('.site-header');
+    const textsLink = controls && controls.querySelector('.home-link');
+    if (!controls || !header || !textsLink) return;
+    const siteBase = textsLink.getAttribute('href');               // "../../../" -> site root
+    const here = (() => {
+      const root = new URL(siteBase, location.href).pathname;
+      return decodeURIComponent(location.pathname.startsWith(root) ? location.pathname.slice(root.length) : '').replace(/index\.html$/, '');
+    })();
+    const link = document.createElement('a');
+    link.className = 'home-link jump-link';
+    link.href = '#';
+    link.textContent = 'Go to shloka';
+    link.setAttribute('aria-expanded', 'false');
+    textsLink.after(link);
+    const panel = document.createElement('div');
+    panel.className = 'jump-panel';
+    panel.hidden = true;
+    panel.innerHTML = `<form class="jump-inner">
+        <label><span>Text</span><select class="j-text"></select></label>
+        <label><span>Chapter</span><select class="j-ch"></select></label>
+        <label><span>Shloka</span><select class="j-v"></select></label>
+        <button type="submit" class="j-go">Go</button>
+        <button type="button" class="j-close" aria-label="Close">×</button></form>`;
+    header.appendChild(panel);
+    const [tSel, cSel, vSel] = ['.j-text', '.j-ch', '.j-v'].map(q => panel.querySelector(q));
+    const esc = x => String(x).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    let data = null;
+    const unit = l => (l.match(/^(?:.*\s)?(Sarga|Dashaka|Chapter)\s/) || [])[1] || 'Chapter';
+    const fillCh = () => {
+      const t = data[+tSel.value];
+      let html = '', group = null;
+      t.c.forEach((c, i) => {
+        if (c.g !== group) { if (group != null) html += '</optgroup>'; if (c.g) html += `<optgroup label="${esc(c.g)}">`; group = c.g; }
+        html += `<option value="${i}">${esc(c.l)}</option>`;
+      });
+      if (group) html += '</optgroup>';
+      cSel.innerHTML = html;
+      cSel.closest('label').hidden = t.c.length === 1 && t.c[0].p === t.k + '/';   // a single-page text
+      cSel.closest('label').querySelector('span').textContent = unit(t.c[0].l);
+    };
+    const fillV = () => {
+      const c = data[+tSel.value].c[+cSel.value];
+      vSel.innerHTML = '<option value="">Beginning</option>'
+        + c.v.map(v => `<option value="${esc(c.pre + v)}">${esc(c.pre + v)}</option>`).join('');
+    };
+    const go = () => {
+      const c = data[+tSel.value].c[+cSel.value];
+      const v = vSel.value;
+      const target = new URL(siteBase + c.p + (v ? '#shloka-' + encodeURIComponent(v) : ''), location.href);
+      panel.hidden = true; link.setAttribute('aria-expanded', 'false');
+      if (target.pathname === location.pathname) {
+        if (!v) { scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        if (location.hash === target.hash) goToHash(); else location.hash = target.hash;
+      } else location.href = target.href;
+    };
+    tSel.addEventListener('change', () => { fillCh(); fillV(); });
+    cSel.addEventListener('change', fillV);
+    vSel.addEventListener('change', () => { if (vSel.value) go(); });
+    panel.querySelector('form').addEventListener('submit', e => { e.preventDefault(); go(); });
+    panel.querySelector('.j-close').addEventListener('click', () => { panel.hidden = true; link.setAttribute('aria-expanded', 'false'); link.focus(); });
+    panel.addEventListener('keydown', e => { if (e.key === 'Escape') panel.querySelector('.j-close').click(); });
+    link.addEventListener('click', async e => {
+      e.preventDefault();
+      if (!panel.hidden) { panel.hidden = true; link.setAttribute('aria-expanded', 'false'); return; }
+      panel.hidden = false; link.setAttribute('aria-expanded', 'true');
+      if (!data) {
+        tSel.innerHTML = '<option>Loading…</option>';
+        try { data = await (await fetch(siteBase + 'verses.json?v=' + VERSES_VERSION)).json(); }
+        catch { tSel.innerHTML = '<option>Couldn’t load the list — please try again</option>'; data = null; return; }
+        tSel.innerHTML = data.map((t, i) => `<option value="${i}">${esc(t.t)}</option>`).join('');
+        // Start on the text / chapter being read.
+        let ti = data.findIndex(t => t.c.some(c => c.p === here));
+        if (ti < 0) ti = data.findIndex(t => here.startsWith(t.k + '/'));
+        tSel.value = String(Math.max(0, ti));
+        fillCh();
+        const ci = data[+tSel.value].c.findIndex(c => c.p === here);
+        if (ci >= 0) cSel.value = String(ci);
+        fillV();
+      }
+      (here && data[+tSel.value].c.some(c => c.p === here) ? vSel : tSel).focus();
+    });
+  })();
+
   // ---- Reader accounts (optional sign-in) ----
   // Every page stays open to everyone. This adds a "Sign in" link, and on chapter pages a
   // bar for bookmarks / progress / notes. The Firebase code (account.js) is only loaded on

@@ -534,6 +534,7 @@ def build_home(_args=None):
 
     build_static_pages()
     chapter_nav()
+    verse_index()
     stamp_assets()
 
     # Every build flow ends with `home`, so refresh search metadata + sitemap here.
@@ -613,6 +614,59 @@ def chapter_nav():
                 page.write_bytes((new.replace("\n", "\r\n") if crlf else new).encode("utf-8"))
 
 
+def verse_index():
+    """verses.json for the header's "Go to shloka" menu: every text (texts.json order), its
+    chapters (with their description) and each chapter's printed shloka numbers (॥5.13.41॥)."""
+    numre = re.compile(r"॥\s*([0-9०-९]+(?:\.[0-9०-९]+)*)\s*॥")
+
+    def numbers(rel):
+        page = ROOT / rel / "index.html"
+        if not page.exists():
+            return None
+        html = page.read_text(encoding="utf-8")
+        m = re.search(r'<main[^>]*id="content".*?</main>', html, re.S)
+        found = numre.findall(m.group(0) if m else html)
+        dotted = [n for n in found if "." in n]
+        found = dotted or found
+        # keep this chapter's own numbers (not verses quoted from elsewhere), in page order
+        prefixes = [n.rsplit(".", 1)[0] if "." in n else "" for n in found]
+        pre = max(set(prefixes), key=prefixes.count) if prefixes else ""
+        seen, tails = set(), []
+        for n, p in zip(found, prefixes):
+            if p == pre and n not in seen:
+                seen.add(n)
+                tails.append(n.rsplit(".", 1)[1] if "." in n else n)
+        return {"pre": pre + "." if pre else "", "v": tails}
+
+    def chapter(rel, title, subject, group=None):
+        nums = numbers(rel)
+        if nums is None:
+            return None
+        c = {"p": rel + "/", "l": title + (" — " + subject if subject else "")}
+        if group:
+            c["g"] = group
+        c.update(nums)
+        return c
+
+    out = []
+    for e in load_manifest():
+        chs = []
+        if is_parent(e):
+            for w in e.get("works", []):
+                g = w.get("title", "").split(" — ")[0]
+                chs += [chapter(f"{e['slug']}/{w['slug']}/{c['slug']}", c.get("title", ""), c.get("subject", ""), g)
+                        for c in w.get("chapters", [])]
+        elif is_work(e):
+            chs = [chapter(f"{e['slug']}/{c['slug']}", c.get("title", ""), c.get("subject", ""))
+                   for c in e.get("chapters", [])]
+        else:
+            chs = [chapter(e["slug"], e.get("title", ""), "")]
+        chs = [c for c in chs if c]
+        if chs:
+            out.append({"t": e.get("title", ""), "k": e["slug"], "c": chs})
+    (ROOT / "verses.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
 def stamp_assets():
     """Version-stamp the shared files so browsers fetch new copies as soon as they change
     (GitHub Pages lets browsers reuse cached files for 10 minutes otherwise).
@@ -629,6 +683,8 @@ def stamp_assets():
     raw = script.read_bytes()
     new = re.sub(rb"const ACCOUNT_JS_VERSION = '[^']*';",
                  b"const ACCOUNT_JS_VERSION = '" + short_hash(ROOT / "account.js").encode() + b"';", raw)
+    new = re.sub(rb"const VERSES_VERSION = '[^']*';",
+                 b"const VERSES_VERSION = '" + short_hash(ROOT / "verses.json").encode() + b"';", new)
     if new != raw:
         script.write_bytes(new)
 

@@ -1231,3 +1231,27 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
 .tr-editor[hidden] { display: none; }
 .tr-editor input { font-family: var(--read); padding: .3rem .4rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); color: var(--ink); }
 .controls .tracker-link.is-current { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ---------- Header "Go to shloka" (text -> chapter -> shloka) ---------- */
+.controls .jump-link[aria-expanded="true"] { color: var(--accent-strong); border-color: var(--accent); }
+.jump-panel { border-top: 1px solid var(--rule); }
+.jump-panel[hidden] { display: none; }
+.jump-inner { max-width: var(--content-width); margin: 0 auto; padding: .6rem 1rem .75rem;
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem .7rem; }
+.jump-inner label { display: flex; flex-direction: column; gap: .15rem; font-size: .75rem; color: var(--ink-soft); min-width: 0; }
+.jump-inner label[hidden] { display: none; }
+.jump-inner label:nth-child(1) { flex: 1 1 11rem; }
+.jump-inner label:nth-child(2) { flex: 3 1 16rem; }
+.jump-inner label:nth-child(3) { flex: 0 1 8rem; }
+.jump-inner select { width: 100%; font-family: var(--read); font-size: .88rem; padding: .35rem .4rem; color: var(--ink);
+  background: var(--bg-card); border: 1px solid var(--rule); border-radius: 6px; }
+.jump-inner select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.jump-inner .j-go { font-family: var(--read); font-size: .88rem; padding: .38rem 1rem; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--accent); background: var(--accent); color: #fff; }
+.jump-inner .j-go:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+.jump-inner .j-close { background: none; border: none; font-size: 1.3rem; line-height: 1; color: var(--ink-soft); cursor: pointer; padding: .3rem .4rem; }
+.jump-inner .j-close:hover { color: var(--accent-strong); }
+@media (max-width: 600px) {
+  .jump-inner label:nth-child(1), .jump-inner label:nth-child(2) { flex-basis: 100%; }
+  .jump-inner label:nth-child(3) { flex: 1 1 6rem; }
+}
