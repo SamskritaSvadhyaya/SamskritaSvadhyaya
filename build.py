@@ -749,6 +749,18 @@ def tracker_tag():
         texts.append({"key": "bhagavatam", "title": "Shrimad Bhagavatam",
                       "rows": (rows("shrimad-bhagavatam-canto-10/book-1", b1["chapters"], lambda c: str(c["n"])) if b1 else [])
                       + (rows("shrimad-bhagavatam-canto-10/book-2", b2["chapters"], lambda c: str(c["n"])) if b2 else [])})
+    # Bhagavad Geeta: tracked here only (not on the website, so no links). Names as in the
+    # owner's sheet; shloka counts are the standard ones (700 in all).
+    geeta = [("Arjuna Vishad Yoga", 47), ("Sankhya Yoga", 72), ("Karma Yoga", 43),
+             ("Gnyana Karma Sanyasa Yoga", 42), ("Karma Sanyas Yoga", 29), ("Atma Sanyama Yoga", 47),
+             ("Gnyana Vignyana Yoga", 30), ("Akshara Brahma Yoga", 28), ("Raj Vidya Raj Guhya Yoga", 34),
+             ("Vibhuti Yoga", 42), ("Vishwarupa Darshana Yoga", 55), ("Bhakti Yoga", 20),
+             ("Kshetra Kshetragnya Vibhaga Yoga", 34), ("Guna Traya Vibhaga Yoga", 27),
+             ("Purushottama Yoga", 20), ("Daivasura Sampad Vibhaga Yoga", 24),
+             ("Shraddha Traya Vibhaga Yoga", 28), ("Moksha Sanyasa Yoga", 78)]
+    texts.append({"key": "geeta", "title": "Bhagavad Geeta",
+                  "rows": [{"id": f"geeta/ch-{i}", "no": str(i), "name": n, "shlokas": k, "nolink": True}
+                           for i, (n, k) in enumerate(geeta, 1)]})
     return ('<script type="application/json" id="tracker-data">'
             + json.dumps(texts, ensure_ascii=False, separators=(",", ":")) + "</script>")
 

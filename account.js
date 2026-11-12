@@ -925,7 +925,7 @@ function trackerPage() {
           <thead><tr><th class="tr-no">No.</th><th class="tr-name">Name</th><th class="tr-sh">Shlokas</th>
             ${cyc.map(c => `<th class="tr-cyc">Cycle ${c}<span>${doneIn(c)} / ${t.rows.length}</span></th>`).join('')}</tr></thead>
           <tbody>${t.rows.map(r => `<tr><td class="tr-no">${esc(r.no)}</td>
-            <td class="tr-name"><a href="${esc(BASE + r.id + '/')}">${esc(r.name)}</a></td><td class="tr-sh">${esc(String(r.shlokas))}</td>
+            <td class="tr-name">${r.nolink ? esc(r.name) : `<a href="${esc(BASE + r.id + '/')}">${esc(r.name)}</a>`}</td><td class="tr-sh">${esc(String(r.shlokas))}</td>
             ${cyc.map(c => { const v = d.cells[`${r.id}~${c}`] || '';
               return `<td class="tr-cell${v ? ' is-done' : ''}"><button type="button" data-cell="${esc(r.id)}~${c}" title="${v ? 'Done ' + esc(nice(v)) + ' — click to change' : 'Mark done'}">${v ? '✓ ' + esc(nice(v)) : '·'}</button></td>`; }).join('')}
           </tr>`).join('')}</tbody></table></div>
