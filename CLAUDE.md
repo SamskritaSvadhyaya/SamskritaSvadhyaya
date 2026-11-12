@@ -118,8 +118,7 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
 - Owner's study tracker: `tracker/` (built by build_static_pages with row data from texts.json +
   shloka counts from the pages; noindex). account.js `trackerPage` shows it only if the signed-in
   account can list `subscribers` (= site owner); data in `users/{uid}.tracker[text].{cycles,cells}`.
-  "Import from my spreadsheet" parses a pasted Google Sheets table (Date/Cycle N columns). The
-  header "Tracker" button shows only in the owner's browser (localStorage `ss-owner`).
+  The header "Tracker" button shows only in the owner's browser (localStorage `ss-owner`).
 - Cache-busting: `build.py home` (`stamp_assets`) adds `?v=<content hash>` to every page's
   style.css / script.js link and sets script.js's `ACCOUNT_JS_VERSION` from account.js's hash —
   so after editing any of those three files, run `python build.py home` before committing.

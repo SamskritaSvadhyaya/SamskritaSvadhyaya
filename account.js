@@ -888,25 +888,11 @@ function trackerPage() {
   const root = document.getElementById('tracker-app');
   let texts = [];
   try { texts = JSON.parse(document.getElementById('tracker-data')?.textContent || '[]'); } catch {}
-  const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
   const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };   // local date
   const nice = v => {
     if (!v || v === 'done') return v === 'done' ? 'Done' : '';
     const d = new Date(v + 'T12:00:00');
     return isNaN(d) ? v : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-  };
-  // "24-August 2026", "1st-Nov 2026", "30/06/2026", "16-April-2026", "4th Nov 2026" -> "YYYY-MM-DD"
-  const parseDate = raw => {
-    const t = String(raw || '').trim().toLowerCase();
-    if (!t) return '';
-    let m = t.match(/^(\d{1,2})[\/.](\d{1,2})[\/.](\d{4})$/);
-    if (m) return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
-    m = t.replace(/(\d)(st|nd|rd|th)\b/g, '$1').replace(/[-,]/g, ' ').replace(/\s+/g, ' ').match(/^(\d{1,2}) ([a-z]+) (\d{4})$/);
-    if (m) {
-      const mo = MONTHS.indexOf(m[2].slice(0, 3));
-      if (mo >= 0) return `${m[3]}-${String(mo + 1).padStart(2, '0')}-${m[1].padStart(2, '0')}`;
-    }
-    return '';
   };
 
   async function load(user) {
@@ -934,14 +920,7 @@ function trackerPage() {
           `<button type="button" class="note-tab" role="tab" aria-selected="${i === active}" data-i="${i}">${esc(x.title)}</button>`).join('')}</div>
         <div class="tr-actions">
           <button type="button" class="acct-secondary tr-new">+ New cycle</button>
-          <button type="button" class="acct-link tr-import-toggle">Import from my spreadsheet</button>
         </div>
-        <form class="tr-import" hidden>
-          <p>In Google Sheets, open your tab for <strong>${esc(t.title)}</strong>, select the whole table <em>including the header row</em>
-            (click a cell, then Ctrl+A), copy (Ctrl+C) and paste it here (Ctrl+V). Cycles and dates are filled in; nothing is removed.</p>
-          <textarea rows="5" placeholder="Paste the table here…"></textarea>
-          <button type="submit" class="acct-secondary">Import</button> <span class="tr-msg" aria-live="polite"></span>
-        </form>
         <div class="tr-scroll"><table class="tr-table">
           <thead><tr><th class="tr-no">No.</th><th class="tr-name">Name</th><th class="tr-sh">Shlokas</th>
             ${cyc.map(c => `<th class="tr-cyc">Cycle ${c}<span>${doneIn(c)} / ${t.rows.length}</span></th>`).join('')}</tr></thead>
@@ -965,56 +944,6 @@ function trackerPage() {
         d.cycles += 1;
         await setDoc(userRef(user.uid), { tracker: { [t.key]: { cycles: d.cycles } } }, { merge: true });
         render();
-      });
-      const form = root.querySelector('.tr-import');
-      root.querySelector('.tr-import-toggle').addEventListener('click', () => { form.hidden = !form.hidden; });
-      form.addEventListener('submit', async e => {
-        e.preventDefault();
-        const msg = form.querySelector('.tr-msg');
-        const lines = form.querySelector('textarea').value.split(/\r?\n/).map(l => l.split('\t'));
-        const head = lines.findIndex(l => l.some(x => /^\s*cycle\s*\d+/i.test(x)));
-        if (head < 0) { msg.textContent = 'Couldn’t find the header row with “Cycle 1”, “Cycle 2”… — please include it.'; return; }
-        const H = lines[head];
-        const cols = [];                                   // [{col, cycle, dateCol}]
-        H.forEach((h, i) => { const m = h.match(/^\s*cycle\s*(\d+)/i); if (m) cols.push({ col: i, cycle: +m[1], dateCol: /^\s*date/i.test(H[i - 1] || '') ? i - 1 : -1 }); });
-        // Which row is which chapter: "KK-Sarga 66", "SK-Sarga 3", "3" (Bhagavatam: chapter numbers 1-90).
-        const byNo = new Map();
-        t.rows.forEach(r => byNo.set(r.no.toLowerCase().replace(/\s+/g, ''), r));
-        // ... and if the number doesn't match (the sheet's "YK-Sarga 102" is the site's 101),
-        // by the chapter's name in the next column.
-        const norm = v => String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
-        const byName = new Map(t.rows.map(r => [norm(r.name), r]));
-        const rowFor = (cell, name) => {
-          const x = String(cell || '').toLowerCase().replace(/\s+/g, '');
-          let m = x.match(/^(kk|yk|sk)?-?sarga(\d+)$/);
-          let r = m ? byNo.get((m[1] || 'sk') + m[2]) : null;
-          if (!m) {
-            m = x.match(/^(?:dashak\w*|ch(?:apter)?\.?)?(\d+)$/);
-            r = m ? (byNo.get(m[1]) || byNo.get('sk' + m[1])) : null;
-          }
-          const n = norm(name);
-          if (n && (!r || norm(r.name) !== n)) r = byName.get(n) || r;
-          return m || n ? r : null;
-        };
-        const cells = {}; let n = 0, maxC = d.cycles;
-        for (const l of lines.slice(head + 1)) {
-          const r = rowFor(l[0], l[1]);
-          if (!r) continue;
-          for (const c of cols) {
-            if (!(l[c.col] || '').trim() || (l[c.col] || '').trim() === '-') continue;
-            const v = (c.dateCol >= 0 && parseDate(l[c.dateCol])) || 'done';
-            cells[`${r.id}~${c.cycle}`] = v; d.cells[`${r.id}~${c.cycle}`] = v; n++;
-            maxC = Math.max(maxC, c.cycle);
-          }
-        }
-        if (!n) { msg.textContent = 'Nothing to import — no rows matched this text’s chapters.'; return; }
-        d.cycles = maxC;
-        form.querySelector('button[type=submit]').disabled = true;
-        try {
-          await setDoc(userRef(user.uid), { tracker: { [t.key]: { cycles: maxC, cells } } }, { merge: true });
-          render();
-          root.querySelector('.tr-actions').insertAdjacentHTML('beforeend', `<span class="tr-ok">Imported ${n} entries.</span>`);
-        } catch (err) { msg.textContent = friendly(err); form.querySelector('button[type=submit]').disabled = false; }
       });
       // Cell editor: empty cell -> done today; filled cell -> change date / done without date / clear.
       const ed = root.querySelector('.tr-editor');
