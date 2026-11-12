@@ -40,7 +40,7 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
   "Shri Ganapati Atharvashirsha" in folder "Shri Ganapati Collection". Update with
   `gdoc_to_body.py <json> <tmp-media>` then `build.py page --slug ganapati-atharvashirsha --title
-  "Shri Ganapati Atharvashirsha" --title-sa "श्री गणपति अथर्वशीर्ष" --subtitle "" --body <file>`, then `build.py home`.
+  "Shri Ganapati Atharvashirsha" --title-sa "गणपतिः अथर्वशीर्षः" --subtitle "" --body <file>`, then `build.py home`.
 - Drive downloads sometimes arrive as a raw .html file instead of the usual JSON: wrap it as
   {"content": base64(html), "mimeType": "text/html", "title": "<doc title>"} before importing.
 - `gdoc_to_body.py` — converts a Drive `download_file_content` (text/html export) result JSON
