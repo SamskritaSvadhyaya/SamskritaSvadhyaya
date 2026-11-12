@@ -63,6 +63,14 @@ function nextUrl() {
   return n && !/^[a-z]+:|^\/\//i.test(n) ? BASE + n.replace(/^\/+/, '') : null;
 }
 
+// Saved chapter descriptions may start with the Sanskrit label ("सर्गः १३ · …"); show just the
+// description when there is one (Narayaneeyam's "दशकम् २४" stays, as on its page).
+const subOf = sub => {
+  const parts = String(sub || '').split(' · ');
+  while (parts.length > 1 && /[\u0900-\u097F]/.test(parts[0]) && !/[A-Za-z]/.test(parts[0])) parts.shift();
+  return parts.join(' · ');
+};
+
 // ---------------------------------------------------------------- rich notes
 // Notes can have bold, italics, underline and highlight. Stored as cleaned HTML behind a
 // marker ("<!--rich-->…"); older notes are plain text and are shown/edited as such.
@@ -504,7 +512,7 @@ function stoppedItem(p) {
   const col = COLLECTIONS[collectionOf(p.path)] || '';
   const title = displayTitle(p);
   const label = col && !title.startsWith(col) ? `${col} — ${title}` : title;
-  return `<li><a href="${esc(BASE + p.path)}#mark">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}
+  return `<li><a href="${esc(BASE + p.path)}#mark">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(subOf(p.sub))}</span>` : ''}
     <div class="stopped-shloka">🔖 from ${markWhere(p.mark)}</div></li>`;
 }
 
@@ -524,7 +532,7 @@ async function homeContinue(user) {
   box.className = 'continue-box';
   box.innerHTML = (lp ? `
     <span class="continue-label">${first ? `Namaste ${first} — c` : 'C'}ontinue where you left off</span>
-    <a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a>${markLine(lp)}`
+    <a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${lp.sub ? ` <span class="continue-sub">${esc(subOf(lp.sub))}</span>` : ''} →</a>${markLine(lp)}`
     : `<span class="continue-label">${first ? `Namaste ${first}! ` : ''}Pick a text below to begin.</span>`)
     + (others.length ? `<div class="stopped-box"><span class="continue-label">Where I stopped in my other texts</span>
         <ul class="stopped-list">${others.map(stoppedItem).join('')}</ul></div>` : '')
@@ -608,7 +616,7 @@ function accountPage() {
       return;
     }
     const byTime = (a, b) => (b.updated?.seconds || 0) - (a.updated?.seconds || 0);
-    const link = p => `<a href="${esc(BASE + p.path)}">${esc(displayTitle(p))}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}`;
+    const link = p => `<a href="${esc(BASE + p.path)}">${esc(displayTitle(p))}</a>${p.sub ? ` <span class="acct-sub">${esc(subOf(p.sub))}</span>` : ''}`;
     const bookmarks = pages.filter(p => p.bookmarked).sort(byTime);
     const stopped = stoppedPlaces(pages);
     const studied = pages.filter(p => p.studied);
@@ -625,13 +633,13 @@ function accountPage() {
       const unit = UNIT[slugOf(p).split('-')[0]];
       const no = +((slugOf(p).match(/(\d+)$/) || [])[1] || 0);
       if (!unit || !no) return shortTitle(p);
-      const subject = unit === 'Dashaka' ? shortTitle(p) : (p.sub || '').split(' · ').slice(1).join(' · ');
+      const subject = unit === 'Dashaka' ? shortTitle(p) : subOf(p.sub).replace(/^[^A-Za-z]*$/, '');
       return `${unit} ${no}` + (subject ? ` — ${subject.length > 60 ? subject.slice(0, 58) + '…' : subject}` : '');
     };
     const shortTitle = p => { const parts = displayTitle(p).split(' · '); return parts.length > 1 ? parts.slice(1).join(' · ') : parts[0]; };
     const shortLink = p => {
       const label = shortTitle(p);
-      return `<a href="${esc(BASE + p.path)}">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}`;
+      return `<a href="${esc(BASE + p.path)}">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(subOf(p.sub))}</span>` : ''}`;
     };
     const chapterNo = p => +((p.path.match(/(\d+)\/?$/) || [])[1] || 0);
     const noteGroups = list => {
@@ -712,7 +720,7 @@ function accountPage() {
       </div>
 
       ${lp ? `<section class="acct-section"><h2>Continue where you left off</h2>
-        <p><a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${lp.sub ? ` <span class="continue-sub">${esc(lp.sub)}</span>` : ''} →</a>${markLine(lp)}</p></section>` : ''}
+        <p><a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${lp.sub ? ` <span class="continue-sub">${esc(subOf(lp.sub))}</span>` : ''} →</a>${markLine(lp)}</p></section>` : ''}
 
       ${stopped.length ? `<section class="acct-section"><h2>🔖 Where I stopped <span class="acct-count">one per text</span></h2>
         <ul class="acct-list stopped-list">${stopped.map(stoppedItem).join('')}</ul></section>` : ''}

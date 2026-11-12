@@ -240,13 +240,18 @@ def build_page(args):
         subject = seo.chapter_subject(body, entries, args.title)
     subtitle = args.subtitle or (html_escape(subject, quote=False) if subject else "")
 
+    # Narayaneeyam dashakas keep "दशकम् २४": their heading is the name and this is the only number.
+    drop_label = work is not None and bool(subtitle) and not args.slug.startswith("dashaka")
     html = (
         fill(DOC_OPEN, REL=rel,
              HTML_TITLE=f"{args.title} — {args.title_sa}",
              DESC=f"{args.title} — Sanskrit text with word-by-word meaning, anvaya, and translation.")
         + HEADER.replace("{{REL}}index.html", rel or "./").replace("{{REL}}", rel)
-        + fill(PAGE_HERO, BREADCRUMB=crumb, TITLE=args.title, TITLE_SA=args.title_sa,
-               SUBTITLE=subtitle, SUBSEP=" · " if subtitle else "")
+        # A sarga/chapter with a description shows just the description under its heading
+        # (no "सर्गः ७ ·" label).
+        + fill(PAGE_HERO, BREADCRUMB=crumb, TITLE=args.title,
+               TITLE_SA="" if drop_label else args.title_sa,
+               SUBTITLE=subtitle, SUBSEP=" · " if (subtitle and not drop_label) else "")
         + body
         + "  </main>\n"
         + FOOTER.replace("{{REL}}", rel)
