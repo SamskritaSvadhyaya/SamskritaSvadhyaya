@@ -937,7 +937,7 @@ function trackerPage() {
           <button type="button" class="acct-link tr-import-toggle">Import from my spreadsheet</button>
         </div>
         <form class="tr-import" hidden>
-          <p>In Google Sheets, open the <strong>${esc(t.title)}</strong> tab, select the whole table <em>including the header row</em>
+          <p>In Google Sheets, open your tab for <strong>${esc(t.title)}</strong>, select the whole table <em>including the header row</em>
             (click a cell, then Ctrl+A), copy (Ctrl+C) and paste it here (Ctrl+V). Cycles and dates are filled in; nothing is removed.</p>
           <textarea rows="5" placeholder="Paste the table here…"></textarea>
           <button type="submit" class="acct-secondary">Import</button> <span class="tr-msg" aria-live="polite"></span>
