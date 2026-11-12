@@ -461,14 +461,14 @@ def build_home(_args=None):
         if is_parent(e):
             n_chap = sum(len(w.get("chapters", [])) for w in e.get("works", []))
             n_works = len(e.get("works", []))
-            sub = e.get("subtitle") or f"{n_works} works · {n_chap} sargas"
+            sub = e.get("subtitle") or ""   # no automatic "3 works · 73 sargas"
             emblem = (
                 f'<img src="{e["image"]}" alt="" loading="lazy" />'
                 if e.get("image") else "ॐ"
             )
         elif is_work(e):
             count = len(e.get("chapters", []))
-            sub = e.get("subtitle") or f"{count} chapter{'s' if count != 1 else ''}"
+            sub = e.get("subtitle") or ""   # no automatic "1 chapter"
             emblem = (
                 f'<img src="{e["image"]}" alt="" loading="lazy" />'
                 if e.get("image") else "ॐ"
