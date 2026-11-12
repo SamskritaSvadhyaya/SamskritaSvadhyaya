@@ -37,6 +37,13 @@ Static site of Sanskrit texts, published with GitHub Pages.
   title) and description from the doc, rebuilds indexes, home, SEO and sitemap. `--dry-run` shows
   what would change. Refuses withheld dashakas (release first) and unknown docs. Keep scratch
   files (diffs, staging) OUT of the repo — `*.diff` is gitignored after strays got published.
+- Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
+  "Shri Ganapati Atharvashirsha" in folder "Shri Ganapati Collection". Update with
+  `gdoc_to_body.py <json> <tmp-media>` then `build.py page --slug ganapati-atharvashirsha --title
+  "Shri Ganapati Atharvashirsha" --title-sa "श्री गणपति अथर्वशीर्ष" --subtitle "with anvaya,
+  word-by-word meaning, and translation" --body <file>`, then `build.py home`.
+- Drive downloads sometimes arrive as a raw .html file instead of the usual JSON: wrap it as
+  {"content": base64(html), "mimeType": "text/html", "title": "<doc title>"} before importing.
 - `gdoc_to_body.py` — converts a Drive `download_file_content` (text/html export) result JSON
   into a page body, keeping colours, alignment, sizes.
 - **No doc page headers/footers on the site**: gdoc_to_body.py skips Google's header/footer
