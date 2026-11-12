@@ -273,16 +273,15 @@ def build_page(args):
         chapters.sort(key=lambda c: c.get("n", 0))
         work["chapters"] = chapters
     else:
-        entries = [e for e in entries if e.get("slug") != args.slug]
-        entries.append({
-            "type": "text",
-            "slug": args.slug,
-            "title": args.title,
-            "title_sa": args.title_sa,
-            "subtitle": subtitle,
-            "image": image,
-        })
-        entries.sort(key=lambda e: e.get("title", "").lower())
+        # Update a standalone text in place: keep its position on the home page and any other
+        # settings (re-uploading used to re-sort every text alphabetically).
+        fields = {"type": "text", "slug": args.slug, "title": args.title,
+                  "title_sa": args.title_sa, "subtitle": subtitle}
+        existing = find_entry(entries, args.slug)
+        if existing is not None:
+            existing.update(fields)
+        else:
+            entries.append(fields)
 
     save_manifest(entries)
     print(f"Wrote {rel_from_root}/index.html and updated texts.json")
