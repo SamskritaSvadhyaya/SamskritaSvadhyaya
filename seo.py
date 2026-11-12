@@ -209,37 +209,65 @@ def apply(path, url_path, info):
     return True
 
 
-def lastmods():
-    """Last commit date of each file (one git call); uncommitted files get today."""
+DATES = ROOT / "sitemap-dates.json"
+MAIN_RE = re.compile(rb"<main\b.*?</main>", re.S)
+
+
+def content_hash(data):
+    """Hash of a page's own text (its <main>) - not the header, version stamps or nav,
+    which change on every design update."""
+    import hashlib
+    m = MAIN_RE.search(data)
+    body = (m.group(0) if m else data).replace(b"\r\n", b"\n")
+    return hashlib.sha1(body).hexdigest()[:12]
+
+
+def history_date(path, current):
+    """Date the page's current text first appeared, from git history (used once per page)."""
     try:
-        out = subprocess.run(["git", "log", "--format=@%cs", "--name-only"], cwd=ROOT,
-                             capture_output=True, text=True, encoding="utf-8", check=True).stdout
+        log = subprocess.run(["git", "log", "--format=%H %cs", "--", path], cwd=ROOT, capture_output=True,
+                             text=True, encoding="utf-8", check=True).stdout.split()
     except (OSError, subprocess.CalledProcessError):
-        return {}
-    seen, day = {}, None
-    for line in out.splitlines():
-        if line.startswith("@"):
-            day = line[1:]
-        elif line and line not in seen:
-            seen[line] = day
-    return seen
+        return None
+    found = None
+    for sha, day in zip(log[0::2], log[1::2]):                # newest first
+        try:
+            blob = subprocess.run(["git", "show", f"{sha}:{path}"], cwd=ROOT,
+                                  capture_output=True, check=True).stdout
+        except (OSError, subprocess.CalledProcessError):
+            break
+        if content_hash(blob) != current:
+            break
+        found = day
+    return found
+
+
+def lastmods(paths):
+    """{path: date its text last changed}, kept in sitemap-dates.json. A page whose text
+    changed since the last build gets today's date; design-only changes keep the old date."""
+    try:
+        known = json.loads(DATES.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        known = {}
+    today = date.today().isoformat()
+    out = {}
+    for path in paths:
+        h = content_hash((ROOT / path).read_bytes())
+        old = known.get(path)
+        if old and old[0] == h:
+            out[path] = old[1]
+        else:
+            out[path] = (None if old else history_date(path, h)) or today
+        known[path] = [h, out[path]]
+    known = {k: v for k, v in known.items() if k in out}
+    DATES.write_text(json.dumps(known, indent=0, sort_keys=True) + "\n", encoding="utf-8")
+    return out
 
 
 def main():
-    dates = lastmods()
-    dirty = set()
-    try:
-        dirty = set(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True,
-                                   text=True, encoding="utf-8").stdout.split("\n"))
-        dirty = {l[3:].strip() for l in dirty if l.strip()}
-    except OSError:
-        pass
-    today = date.today().isoformat()
-    urls = []
-    for path, url_path, info in pages():
-        if apply(path, url_path, info):
-            mod = today if any(path.startswith(d.rstrip("/")) for d in dirty) else dates.get(path, today)
-            urls.append((SITE + url_path, mod))
+    found = [(path, url_path) for path, url_path, info in pages() if apply(path, url_path, info)]
+    dates = lastmods([p for p, _ in found])
+    urls = [(SITE + url_path, dates[path]) for path, url_path in found]
     xml = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, mod in urls:

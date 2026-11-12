@@ -80,6 +80,10 @@ Static site of Sanskrit texts, published with GitHub Pages.
   plus `sitemap.xml` of all published pages. Runs automatically at the end of `build.py home`
   (so every build/release keeps it current); safe to run by hand. Sitemap URL for Google
   Search Console: https://samskritasvadhyaya.github.io/SamskritaSvadhyaya/sitemap.xml
+- Sitemap `<lastmod>` = the day a page's own text (its `<main>`) last changed, kept in
+  `sitemap-dates.json` (commit it) - design/version-stamp changes don't bump it, so Google keeps
+  trusting the dates. `404.html` (noindex, absolute links) makes missing addresses return 404, not
+  GitHub's 503 server error (which made Google slow its crawling).
 - `googleeeb64c879486498d.html` — Google Search Console ownership file (property: URL prefix
   https://samskritasvadhyaya.github.io/SamskritaSvadhyaya/). Never delete or edit it; Google
   re-checks it periodically.
