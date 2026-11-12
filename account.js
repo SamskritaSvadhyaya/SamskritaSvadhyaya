@@ -725,16 +725,16 @@ function accountPage() {
         ${groups.size ? `<ul class="acct-progress-list">${[...groups.values()].map(progressItem).join('')}</ul>`
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
-      <section class="acct-section"><h2>✎ My notes <span class="acct-count">${notes.length}</span></h2>
+      <section class="acct-section"><h2>✎ My notes</h2>
         ${notes.length ? (() => {
           const gs = noteGroups(notes);
           return `<div class="note-tabs" role="tablist" aria-label="Notes by text">${gs.map((g, i) =>
-            `<button type="button" class="note-tab" role="tab" id="note-tab-${i}" aria-controls="note-panel-${i}" aria-selected="false" data-key="${esc(g.key)}">${esc(g.label)} <span class="note-tab-count">${g.items.length}</span></button>`).join('')}</div>`
+            `<button type="button" class="note-tab" role="tab" id="note-tab-${i}" aria-controls="note-panel-${i}" aria-selected="false" data-key="${esc(g.key)}">${esc(g.label)}</button>`).join('')}</div>`
             + gs.map((g, i) => `<div class="note-panel" role="tabpanel" id="note-panel-${i}" aria-labelledby="note-tab-${i}" hidden>
               <label class="ch-pick"><span class="sr-only">Chapter</span>
                 <select class="ch-select" data-panel="${i}">
                   <option value="">Choose a ${unitWord(g.items[0])}…</option>
-                  ${g.items.map((p, j) => `<option value="${j}" data-path="${esc(p.path)}">${esc(chapterLabel(p))} (${noteCount(p)} note${noteCount(p) === 1 ? '' : 's'})</option>`).join('')}
+                  ${g.items.map((p, j) => `<option value="${j}" data-path="${esc(p.path)}">${esc(chapterLabel(p))}</option>`).join('')}
                 </select></label>
               ${g.items.map((p, j) => `<div class="ch-panel" id="ch-panel-${i}-${j}" hidden>
                 <ul class="acct-list acct-notes"><li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet"><span class="note-text">${noteHtml(p.note)}</span></div>` : ''}${verseList(p)}</li></ul></div>`).join('')}</div>`).join('');
