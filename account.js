@@ -672,10 +672,8 @@ function accountPage() {
     // shrimad-bhagavatam-canto-10/book-1 …), out of that text's total from the build.
     let totals = {};
     try { totals = JSON.parse(document.getElementById('text-totals')?.textContent || '{}'); } catch {}
-    // Finished readings per text: profile.readings[textKey] = [{ cycle, finished }]
-    // (textKey = the text's folder with "/" as "|"). Marking a whole text studied completes a
-    // reading; "Begin reading N" records it and clears that text's ✓ marks (notes, bookmarks
-    // and ribbons stay).
+    // Progress per text (textKey = the chapter's folder): "N of TOTAL studied", or "completed".
+    // (profile.readings from the earlier reading-cycles feature is no longer shown.)
     const readings = profile.readings || {};
     const textKey = p => { const parts = p.path.split('/').filter(Boolean); return parts.length > 1 ? parts.slice(0, -1).join('/') : parts[0]; };
     const groups = new Map();
@@ -692,34 +690,16 @@ function accountPage() {
       if (ts && ts.seconds > g.last) { g.last = ts.seconds; g.lastTs = ts; }
     }
     // Texts read before but with nothing studied in the current reading.
-    for (const p of pages) if (readings[textKey(p).replace(/\//g, '|')]?.length) group(textKey(p), textName(textKey(p), p));
-    let labels = {};
-    try { labels = JSON.parse(document.getElementById('text-labels')?.textContent || '{}'); } catch {}
-    for (const [k, list] of Object.entries(readings)) {
-      const key = k.replace(/\|/g, '/');
-      if (list?.length && !groups.has(key)) group(key, labels[key] || key);
-    }
     const pastLabels = () => { try { return JSON.parse(document.getElementById('text-labels')?.textContent || '{}'); } catch { return {}; } };
     const fmt = ts => ts ? new Date(ts.seconds * 1000).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+    // One row per text: name · bar across the box · "26 of 100 studied" (or "completed").
     const progressItem = g => {
-      const cycle = g.done.length + 1;
       const complete = g.total > 0 && g.n >= g.total;
-      const history = g.done.length ? `<span class="acct-readings">Completed: ${g.done.map((r, ri) =>
-        `Reading ${r.cycle} — ${esc(fmt(r.finished))}<button type="button" class="reading-del" data-key="${esc(g.key)}" data-i="${ri}" title="Remove this reading" aria-label="Remove reading ${r.cycle}">×</button>`).join(' · ')}</span>` : '';
-      // One row per text: name · bar across the box · "26 of 100 studied" in small letters.
-      const bar = pct => `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>`;
-      if (complete) {
-        return `<li class="acct-progress acct-complete">
-          <span class="ap-name">✓ <strong>${esc(g.label)}</strong></span>${bar(100)}
-          <span class="ap-count">completed</span>
-          <span class="ap-extra"><span class="acct-finished">Reading ${cycle} finished on ${esc(fmt(g.lastTs)) || 'today'}</span>${history}
-          <button type="button" class="acct-secondary acct-again" data-key="${esc(g.key)}">Begin reading ${cycle + 1}</button></span></li>`;
-      }
-      const pct = g.total ? Math.min(100, Math.round((g.n / g.total) * 100)) : 0;
-      return `<li class="acct-progress"><span class="ap-name">${esc(g.label)}${g.done.length ? ` <span class="ap-reading">reading ${cycle}</span>` : ''}</span>`
-        + (g.total ? bar(pct) : '<span></span>')
-        + `<span class="ap-count"><strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied</span>`
-        + (history ? `<span class="ap-extra">${history}</span>` : '') + '</li>';
+      const pct = complete ? 100 : g.total ? Math.min(100, Math.round((g.n / g.total) * 100)) : 0;
+      return `<li class="acct-progress${complete ? ' acct-complete' : ''}">`
+        + `<span class="ap-name">${complete ? '✓ <strong>' + esc(g.label) + '</strong>' : esc(g.label)}</span>`
+        + (g.total ? `<span class="acct-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>` : '<span></span>')
+        + `<span class="ap-count">${complete ? 'completed' : `<strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied`}</span></li>`;
     };
 
     const unverified = user.providerData.some(p => p.providerId === 'password') && !user.emailVerified;
@@ -743,14 +723,7 @@ function accountPage() {
 
       <section class="acct-section"><h2>✓ Progress <span class="acct-count">${studied.length} studied</span></h2>
         ${groups.size ? `<ul class="acct-progress-list">${[...groups.values()].map(progressItem).join('')}</ul>`
-          : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}
-        <button type="button" class="acct-link past-toggle">+ Add a reading you completed earlier</button>
-        <form class="past-form" hidden>
-          <label>Text <select name="text" required>${Object.entries(pastLabels()).map(([k, l]) => `<option value="${esc(k)}">${esc(l)}</option>`).join('')}</select></label>
-          <label>Finished on <input type="date" name="date" required max="${new Date().toISOString().slice(0, 10)}"></label>
-          <button type="submit" class="acct-secondary">Add</button>
-          <span class="past-msg" aria-live="polite"></span>
-        </form></section>
+          : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
       <section class="acct-section"><h2>✎ My notes</h2>
         ${notes.length ? (() => {
@@ -824,34 +797,6 @@ function accountPage() {
         pick(sel, false);
       }
     }
-    // Past readings: add one (text + date) or remove one; readings are numbered by date.
-    const saveReadings = async (key, list) => {
-      list.sort((a, b) => (a.finished?.seconds || 0) - (b.finished?.seconds || 0));
-      list.forEach((r, i) => { r.cycle = i + 1; });
-      await setDoc(userRef(user.uid), { readings: { [key.replace(/\//g, '|')]: list } }, { merge: true });
-      renderSignedIn(user);
-    };
-    const pastForm = root.querySelector('.past-form');
-    root.querySelector('.past-toggle').addEventListener('click', () => { pastForm.hidden = !pastForm.hidden; });
-    pastForm.addEventListener('submit', async e => {
-      e.preventDefault();
-      const key = pastForm.text.value, day = pastForm.date.value;
-      const msg = pastForm.querySelector('.past-msg');
-      if (!day) { msg.textContent = 'Please choose the date you finished.'; return; }
-      pastForm.querySelector('button[type=submit]').disabled = true;
-      try {
-        const list = [...(readings[key.replace(/\//g, '|')] || [])];
-        list.push({ cycle: 0, finished: Timestamp.fromDate(new Date(day + 'T12:00:00')) });
-        await saveReadings(key, list);
-      } catch (err) { msg.textContent = friendly(err); pastForm.querySelector('button[type=submit]').disabled = false; }
-    });
-    root.querySelectorAll('.reading-del').forEach(b => b.addEventListener('click', async () => {
-      const key = b.dataset.key, list = [...(readings[key.replace(/\//g, '|')] || [])];
-      const r = list[+b.dataset.i];
-      if (!r || !confirm(`Remove reading ${r.cycle} (finished ${fmt(r.finished)})?`)) return;
-      list.splice(+b.dataset.i, 1);
-      try { await saveReadings(key, list); } catch (err) { alert(friendly(err)); }
-    }));
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
       const g = groups.get(btn.dataset.key);
       if (!g) return;
