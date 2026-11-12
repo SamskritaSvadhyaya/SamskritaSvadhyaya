@@ -758,9 +758,15 @@ def tracker_tag():
              ("Kshetra Kshetragnya Vibhaga Yoga", 34), ("Guna Traya Vibhaga Yoga", 27),
              ("Purushottama Yoga", 20), ("Daivasura Sampad Vibhaga Yoga", 24),
              ("Shraddha Traya Vibhaga Yoga", 28), ("Moksha Sanyasa Yoga", 78)]
+    def geeta_row(i, n, k):
+        # cell keys stay "geeta/ch-N"; a chapter that is on the site links to its page
+        row = {"id": f"geeta/ch-{i}", "no": str(i), "name": n, "shlokas": k, "nolink": True}
+        if (ROOT / "bhagavad-geeta" / f"ch-{i}" / "index.html").exists():
+            row.update(nolink=False, href=f"bhagavad-geeta/ch-{i}")
+        return row
+
     texts.append({"key": "geeta", "title": "Bhagavad Geeta",
-                  "rows": [{"id": f"geeta/ch-{i}", "no": str(i), "name": n, "shlokas": k, "nolink": True}
-                           for i, (n, k) in enumerate(geeta, 1)]})
+                  "rows": [geeta_row(i, n, k) for i, (n, k) in enumerate(geeta, 1)]})
     return ('<script type="application/json" id="tracker-data">'
             + json.dumps(texts, ensure_ascii=False, separators=(",", ":")) + "</script>")
 

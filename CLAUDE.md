@@ -25,7 +25,7 @@ Static site of Sanskrit texts, published with GitHub Pages.
   (text), `thestoryofhanuman` (parent: Kishkindhakanda/Sundarakanda/Yudhdhakanda sargas),
   `shrimad-bhagavatam-canto-10` (parent: `book-1` पूर्वार्धः ch-1–49, `book-2` उत्तरार्धः
   ch-50–90; Drive folders "Book1 - …" / "Book2 - …" under "Shrimad Bhagavatam Canto 10", docs
-  "श्रीमद्भागवतमहापुराणम् Ch.N"), `narayaneeyam` (work), `eclectic-collection` (work).
+  "श्रीमद्भागवतमहापुराणम् Ch.N"), `narayaneeyam` (work), `eclectic-collection` (work), `bhagavad-geeta` (work, `ch-N`).
 - `ramayana/` — redirect-only stubs (one per page) sending old `/ramayana/...` links to
   `/thestoryofhanuman/...` (renamed 2026-11-01). Not built by `build.py`; if pages are added under
   `thestoryofhanuman/`, no stub is needed.
@@ -166,12 +166,12 @@ with the manifest's title), then `work-index`, `home`.
 texts.json entry, at its old position) into / out of `_unreleased/texts/` (gitignored, this machine
 only) and rebuild home, sitemap and the shloka menu. **Bhagavad Geeta** (`bhagavad-geeta`, work,
 chapters `ch-N` "Chapter N" + `--subject` the yoga name, title-sa "अध्यायः N"; Drive folder
-"Bhagavad Geeta" id `1PqO2eeVDx5QnjBG-F83eXfZ8ZoXWsIeh`, docs "BG-N <name>") is hidden - the owner
-will say when to publish. To add/update a chapter: `show-text bhagavad-geeta`, gdoc_to_body +
-`build.py page --work bhagavad-geeta --slug ch-N --n N --title "Chapter N" --title-sa "अध्यायः N"
---subject "<yoga>"`, `work-index`, then `hide-text bhagavad-geeta` - and DON'T commit in between.
-Afterwards `git checkout -- sitemap.xml sitemap-dates.json` (the brief show bumps the home
-page's date) and confirm `git status` shows nothing about it.
+"Bhagavad Geeta" id `1PqO2eeVDx5QnjBG-F83eXfZ8ZoXWsIeh`, docs "BG-N <name>") was kept hidden this
+way, then PUBLISHED 2026-11-12 with Chapter 1 (owner's request). Add/update a chapter with gdoc_to_body
++ `build.py page --work bhagavad-geeta --slug ch-N --n N --title "Chapter N" --title-sa "अध्यायः N"
+--subject "<yoga>"`, `work-index`, `home` (the tracker's Geeta tab links each chapter once its page
+exists). For a hidden text: show-text, build, hide-text - DON'T commit in between; afterwards
+`git checkout -- sitemap.xml sitemap-dates.json` (the brief show bumps the home page's date).
 
 ## Windows (PowerShell)
 

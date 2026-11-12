@@ -190,7 +190,7 @@
   addEventListener('hashchange', goToHash);
 
   // ---- Header "Go to shloka": text -> chapter -> shloka ----
-  const VERSES_VERSION = '4f29046f1c';
+  const VERSES_VERSION = 'cbe2af9fd8';
   (() => {
     const controls = document.querySelector('.controls');
     const header = document.querySelector('.site-header');
@@ -292,7 +292,7 @@
   // the account page or for readers who have signed in on this device before.
   const AUTH_FLAG = 'ss-signed-in';
   // Bump when account.js changes so browsers fetch the new copy instead of a cached one.
-  const ACCOUNT_JS_VERSION = '71db158562';
+  const ACCOUNT_JS_VERSION = 'd16360e230';
   const scriptEl = document.currentScript || document.querySelector('script[src$="script.js"]');
   const base = scriptEl.src.replace(/script\.js(\?.*)?$/, '');
   const pathOf = url => {
