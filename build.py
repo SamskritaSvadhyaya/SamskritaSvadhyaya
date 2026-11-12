@@ -648,6 +648,44 @@ def stamp_assets():
         print(f"Version-stamped style.css/script.js on {changed} page(s)")
 
 
+def tracker_tag():
+    """Rows for the owner's study tracker (tracker/): Sundarakanda (with KK 66-67),
+    Narayaneeyam, Shrimad Bhagavatam - number, name, shloka count, chapter path."""
+    num = re.compile(r"॥\s*\d+(?:\.\d+)*\.(\d+)\s*॥")
+    entries = load_manifest()
+
+    def rows(prefix, chapters, label):
+        out = []
+        for c in chapters:
+            page = ROOT / prefix / c["slug"] / "index.html"
+            nums = [int(x) for x in num.findall(page.read_text(encoding="utf-8"))] if page.exists() else []
+            out.append({"id": f"{prefix}/{c['slug']}", "no": label(c), "name": c.get("subject") or c.get("title", ""),
+                        "shlokas": max(nums) if nums else ""})
+        return out
+
+    def work(parent, slug):
+        p = find_entry(entries, parent)
+        return find_work_in(p.get("works", []), slug) if p else None
+
+    texts = []
+    kk, sk = work("thestoryofhanuman", "kishkindhakanda"), work("thestoryofhanuman", "sundarakanda")
+    if sk:
+        texts.append({"key": "sundarakanda", "title": "Sundarakanda",
+                      "rows": (rows("thestoryofhanuman/kishkindhakanda", kk["chapters"], lambda c: f"KK {c['n']}") if kk else [])
+                      + rows("thestoryofhanuman/sundarakanda", sk["chapters"], lambda c: str(c["n"]))})
+    nar = find_entry(entries, "narayaneeyam")
+    if nar:
+        texts.append({"key": "narayaneeyam", "title": "Narayaneeyam",
+                      "rows": rows("narayaneeyam", nar["chapters"], lambda c: str(c["n"]))})
+    b1, b2 = work("shrimad-bhagavatam-canto-10", "book-1"), work("shrimad-bhagavatam-canto-10", "book-2")
+    if b1 or b2:
+        texts.append({"key": "bhagavatam", "title": "Shrimad Bhagavatam",
+                      "rows": (rows("shrimad-bhagavatam-canto-10/book-1", b1["chapters"], lambda c: str(c["n"])) if b1 else [])
+                      + (rows("shrimad-bhagavatam-canto-10/book-2", b2["chapters"], lambda c: str(c["n"])) if b2 else [])})
+    return ('<script type="application/json" id="tracker-data">'
+            + json.dumps(texts, ensure_ascii=False, separators=(",", ":")) + "</script>")
+
+
 def build_static_pages():
     """Reader account page (sign-in / bookmarks / notes, driven by account.js) and the
     privacy policy (body from _privacy_body.html)."""
@@ -682,6 +720,13 @@ def build_static_pages():
          '<p class="acct-loading">Loading…</p>'
          '<noscript><p>Please turn on JavaScript to sign in.</p></noscript></div>\n    '
          + totals_tag + '\n  </main>\n',
+         True),
+        ("tracker", "My study tracker", "Cycles of study, chapter by chapter",
+         "Study tracker | Samskrita Svadhyaya",
+         "Private study tracker.",
+         '  <main class="account tracker" id="content">\n    <div id="tracker-app">'
+         '<p class="acct-loading">Loading…</p></div>\n    '
+         + tracker_tag() + '\n  </main>\n',
          True),
         ("privacy", "Privacy policy", "What we keep when you sign in, and what we never do",
          "Privacy policy | Samskrita Svadhyaya",

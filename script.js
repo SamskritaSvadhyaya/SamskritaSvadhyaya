@@ -171,7 +171,7 @@
   // the account page or for readers who have signed in on this device before.
   const AUTH_FLAG = 'ss-signed-in';
   // Bump when account.js changes so browsers fetch the new copy instead of a cached one.
-  const ACCOUNT_JS_VERSION = 'a22d2dee67';
+  const ACCOUNT_JS_VERSION = 'b41780d760';
   const scriptEl = document.currentScript || document.querySelector('script[src$="script.js"]');
   const base = scriptEl.src.replace(/script\.js(\?.*)?$/, '');
   const pathOf = url => {
@@ -182,6 +182,7 @@
   };
   const path = pathOf(location.href);
   const isAccountPage = !!document.getElementById('account-app');
+  const isTrackerPage = !!document.getElementById('tracker-app');
   const flagged = () => { try { return localStorage.getItem(AUTH_FLAG) === '1'; } catch { return false; } };
 
   const controls = document.querySelector('.controls');
@@ -216,7 +217,7 @@
       if (!window.ssUI.signOut) await import(base + 'account.js?v=' + ACCOUNT_JS_VERSION);
       await window.ssUI.signOut();
     } catch {}
-    try { localStorage.removeItem(AUTH_FLAG); localStorage.removeItem(NAME_KEY); } catch {}
+    try { localStorage.removeItem(AUTH_FLAG); localStorage.removeItem(NAME_KEY); localStorage.removeItem('ss-owner'); } catch {}
     location.reload();
   });
   if (controls) acctLink.after(outBtn);
@@ -225,7 +226,18 @@
   // page, Texts on the home page and every collection / chapter page.
   const textsLink = controls && controls.querySelector('.home-link:not(.account-link)');
   const here = (path.split('/')[0] || '');
-  const current = isAccountPage ? acctLink : (['privacy', 'disclaimer'].includes(here) ? null : textsLink);
+  // Site owner only (marked when the owner's account loads): a Tracker button.
+  let trackerLink = null;
+  try {
+    if (flagged() && localStorage.getItem('ss-owner') === '1' && controls) {
+      trackerLink = document.createElement('a');
+      trackerLink.className = 'home-link tracker-link';
+      trackerLink.href = base + 'tracker/';
+      trackerLink.textContent = 'Tracker';
+      acctLink.before(trackerLink);
+    }
+  } catch {}
+  const current = isTrackerPage ? trackerLink : isAccountPage ? acctLink : (['privacy', 'disclaimer'].includes(here) ? null : textsLink);
   if (current) { current.classList.add('is-current'); current.setAttribute('aria-current', 'page'); }   // (no "Signed in as …" in the header, at the owner's request)
 
   // A readable page (chapter, sarga, dashaka, single text) — not an index or the account page.
@@ -257,9 +269,9 @@
   };
 
   window.ssUI = {
-    base, path, pathOf, isAccountPage, studyBar, pageInfo, renderSignedOut,
+    base, path, pathOf, isAccountPage, isTrackerPage, studyBar, pageInfo, renderSignedOut,
     setSignedIn(user) {
-      try { user ? localStorage.setItem(AUTH_FLAG, '1') : localStorage.removeItem(AUTH_FLAG); } catch {}
+      try { user ? localStorage.setItem(AUTH_FLAG, '1') : (localStorage.removeItem(AUTH_FLAG), localStorage.removeItem('ss-owner')); } catch {}
       acctLink.textContent = user ? 'Account' : 'Sign in';
       if (user) acctLink.href = base + 'account/';
       outBtn.hidden = whoEl.hidden = !user;
@@ -269,7 +281,7 @@
     },
   };
 
-  if (isAccountPage || flagged()) {
+  if (isAccountPage || isTrackerPage || flagged()) {
     if (studyBar) studyBar.innerHTML = '<span class="sb-loading">Loading your bookmarks…</span>';
     import(base + 'account.js?v=' + ACCOUNT_JS_VERSION).catch(() => { renderSignedOut(); });
   } else {
