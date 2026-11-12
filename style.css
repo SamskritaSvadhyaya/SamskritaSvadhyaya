@@ -1176,3 +1176,13 @@ main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
 .ch-chip[aria-expanded="true"] { background: #f6e6c4; border-color: var(--accent); }
 .ch-panel { padding: .4rem .2rem 0; border-top: 1px dashed var(--rule); }
 .ch-panel .acct-notes { padding-left: 0; list-style: none; }
+
+/* My notes: chapter dropdown inside each text tab */
+.ch-pick { display: block; margin: .1rem 0 .7rem; }
+.ch-select {
+  width: 100%; max-width: 520px; padding: .45rem .6rem; cursor: pointer;
+  font-family: var(--read); font-size: .92rem; color: var(--accent-strong);
+  background: var(--bg-card); border: 1px solid var(--rule); border-radius: 8px;
+}
+.ch-select:focus { outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent); border-color: var(--accent); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

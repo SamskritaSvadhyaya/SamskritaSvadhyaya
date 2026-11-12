@@ -616,6 +616,18 @@ function accountPage() {
     // My notes grouped by text (Narayaneeyam, Sundarakanda, Shrimad Bhagavatam Book 1 …);
     // texts with the latest note first, chapters in their own order (Dashaka 1, 2, 3 …).
     // Inside a text's group the heading names the text, so show just "Sarga 2" / "The story of Prahlada".
+    // Dropdown labels: "Sarga 13 — Hanuman's soliloquy…", "Dashaka 24 — The story of Prahlada", "Chapter 4 — …".
+    const UNIT = { sarga: 'Sarga', dashaka: 'Dashaka', ch: 'Chapter' };
+    const slugOf = p => (p.path.split('/').filter(Boolean).pop() || '');
+    const unitWord = p => (UNIT[slugOf(p).split('-')[0]] || 'chapter').toLowerCase();
+    const noteCount = p => ((p.note || '').trim() ? 1 : 0) + Object.values(p.verses || {}).filter(v => (v?.note || '').trim()).length;
+    const chapterLabel = p => {
+      const unit = UNIT[slugOf(p).split('-')[0]];
+      const no = +((slugOf(p).match(/(\d+)$/) || [])[1] || 0);
+      if (!unit || !no) return shortTitle(p);
+      const subject = unit === 'Dashaka' ? shortTitle(p) : (p.sub || '').split(' · ').slice(1).join(' · ');
+      return `${unit} ${no}` + (subject ? ` — ${subject.length > 60 ? subject.slice(0, 58) + '…' : subject}` : '');
+    };
     const shortTitle = p => { const parts = displayTitle(p).split(' · '); return parts.length > 1 ? parts.slice(1).join(' · ') : parts[0]; };
     const shortLink = p => {
       const label = shortTitle(p);
@@ -719,12 +731,11 @@ function accountPage() {
           return `<div class="note-tabs" role="tablist" aria-label="Notes by text">${gs.map((g, i) =>
             `<button type="button" class="note-tab" role="tab" id="note-tab-${i}" aria-controls="note-panel-${i}" aria-selected="false" data-key="${esc(g.key)}">${esc(g.label)} <span class="note-tab-count">${g.items.length}</span></button>`).join('')}</div>`
             + gs.map((g, i) => `<div class="note-panel" role="tabpanel" id="note-panel-${i}" aria-labelledby="note-tab-${i}" hidden>
-              <div class="ch-chips">${g.items.map((p, j) => {
-                const count = ((p.note || '').trim() ? 1 : 0) + Object.values(p.verses || {}).filter(v => (v?.note || '').trim()).length;
-                const full = displayTitle(p) + (p.sub ? ' — ' + p.sub : '');
-                const label = chapterNo(p) || shortTitle(p);
-                return `<button type="button" class="ch-chip" aria-expanded="false" aria-controls="ch-panel-${i}-${j}" data-path="${esc(p.path)}" title="${esc(full)}">${esc(label)} <span class="ch-count">(${count})</span></button>`;
-              }).join('')}</div>
+              <label class="ch-pick"><span class="sr-only">Chapter</span>
+                <select class="ch-select" data-panel="${i}">
+                  <option value="">Choose a ${unitWord(g.items[0])}…</option>
+                  ${g.items.map((p, j) => `<option value="${j}" data-path="${esc(p.path)}">${esc(chapterLabel(p))} (${noteCount(p)} note${noteCount(p) === 1 ? '' : 's'})</option>`).join('')}
+                </select></label>
               ${g.items.map((p, j) => `<div class="ch-panel" id="ch-panel-${i}-${j}" hidden>
                 <ul class="acct-list acct-notes"><li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet"><span class="note-text">${noteHtml(p.note)}</span></div>` : ''}${verseList(p)}</li></ul></div>`).join('')}</div>`).join('');
         })()
@@ -764,32 +775,26 @@ function accountPage() {
       try { saved = localStorage.getItem('ss-notes-tab'); } catch {}
       show(saved === '' ? null : (tabs.find(t => t.dataset.key === saved) || tabs[0]), false);
 
-      // Chapter buttons inside a text: one chapter's notes open at a time; click again to fold.
-      const openChapter = (chip, remember = true) => {
-        const panel = chip ? chip.closest('.note-panel') : null;
-        root.querySelectorAll('.ch-chip').forEach(c => {
-          const on = c === chip;
-          if (panel && c.closest('.note-panel') !== panel && !on) return;   // leave other texts alone
-          c.setAttribute('aria-expanded', String(on));
-          document.getElementById(c.getAttribute('aria-controls')).hidden = !on;
-        });
-        if (remember) { try { localStorage.setItem('ss-notes-ch', chip ? chip.dataset.path : ''); } catch {} }
+      // Chapter dropdown inside a text: shows the chosen chapter's shloka numbers and notes.
+      const pick = (select, remember = true) => {
+        const i = select.dataset.panel;
+        select.closest('.note-panel').querySelectorAll('.ch-panel').forEach((pnl, j) => { pnl.hidden = String(j) !== select.value; });
+        if (remember) {
+          const opt = select.selectedOptions[0];
+          try { localStorage.setItem('ss-notes-ch', opt && opt.dataset.path ? opt.dataset.path : ''); } catch {}
+        }
       };
-      root.querySelectorAll('.ch-chip').forEach(c => c.addEventListener('click', () => {
-        if (c.getAttribute('aria-expanded') === 'true') {
-          c.setAttribute('aria-expanded', 'false');
-          document.getElementById(c.getAttribute('aria-controls')).hidden = true;
-          try { localStorage.setItem('ss-notes-ch', ''); } catch {}
-        } else openChapter(c);
-      }));
+      root.querySelectorAll('.ch-select').forEach(sel => sel.addEventListener('change', () => pick(sel)));
       let savedCh = null;
       try { savedCh = localStorage.getItem('ss-notes-ch'); } catch {}
-      const chip = savedCh && [...root.querySelectorAll('.ch-chip')].find(c => c.dataset.path === savedCh);
-      if (chip) {
+      const opt = savedCh && [...root.querySelectorAll('.ch-select option')].find(o => o.dataset.path === savedCh);
+      if (opt) {
         // Reopen the remembered chapter inside its own text's tab.
-        const tab = tabs.find(t => t.getAttribute('aria-controls') === chip.closest('.note-panel').id);
+        const sel = opt.closest('select');
+        const tab = tabs.find(t => t.getAttribute('aria-controls') === sel.closest('.note-panel').id);
         if (tab) show(tab, false);
-        openChapter(chip, false);
+        sel.value = opt.value;
+        pick(sel, false);
       }
     }
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
