@@ -33,8 +33,8 @@ Static site of Sanskrit texts, published with GitHub Pages.
   `work-index`, `parent-index`, `home`.
 - **`import-drive.py <download.json>`** — the standard way to (re-)upload one chapter from Drive:
   works out the target from the doc title (Dashaka N / Sundarakanda Sarga N / KK - Sarga N /
-  Yudhdhakanda - Sarga N), replaces the old page, refreshes the name (Narayaneeyam: from the doc
-  title) and description from the doc, rebuilds indexes, home, SEO and sitemap. `--dry-run` shows
+  Yudhdhakanda - Sarga N), replaces the old page, refreshes the name (Narayaneeyam: the dashaka name from the doc
+  title, shown under the "Dashaka N" heading) and description from the doc, rebuilds indexes, home, SEO and sitemap. `--dry-run` shows
   what would change. Refuses withheld dashakas (release first) and unknown docs. Keep scratch
   files (diffs, staging) OUT of the repo — `*.diff` is gitignored after strays got published.
 - Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
@@ -68,8 +68,8 @@ Static site of Sanskrit texts, published with GitHub Pages.
   English line under the "Sundarakanda Sarga N" heading, e.g. "Hanuman crosses the ocean,
   reaches Lanka"), stores it as the chapter's `subject` in texts.json, and shows it under the
   page title and on the chapter card — always IN FULL (the user wants complete descriptions;
-  never shorten them). A heading typed over two lines in the doc is joined. Narayaneeyam titles already
-  are the subject, so they get none. Editing the line in the doc + re-importing updates it.
+  never shorten them). A heading typed over two lines in the doc is joined. Narayaneeyam dashakas are titled
+  "Dashaka N" with the doc title's name as the subject (import-drive passes `--subject`). Editing the line in the doc + re-importing updates it.
 - `seo.py` — search metadata: descriptive `<title>`/description (work, chapter no., subject line
   from the page, Sanskrit name), canonical URL and link-preview tags in a `<!-- seo -->` block,
   plus `sitemap.xml` of all published pages. Runs automatically at the end of `build.py home`
