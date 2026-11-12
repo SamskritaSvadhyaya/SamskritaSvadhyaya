@@ -1163,3 +1163,16 @@ main.account .acct-admin .acct-secondary:hover { color: var(--accent); }
   .verse-mark { right: -.95rem; width: 22px; height: 22px; }
   .verse-mark svg { width: 17px; height: 17px; }
 }
+
+/* My notes: chapter number buttons inside each text tab */
+.ch-chips { display: flex; flex-wrap: wrap; gap: .35rem; margin: .1rem 0 .6rem; }
+.ch-chip {
+  min-width: 2.6rem; padding: .25rem .6rem; cursor: pointer; border-radius: 8px;
+  font-family: var(--read); font-size: .88rem; color: var(--accent-strong);
+  background: var(--bg-card); border: 1px solid var(--rule);
+}
+.ch-chip .ch-count { font-size: .75rem; color: var(--ink-soft); }
+.ch-chip:hover { border-color: var(--accent); }
+.ch-chip[aria-expanded="true"] { background: #f6e6c4; border-color: var(--accent); }
+.ch-panel { padding: .4rem .2rem 0; border-top: 1px dashed var(--rule); }
+.ch-panel .acct-notes { padding-left: 0; list-style: none; }

@@ -616,9 +616,9 @@ function accountPage() {
     // My notes grouped by text (Narayaneeyam, Sundarakanda, Shrimad Bhagavatam Book 1 …);
     // texts with the latest note first, chapters in their own order (Dashaka 1, 2, 3 …).
     // Inside a text's group the heading names the text, so show just "Sarga 2" / "The story of Prahlada".
+    const shortTitle = p => { const parts = displayTitle(p).split(' · '); return parts.length > 1 ? parts.slice(1).join(' · ') : parts[0]; };
     const shortLink = p => {
-      const parts = displayTitle(p).split(' · ');
-      const label = parts.length > 1 ? parts.slice(1).join(' · ') : parts[0];
+      const label = shortTitle(p);
       return `<a href="${esc(BASE + p.path)}">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(p.sub)}</span>` : ''}`;
     };
     const chapterNo = p => +((p.path.match(/(\d+)\/?$/) || [])[1] || 0);
@@ -719,7 +719,14 @@ function accountPage() {
           return `<div class="note-tabs" role="tablist" aria-label="Notes by text">${gs.map((g, i) =>
             `<button type="button" class="note-tab" role="tab" id="note-tab-${i}" aria-controls="note-panel-${i}" aria-selected="false" data-key="${esc(g.key)}">${esc(g.label)} <span class="note-tab-count">${g.items.length}</span></button>`).join('')}</div>`
             + gs.map((g, i) => `<div class="note-panel" role="tabpanel" id="note-panel-${i}" aria-labelledby="note-tab-${i}" hidden>
-              <ul class="acct-list acct-notes">${g.items.map(p => `<li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet"><span class="note-text">${noteHtml(p.note)}</span></div>` : ''}${verseList(p)}</li>`).join('')}</ul></div>`).join('');
+              <div class="ch-chips">${g.items.map((p, j) => {
+                const count = ((p.note || '').trim() ? 1 : 0) + Object.values(p.verses || {}).filter(v => (v?.note || '').trim()).length;
+                const full = displayTitle(p) + (p.sub ? ' — ' + p.sub : '');
+                const label = chapterNo(p) || shortTitle(p);
+                return `<button type="button" class="ch-chip" aria-expanded="false" aria-controls="ch-panel-${i}-${j}" data-path="${esc(p.path)}" title="${esc(full)}">${esc(label)} <span class="ch-count">(${count})</span></button>`;
+              }).join('')}</div>
+              ${g.items.map((p, j) => `<div class="ch-panel" id="ch-panel-${i}-${j}" hidden>
+                <ul class="acct-list acct-notes"><li>${shortLink(p)}${(p.note || '').trim() ? `<div class="acct-snippet"><span class="note-text">${noteHtml(p.note)}</span></div>` : ''}${verseList(p)}</li></ul></div>`).join('')}</div>`).join('');
         })()
           : '<p class="acct-empty">No notes yet. Every shloka has a “✎ Note on this shloka” button, and each chapter a “My notes” box at the end.</p>'}</section>
 
@@ -756,6 +763,34 @@ function accountPage() {
       let saved = null;
       try { saved = localStorage.getItem('ss-notes-tab'); } catch {}
       show(saved === '' ? null : (tabs.find(t => t.dataset.key === saved) || tabs[0]), false);
+
+      // Chapter buttons inside a text: one chapter's notes open at a time; click again to fold.
+      const openChapter = (chip, remember = true) => {
+        const panel = chip ? chip.closest('.note-panel') : null;
+        root.querySelectorAll('.ch-chip').forEach(c => {
+          const on = c === chip;
+          if (panel && c.closest('.note-panel') !== panel && !on) return;   // leave other texts alone
+          c.setAttribute('aria-expanded', String(on));
+          document.getElementById(c.getAttribute('aria-controls')).hidden = !on;
+        });
+        if (remember) { try { localStorage.setItem('ss-notes-ch', chip ? chip.dataset.path : ''); } catch {} }
+      };
+      root.querySelectorAll('.ch-chip').forEach(c => c.addEventListener('click', () => {
+        if (c.getAttribute('aria-expanded') === 'true') {
+          c.setAttribute('aria-expanded', 'false');
+          document.getElementById(c.getAttribute('aria-controls')).hidden = true;
+          try { localStorage.setItem('ss-notes-ch', ''); } catch {}
+        } else openChapter(c);
+      }));
+      let savedCh = null;
+      try { savedCh = localStorage.getItem('ss-notes-ch'); } catch {}
+      const chip = savedCh && [...root.querySelectorAll('.ch-chip')].find(c => c.dataset.path === savedCh);
+      if (chip) {
+        // Reopen the remembered chapter inside its own text's tab.
+        const tab = tabs.find(t => t.getAttribute('aria-controls') === chip.closest('.note-panel').id);
+        if (tab) show(tab, false);
+        openChapter(chip, false);
+      }
     }
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
       const g = groups.get(btn.dataset.key);
