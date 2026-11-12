@@ -986,11 +986,11 @@ function trackerPage() {
         const byName = new Map(t.rows.map(r => [norm(r.name), r]));
         const rowFor = (cell, name) => {
           const x = String(cell || '').toLowerCase().replace(/\s+/g, '');
-          let m = x.match(/^(kk|yk)-?sarga(\d+)$/);
-          let r = m ? byNo.get(m[1] + m[2]) : null;
+          let m = x.match(/^(kk|yk|sk)?-?sarga(\d+)$/);
+          let r = m ? byNo.get((m[1] || 'sk') + m[2]) : null;
           if (!m) {
-            m = x.match(/^(?:sk-?)?sarga(\d+)$/) || x.match(/^(?:dashak\w*|ch(?:apter)?\.?)?(\d+)$/);
-            r = m ? byNo.get(m[1]) : null;
+            m = x.match(/^(?:dashak\w*|ch(?:apter)?\.?)?(\d+)$/);
+            r = m ? (byNo.get(m[1]) || byNo.get('sk' + m[1])) : null;
           }
           const n = norm(name);
           if (n && (!r || norm(r.name) !== n)) r = byName.get(n) || r;

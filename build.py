@@ -682,7 +682,7 @@ def tracker_tag():
         # key stays "sundarakanda" (saved tracker data uses it); shown as "The Story of Hanuman"
         texts.append({"key": "sundarakanda", "title": "The Story of Hanuman",
                       "rows": (rows("thestoryofhanuman/kishkindhakanda", kk["chapters"], lambda c: f"KK {c['n']}") if kk else [])
-                      + rows("thestoryofhanuman/sundarakanda", sk["chapters"], lambda c: str(c["n"]))
+                      + rows("thestoryofhanuman/sundarakanda", sk["chapters"], lambda c: f"SK {c['n']}")
                       + (rows("thestoryofhanuman/yudhdhakanda", yk["chapters"], lambda c: f"YK {c['n']}") if yk else [])})
     nar = find_entry(entries, "narayaneeyam")
     if nar:
