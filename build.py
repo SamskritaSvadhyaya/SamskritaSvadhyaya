@@ -234,14 +234,13 @@ def build_page(args):
     # A chapter's short description (the subject line under its heading in the doc,
     # e.g. "Hanuman crosses the ocean, reaches Lanka") is shown under the page title
     # and on the chapter card, and used for search titles.
-    subject = ""
-    if work is not None and not args.subtitle:
+    subject = args.subject or ""
+    if work is not None and not args.subtitle and not subject:
         import seo
         subject = seo.chapter_subject(body, entries, args.title)
     subtitle = args.subtitle or (html_escape(subject, quote=False) if subject else "")
 
-    # Narayaneeyam dashakas keep "दशकम् २४": their heading is the name and this is the only number.
-    drop_label = work is not None and bool(subtitle) and not args.slug.startswith("dashaka")
+    drop_label = work is not None and bool(subtitle)
     html = (
         fill(DOC_OPEN, REL=rel,
              HTML_TITLE=f"{args.title} — {args.title_sa}",
@@ -269,6 +268,8 @@ def build_page(args):
     }
     if subject:
         chapter_entry["subject"] = subject
+    if not chapter_entry.get("image"):
+        chapter_entry.pop("image", None)   # the site shows no pictures
 
     if work is not None:
         chapters = [c for c in work.get("chapters", []) if c.get("slug") != args.slug]
@@ -563,8 +564,6 @@ def chapter_nav():
 
     def label(ch, work_title, cross):
         title, sub = ch.get("title", ""), ch.get("subject", "")
-        if ch.get("slug", "").startswith("dashaka"):        # Narayaneeyam: the title is the subject
-            title, sub = f"Dashaka {ch['n']}", title
         if cross:
             title = f"{work_title} · {title}"
         return title, sub
@@ -712,6 +711,7 @@ def main():
     p.add_argument("--title", required=True)
     p.add_argument("--title-sa", required=True, dest="title_sa")
     p.add_argument("--subtitle", default="")
+    p.add_argument("--subject", default=None, help="chapter description (e.g. a dashaka's name)")
     p.add_argument("--n", type=int, default=None)
     p.add_argument("--body", required=True)
     p.set_defaults(func=build_page)

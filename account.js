@@ -633,7 +633,8 @@ function accountPage() {
       const unit = UNIT[slugOf(p).split('-')[0]];
       const no = +((slugOf(p).match(/(\d+)$/) || [])[1] || 0);
       if (!unit || !no) return shortTitle(p);
-      const subject = unit === 'Dashaka' ? shortTitle(p) : subOf(p.sub).replace(/^[^A-Za-z]*$/, '');
+      // Dashakas saved before 13 Nov 2026 have the name as their title, later ones as the description.
+      const subject = unit === 'Dashaka' && !/^Dashaka \d/.test(shortTitle(p)) ? shortTitle(p) : subOf(p.sub).replace(/^[^A-Za-z]*$/, '');
       return `${unit} ${no}` + (subject ? ` — ${subject.length > 60 ? subject.slice(0, 58) + '…' : subject}` : '');
     };
     const shortTitle = p => { const parts = displayTitle(p).split(' · '); return parts.length > 1 ? parts.slice(1).join(' · ') : parts[0]; };

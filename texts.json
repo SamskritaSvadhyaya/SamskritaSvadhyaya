@@ -478,7 +478,6 @@
             "title": "Sarga 59",
             "title_sa": "सर्गः ५९",
             "n": 59,
-            "image": null,
             "subject": "Hanuman gives an account of the plight of Sita in Lanka. Incites the vanaras to be ready for the next course of action"
           },
           {
@@ -486,7 +485,6 @@
             "title": "Sarga 60",
             "title_sa": "सर्गः ६०",
             "n": 60,
-            "image": null,
             "subject": "Jambavan says it is advisable to follow Rama's instruction"
           },
           {
@@ -620,7 +618,6 @@
             "title": "Chapter 4",
             "title_sa": "अध्यायः ४",
             "n": 4,
-            "image": null,
             "subject": "Yogamaya slips from the grip of Kamsa, ascends to the heavens and utters a prophecy. Atrocities of Kamsa"
           },
           {
@@ -628,7 +625,6 @@
             "title": "Chapter 5",
             "title_sa": "अध्यायः ५",
             "n": 5,
-            "image": null,
             "subject": "The celebrations of the birth of Krishna and the meeting of Nanda and Vasudeva"
           },
           {
@@ -636,7 +632,6 @@
             "title": "Chapter 6",
             "title_sa": "अध्यायः ६",
             "n": 6,
-            "image": null,
             "subject": "Deliverance of Putana"
           },
           {
@@ -1252,617 +1247,703 @@
     "chapters": [
       {
         "slug": "dashaka-1",
-        "title": "Glory of the Lord",
+        "title": "Dashaka 1",
         "title_sa": "दशकम् १",
-        "n": 1
+        "n": 1,
+        "subject": "Glory of the Lord"
       },
       {
         "slug": "dashaka-2",
-        "title": "Form of the Lord",
+        "title": "Dashaka 2",
         "title_sa": "दशकम् २",
-        "n": 2
+        "n": 2,
+        "subject": "Form of the Lord"
       },
       {
         "slug": "dashaka-3",
-        "title": "The Prayer of the Devotee",
+        "title": "Dashaka 3",
         "title_sa": "दशकम् ३",
-        "n": 3
+        "n": 3,
+        "subject": "The Prayer of the Devotee"
       },
       {
         "slug": "dashaka-4",
-        "title": "The progress of the spiritual aspirant",
+        "title": "Dashaka 4",
         "title_sa": "दशकम् ४",
-        "n": 4
+        "n": 4,
+        "subject": "The progress of the spiritual aspirant"
       },
       {
         "slug": "dashaka-5",
-        "title": "The Cosmic Evolution",
+        "title": "Dashaka 5",
         "title_sa": "दशकम् ५",
-        "n": 5
+        "n": 5,
+        "subject": "The Cosmic Evolution"
       },
       {
         "slug": "dashaka-6",
-        "title": "Cosmos as the form of the Lord",
+        "title": "Dashaka 6",
         "title_sa": "दशकम् ६",
-        "n": 6
+        "n": 6,
+        "subject": "Cosmos as the form of the Lord"
       },
       {
         "slug": "dashaka-7",
-        "title": "The Lord commands Brahma to create",
+        "title": "Dashaka 7",
         "title_sa": "दशकम् ७",
-        "n": 7
+        "n": 7,
+        "subject": "The Lord commands Brahma to create"
       },
       {
         "slug": "dashaka-8",
-        "title": "The dawn of creation",
+        "title": "Dashaka 8",
         "title_sa": "दशकम् ८",
-        "n": 8
+        "n": 8,
+        "subject": "The dawn of creation"
       },
       {
         "slug": "dashaka-9",
-        "title": "Brahma in his creative role",
+        "title": "Dashaka 9",
         "title_sa": "दशकम् ९",
-        "n": 9
+        "n": 9,
+        "subject": "Brahma in his creative role"
       },
       {
         "slug": "dashaka-10",
-        "title": "Diversification of creation",
+        "title": "Dashaka 10",
         "title_sa": "दशकम् १०",
-        "n": 10
+        "n": 10,
+        "subject": "Diversification of creation"
       },
       {
         "slug": "dashaka-11",
-        "title": "Prelude to the first incarnation",
+        "title": "Dashaka 11",
         "title_sa": "दशकम् ११",
-        "n": 11
+        "n": 11,
+        "subject": "Prelude to the first incarnation"
       },
       {
         "slug": "dashaka-12",
-        "title": "Incarnation as boar (Varaha avatara)",
+        "title": "Dashaka 12",
         "title_sa": "दशकम् १२",
-        "n": 12
+        "n": 12,
+        "subject": "Incarnation as boar (Varaha avatara)"
       },
       {
         "slug": "dashaka-13",
-        "title": "Destruction of Hiranyaksha",
+        "title": "Dashaka 13",
         "title_sa": "दशकम् १३",
-        "n": 13
+        "n": 13,
+        "subject": "Destruction of Hiranyaksha"
       },
       {
         "slug": "dashaka-14",
-        "title": "Incarnation as Kapila",
+        "title": "Dashaka 14",
         "title_sa": "दशकम् १४",
-        "n": 14
+        "n": 14,
+        "subject": "Incarnation as Kapila"
       },
       {
         "slug": "dashaka-15",
-        "title": "The message of Kapila",
+        "title": "Dashaka 15",
         "title_sa": "दशकम् १५",
-        "n": 15
+        "n": 15,
+        "subject": "The message of Kapila"
       },
       {
         "slug": "dashaka-16",
-        "title": "Nara-Narayana and Daksha-Yagna",
+        "title": "Dashaka 16",
         "title_sa": "दशकम् १६",
-        "n": 16
+        "n": 16,
+        "subject": "Nara-Narayana and Daksha-Yagna"
       },
       {
         "slug": "dashaka-17",
-        "title": "The Story of Dhruva",
+        "title": "Dashaka 17",
         "title_sa": "दशकम् १७",
-        "n": 17
+        "n": 17,
+        "subject": "The Story of Dhruva"
       },
       {
         "slug": "dashaka-18",
-        "title": "The Story of Prithu",
+        "title": "Dashaka 18",
         "title_sa": "दशकम् १८",
-        "n": 18
+        "n": 18,
+        "subject": "The Story of Prithu"
       },
       {
         "slug": "dashaka-19",
-        "title": "The Story of the Prachetas",
+        "title": "Dashaka 19",
         "title_sa": "दशकम् १९",
-        "n": 19
+        "n": 19,
+        "subject": "The Story of the Prachetas"
       },
       {
         "slug": "dashaka-20",
-        "title": "The Story of Rishabha Deva",
+        "title": "Dashaka 20",
         "title_sa": "दशकम् २०",
-        "n": 20
+        "n": 20,
+        "subject": "The Story of Rishabha Deva"
       },
       {
         "slug": "dashaka-21",
-        "title": "Worship in different places and forms",
+        "title": "Dashaka 21",
         "title_sa": "दशकम् २१",
-        "n": 21
+        "n": 21,
+        "subject": "Worship in different places and forms"
       },
       {
         "slug": "dashaka-22",
-        "title": "The story of Ajamila",
+        "title": "Dashaka 22",
         "title_sa": "दशकम् २२",
-        "n": 22
+        "n": 22,
+        "subject": "The story of Ajamila"
       },
       {
         "slug": "dashaka-23",
-        "title": "The story of Chitraketu",
+        "title": "Dashaka 23",
         "title_sa": "दशकम् २३",
-        "n": 23
+        "n": 23,
+        "subject": "The story of Chitraketu"
       },
       {
         "slug": "dashaka-24",
-        "title": "The story of Prahlada",
+        "title": "Dashaka 24",
         "title_sa": "दशकम् २४",
-        "n": 24
+        "n": 24,
+        "subject": "The story of Prahlada"
       },
       {
         "slug": "dashaka-25",
-        "title": "The Incarnation as Narasimha",
+        "title": "Dashaka 25",
         "title_sa": "दशकम् २५",
         "n": 25,
-        "image": null
+        "subject": "The Incarnation as Narasimha"
       },
       {
         "slug": "dashaka-26",
-        "title": "The liberation of Gajendra (Gajendra Moksha)",
+        "title": "Dashaka 26",
         "title_sa": "दशकम् २६",
         "n": 26,
-        "image": null
+        "subject": "The liberation of Gajendra (Gajendra Moksha)"
       },
       {
         "slug": "dashaka-27",
-        "title": "Churning the ocean for nectar",
+        "title": "Dashaka 27",
         "title_sa": "दशकम् २७",
-        "n": 27
+        "n": 27,
+        "subject": "Churning the ocean for nectar"
       },
       {
         "slug": "dashaka-28",
-        "title": "The gifts of the ocean",
+        "title": "Dashaka 28",
         "title_sa": "दशकम् २८",
-        "n": 28
+        "n": 28,
+        "subject": "The gifts of the ocean"
       },
       {
         "slug": "dashaka-29",
-        "title": "The incarnation as Mohini",
+        "title": "Dashaka 29",
         "title_sa": "दशकम् २९",
-        "n": 29
+        "n": 29,
+        "subject": "The incarnation as Mohini"
       },
       {
         "slug": "dashaka-30",
-        "title": "The incarnation as Vamana",
+        "title": "Dashaka 30",
         "title_sa": "दशकम् ३०",
-        "n": 30
+        "n": 30,
+        "subject": "The incarnation as Vamana"
       },
       {
         "slug": "dashaka-31",
-        "title": "Vamana blesses Bali",
+        "title": "Dashaka 31",
         "title_sa": "दशकम् ३१",
-        "n": 31
+        "n": 31,
+        "subject": "Vamana blesses Bali"
       },
       {
         "slug": "dashaka-32",
-        "title": "The incarnation as Fish (Matsya Avatara)",
+        "title": "Dashaka 32",
         "title_sa": "दशकम् ३२",
         "n": 32,
-        "subject": "The incarnation as Fish"
+        "subject": "The incarnation as Fish (Matsya Avatara)"
       },
       {
         "slug": "dashaka-33",
-        "title": "The story of Ambarisha",
+        "title": "Dashaka 33",
         "title_sa": "दशकम् ३३",
-        "n": 33
+        "n": 33,
+        "subject": "The story of Ambarisha"
       },
       {
         "slug": "dashaka-34",
-        "title": "The incarnation as Rama",
+        "title": "Dashaka 34",
         "title_sa": "दशकम् ३४",
-        "n": 34
+        "n": 34,
+        "subject": "The incarnation as Rama"
       },
       {
         "slug": "dashaka-35",
-        "title": "The incarnation as Rama (contd.)",
+        "title": "Dashaka 35",
         "title_sa": "दशकम् ३५",
-        "n": 35
+        "n": 35,
+        "subject": "The incarnation as Rama (contd.)"
       },
       {
         "slug": "dashaka-36",
-        "title": "The incarnation as Parashurama",
+        "title": "Dashaka 36",
         "title_sa": "दशकम् ३६",
-        "n": 36
+        "n": 36,
+        "subject": "The incarnation as Parashurama"
       },
       {
         "slug": "dashaka-37",
-        "title": "Prelude to the incarnation of Krishna",
+        "title": "Dashaka 37",
         "title_sa": "दशकम् ३७",
-        "n": 37
+        "n": 37,
+        "subject": "Prelude to the incarnation of Krishna"
       },
       {
         "slug": "dashaka-38",
-        "title": "Birth of Krishna",
+        "title": "Dashaka 38",
         "title_sa": "दशकम् ३८",
-        "n": 38
+        "n": 38,
+        "subject": "Birth of Krishna"
       },
       {
         "slug": "dashaka-39",
-        "title": "The story of Yogmaya",
+        "title": "Dashaka 39",
         "title_sa": "दशकम् ३९",
-        "n": 39
+        "n": 39,
+        "subject": "The story of Yogmaya"
       },
       {
         "slug": "dashaka-40",
-        "title": "Salvation of Putana",
+        "title": "Dashaka 40",
         "title_sa": "दशकम् ४०",
-        "n": 40
+        "n": 40,
+        "subject": "Salvation of Putana"
       },
       {
         "slug": "dashaka-41",
-        "title": "Cremation of Putana",
+        "title": "Dashaka 41",
         "title_sa": "दशकम् ४१",
-        "n": 41
+        "n": 41,
+        "subject": "Cremation of Putana"
       },
       {
         "slug": "dashaka-42",
-        "title": "Destruction of Shakatasura",
+        "title": "Dashaka 42",
         "title_sa": "दशकम् ४२",
-        "n": 42
+        "n": 42,
+        "subject": "Destruction of Shakatasura"
       },
       {
         "slug": "dashaka-43",
-        "title": "Destruction of Trinavarta",
+        "title": "Dashaka 43",
         "title_sa": "दशकम् ४३",
-        "n": 43
+        "n": 43,
+        "subject": "Destruction of Trinavarta"
       },
       {
         "slug": "dashaka-44",
-        "title": "The naming ceremony (of Krishna)",
+        "title": "Dashaka 44",
         "title_sa": "दशकम् ४४",
-        "n": 44
+        "n": 44,
+        "subject": "The naming ceremony (of Krishna)"
       },
       {
         "slug": "dashaka-45",
-        "title": "Childhood pranks of Krishna",
+        "title": "Dashaka 45",
         "title_sa": "दशकम् ४५",
-        "n": 45
+        "n": 45,
+        "subject": "Childhood pranks of Krishna"
       },
       {
         "slug": "dashaka-46",
-        "title": "Krishna reveals the Vishwaroopa form to Yashoda",
+        "title": "Dashaka 46",
         "title_sa": "दशकम् ४६",
-        "n": 46
+        "n": 46,
+        "subject": "Krishna reveals the Vishwaroopa form to Yashoda"
       },
       {
         "slug": "dashaka-47",
-        "title": "Krishna bound to the mortar",
+        "title": "Dashaka 47",
         "title_sa": "दशकम् ४७",
-        "n": 47
+        "n": 47,
+        "subject": "Krishna bound to the mortar"
       },
       {
         "slug": "dashaka-48",
-        "title": "Salvation of Nalakubara and Manigriva",
+        "title": "Dashaka 48",
         "title_sa": "दशकम् ४८",
-        "n": 48
+        "n": 48,
+        "subject": "Salvation of Nalakubara and Manigriva"
       },
       {
         "slug": "dashaka-49",
-        "title": "Going to Vrindavana",
+        "title": "Dashaka 49",
         "title_sa": "दशकम् ४९",
         "n": 49,
-        "subject": "Move to Vrindavana and a description of the beauty of the place"
+        "subject": "Going to Vrindavana"
       },
       {
         "slug": "dashaka-50",
-        "title": "Krishna slays Vatsasura and Bakasura",
+        "title": "Dashaka 50",
         "title_sa": "दशकम् ५०",
-        "n": 50
+        "n": 50,
+        "subject": "Krishna slays Vatsasura and Bakasura"
       },
       {
         "slug": "dashaka-51",
-        "title": "Krishna slays Aghasura",
+        "title": "Dashaka 51",
         "title_sa": "दशकम् ५१",
-        "n": 51
+        "n": 51,
+        "subject": "Krishna slays Aghasura"
       },
       {
         "slug": "dashaka-52",
-        "title": "Krishna humbles Brahma’s pride",
+        "title": "Dashaka 52",
         "title_sa": "दशकम् ५२",
-        "n": 52
+        "n": 52,
+        "subject": "Krishna humbles Brahma’s pride"
       },
       {
         "slug": "dashaka-53",
-        "title": "Krishna slays Dhenukasura",
+        "title": "Dashaka 53",
         "title_sa": "दशकम् ५३",
         "n": 53,
-        "subject": "Balarama slays Dhenukasura"
+        "subject": "Krishna slays Dhenukasura"
       },
       {
         "slug": "dashaka-54",
-        "title": "Kaliya troubles the people of Vrindavana",
+        "title": "Dashaka 54",
         "title_sa": "दशकम् ५४",
-        "n": 54
+        "n": 54,
+        "subject": "Kaliya troubles the people of Vrindavana"
       },
       {
         "slug": "dashaka-55",
-        "title": "Krishna subdues Kaliya",
+        "title": "Dashaka 55",
         "title_sa": "दशकम् ५५",
-        "n": 55
+        "n": 55,
+        "subject": "Krishna subdues Kaliya"
       },
       {
         "slug": "dashaka-56",
-        "title": "Krishna bestows grace upon Kaliya",
+        "title": "Dashaka 56",
         "title_sa": "दशकम् ५६",
-        "n": 56
+        "n": 56,
+        "subject": "Krishna bestows grace upon Kaliya"
       },
       {
         "slug": "dashaka-57",
-        "title": "Balarama slays Pralambasura",
+        "title": "Dashaka 57",
         "title_sa": "दशकम् ५७",
-        "n": 57
+        "n": 57,
+        "subject": "Balarama slays Pralambasura"
       },
       {
         "slug": "dashaka-58",
-        "title": "Krishna rescues everyone from the wild fire",
+        "title": "Dashaka 58",
         "title_sa": "दशकम् ५८",
         "n": 58,
-        "subject": "Krishna rescues the gopas from the wild fire"
+        "subject": "Krishna rescues everyone from the wild fire"
       },
       {
         "slug": "dashaka-59",
-        "title": "The song of the flute",
+        "title": "Dashaka 59",
         "title_sa": "दशकम् ५९",
-        "n": 59
+        "n": 59,
+        "subject": "The song of the flute"
       },
       {
         "slug": "dashaka-60",
-        "title": "Krishna steals the clothes of the gopis",
+        "title": "Dashaka 60",
         "title_sa": "दशकम् ६०",
-        "n": 60
+        "n": 60,
+        "subject": "Krishna steals the clothes of the gopis"
       },
       {
         "slug": "dashaka-61",
-        "title": "Krishna blesses the wives of the brahmanas",
+        "title": "Dashaka 61",
         "title_sa": "दशकम् ६१",
-        "n": 61
+        "n": 61,
+        "subject": "Krishna blesses the wives of the brahmanas"
       },
       {
         "slug": "dashaka-62",
-        "title": "Krishna prevents the sacrifice for Indra",
+        "title": "Dashaka 62",
         "title_sa": "दशकम् ६२",
-        "n": 62
+        "n": 62,
+        "subject": "Krishna prevents the sacrifice for Indra"
       },
       {
         "slug": "dashaka-63",
-        "title": "Krishna lifts Govardhana",
+        "title": "Dashaka 63",
         "title_sa": "दशकम् ६३",
-        "n": 63
+        "n": 63,
+        "subject": "Krishna lifts Govardhana"
       },
       {
         "slug": "dashaka-64",
-        "title": "Krishna crowned as Govinda",
+        "title": "Dashaka 64",
         "title_sa": "दशकम् ६४",
         "n": 64,
-        "subject": "Krishna crowned as Govinda; Krishna brings back Nanda from Varuna’s abode"
+        "subject": "Krishna crowned as Govinda"
       },
       {
         "slug": "dashaka-65",
-        "title": "Gopis come to Krishna for rasa-lila",
+        "title": "Dashaka 65",
         "title_sa": "दशकम् ६५",
-        "n": 65
+        "n": 65,
+        "subject": "Gopis come to Krishna for rasa-lila"
       },
       {
         "slug": "dashaka-66",
-        "title": "Krishna plays Rasa-Lila with the gopis",
+        "title": "Dashaka 66",
         "title_sa": "दशकम् ६६",
-        "n": 66
+        "n": 66,
+        "subject": "Krishna plays Rasa-Lila with the gopis"
       },
       {
         "slug": "dashaka-67",
-        "title": "Krishna disappears and reappears",
+        "title": "Dashaka 67",
         "title_sa": "दशकम् ६७",
-        "n": 67
+        "n": 67,
+        "subject": "Krishna disappears and reappears"
       },
       {
         "slug": "dashaka-68",
-        "title": "Krishna’s reunion with the gopis",
+        "title": "Dashaka 68",
         "title_sa": "दशकम् ६८",
-        "n": 68
+        "n": 68,
+        "subject": "Krishna’s reunion with the gopis"
       },
       {
         "slug": "dashaka-69",
-        "title": "Krishna’s Rasa-Dance with the gopis",
+        "title": "Dashaka 69",
         "title_sa": "दशकम् ६९",
-        "n": 69
+        "n": 69,
+        "subject": "Krishna’s Rasa-Dance with the gopis"
       },
       {
         "slug": "dashaka-70",
-        "title": "Salvation of Sudarshana and Destruction of Shankhachuda and Arishta",
+        "title": "Dashaka 70",
         "title_sa": "दशकम् ७०",
-        "n": 70
+        "n": 70,
+        "subject": "Salvation of Sudarshana and Destruction of Shankhachuda and Arishta"
       },
       {
         "slug": "dashaka-71",
-        "title": "Destruction of Keshi and Vyomasura",
+        "title": "Dashaka 71",
         "title_sa": "दशकम् ७१",
-        "n": 71
+        "n": 71,
+        "subject": "Destruction of Keshi and Vyomasura"
       },
       {
         "slug": "dashaka-72",
-        "title": "Akrura visits Vraja",
+        "title": "Dashaka 72",
         "title_sa": "दशकम् ७२",
-        "n": 72
+        "n": 72,
+        "subject": "Akrura visits Vraja"
       },
       {
         "slug": "dashaka-73",
-        "title": "Krishna’s journey to Mathura",
+        "title": "Dashaka 73",
         "title_sa": "दशकम् ७३",
-        "n": 73
+        "n": 73,
+        "subject": "Krishna’s journey to Mathura"
       },
       {
         "slug": "dashaka-74",
-        "title": "Krishna’s entry into Mathura",
+        "title": "Dashaka 74",
         "title_sa": "दशकम् ७४",
-        "n": 74
+        "n": 74,
+        "subject": "Krishna’s entry into Mathura"
       },
       {
         "slug": "dashaka-75",
-        "title": "Krishna kills Kamsa",
+        "title": "Dashaka 75",
         "title_sa": "दशकम् ७५",
-        "n": 75
+        "n": 75,
+        "subject": "Krishna kills Kamsa"
       },
       {
         "slug": "dashaka-76",
-        "title": "Krishna sends a message to the gopis through Uddhava",
+        "title": "Dashaka 76",
         "title_sa": "दशकम् ७६",
-        "n": 76
+        "n": 76,
+        "subject": "Krishna sends a message to the gopis through Uddhava"
       },
       {
         "slug": "dashaka-77",
-        "title": "Krishna bestows grace on Trivakra. Jarasandha’s invasion",
+        "title": "Dashaka 77",
         "title_sa": "दशकम् ७७",
         "n": 77,
-        "subject": "Krishna bestows grace on Trivakra"
+        "subject": "Krishna bestows grace on Trivakra. Jarasandha’s invasion"
       },
       {
         "slug": "dashaka-78",
-        "title": "Rukmini’s message to Krishna",
+        "title": "Dashaka 78",
         "title_sa": "दशकम् ७८",
-        "n": 78
+        "n": 78,
+        "subject": "Rukmini’s message to Krishna"
       },
       {
         "slug": "dashaka-79",
-        "title": "Krishna’s marriage to Rukmini",
+        "title": "Dashaka 79",
         "title_sa": "दशकम् ७९",
-        "n": 79
+        "n": 79,
+        "subject": "Krishna’s marriage to Rukmini"
       },
       {
         "slug": "dashaka-80",
-        "title": "Incident of the Syamantaka gem. Krishna's marriage to Jambavati and Satyabhama",
+        "title": "Dashaka 80",
         "title_sa": "दशकम् ८०",
         "n": 80,
-        "subject": "Incident of the Syamantaka gem"
+        "subject": "Incident of the Syamantaka gem. Krishna's marriage to Jambavati and Satyabhama"
       },
       {
         "slug": "dashaka-81",
-        "title": "Krishna’s marriage to Kalindi, Mitravinda, Satya (Nagnajiti), Bhadra and Lakshmanaa. Salvation of Narakasura, taking away of the Parijata tree from Indra and Krishna’s marriage to sixteen thousand women who were held captive by Narakasura",
+        "title": "Dashaka 81",
         "title_sa": "दशकम् ८१",
         "n": 81,
-        "subject": "Krishna’s marriage to Kalindi, Mitravinda, Satya (Nagnajiti), Bhadra and Lakshmanaa"
+        "subject": "Krishna’s marriage to Kalindi, Mitravinda, Satya (Nagnajiti), Bhadra and Lakshmanaa. Salvation of Narakasura, taking away of the Parijata tree from Indra and Krishna’s marriage to sixteen thousand women who were held captive by Narakasura"
       },
       {
         "slug": "dashaka-82",
-        "title": "Conquest over Bana and salvation of Nriga",
+        "title": "Dashaka 82",
         "title_sa": "दशकम् ८२",
-        "n": 82
+        "n": 82,
+        "subject": "Conquest over Bana and salvation of Nriga"
       },
       {
         "slug": "dashaka-83",
-        "title": "Salvation of Paundraka. Destruction of Sudakshina (the son of the king of Kashi) and Vividha (Dvividha)",
+        "title": "Dashaka 83",
         "title_sa": "दशकम् ८३",
         "n": 83,
-        "subject": "Salvation of Paundraka"
+        "subject": "Salvation of Paundraka. Destruction of Sudakshina (the son of the king of Kashi) and Vividha (Dvividha)"
       },
       {
         "slug": "dashaka-84",
-        "title": "Journey to Samantapanchaka and meeting with the friends and relatives",
+        "title": "Dashaka 84",
         "title_sa": "दशकम् ८४",
-        "n": 84
+        "n": 84,
+        "subject": "Journey to Samantapanchaka and meeting with the friends and relatives"
       },
       {
         "slug": "dashaka-85",
-        "title": "Destruction of Jarasandha. Krishna kills Shishupala during the Rajasuya sacrifice. Duryodhana humiliated",
+        "title": "Dashaka 85",
         "title_sa": "दशकम् ८५",
         "n": 85,
-        "subject": "Destruction of Jarasandha"
+        "subject": "Destruction of Jarasandha. Krishna kills Shishupala during the Rajasuya sacrifice. Duryodhana humiliated"
       },
       {
         "slug": "dashaka-86",
-        "title": "Destruction of Salva. Krishna saves Draupadi’s honor during the game of dice and from the wrath of Sage Durvasa. Battle of Kurukshetra",
+        "title": "Dashaka 86",
         "title_sa": "दशकम् ८६",
         "n": 86,
-        "subject": "Krishna kills Salva and Dantavakra"
+        "subject": "Destruction of Salva. Krishna saves Draupadi’s honor during the game of dice and from the wrath of Sage Durvasa. Battle of Kurukshetra"
       },
       {
         "slug": "dashaka-87",
-        "title": "Krishna bestows grace on Kuchela",
+        "title": "Dashaka 87",
         "title_sa": "दशकम् ८७",
-        "n": 87
+        "n": 87,
+        "subject": "Krishna bestows grace on Kuchela"
       },
       {
         "slug": "dashaka-88",
-        "title": "Krishna brings the dead children of Vasudeva and Devaki and of the brahmana back to life. Krishna shows Vaikuntha to Arjuna",
+        "title": "Dashaka 88",
         "title_sa": "दशकम् ८८",
         "n": 88,
-        "subject": "Krishna b rings the dead children of Vasudeva and Devaki and of the brahmana back to life"
+        "subject": "Krishna brings the dead children of Vasudeva and Devaki and of the brahmana back to life. Krishna shows Vaikuntha to Arjuna"
       },
       {
         "slug": "dashaka-89",
-        "title": "The story of Vrikasura and the test of Brigu",
+        "title": "Dashaka 89",
         "title_sa": "दशकम् ८९",
-        "n": 89
+        "n": 89,
+        "subject": "The story of Vrikasura and the test of Brigu"
       },
       {
         "slug": "dashaka-90",
-        "title": "Establishing the glory of Vishnu",
+        "title": "Dashaka 90",
         "title_sa": "दशकम् ९०",
-        "n": 90
+        "n": 90,
+        "subject": "Establishing the glory of Vishnu"
       },
       {
         "slug": "dashaka-91",
-        "title": "The glory of Bhakti",
+        "title": "Dashaka 91",
         "title_sa": "दशकम् ९१",
-        "n": 91
+        "n": 91,
+        "subject": "The glory of Bhakti"
       },
       {
         "slug": "dashaka-92",
-        "title": "Bhakti in Kaliyuga",
+        "title": "Dashaka 92",
         "title_sa": "दशकम् ९२",
-        "n": 92
+        "n": 92,
+        "subject": "Bhakti in Kaliyuga"
       },
       {
         "slug": "dashaka-93",
-        "title": "The learnings from the twenty-four teachers in life",
+        "title": "Dashaka 93",
         "title_sa": "दशकम् ९३",
-        "n": 93
+        "n": 93,
+        "subject": "The learnings from the twenty-four teachers in life"
       },
       {
         "slug": "dashaka-94",
-        "title": "Enlightenment through Bhakti",
+        "title": "Dashaka 94",
         "title_sa": "दशकम् ९४",
-        "n": 94
+        "n": 94,
+        "subject": "Enlightenment through Bhakti"
       },
       {
         "slug": "dashaka-95",
-        "title": "Supremacy of the path of Bhakti",
+        "title": "Dashaka 95",
         "title_sa": "दशकम् ९५",
-        "n": 95
+        "n": 95,
+        "subject": "Supremacy of the path of Bhakti"
       },
       {
         "slug": "dashaka-96",
-        "title": "Bhakti as a self-sufficient path",
+        "title": "Dashaka 96",
         "title_sa": "दशकम् ९६",
-        "n": 96
+        "n": 96,
+        "subject": "Bhakti as a self-sufficient path"
       },
       {
         "slug": "dashaka-97",
-        "title": "The story of Markandeya",
+        "title": "Dashaka 97",
         "title_sa": "दशकम् ९७",
-        "n": 97
+        "n": 97,
+        "subject": "The story of Markandeya"
       },
       {
         "slug": "dashaka-98",
-        "title": "Praise of the Absolute Brahman",
+        "title": "Dashaka 98",
         "title_sa": "दशकम् ९८",
-        "n": 98
+        "n": 98,
+        "subject": "Praise of the Absolute Brahman"
       },
       {
         "slug": "dashaka-99",
-        "title": "Praise to the Lord in the form of the Vedas",
+        "title": "Dashaka 99",
         "title_sa": "दशकम् ९९",
-        "n": 99
+        "n": 99,
+        "subject": "Praise to the Lord in the form of the Vedas"
       },
       {
         "slug": "dashaka-100",
-        "title": "Description of Krishna",
+        "title": "Dashaka 100",
         "title_sa": "दशकम् १००",
-        "n": 100
+        "n": 100,
+        "subject": "Description of Krishna"
       }
     ],
     "title": "Narayaneeyam",

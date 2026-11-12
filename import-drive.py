@@ -4,7 +4,7 @@
 Takes a saved `download_file_content` result (HTML export, JSON with
 title/mimeType/content) and works out where it goes from the document's title:
 
-    "Dashaka N - <name>"        -> narayaneeyam/dashaka-N/        title = <name>
+    "Dashaka N - <name>"        -> narayaneeyam/dashaka-N/        title "Dashaka N", description <name>
     "Sundarakanda Sarga N"      -> thestoryofhanuman/sundarakanda/sarga-N/
     "KK - Sarga N - [<name>]"   -> thestoryofhanuman/kishkindhakanda/sarga-N/
     "Yudhdhakanda - Sarga N..." -> thestoryofhanuman/yudhdhakanda/sarga-N/
@@ -85,13 +85,14 @@ def main():
         if parent is None:
             raise SystemExit(f"{work}/{slug} is not on the site yet.")
 
-    new_title = m.group(2).strip() if name_from_title else f"{unit_en} {n}"
+    new_title = f"{unit_en} {n}"
+    name = m.group(2).strip() if name_from_title else None      # Narayaneeyam: the dashaka's name
     new_title_sa = f"{unit_sa} {str(n).translate(DEV)}"
     page_dir = ROOT / (f"{parent}/" if parent else "") / work / slug
     print(f"{title}  ->  {page_dir.relative_to(ROOT).as_posix()}/")
     if old:
-        if old["title"] != new_title:
-            print(f"  name:        {old['title']!r} -> {new_title!r}")
+        if name and old.get("subject") != name:
+            print(f"  name:        {old.get('subject')!r} -> {name!r}")
         print(f"  description (before): {old.get('subject', '') or '—'}")
     if args.dry_run:
         return
@@ -105,6 +106,8 @@ def main():
                        cwd=ROOT, check=True, stdout=fh)
     page = ["page", "--work", work, "--slug", slug, "--n", str(n),
             "--title", new_title, "--title-sa", new_title_sa, "--body", str(body)]
+    if name:
+        page += ["--subject", name]
     if parent:
         page[1:1] = ["--parent", parent]
     run("build.py", *page, quiet=True)
