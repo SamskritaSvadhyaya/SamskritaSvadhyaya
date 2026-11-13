@@ -113,7 +113,7 @@ def pages():
     skip = skip_set(entries)
 
     yield "index.html", "", {
-        "title": f"{NAME} — Sanskrit texts with meaning, anvaya and translation",
+        "title": f"{NAME} — Sanskrit texts with word-by-word meaning, anvaya and translation",
         "desc": "A self-study library of Sanskrit texts: Valmiki Ramayana (Sundarakanda), "
                 "Narayaneeyam, Shrimad Bhagavatam, Kalidasa's Raghuvamsha, Ganapati "
                 "Atharvashirsha and more. " + TAGLINE,
