@@ -37,6 +37,17 @@ Static site of Sanskrit texts, published with GitHub Pages.
   title, shown under the "Dashaka N" heading) and description from the doc, rebuilds indexes, home, SEO and sitemap. `--dry-run` shows
   what would change. Refuses withheld dashakas (release first) and unknown docs. Keep scratch
   files (diffs, staging) OUT of the repo — `*.diff` is gitignored after strays got published.
+- **Google Docs are the master copy.** Each page made from a doc records it in texts.json (`doc` =
+  Doc id, `synced` = UTC time the page was last made from it); `build.py home` (`doc_meta`) writes
+  `<meta name="ss-doc">` into the page and account.js shows the owner (only) an "↗ Edit in Google Doc"
+  link in the study bar. Docs are shared with named people only, so the ids are harmless in public.
+  **"Update everything"**: list the docs (Drive folders, `search_files` parentId + modifiedTime ->
+  JSON), `python sync-status.py <listing.json>` prints the pages whose doc changed since `synced`;
+  re-import each. ALWAYS put the doc's `"id"` in the download JSON you hand to import-drive.py (it
+  passes `--doc`, which refreshes `synced`); for pages built by hand use `build.py page ... --doc <id>`.
+  import-drive.py handles Narayaneeyam, Sundarakanda, KK, Yudhdhakanda ("Yudhdhakanda - Sarga N [...]"),
+  Bhagavatam and Bhagavad Geeta ("BG-N <yoga>", new chapters allowed); Raghuvamsha, the Eclectic
+  Collection sarga and Ganapati are rebuilt by hand.
 - Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
   "Shri Ganapati Atharvashirsha" in folder "Shri Ganapati Collection". Update with
   `gdoc_to_body.py <json> <tmp-media>` then `build.py page --slug ganapati-atharvashirsha --title

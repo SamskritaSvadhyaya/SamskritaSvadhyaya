@@ -41,12 +41,16 @@ PATTERNS = [
     (r"Dashaka\s+(\d+)\s*-\s*(.+)", None, "narayaneeyam", "dashaka", "Dashaka", "दशकम्", True, (1, 100)),
     (r"Sundarakanda\s+Sarga\s+(\d+)\b.*", "thestoryofhanuman", "sundarakanda", "sarga", "Sarga", "सर्गः", False, (1, 68)),
     (r"KK\s*-\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "kishkindhakanda", "sarga", "Sarga", "सर्गः", False, (1, 67)),
-    (r"Yudh+akanda\s*-?\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "yudhdhakanda", "sarga", "Sarga", "सर्गः", False, (1, 128)),
+    (r"Yu[dh]+akanda\s*-?\s*Sarga\s+(\d+)\b.*", "thestoryofhanuman", "yudhdhakanda", "sarga", "Sarga", "सर्गः", False, (1, 128)),
     # Shrimad Bhagavatam Canto 10 docs: "श्रीमद्भागवतमहापुराणम् Ch.N".
     # Book 1 (पूर्वार्धः) is chapters 1–49, Book 2 (उत्तरार्धः) chapters 50–90.
     (_SB, "shrimad-bhagavatam-canto-10", "book-1", "ch", "Chapter", "अध्यायः", False, (1, 49)),
     (_SB, "shrimad-bhagavatam-canto-10", "book-2", "ch", "Chapter", "अध्यायः", False, (50, 90)),
+    # Bhagavad Geeta docs: "BG-12 Bhakti Yoga" (the yoga's name becomes the description).
+    (r"BG\s*-\s*(\d+)\s*(.*)", None, "bhagavad-geeta", "ch", "Chapter", "अध्यायः", True, (1, 18)),
 ]
+# Works whose chapters may be added for the first time by this script (the others only update).
+NEW_CHAPTERS_OK = {"bhagavad-geeta"}
 
 
 def run(*cmd, quiet=False):
@@ -82,11 +86,11 @@ def main():
         held = ROOT / "_unreleased" / f"{work}.json"
         if held.exists() and any(c["slug"] == slug for c in json.loads(held.read_text(encoding="utf-8"))):
             raise SystemExit(f"{work}/{slug} is still withheld; run `release.py next {work}` first.")
-        if parent is None:
+        if parent is None and work not in NEW_CHAPTERS_OK:
             raise SystemExit(f"{work}/{slug} is not on the site yet.")
 
     new_title = f"{unit_en} {n}"
-    name = m.group(2).strip() if name_from_title else None      # Narayaneeyam: the dashaka's name
+    name = (m.group(2).strip() or None) if name_from_title else None   # dashaka / yoga name
     new_title_sa = f"{unit_sa} {str(n).translate(DEV)}"
     page_dir = ROOT / (f"{parent}/" if parent else "") / work / slug
     print(f"{title}  ->  {page_dir.relative_to(ROOT).as_posix()}/")
@@ -108,6 +112,8 @@ def main():
             "--title", new_title, "--title-sa", new_title_sa, "--body", str(body)]
     if name:
         page += ["--subject", name]
+    if doc.get("id"):
+        page += ["--doc", doc["id"]]           # remembered for the owner's "Edit in Google Doc" link
     if parent:
         page[1:1] = ["--parent", parent]
     run("build.py", *page, quiet=True)

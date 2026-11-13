@@ -122,6 +122,11 @@ def dev_num(n):
     return str(n).translate(DEV_DIGITS)
 
 
+def utc_now():
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def load_manifest():
     if MANIFEST.exists():
         return json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -268,6 +273,16 @@ def build_page(args):
     }
     if subject:
         chapter_entry["subject"] = subject
+    # The chapter's Google Doc (owner's "Edit in Google Doc" link) and when the page was last
+    # made from it ("update everything" re-imports docs edited after that).
+    if work is not None:
+        prev = next((c for c in work.get("chapters", []) if c.get("slug") == args.slug), {})
+        for k in ("doc", "synced"):
+            if prev.get(k):
+                chapter_entry[k] = prev[k]
+    if args.doc:
+        chapter_entry["doc"] = args.doc
+        chapter_entry["synced"] = utc_now()
     if not chapter_entry.get("image"):
         chapter_entry.pop("image", None)   # the site shows no pictures
 
@@ -283,6 +298,8 @@ def build_page(args):
         # settings (re-uploading used to re-sort every text alphabetically).
         fields = {"type": "text", "slug": args.slug, "title": args.title,
                   "title_sa": args.title_sa, "subtitle": subtitle}
+        if args.doc:
+            fields.update(doc=args.doc, synced=utc_now())
         existing = find_entry(entries, args.slug)
         if existing is not None:
             existing.update(fields)
@@ -534,6 +551,7 @@ def build_home(_args=None):
 
     build_static_pages()
     chapter_nav()
+    doc_meta()
     verse_index()
     stamp_assets()
 
@@ -665,6 +683,36 @@ def verse_index():
         if chs:
             out.append({"t": e.get("title", ""), "k": e["slug"], "c": chs})
     (ROOT / "verses.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
+def doc_meta():
+    """<meta name="ss-doc" content="<Google Doc id>"> in each page made from a doc (texts.json
+    "doc"). script.js/account.js turn it into an "Edit in Google Doc" link for the site owner only;
+    the docs themselves are shared with named people only, so the id opens nothing for others."""
+    targets = {}
+    for e in load_manifest():
+        if is_parent(e):
+            for w in e.get("works", []):
+                for c in w.get("chapters", []):
+                    targets[f"{e['slug']}/{w['slug']}/{c['slug']}"] = c.get("doc")
+        elif is_work(e):
+            for c in e.get("chapters", []):
+                targets[f"{e['slug']}/{c['slug']}"] = c.get("doc")
+        else:
+            targets[e["slug"]] = e.get("doc")
+    pat = re.compile(r'\n?\s*<meta name="ss-doc" content="[^"]*" />')
+    for rel, doc in targets.items():
+        page = ROOT / rel / "index.html"
+        if not page.exists():
+            continue
+        raw = page.read_bytes()
+        text = raw.decode("utf-8")
+        new = pat.sub("", text)
+        if doc:
+            nl = "\r\n" if "\r\n" in text else "\n"
+            new = new.replace("</head>", f'  <meta name="ss-doc" content="{doc}" />{nl}</head>', 1)
+        if new != text:
+            page.write_bytes(new.encode("utf-8"))
 
 
 def stamp_assets():
@@ -858,6 +906,7 @@ def main():
     p.add_argument("--subject", default=None, help="chapter description (e.g. a dashaka's name)")
     p.add_argument("--n", type=int, default=None)
     p.add_argument("--body", required=True)
+    p.add_argument("--doc", default=None, help="Google Doc id the page was made from")
     p.set_defaults(func=build_page)
 
     w = sub.add_parser("set-work")

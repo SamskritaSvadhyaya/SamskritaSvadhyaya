@@ -8,21 +8,27 @@
         "title": "Sarga 10",
         "title_sa": "सर्गः १०",
         "n": 10,
-        "subject": "Birth of Rama"
+        "subject": "Birth of Rama",
+        "doc": "1ZgVR61KFaT2FlBsXcB5lo9RIK9ZB8WXI_dWXhBmapVs",
+        "synced": "2026-02-27T06:39:02Z"
       },
       {
         "slug": "sarga-11",
         "title": "Sarga 11",
         "title_sa": "सर्गः ११",
         "n": 11,
-        "subject": "Description of Rama and Sita’s wedding"
+        "subject": "Description of Rama and Sita’s wedding",
+        "doc": "1l6I4xezJDqKLOaqOJ_g0oe-PA_fFVSwylwwu3XvvMF4",
+        "synced": "2026-02-27T06:39:19Z"
       },
       {
         "slug": "sarga-12",
         "title": "Sarga 12",
         "title_sa": "सर्गः १२",
         "n": 12,
-        "subject": "Rama kills Ravana"
+        "subject": "Rama kills Ravana",
+        "doc": "1vPnVnlQjbNV1_0Y6gXpwC6BZCvWlorpvIcEm2m3QKTY",
+        "synced": "2026-04-06T06:04:10Z"
       }
     ],
     "title": "Raghuvamsha — Kalidasa's Ramayana",
@@ -34,7 +40,9 @@
     "slug": "ganapati-atharvashirsha",
     "title": "Shri Ganapati Atharvashirsha",
     "title_sa": "श्री गणपतिः अथर्वशीर्षः",
-    "subtitle": ""
+    "subtitle": "",
+    "doc": "1ot8Y_RfmYBdUEaDJVgI8GEodalsj-ccgjeE16D7X8yo",
+    "synced": "2026-11-12T01:03:49Z"
   },
   {
     "type": "parent",
@@ -49,14 +57,18 @@
             "title": "Sarga 66",
             "title_sa": "सर्गः ६६",
             "n": 66,
-            "subject": "Description of Hanuman's glory"
+            "subject": "Description of Hanuman's glory",
+            "doc": "1AFy3-lxKn5TWkkQx6DSK9K57zYxDRCSUhEi3UQQ-bas",
+            "synced": "2026-11-01T22:11:15Z"
           },
           {
             "slug": "sarga-67",
             "title": "Sarga 67",
             "title_sa": "सर्गः ६७",
             "n": 67,
-            "subject": "Hanuman displays his immeasurable might and proceeds to mount Mahendra"
+            "subject": "Hanuman displays his immeasurable might and proceeds to mount Mahendra",
+            "doc": "1btsVyhXy4cYyq_7m1hWNljYiOmNNQ9RJXBaRTKBk_n8",
+            "synced": "2026-11-01T22:11:46Z"
           }
         ],
         "title": "Kishkindhakanda",
@@ -72,476 +84,612 @@
             "title": "Sarga 1",
             "title_sa": "सर्गः १",
             "n": 1,
-            "subject": "Hanuman crosses the ocean, reaches Lanka"
+            "subject": "Hanuman crosses the ocean, reaches Lanka",
+            "doc": "1KJeXsMwGnmir8o-uRuQOSeZFp1f4pubjILhFLleLWnE",
+            "synced": "2026-11-01T22:12:45Z"
           },
           {
             "slug": "sarga-2",
             "title": "Sarga 2",
             "title_sa": "सर्गः २",
             "n": 2,
-            "subject": "Hanuman reaches the main entrance of Lanka assuming a diminutive form"
+            "subject": "Hanuman reaches the main entrance of Lanka assuming a diminutive form",
+            "doc": "1FBf3Rrg8daiOWUO0b09OcA4gZnRLtNv63e-tbsjcz4c",
+            "synced": "2026-11-01T22:13:35Z"
           },
           {
             "slug": "sarga-3",
             "title": "Sarga 3",
             "title_sa": "सर्गः ३",
             "n": 3,
-            "subject": "﻿Hanuman's confrontation with Lankini, the spirit of Lanka"
+            "subject": "﻿Hanuman's confrontation with Lankini, the spirit of Lanka",
+            "doc": "1G8apMMkaaIhmQqOLZwPnAdO4dUykyNphIkfRaE5kmJY",
+            "synced": "2026-11-01T22:14:01Z"
           },
           {
             "slug": "sarga-4",
             "title": "Sarga 4",
             "title_sa": "सर्गः ४",
             "n": 4,
-            "subject": "Hanuman witnesses Ravana's strength at Lanka"
+            "subject": "Hanuman witnesses Ravana's strength at Lanka",
+            "doc": "1W7Q11tkZqGOWNFOarKcB0DaQ2Bo4uN9vbQV9x0Glie0",
+            "synced": "2026-11-01T22:14:30Z"
           },
           {
             "slug": "sarga-5",
             "title": "Sarga 5",
             "title_sa": "सर्गः ५",
             "n": 5,
-            "subject": "Hanuman finds rakshasas all over Lanka, unable to find Sita, feels sad"
+            "subject": "Hanuman finds rakshasas all over Lanka, unable to find Sita, feels sad",
+            "doc": "1NulQGjt2WXaz4XB9Mp0F2VSP8mHSNmU5R7r-FClPckY",
+            "synced": "2026-11-01T22:14:58Z"
           },
           {
             "slug": "sarga-6",
             "title": "Sarga 6",
             "title_sa": "सर्गः ६",
             "n": 6,
-            "subject": "﻿Hanuman enters the palace of Ravana, description of the palace"
+            "subject": "﻿Hanuman enters the palace of Ravana, description of the palace",
+            "doc": "1Pkcylv6VwBckgzK2fv6LUej7D_PjV8HaljuadQ3vdvg",
+            "synced": "2026-11-01T22:15:41Z"
           },
           {
             "slug": "sarga-7",
             "title": "Sarga 7",
             "title_sa": "सर्गः ७",
             "n": 7,
-            "subject": "Description of the aerial car Pushpaka"
+            "subject": "Description of the aerial car Pushpaka",
+            "doc": "1QsZ6SZzfCaOuFcBZz0o2k2NCzj5ICgrvucSvmSCsJuw",
+            "synced": "2026-11-01T22:16:08Z"
           },
           {
             "slug": "sarga-8",
             "title": "Sarga 8",
             "title_sa": "सर्गः ८",
             "n": 8,
-            "subject": "Further description of the aerial car, Pushpaka"
+            "subject": "Further description of the aerial car, Pushpaka",
+            "doc": "1YV38k7e-Pjg1dFeqY1ByI4Wty50zOFRZsOfvMdZ95Ds",
+            "synced": "2026-11-01T22:16:37Z"
           },
           {
             "slug": "sarga-9",
             "title": "Sarga 9",
             "title_sa": "सर्गः ९",
             "n": 9,
-            "subject": "Description of the harem of Ravana"
+            "subject": "Description of the harem of Ravana",
+            "doc": "12sX4ShMQQHcX_V9DmiQ5FNYfPbdnwd383dZTCL69aj8",
+            "synced": "2026-11-01T22:17:07Z"
           },
           {
             "slug": "sarga-10",
             "title": "Sarga 10",
             "title_sa": "सर्गः १०",
             "n": 10,
-            "subject": "Hanuman chances upon Mandodari, wife of Ravana, mistakes her for Sita on account of her beauty and charm"
+            "subject": "Hanuman chances upon Mandodari, wife of Ravana, mistakes her for Sita on account of her beauty and charm",
+            "doc": "1J0FnIiNqkKlZg-0RWGqXvhRjm46sz44DS8S8AOXBWZs",
+            "synced": "2026-11-01T22:17:41Z"
           },
           {
             "slug": "sarga-11",
             "title": "Sarga 11",
             "title_sa": "सर्गः ११",
             "n": 11,
-            "subject": "Hanuman mistakes Mandodari for Sita, soon dismisses his wrong inference, sees the women of harem lying in disorder, cannot find Sita"
+            "subject": "Hanuman mistakes Mandodari for Sita, soon dismisses his wrong inference, sees the women of harem lying in disorder, cannot find Sita",
+            "doc": "1OB1e5fdgwkBAVejUHRsGqVgxBkl4CdFhu7DYn0_XsFs",
+            "synced": "2026-11-01T22:28:47Z"
           },
           {
             "slug": "sarga-12",
             "title": "Sarga 12",
             "title_sa": "सर्गः १२",
             "n": 12,
-            "subject": "Hanuman makes a thorough search of Ravana's palace for Sita"
+            "subject": "Hanuman makes a thorough search of Ravana's palace for Sita",
+            "doc": "1nmeL2pcxunD-f7hqTMWfHX3iYdeyRcB6iLgHMWB-_nM",
+            "synced": "2026-11-01T22:29:10Z"
           },
           {
             "slug": "sarga-13",
             "title": "Sarga 13",
             "title_sa": "सर्गः १३",
             "n": 13,
-            "subject": "Hanuman's soliloquy in despondency"
+            "subject": "Hanuman's soliloquy in despondency",
+            "doc": "1bjrXh4BIFaA-pDTvM7R3VG7fkupDG-Z5EY3Y4qLGm9E",
+            "synced": "2026-11-08T07:11:02Z"
           },
           {
             "slug": "sarga-14",
             "title": "Sarga 14",
             "title_sa": "सर्गः १४",
             "n": 14,
-            "subject": "Hanuman ascends the Shimshupa tree in the Ashoka grove and watches"
+            "subject": "Hanuman ascends the Shimshupa tree in the Ashoka grove and watches",
+            "doc": "1vokcUC1DQK6i0WF5sCF0ihIWgNxDxR8RPmMO-ciSLww",
+            "synced": "2026-11-01T22:30:17Z"
           },
           {
             "slug": "sarga-15",
             "title": "Sarga 15",
             "title_sa": "सर्गः १५",
             "n": 15,
-            "subject": "Hanuman sees Sita"
+            "subject": "Hanuman sees Sita",
+            "doc": "1IZsMSs-FkIqApL2O3XsnPev3KPXEZXpqtnpk6FSQKWw",
+            "synced": "2026-11-08T06:58:57Z"
           },
           {
             "slug": "sarga-16",
             "title": "Sarga 16",
             "title_sa": "सर्गः १६",
             "n": 16,
-            "subject": "Hanuman's grief over Sita's state"
+            "subject": "Hanuman's grief over Sita's state",
+            "doc": "1WNamWkIfirm1KjEAGyZ5udIA1Fa7iMgUJEgl3QTeXb8",
+            "synced": "2026-11-01T22:32:26Z"
           },
           {
             "slug": "sarga-17",
             "title": "Sarga 17",
             "title_sa": "सर्गः १७",
             "n": 17,
-            "subject": "Hanuman hiding on the Shimshupa tree, experiences the presence of rakshasis"
+            "subject": "Hanuman hiding on the Shimshupa tree, experiences the presence of rakshasis",
+            "doc": "1B4776vPMM7LU_-gbrZAsf7pqo8_o9TpWL4-9u-rxhe0",
+            "synced": "2026-11-01T22:32:57Z"
           },
           {
             "slug": "sarga-18",
             "title": "Sarga 18",
             "title_sa": "सर्गः १८",
             "n": 18,
-            "subject": "Ravana comes to see Sita"
+            "subject": "Ravana comes to see Sita",
+            "doc": "1XdAu8KAfgOo7BtnGTuYCK4uUAnIbmHdvENupYM81QG4",
+            "synced": "2026-11-01T22:33:24Z"
           },
           {
             "slug": "sarga-19",
             "title": "Sarga 19",
             "title_sa": "सर्गः १९",
             "n": 19,
-            "subject": "Description of Sita who was overcome with grief"
+            "subject": "Description of Sita who was overcome with grief",
+            "doc": "1YImuaeq3wRj2HV7iP2Hb_NM9qQECtYncdPJdnFw5Das",
+            "synced": "2026-11-01T22:33:52Z"
           },
           {
             "slug": "sarga-20",
             "title": "Sarga 20",
             "title_sa": "सर्गः २०",
             "n": 20,
-            "subject": "Ravana attempts to tempt Sita"
+            "subject": "Ravana attempts to tempt Sita",
+            "doc": "18NQiuxRJA9WsR9IIeEpuy5x7C0_NWB2dq0rg0YxWI9U",
+            "synced": "2026-11-08T07:00:41Z"
           },
           {
             "slug": "sarga-21",
             "title": "Sarga 21",
             "title_sa": "सर्गः २१",
             "n": 21,
-            "subject": "Sita spurns Ravana's submission"
+            "subject": "Sita spurns Ravana's submission",
+            "doc": "1IwO3iXvvTBI9t3RHjvsPR7RJApZwyiGLnzgPqbwwr84",
+            "synced": "2026-11-08T07:02:01Z"
           },
           {
             "slug": "sarga-22",
             "title": "Sarga 22",
             "title_sa": "सर्गः २२",
             "n": 22,
-            "subject": "Ravana appeals to Sita, asks the rakshasi guards to change her mind, gives ultimatum to Sita"
+            "subject": "Ravana appeals to Sita, asks the rakshasi guards to change her mind, gives ultimatum to Sita",
+            "doc": "1ht6oXEypRll7UzCd87wpRMvMVC9ir5EJtAg_1LLBfGw",
+            "synced": "2026-11-01T22:35:04Z"
           },
           {
             "slug": "sarga-23",
             "title": "Sarga 23",
             "title_sa": "सर्गः २३",
             "n": 23,
-            "subject": "The rakshasis attempt to convince Sita"
+            "subject": "The rakshasis attempt to convince Sita",
+            "doc": "1YNhD2jH_1ai6qGmD8UP1H6FiJdTj4g0oZJgqpBdv5MY",
+            "synced": "2026-11-01T22:35:34Z"
           },
           {
             "slug": "sarga-24",
             "title": "Sarga 24",
             "title_sa": "सर्गः २४",
             "n": 24,
-            "subject": "The rakshasis chide Sita who resolutely condemns Ravana"
+            "subject": "The rakshasis chide Sita who resolutely condemns Ravana",
+            "doc": "10F-zlZx61fRip61zzS6lISal9eHRffZJZfA2cVnProE",
+            "synced": "2026-11-01T22:36:00Z"
           },
           {
             "slug": "sarga-25",
             "title": "Sarga 25",
             "title_sa": "सर्गः २५",
             "n": 25,
-            "subject": "Sita wails over her misery"
+            "subject": "Sita wails over her misery",
+            "doc": "1n8BsTIuXQnysN1-6Q9QmqaEd8BWRTaoj2gCjvB-QW7g",
+            "synced": "2026-11-01T22:36:28Z"
           },
           {
             "slug": "sarga-26",
             "title": "Sarga 26",
             "title_sa": "सर्गः २६",
             "n": 26,
-            "subject": "Sita decides to end her sad life"
+            "subject": "Sita decides to end her sad life",
+            "doc": "1hOjnCCIIPidRZ6dKWF2cbsv_b8lTbQOvCT8eDo09md8",
+            "synced": "2026-11-01T22:36:57Z"
           },
           {
             "slug": "sarga-27",
             "title": "Sarga 27",
             "title_sa": "सर्गः २७",
             "n": 27,
-            "subject": "Trijata narrates her dream"
+            "subject": "Trijata narrates her dream",
+            "doc": "1J1DNhEn5Wb_75NNlcrC22JlAcrn9-e4JyHijLKDxJpk",
+            "synced": "2026-11-01T22:37:23Z"
           },
           {
             "slug": "sarga-28",
             "title": "Sarga 28",
             "title_sa": "सर्गः २८",
             "n": 28,
-            "subject": "Sita's wailings, finally finds some auspicious signs"
+            "subject": "Sita's wailings, finally finds some auspicious signs",
+            "doc": "1qr2KubnUegHLLPIm1duBsZZHw-nlrrtIWk-81nOVtiU",
+            "synced": "2026-11-01T22:37:48Z"
           },
           {
             "slug": "sarga-29",
             "title": "Sarga 29",
             "title_sa": "सर्गः २९",
             "n": 29,
-            "subject": "Sita feels happy seeing auspicious signs"
+            "subject": "Sita feels happy seeing auspicious signs",
+            "doc": "17AZF0iRo4gGrUfbYE0009SGG9p0JoAZXx6diPjxXfCE",
+            "synced": "2026-11-01T22:38:11Z"
           },
           {
             "slug": "sarga-30",
             "title": "Sarga 30",
             "title_sa": "सर्गः ३०",
             "n": 30,
-            "subject": "Hanuman decides to praise Rama within Sita's earshot"
+            "subject": "Hanuman decides to praise Rama within Sita's earshot",
+            "doc": "19DBOmF1BltEcmC5kTDPvRx8FPYYvk7AfTr2N428wCiA",
+            "synced": "2026-11-01T22:38:28Z"
           },
           {
             "slug": "sarga-31",
             "title": "Sarga 31",
             "title_sa": "सर्गः ३१",
             "n": 31,
-            "subject": "Hanuman sings the story of glory of Rama within Sita's hearing"
+            "subject": "Hanuman sings the story of glory of Rama within Sita's hearing",
+            "doc": "1scq_rShopYdT_sxxjZpwNKDjxB4pUZMMl0HRfd6WVKg",
+            "synced": "2026-10-08T14:35:08Z"
           },
           {
             "slug": "sarga-32",
             "title": "Sarga 32",
             "title_sa": "सर्गः ३२",
             "n": 32,
-            "subject": "Sita's conjecture"
+            "subject": "Sita's conjecture",
+            "doc": "1UJVlmXBmJ49fCJfz6vKgKwK6pL82iLOE-vZrqLHgp4o",
+            "synced": "2026-10-09T17:26:29Z"
           },
           {
             "slug": "sarga-33",
             "title": "Sarga 33",
             "title_sa": "सर्गः ३३",
             "n": 33,
-            "subject": "Sita reveals her story to Hanuman"
+            "subject": "Sita reveals her story to Hanuman",
+            "doc": "1mlmmlgBqL7oFXjWvX00YXbJ5FSLw9XmA6Sh9yhtNFgs",
+            "synced": "2026-10-11T04:12:23Z"
           },
           {
             "slug": "sarga-34",
             "title": "Sarga 34",
             "title_sa": "सर्गः ३४",
             "n": 34,
-            "subject": "Hanuman tells the story of Rama to Sita"
+            "subject": "Hanuman tells the story of Rama to Sita",
+            "doc": "1iSKdejfCy7rOR4S8mEH-v2t2fDT2DwXcZEYAfnk6Z38",
+            "synced": "2026-10-12T18:03:23Z"
           },
           {
             "slug": "sarga-35",
             "title": "Sarga 35",
             "title_sa": "सर्गः ३५",
             "n": 35,
-            "subject": "Hanuman narrates his story to Sita. Gives description of Rama and Lakshmana"
+            "subject": "Hanuman narrates his story to Sita. Gives description of Rama and Lakshmana",
+            "doc": "12MXQfWDgR6dpQ1YNIBhR6GzEoOfTGXPNPlAetCoE2MI",
+            "synced": "2026-11-03T19:24:22Z"
           },
           {
             "slug": "sarga-36",
             "title": "Sarga 36",
             "title_sa": "सर्गः ३६",
             "n": 36,
-            "subject": "Hanuman hands over the signet ring to Sita"
+            "subject": "Hanuman hands over the signet ring to Sita",
+            "doc": "176L6amhkcaNbGxIbTQCYMLA3F4nByRWuUbZXbLLGGjs",
+            "synced": "2026-10-13T19:07:05Z"
           },
           {
             "slug": "sarga-37",
             "title": "Sarga 37",
             "title_sa": "सर्गः ३७",
             "n": 37,
-            "subject": "Hanuman offers to carry Sita back to Rama. Sita politely declines, and appeals to Hanuman to get Rama to take her"
+            "subject": "Hanuman offers to carry Sita back to Rama. Sita politely declines, and appeals to Hanuman to get Rama to take her",
+            "doc": "1SOuMyrj37M2bMC-Ftq9vSxQynPAaS-lBSTqEKGe97gc",
+            "synced": "2026-10-14T18:28:41Z"
           },
           {
             "slug": "sarga-38",
             "title": "Sarga 38",
             "title_sa": "सर्गः ३८",
             "n": 38,
-            "subject": "Hanuman asks Sita for a token to carry back to Rama. Sita narrates the episode of Kakasura and gives Chudamani as a mark of identification"
+            "subject": "Hanuman asks Sita for a token to carry back to Rama. Sita narrates the episode of Kakasura and gives Chudamani as a mark of identification",
+            "doc": "1CukvopjT8FYBPedaOTuPVZBd7T-W_NHE-Q2iKYdOQhQ",
+            "synced": "2026-10-15T19:19:59Z"
           },
           {
             "slug": "sarga-39",
             "title": "Sarga 39",
             "title_sa": "सर्गः ३९",
             "n": 39,
-            "subject": "Sita further appeals to Hanuman"
+            "subject": "Sita further appeals to Hanuman",
+            "doc": "1VvrKsnn_O3uZ3-FflptITPQrGPtPwvC7k40cUUo2wYg",
+            "synced": "2026-10-16T18:36:39Z"
           },
           {
             "slug": "sarga-40",
             "title": "Sarga 40",
             "title_sa": "सर्गः ४०",
             "n": 40,
-            "subject": "Sita permits Hanuman to depart"
+            "subject": "Sita permits Hanuman to depart",
+            "doc": "1r2vt7gWVJcPhZ-L6z7MF6q4E8FVLRoDierV7w7nkOQI",
+            "synced": "2026-10-19T18:17:16Z"
           },
           {
             "slug": "sarga-41",
             "title": "Sarga 41",
             "title_sa": "सर्गः ४१",
             "n": 41,
-            "subject": "Hanuman decides to meet Ravana and measure his strength"
+            "subject": "Hanuman decides to meet Ravana and measure his strength",
+            "doc": "1Kofb7WyPvmT-yD0_u3sMJ0tY3EKrCUZz8BAdUyquqgA",
+            "synced": "2026-10-19T18:36:59Z"
           },
           {
             "slug": "sarga-42",
             "title": "Sarga 42",
             "title_sa": "सर्गः ४२",
             "n": 42,
-            "subject": "Hanuman ruins Ashoka garden. Kills eighty thousand kinkaras"
+            "subject": "Hanuman ruins Ashoka garden. Kills eighty thousand kinkaras",
+            "doc": "15D5HHyk70fKhH_cpQSmBY-Ue7j6cDls35sZWqdKg_qE",
+            "synced": "2026-10-20T18:32:34Z"
           },
           {
             "slug": "sarga-43",
             "title": "Sarga 43",
             "title_sa": "सर्गः ४३",
             "n": 43,
-            "subject": "Hanuman destroys the rakshasas in the palace"
+            "subject": "Hanuman destroys the rakshasas in the palace",
+            "doc": "1fCyppSwhHjHhTLyk4-HK_NK64OIN_pD51LYqzHztASQ",
+            "synced": "2026-10-21T18:19:45Z"
           },
           {
             "slug": "sarga-44",
             "title": "Sarga 44",
             "title_sa": "सर्गः ४४",
             "n": 44,
-            "subject": "Hanuman kills Jambumali"
+            "subject": "Hanuman kills Jambumali",
+            "doc": "16MgIcSeklbDLtitKHfIfiK0_ZIJCK5yPl6MuOCe4a9M",
+            "synced": "2026-10-22T19:41:34Z"
           },
           {
             "slug": "sarga-45",
             "title": "Sarga 45",
             "title_sa": "सर्गः ४५",
             "n": 45,
-            "subject": "Hanuman kills the seven sons of Ravana's chief minister"
+            "subject": "Hanuman kills the seven sons of Ravana's chief minister",
+            "doc": "1iA-jNm2CLG5G-HD5XiWvyqrYnasAqfXpfvw_KBKZPqU",
+            "synced": "2026-10-23T19:27:12Z"
           },
           {
             "slug": "sarga-46",
             "title": "Sarga 46",
             "title_sa": "सर्गः ४६",
             "n": 46,
-            "subject": "Hanuman kills the five generals of Ravana (Durdhara, Praghasa, Virupaksha,Yupaksha, Bhaskarna)"
+            "subject": "Hanuman kills the five generals of Ravana (Durdhara, Praghasa, Virupaksha,Yupaksha, Bhaskarna)",
+            "doc": "1gBuiBOQPvPyqZNbgRS9v3xxJBxdGEP0BrZI9NbkHQMo",
+            "synced": "2026-10-26T18:31:09Z"
           },
           {
             "slug": "sarga-47",
             "title": "Sarga 47",
             "title_sa": "सर्गः ४७",
             "n": 47,
-            "subject": "Hanuman kills Prince Aksha"
+            "subject": "Hanuman kills Prince Aksha",
+            "doc": "1_fr0ObVHxLqgdG0WVBn_ujU6cz9b4GFdj1-PMKnNgMQ",
+            "synced": "2026-11-12T05:58:54Z"
           },
           {
             "slug": "sarga-48",
             "title": "Sarga 48",
             "title_sa": "सर्गः ४८",
             "n": 48,
-            "subject": "Combat between Hanuman and Ravana's son, Indrajit - Indrajit captures Hanuman by Brahmastra and gets him to Ravana"
+            "subject": "Combat between Hanuman and Ravana's son, Indrajit - Indrajit captures Hanuman by Brahmastra and gets him to Ravana",
+            "doc": "1KmY00LeKyx6W4h3aJrzXkFNCukORvrKWJQid6L71nKg",
+            "synced": "2026-10-28T18:21:57Z"
           },
           {
             "slug": "sarga-49",
             "title": "Sarga 49",
             "title_sa": "सर्गः ४९",
             "n": 49,
-            "subject": "Hanuman wonders at the splendour and glory of Ravana"
+            "subject": "Hanuman wonders at the splendour and glory of Ravana",
+            "doc": "1ojmy95xeBMSCyg_oIXWZvvXTaKIDWdC9Z5HebvWqS1s",
+            "synced": "2026-10-29T16:53:17Z"
           },
           {
             "slug": "sarga-50",
             "title": "Sarga 50",
             "title_sa": "सर्गः ५०",
             "n": 50,
-            "subject": "On the command of Ravana, Prahasta enquires Hanuman the purpose of his visit. Hanuman reveals that he is a vanara and a messenger of Rama"
+            "subject": "On the command of Ravana, Prahasta enquires Hanuman the purpose of his visit. Hanuman reveals that he is a vanara and a messenger of Rama",
+            "doc": "1GoTqiPJUKqiioP8GWjbucJSysDDVU9vd4PNZkWxlhWE",
+            "synced": "2026-10-30T17:08:14Z"
           },
           {
             "slug": "sarga-51",
             "title": "Sarga 51",
             "title_sa": "सर्गः ५१",
             "n": 51,
-            "subject": "Hanuman tenders both sound advice and stern warning to Ravana"
+            "subject": "Hanuman tenders both sound advice and stern warning to Ravana",
+            "doc": "1Q7pDqjm-aLlCGsOC80RclzPuZ9R0kHqWyNPRPCC5Ckk",
+            "synced": "2026-10-31T18:53:55Z"
           },
           {
             "slug": "sarga-52",
             "title": "Sarga 52",
             "title_sa": "सर्गः ५२",
             "n": 52,
-            "subject": "Vibhishana advises Ravana against slaying of an emissary - elaborates on the code of conduct of a king"
+            "subject": "Vibhishana advises Ravana against slaying of an emissary - elaborates on the code of conduct of a king",
+            "doc": "1gsMmcLXhXwr2_-uHuBwqw8qcMAvqAlD-2k0HVkMqwxY",
+            "synced": "2026-11-01T22:59:13Z"
           },
           {
             "slug": "sarga-53",
             "title": "Sarga 53",
             "title_sa": "सर्गः ५३",
             "n": 53,
-            "subject": "Ravana orders the rakshasas to put Hanuman's tail on fire and take him around Lanka with his burning tail"
+            "subject": "Ravana orders the rakshasas to put Hanuman's tail on fire and take him around Lanka with his burning tail",
+            "doc": "1qAsyv13ua3TY32pXmUeq9lbS2_wAh4aZfhoAuZXw56Y",
+            "synced": "2026-11-02T21:32:26Z"
           },
           {
             "slug": "sarga-54",
             "title": "Sarga 54",
             "title_sa": "सर्गः ५४",
             "n": 54,
-            "subject": "Hanuman destroys the Ashoka garden. Sets fire to Lanka. Kills the rakshasas"
+            "subject": "Hanuman destroys the Ashoka garden. Sets fire to Lanka. Kills the rakshasas",
+            "doc": "1LH2L0l8kPr2H8Z4zzjD4ERdXaOhimrWo4T35n7tx444",
+            "synced": "2026-11-03T16:58:27Z"
           },
           {
             "slug": "sarga-55",
             "title": "Sarga 55",
             "title_sa": "सर्गः ५५",
             "n": 55,
-            "subject": "Hanuman, after setting fire to Lanka, thinks of Sita and begins to blame himself. On seeing good omens, he presumes that Sita would have been protected by her chastity"
+            "subject": "Hanuman, after setting fire to Lanka, thinks of Sita and begins to blame himself. On seeing good omens, he presumes that Sita would have been protected by her chastity",
+            "doc": "1StAV8vjnJD4u6rKn3RFhemA5U-WedbAW_czHVqRk93Y",
+            "synced": "2026-11-04T20:02:50Z"
           },
           {
             "slug": "sarga-56",
             "title": "Sarga 56",
             "title_sa": "सर्गः ५६",
             "n": 56,
-            "subject": "Hanuman takes leave of Sita. Sets out for the northern shore. Description of the Arishta mountain"
+            "subject": "Hanuman takes leave of Sita. Sets out for the northern shore. Description of the Arishta mountain",
+            "doc": "1LXjL0jp_W23MCxv3L4eEjkdn3i8P9pgFoR8r_rHqICA",
+            "synced": "2026-11-05T19:32:15Z"
           },
           {
             "slug": "sarga-57",
             "title": "Sarga 57",
             "title_sa": "सर्गः ५७",
             "n": 57,
-            "subject": "Hanuman reaches the northern shore. Announces to the vanaras, Angada and Jambavan about his seeing Sita. Everyone rejoices to hear the news of Sita"
+            "subject": "Hanuman reaches the northern shore. Announces to the vanaras, Angada and Jambavan about his seeing Sita. Everyone rejoices to hear the news of Sita",
+            "doc": "1yyBPtXkdoHX10gsxmQvcdIS9kWNMKX6_X0ZsnHbTWns",
+            "synced": "2026-11-06T21:10:56Z"
           },
           {
             "slug": "sarga-58",
             "title": "Sarga 58",
             "title_sa": "सर्गः ५८",
             "n": 58,
-            "subject": "Hanuman narrates all the incidents starting from his departure for Lanka till his return"
+            "subject": "Hanuman narrates all the incidents starting from his departure for Lanka till his return",
+            "doc": "1qtJebcoFC0f0y-e1D98WV8qU7qJgOB0hCXCAX53fwFA",
+            "synced": "2026-11-09T23:15:30Z"
           },
           {
             "slug": "sarga-59",
             "title": "Sarga 59",
             "title_sa": "सर्गः ५९",
             "n": 59,
-            "subject": "Hanuman gives an account of the plight of Sita in Lanka. Incites the vanaras to be ready for the next course of action"
+            "subject": "Hanuman gives an account of the plight of Sita in Lanka. Incites the vanaras to be ready for the next course of action",
+            "doc": "1ryW0-yfrKO2C_UcAZtVPS5ClPX8kSqzkOQy9Y74kSkA",
+            "synced": "2026-11-10T20:28:43Z"
           },
           {
             "slug": "sarga-60",
             "title": "Sarga 60",
             "title_sa": "सर्गः ६०",
             "n": 60,
-            "subject": "Jambavan says it is advisable to follow Rama's instruction"
+            "subject": "Jambavan says it is advisable to follow Rama's instruction",
+            "doc": "1g4qN9hmBrFQamnpsT24LDldsWuFGvZryV0191bi_lr8",
+            "synced": "2026-11-11T19:56:51Z"
           },
           {
             "slug": "sarga-61",
             "title": "Sarga 61",
             "title_sa": "सर्गः ६१",
             "n": 61,
-            "subject": "Monkey leaders enter Madhuvan on the outskirts of Kishkindha and destroy it in their drunkenness"
+            "subject": "Monkey leaders enter Madhuvan on the outskirts of Kishkindha and destroy it in their drunkenness",
+            "doc": "1i7VEZFdmhmmJ3FqeN-yFC_qbxI9QhDoerG7D6APj_Zk",
+            "synced": "2026-11-12T23:09:55Z"
           },
           {
             "slug": "sarga-62",
             "title": "Sarga 62",
             "title_sa": "सर्गः ६२",
             "n": 62,
-            "subject": "Guards of Madhuvanam headed by Dadhimukha move to report to Sugriva"
+            "subject": "Guards of Madhuvanam headed by Dadhimukha move to report to Sugriva",
+            "doc": "1N2Pky_UQ0xiBNDxbglfuKgsFpLm4gUHnyr2H0Y2wOfE",
+            "synced": "2026-11-11T00:00:00Z"
           },
           {
             "slug": "sarga-63",
             "title": "Sarga 63",
             "title_sa": "सर्गः ६३",
             "n": 63,
-            "subject": "Sugriva tells Dadhimukha not to worry about the destruction of Madhuvanam. He asks him to send Hanuman, Angada and others"
+            "subject": "Sugriva tells Dadhimukha not to worry about the destruction of Madhuvanam. He asks him to send Hanuman, Angada and others",
+            "doc": "16hCZrYFowsGr5JxUDPJZY6ISivmQxyqqpzx0r1iBY-g",
+            "synced": "2026-08-18T18:32:49Z"
           },
           {
             "slug": "sarga-64",
             "title": "Sarga 64",
             "title_sa": "सर्गः ६४",
             "n": 64,
-            "subject": "Hanuman and Angada along with others approach Sugriva. Hanuman tells Rama about the discovery of Sita"
+            "subject": "Hanuman and Angada along with others approach Sugriva. Hanuman tells Rama about the discovery of Sita",
+            "doc": "1fHNAqf9Ve_mbGa5IjyF7P7lYbvEDQGz5x7ohg3_V9QA",
+            "synced": "2026-08-18T19:01:59Z"
           },
           {
             "slug": "sarga-65",
             "title": "Sarga 65",
             "title_sa": "सर्गः ६५",
             "n": 65,
-            "subject": "Hanuman apprises Sri Rama of Sita's presence under the Simsupa tree surrounded by rakshasis and presents the Chudamani to Rama in the presence of Sugriva"
+            "subject": "Hanuman apprises Sri Rama of Sita's presence under the Simsupa tree surrounded by rakshasis and presents the Chudamani to Rama in the presence of Sugriva",
+            "doc": "1UF6DhpU5yRokBsMG_ganEjbgSLe2n_WAS2egC6KKElw",
+            "synced": "2026-08-19T19:12:15Z"
           },
           {
             "slug": "sarga-66",
             "title": "Sarga 66",
             "title_sa": "सर्गः ६६",
             "n": 66,
-            "subject": "Rama laments piteously after seeing the token chudamani"
+            "subject": "Rama laments piteously after seeing the token chudamani",
+            "doc": "1NoyP81BPX0cOVZ326g8BGOwQ6gS_SONfSj-b49Zqcb0",
+            "synced": "2026-08-20T19:14:54Z"
           },
           {
             "slug": "sarga-67",
             "title": "Sarga 67",
             "title_sa": "सर्गः ६७",
             "n": 67,
-            "subject": "Hanuman once again narrates Sita's condition to Rama"
+            "subject": "Hanuman once again narrates Sita's condition to Rama",
+            "doc": "1eglStnmtcc81CTzE81p9NyQJmWA_wqRkc9YFHO4z0PU",
+            "synced": "2026-08-21T18:28:42Z"
           },
           {
             "slug": "sarga-68",
             "title": "Sarga 68",
             "title_sa": "सर्गः ६८",
             "n": 68,
-            "subject": "Hanuman describes to Rama the manner in which he warded off Sita's doubts regarding the vanaras crossing the ocean and rescuing her"
+            "subject": "Hanuman describes to Rama the manner in which he warded off Sita's doubts regarding the vanaras crossing the ocean and rescuing her",
+            "doc": "1kpsL9_wTywrj3_D1qM62E_mbRxBgl_aZ7_y4FPXHeYE",
+            "synced": "2026-08-26T18:47:58Z"
           }
         ],
         "title": "Sundarakanda",
@@ -557,21 +705,27 @@
             "title": "Sarga 74",
             "title_sa": "सर्गः ७४",
             "n": 74,
-            "subject": "Instructed by Jambavan, Hanuman goes to the Himalayas, gets the herbs along with the hillock. Inhaling the fragrance of the herbs Rama and Lakshmana regain their senses. The Vanaras lying unconscious, are healed by the fragrance, relieved of pain and awakened"
+            "subject": "Instructed by Jambavan, Hanuman goes to the Himalayas, gets the herbs along with the hillock. Inhaling the fragrance of the herbs Rama and Lakshmana regain their senses. The Vanaras lying unconscious, are healed by the fragrance, relieved of pain and awakened",
+            "doc": "1_YXJPTYCcM1WKxiaHpveLnS8ON7ALJAoGvgfrjoSAlg",
+            "synced": "2026-11-09T00:00:00Z"
           },
           {
             "slug": "sarga-101",
             "title": "Sarga 101",
             "title_sa": "सर्गः १०१",
             "n": 101,
-            "subject": "Hanuman is directed by Sushena to go to the Himalayas and get herbs for treating Lakshmana. Hanuman gets the herbs and on inhalation of the herbs Lakshmana recovers"
+            "subject": "Hanuman is directed by Sushena to go to the Himalayas and get herbs for treating Lakshmana. Hanuman gets the herbs and on inhalation of the herbs Lakshmana recovers",
+            "doc": "1sRJfUhH5iQIGHgZHkn_-kT6XqyZSFTApBr-HXzfz1G4",
+            "synced": "2026-11-11T00:00:00Z"
           },
           {
             "slug": "sarga-128",
             "title": "Sarga 128",
             "title_sa": "सर्गः १२८",
             "n": 128,
-            "subject": "Coronation of Rama"
+            "subject": "Coronation of Rama",
+            "doc": "1PwNa_EKITtG2J_45sX4CxHDpRJiOvE_AS0MLgRtFn5I",
+            "synced": "2026-11-09T00:00:00Z"
           }
         ],
         "title": "Yudhdhakanda",
@@ -597,343 +751,441 @@
             "title": "Chapter 1",
             "title_sa": "अध्यायः १",
             "n": 1,
-            "subject": "Shri Krishna Avatara"
+            "subject": "Shri Krishna Avatara",
+            "doc": "1_yhMBiufP9nhcnSXpEN_mr8zckOrkAF7oNQgVXnaCYo",
+            "synced": "2026-11-05T00:02:24Z"
           },
           {
             "slug": "ch-2",
             "title": "Chapter 2",
             "title_sa": "अध्यायः २",
             "n": 2,
-            "subject": "Vishnu enters Devaki’s womb and is praised by Brahma and the devas"
+            "subject": "Vishnu enters Devaki’s womb and is praised by Brahma and the devas",
+            "doc": "1q3w-QJjJf5ZfVYNQNR1bxIG2lP02u-worqyHPq542DM",
+            "synced": "2026-11-06T00:11:53Z"
           },
           {
             "slug": "ch-3",
             "title": "Chapter 3",
             "title_sa": "अध्यायः ३",
             "n": 3,
-            "subject": "The birth of Krishna"
+            "subject": "The birth of Krishna",
+            "doc": "11jFFvNhSFec2S6hBNilYN3ohEmJMLOkSuxdeI_x6ctE",
+            "synced": "2026-11-07T01:15:49Z"
           },
           {
             "slug": "ch-4",
             "title": "Chapter 4",
             "title_sa": "अध्यायः ४",
             "n": 4,
-            "subject": "Yogamaya slips from the grip of Kamsa, ascends to the heavens and utters a prophecy. Atrocities of Kamsa"
+            "subject": "Yogamaya slips from the grip of Kamsa, ascends to the heavens and utters a prophecy. Atrocities of Kamsa",
+            "doc": "1VR8AkLcqKNbkj5xSlKR7kvLgNivWqRUl0PHgYDf6beE",
+            "synced": "2026-11-10T04:45:37Z"
           },
           {
             "slug": "ch-5",
             "title": "Chapter 5",
             "title_sa": "अध्यायः ५",
             "n": 5,
-            "subject": "The celebrations of the birth of Krishna and the meeting of Nanda and Vasudeva"
+            "subject": "The celebrations of the birth of Krishna and the meeting of Nanda and Vasudeva",
+            "doc": "153wNLUddFNc0nJSLpsV3YlspFSoy9gUOL5dCsVwmn_Y",
+            "synced": "2026-11-10T22:57:22Z"
           },
           {
             "slug": "ch-6",
             "title": "Chapter 6",
             "title_sa": "अध्यायः ६",
             "n": 6,
-            "subject": "Deliverance of Putana"
+            "subject": "Deliverance of Putana",
+            "doc": "1sH7sifvCoolk5OUzvl8ytGIgZfiBSvbe5FZRi04yo14",
+            "synced": "2026-11-12T02:33:59Z"
           },
           {
             "slug": "ch-7",
             "title": "Chapter 7",
             "title_sa": "अध्यायः ७",
             "n": 7,
-            "subject": "Upturning of the cart and deliverance of Trinavarta"
+            "subject": "Upturning of the cart and deliverance of Trinavarta",
+            "doc": "1HoAbdd5E7bverHR6gqB2MPSMF6EJbDzf3xnRUETaCC8",
+            "synced": "2026-11-13T00:31:30Z"
           },
           {
             "slug": "ch-8",
             "title": "Chapter 8",
             "title_sa": "अध्यायः ८",
             "n": 8,
-            "subject": "Krishna Shows the Universal Form Within His Mouth"
+            "subject": "Krishna Shows the Universal Form Within His Mouth",
+            "doc": "1xRkF50eYfvC22Na4qxdjXYJFq-bcEsdAPBJwoMOlrm4",
+            "synced": "2026-06-10T21:32:46Z"
           },
           {
             "slug": "ch-9",
             "title": "Chapter 9",
             "title_sa": "अध्यायः ९",
             "n": 9,
-            "subject": "Grace showered on Gopi Yashoda"
+            "subject": "Grace showered on Gopi Yashoda",
+            "doc": "1K_xAl1az8S9Z_-yPCiFsSYkMgm3hQhm7D8Y5-yXzU9s",
+            "synced": "2026-06-10T21:33:08Z"
           },
           {
             "slug": "ch-10",
             "title": "Chapter 10",
             "title_sa": "अध्यायः १०",
             "n": 10,
-            "subject": "The curse of Narada on the sons of Kubera and their deliverance (who were in the form of the two Arjuna Trees)"
+            "subject": "The curse of Narada on the sons of Kubera and their deliverance (who were in the form of the two Arjuna Trees)",
+            "doc": "14ldnaJ34by_pcYQYXYf82qq0xpwAafbWOBuF3SMMgA0",
+            "synced": "2026-06-10T21:33:26Z"
           },
           {
             "slug": "ch-11",
             "title": "Chapter 11",
             "title_sa": "अध्यायः ११",
             "n": 11,
-            "subject": "Story of Krishna gracing the fruit seller and the destruction of Vatsasura and Bakasura"
+            "subject": "Story of Krishna gracing the fruit seller and the destruction of Vatsasura and Bakasura",
+            "doc": "1e-eQH880-iTZtueHReNteJRcQUeqMDb0v0rmTSgJGlU",
+            "synced": "2026-11-03T22:56:09Z"
           },
           {
             "slug": "ch-12",
             "title": "Chapter 12",
             "title_sa": "अध्यायः १२",
             "n": 12,
-            "subject": "The deliverance of Aghasura"
+            "subject": "The deliverance of Aghasura",
+            "doc": "1q4qwp4wtBd8GxA3n_Rh5bByW8NCi0l0_JlA__X_u90g",
+            "synced": "2026-06-10T21:34:12Z"
           },
           {
             "slug": "ch-13",
             "title": "Chapter 13",
             "title_sa": "अध्यायः १३",
             "n": 13,
-            "subject": "Brahma is seized with and ultimately rid of infatuation"
+            "subject": "Brahma is seized with and ultimately rid of infatuation",
+            "doc": "17SxU01BNzb-_H9g7PZGkbJYo6Yhwu7Z-76isIUDct4A",
+            "synced": "2026-06-10T21:34:32Z"
           },
           {
             "slug": "ch-14",
             "title": "Chapter 14",
             "title_sa": "अध्यायः १४",
             "n": 14,
-            "subject": "Brahma extolls the Lord"
+            "subject": "Brahma extolls the Lord",
+            "doc": "1iUMbWM9NFUYgyCr7Q_ALEMaRJ3mv5diTDQAQmCinM1g",
+            "synced": "2026-06-10T20:09:50Z"
           },
           {
             "slug": "ch-15",
             "title": "Chapter 15",
             "title_sa": "अध्यायः १५",
             "n": 15,
-            "subject": "Krishna slays Dhenuka"
+            "subject": "Krishna slays Dhenuka",
+            "doc": "1qw8cKjSdWD5ASip_rr6q4asDx66ZuCzO3NZGQqb46aE",
+            "synced": "2026-06-10T21:57:37Z"
           },
           {
             "slug": "ch-16",
             "title": "Chapter 16",
             "title_sa": "अध्यायः १६",
             "n": 16,
-            "subject": "The deliverance of Kaliya"
+            "subject": "The deliverance of Kaliya",
+            "doc": "1Cv5MvwgO6ki212-YuHVNWXXUYyWQcj0BzdFBhc3UMxs",
+            "synced": "2026-06-10T21:38:51Z"
           },
           {
             "slug": "ch-17",
             "title": "Chapter 17",
             "title_sa": "अध्यायः १७",
             "n": 17,
-            "subject": "History of Kaliya and Krishna rescues the inhabitants of Vraja from a wild fire"
+            "subject": "History of Kaliya and Krishna rescues the inhabitants of Vraja from a wild fire",
+            "doc": "1VLbwBPmAKCwd94w8BFnq-1NdQtC3SXN0bb898xEHDhk",
+            "synced": "2026-06-10T21:39:22Z"
           },
           {
             "slug": "ch-18",
             "title": "Chapter 18",
             "title_sa": "अध्यायः १८",
             "n": 18,
-            "subject": "Balarama slays Pralamba"
+            "subject": "Balarama slays Pralamba",
+            "doc": "1lYcHNRX9gmlSISHApnfAtZpn67shUPkfGOHdFKzVx74",
+            "synced": "2026-06-10T21:39:43Z"
           },
           {
             "slug": "ch-19",
             "title": "Chapter 19",
             "title_sa": "अध्यायः १९",
             "n": 19,
-            "subject": "Krishna swallows up a wild fire (again)"
+            "subject": "Krishna swallows up a wild fire (again)",
+            "doc": "1JFjJqz0YasfIPJJnWHK3yZTXZOttTJD7oJx6446lOIQ",
+            "synced": "2026-06-10T21:40:07Z"
           },
           {
             "slug": "ch-20",
             "title": "Chapter 20",
             "title_sa": "अध्यायः २०",
             "n": 20,
-            "subject": "A description of the Rains and Autumn"
+            "subject": "A description of the Rains and Autumn",
+            "doc": "1eUJpeFai_jOr2F9YlfcUBOxv1T7qjJcxBgtihxAZHII",
+            "synced": "2026-10-22T17:28:34Z"
           },
           {
             "slug": "ch-21",
             "title": "Chapter 21",
             "title_sa": "अध्यायः २१",
             "n": 21,
-            "subject": "The Song Inspired by the Flute"
+            "subject": "The Song Inspired by the Flute",
+            "doc": "1v_8csIYhlu6rQTJyr30u0-nL2wnTxj4mCyx4O7S_UTM",
+            "synced": "2026-06-10T21:40:52Z"
           },
           {
             "slug": "ch-22",
             "title": "Chapter 22",
             "title_sa": "अध्यायः २२",
             "n": 22,
-            "subject": "Krishna steals the garments of cowherd maids"
+            "subject": "Krishna steals the garments of cowherd maids",
+            "doc": "1DYPMT6oxKVgenfK1sOLlTrk7Ir2_nqMl3tFy9sABiSA",
+            "synced": "2026-06-10T21:41:16Z"
           },
           {
             "slug": "ch-23",
             "title": "Chapter 23",
             "title_sa": "अध्यायः २३",
             "n": 23,
-            "subject": "Redemption of the wives of some Brahmanas engaged in a sacrifice"
+            "subject": "Redemption of the wives of some Brahmanas engaged in a sacrifice",
+            "doc": "16ca6WQSX__ai_V4liWVIyk666uTLYDYVKJlajQ7GBFY",
+            "synced": "2026-06-10T20:25:30Z"
           },
           {
             "slug": "ch-24",
             "title": "Chapter 24",
             "title_sa": "अध्यायः २४",
             "n": 24,
-            "subject": "Krishna stops the sacrifice to Indra"
+            "subject": "Krishna stops the sacrifice to Indra",
+            "doc": "1pR3YcwAT6Vhc3BpCC5-GNS-UJi66K3FRYvyIusUUwgE",
+            "synced": "2026-06-10T21:09:57Z"
           },
           {
             "slug": "ch-25",
             "title": "Chapter 25",
             "title_sa": "अध्यायः २५",
             "n": 25,
-            "subject": "Krishna lifts up Mount Govardhana"
+            "subject": "Krishna lifts up Mount Govardhana",
+            "doc": "1tsAlEVv88tNUXrNPKgVFjVpZLL7720sB4v-TNOEmyEU",
+            "synced": "2026-06-10T21:15:25Z"
           },
           {
             "slug": "ch-26",
             "title": "Chapter 26",
             "title_sa": "अध्यायः २६",
             "n": 26,
-            "subject": "Nanda’s conversation with the cowherds about Krishna's glory"
+            "subject": "Nanda’s conversation with the cowherds about Krishna's glory",
+            "doc": "19UTd6uL1ozED_qthBC2ELD4c2Jg5tIQCkQiTsFF1XwM",
+            "synced": "2026-06-10T21:14:43Z"
           },
           {
             "slug": "ch-27",
             "title": "Chapter 27",
             "title_sa": "अध्यायः २७",
             "n": 27,
-            "subject": "Indra extolls Krishna"
+            "subject": "Indra extolls Krishna",
+            "doc": "1kxRq3J2GtQ7qnFt1CDShNp8aXa70LGbQSugQlUag_7I",
+            "synced": "2026-06-10T21:43:26Z"
           },
           {
             "slug": "ch-28",
             "title": "Chapter 28",
             "title_sa": "अध्यायः २८",
             "n": 28,
-            "subject": "Krishna rescues Nanda from the realm of Varuna"
+            "subject": "Krishna rescues Nanda from the realm of Varuna",
+            "doc": "1cVrHE_a961N_-vYnkUvvTfR6XCnREHxNidKx_UudlVA",
+            "synced": "2026-06-10T21:43:47Z"
           },
           {
             "slug": "ch-29",
             "title": "Chapter 29",
             "title_sa": "अध्यायः २९",
             "n": 29,
-            "subject": "A description of the celebrated Rasa Play of Krishna"
+            "subject": "A description of the celebrated Rasa Play of Krishna",
+            "doc": "1AZaAVO05XSpuV4rym5YqL-ONsYmzDeukwYWJlcdkbqI",
+            "synced": "2026-06-10T21:44:07Z"
           },
           {
             "slug": "ch-30",
             "title": "Chapter 30",
             "title_sa": "अध्यायः ३०",
             "n": 30,
-            "subject": "The Gopis' Quest for Krishna during the Rasa Play"
+            "subject": "The Gopis' Quest for Krishna during the Rasa Play",
+            "doc": "1SodDdE3jfs27ip-v8WPwicx15ydBRfPUKP_3tlQLMMI",
+            "synced": "2026-06-10T21:21:46Z"
           },
           {
             "slug": "ch-31",
             "title": "Chapter 31",
             "title_sa": "अध्यायः ३१",
             "n": 31,
-            "subject": "The Gopis' Song at the Krishna’s disappearance during the Rasa Play"
+            "subject": "The Gopis' Song at the Krishna’s disappearance during the Rasa Play",
+            "doc": "1INe9siejPfYjAF-iFIdepM3vQson6DNcjeig4XaqmyM",
+            "synced": "2026-06-10T21:22:45Z"
           },
           {
             "slug": "ch-32",
             "title": "Chapter 32",
             "title_sa": "अध्यायः ३२",
             "n": 32,
-            "subject": "Krishna comforts the Gopis during the Rasa Play"
+            "subject": "Krishna comforts the Gopis during the Rasa Play",
+            "doc": "1t_fwFQjzcASVrTKhedEKarYZFeOuG6UtxnL0GDj15NE",
+            "synced": "2026-06-10T21:23:31Z"
           },
           {
             "slug": "ch-33",
             "title": "Chapter 33",
             "title_sa": "अध्यायः ३३",
             "n": 33,
-            "subject": "A Description of the Rasa Play"
+            "subject": "A Description of the Rasa Play",
+            "doc": "1b2bUVtnZq4GPZxwJN0Z6aY91l-VGhf7xXy85zngDmXE",
+            "synced": "2026-06-05T03:09:38Z"
           },
           {
             "slug": "ch-34",
             "title": "Chapter 34",
             "title_sa": "अध्यायः ३४",
             "n": 34,
-            "subject": "Deliverance of Sudarshana and slaying of Shankhachuda by Krishna"
+            "subject": "Deliverance of Sudarshana and slaying of Shankhachuda by Krishna",
+            "doc": "1BCltnuU9yJV_9la-5Hj_a5P1VIRrINTj6s7FI44pysM",
+            "synced": "2026-06-10T21:25:40Z"
           },
           {
             "slug": "ch-35",
             "title": "Chapter 35",
             "title_sa": "अध्यायः ३५",
             "n": 35,
-            "subject": "The Gopis' song in pairs of verses"
+            "subject": "The Gopis' song in pairs of verses",
+            "doc": "1WH7AcBaSgmR3zsR8j1915Eyr_wX5KHsImgrw4YMiUmU",
+            "synced": "2026-06-05T03:10:22Z"
           },
           {
             "slug": "ch-36",
             "title": "Chapter 36",
             "title_sa": "अध्यायः ३६",
             "n": 36,
-            "subject": "Krishna slays Arishta"
+            "subject": "Krishna slays Arishta",
+            "doc": "1tO_s8Ztr2-fl_rUbO_GknFJCnoKqT9EzDn9FKFTWJFg",
+            "synced": "2026-06-05T03:10:48Z"
           },
           {
             "slug": "ch-37",
             "title": "Chapter 37",
             "title_sa": "अध्यायः ३७",
             "n": 37,
-            "subject": "Krishna slays Keshi and Vyomasura"
+            "subject": "Krishna slays Keshi and Vyomasura",
+            "doc": "1dCY5c4dyPbnTkGEY8RreOVscCEo7t74yf9YW34RknEk",
+            "synced": "2026-06-05T03:11:17Z"
           },
           {
             "slug": "ch-38",
             "title": "Chapter 38",
             "title_sa": "अध्यायः ३८",
             "n": 38,
-            "subject": "Akrura’s arrival in Vraja"
+            "subject": "Akrura’s arrival in Vraja",
+            "doc": "1SRVOMAkGhSackzKgzcMm1KbO4LrpwT7NgaBdIRIWTYQ",
+            "synced": "2026-06-05T03:11:41Z"
           },
           {
             "slug": "ch-39",
             "title": "Chapter 39",
             "title_sa": "अध्यायः ३९",
             "n": 39,
-            "subject": "Akrura’s return to Mathura (along with Krishna and Balarama)"
+            "subject": "Akrura’s return to Mathura (along with Krishna and Balarama)",
+            "doc": "1Eso-cJer3pjwgR6wMb8PDvaR009TOTNGJBGe1UI2AIc",
+            "synced": "2026-06-10T21:47:14Z"
           },
           {
             "slug": "ch-40",
             "title": "Chapter 40",
             "title_sa": "अध्यायः ४०",
             "n": 40,
-            "subject": "Akrura’s eulogy of the Lord"
+            "subject": "Akrura’s eulogy of the Lord",
+            "doc": "1ICJL-XffZeMh-cgybcyupulT5WhK5SegvP93ix2-LG4",
+            "synced": "2026-06-05T03:12:35Z"
           },
           {
             "slug": "ch-41",
             "title": "Chapter 41",
             "title_sa": "अध्यायः ४१",
             "n": 41,
-            "subject": "Entry of Krishna and Balarama into Mathura"
+            "subject": "Entry of Krishna and Balarama into Mathura",
+            "doc": "1ODUFSZQ1jq0DjR3jy9IsyihRWa5xhXHv2YGwhEIVj58",
+            "synced": "2026-06-10T21:48:48Z"
           },
           {
             "slug": "ch-42",
             "title": "Chapter 42",
             "title_sa": "अध्यायः ४२",
             "n": 42,
-            "subject": "Krishna’s grace on the hunchback woman, breaking of the sacrificial bow, fear of Kamsa, and a description of the amphitheatre for wrestlers"
+            "subject": "Krishna’s grace on the hunchback woman, breaking of the sacrificial bow, fear of Kamsa, and a description of the amphitheatre for wrestlers",
+            "doc": "1fzRdnZcJL9mbgfcj4hD8KUUhVo7KtFBpLbsVs-fPMAk",
+            "synced": "2026-06-05T03:19:23Z"
           },
           {
             "slug": "ch-43",
             "title": "Chapter 43",
             "title_sa": "अध्यायः ४३",
             "n": 43,
-            "subject": "Krishna slays the elephant Kuvalayapida"
+            "subject": "Krishna slays the elephant Kuvalayapida",
+            "doc": "1LKxGSV2nFMED0URBVctnvqm-tGqC2J7zRkblacmNfrc",
+            "synced": "2026-06-10T21:58:58Z"
           },
           {
             "slug": "ch-44",
             "title": "Chapter 44",
             "title_sa": "अध्यायः ४४",
             "n": 44,
-            "subject": "Krishna slays Kamsa"
+            "subject": "Krishna slays Kamsa",
+            "doc": "1SHYPFkNTiBpgAyd0_HqGvxit63MuyWHFFCbvSvn3Wyw",
+            "synced": "2026-06-10T21:50:51Z"
           },
           {
             "slug": "ch-45",
             "title": "Chapter 45",
             "title_sa": "अध्यायः ४५",
             "n": 45,
-            "subject": "Krishna brings back His preceptor's son from the abode of Death and obtains Panchajanya conch"
+            "subject": "Krishna brings back His preceptor's son from the abode of Death and obtains Panchajanya conch",
+            "doc": "1vDGulGso8XG8JFpUGBfahVMDo8HJQFE3bVWV8cwpTXQ",
+            "synced": "2026-06-05T01:43:49Z"
           },
           {
             "slug": "ch-46",
             "title": "Chapter 46",
             "title_sa": "अध्यायः ४६",
             "n": 46,
-            "subject": "Krishna relieves the agony of Nanda (by sending Uddhava to Vraja with a message of endearment)"
+            "subject": "Krishna relieves the agony of Nanda (by sending Uddhava to Vraja with a message of endearment)",
+            "doc": "1LT2eSMtscHwrFOsb1wafpHcw16YDsEm_qEWk73eIx-w",
+            "synced": "2026-06-10T21:51:31Z"
           },
           {
             "slug": "ch-47",
             "title": "Chapter 47",
             "title_sa": "अध्यायः ४७",
             "n": 47,
-            "subject": "Dialogue between Uddhava and the Gopis and ode to a black bee"
+            "subject": "Dialogue between Uddhava and the Gopis and ode to a black bee",
+            "doc": "1S_Ju9BH-EiLudI1GfMFGnZFBqVOQ91GXgZrSc_Zl5Pg",
+            "synced": "2026-06-09T20:30:02Z"
           },
           {
             "slug": "ch-48",
             "title": "Chapter 48",
             "title_sa": "अध्यायः ४८",
             "n": 48,
-            "subject": "Krishna pays a visit to the homes of Kubja and Akrura"
+            "subject": "Krishna pays a visit to the homes of Kubja and Akrura",
+            "doc": "1UxcOvwg1FHig0PoBZttqFfhfHVhoGcHUrpY5iVD0SoE",
+            "synced": "2026-06-10T05:28:42Z"
           },
           {
             "slug": "ch-49",
             "title": "Chapter 49",
             "title_sa": "अध्यायः ४९",
             "n": 49,
-            "subject": "Akrura’s visit to Hastinapura"
+            "subject": "Akrura’s visit to Hastinapura",
+            "doc": "1wxdIBhpe8Vu8UHCihfN62C7cYMCjLyCoYselPuyFx5g",
+            "synced": "2026-06-10T19:01:44Z"
           }
         ],
         "title": "Book 1 — पूर्वार्धः",
@@ -949,287 +1201,369 @@
             "title": "Chapter 50",
             "title_sa": "अध्यायः ५०",
             "n": 50,
-            "subject": "Battle between Krishna and Jarasandha. Krishna Establishes the City of Dwaraka"
+            "subject": "Battle between Krishna and Jarasandha. Krishna Establishes the City of Dwaraka",
+            "doc": "1mfvAGHI3EGvMfCLAzPeLn6a8RhOrvaXmL8FhLoobUE4",
+            "synced": "2026-06-11T23:54:24Z"
           },
           {
             "slug": "ch-51",
             "title": "Chapter 51",
             "title_sa": "अध्यायः ५१",
             "n": 51,
-            "subject": "Burning of Kalayavana, Muchukunda’s story and Muchukunda’s Eulogy of the Lord"
+            "subject": "Burning of Kalayavana, Muchukunda’s story and Muchukunda’s Eulogy of the Lord",
+            "doc": "1pZLPQdtPNxbRTVnSuFPI-a0kg7NeH6dV9wP1H5mHhxk",
+            "synced": "2026-06-18T23:14:30Z"
           },
           {
             "slug": "ch-52",
             "title": "Chapter 52",
             "title_sa": "अध्यायः ५२",
             "n": 52,
-            "subject": "Krishna's entry to Dwaraka; Balarama's marriage; Rukmini sends a Brahmana with a message to Krishna"
+            "subject": "Krishna's entry to Dwaraka; Balarama's marriage; Rukmini sends a Brahmana with a message to Krishna",
+            "doc": "1JEXGp_VzIYnfEHgbaO_l71jUHOudmy5HPcSs9OYXLyc",
+            "synced": "2026-08-19T21:53:28Z"
           },
           {
             "slug": "ch-53",
             "title": "Chapter 53",
             "title_sa": "अध्यायः ५३",
             "n": 53,
-            "subject": "Krishna carries away Rukmini"
+            "subject": "Krishna carries away Rukmini",
+            "doc": "1GY3btjzVx-f5bHnp5zy3gE-6uyJ7-bYAfRvurSmFQ-0",
+            "synced": "2026-06-24T21:58:56Z"
           },
           {
             "slug": "ch-54",
             "title": "Chapter 54",
             "title_sa": "अध्यायः ५४",
             "n": 54,
-            "subject": "Discomfiture of Shishupala's allies and Rukmi, and the wedding of Krishna and Rukmini"
+            "subject": "Discomfiture of Shishupala's allies and Rukmi, and the wedding of Krishna and Rukmini",
+            "doc": "1XoHOPH_oWTvUq9lOptnYxbWPNCEY8MjUan3BOQf5RqY",
+            "synced": "2026-06-26T22:05:29Z"
           },
           {
             "slug": "ch-55",
             "title": "Chapter 55",
             "title_sa": "अध्यायः ५५",
             "n": 55,
-            "subject": "The story of Pradyumna’s birth and the destruction of the asura Shambara"
+            "subject": "The story of Pradyumna’s birth and the destruction of the asura Shambara",
+            "doc": "1Eg2lccyisM7JBUvgbAvBchoa_FBtm6EJcND1D_5OW6o",
+            "synced": "2026-07-11T01:01:33Z"
           },
           {
             "slug": "ch-56",
             "title": "Chapter 56",
             "title_sa": "अध्यायः ५६",
             "n": 56,
-            "subject": "The story of the Syamantaka gem; Krishna weds Jambavati and Satyabhama"
+            "subject": "The story of the Syamantaka gem; Krishna weds Jambavati and Satyabhama",
+            "doc": "1T6k_wMaXTHQOaDFnLtrmcUhMTTuKHoz3K5eJRd8NF-4",
+            "synced": "2026-08-24T22:03:14Z"
           },
           {
             "slug": "ch-57",
             "title": "Chapter 57",
             "title_sa": "अध्यायः ५७",
             "n": 57,
-            "subject": "Syamantaka stolen; Shatadhanva killed and Akrura recalled to Dwaraka"
+            "subject": "Syamantaka stolen; Shatadhanva killed and Akrura recalled to Dwaraka",
+            "doc": "10QRfSG5xwNvmIIoKqDt0BdOJSmML0EXWa7X2-NguOcs",
+            "synced": "2026-07-16T20:57:08Z"
           },
           {
             "slug": "ch-58",
             "title": "Chapter 58",
             "title_sa": "अध्यायः ५८",
             "n": 58,
-            "subject": "Krishna marriage to the rest of his five principal wives"
+            "subject": "Krishna marriage to the rest of his five principal wives",
+            "doc": "1mmaGWGijqPMOV7RzwNm-B7ZXmH1_gF1Cgl95PhOng3M",
+            "synced": "2026-10-15T00:09:56Z"
           },
           {
             "slug": "ch-59",
             "title": "Chapter 59",
             "title_sa": "अध्यायः ५९",
             "n": 59,
-            "subject": "Krishna takes away Parijata tree by force from heaven, kills Narakasura - the son of Mother Earth. Description of how Krishna behaves like an ordinary householder in each of His palaces"
+            "subject": "Krishna takes away Parijata tree by force from heaven, kills Narakasura - the son of Mother Earth. Description of how Krishna behaves like an ordinary householder in each of His palaces",
+            "doc": "1rSHnKdqz19aOk5G9KuE1G7Jldk6O5-jZHcZPFzA8a3Y",
+            "synced": "2026-09-01T19:04:20Z"
           },
           {
             "slug": "ch-60",
             "title": "Chapter 60",
             "title_sa": "अध्यायः ६०",
             "n": 60,
-            "subject": "A dialogue between Krishna and Rukmini"
+            "subject": "A dialogue between Krishna and Rukmini",
+            "doc": "1Ss8Uo6g9geGzzwkz2H80Q3L6C_GXNeanqyI0j7nKY0s",
+            "synced": "2026-07-27T22:31:05Z"
           },
           {
             "slug": "ch-61",
             "title": "Chapter 61",
             "title_sa": "अध्यायः ६१",
             "n": 61,
-            "subject": "A description of Krishna’s progeny"
+            "subject": "A description of Krishna’s progeny",
+            "doc": "1vxmVFSb6IewzKJVtNJoePJGEbyN_D0crdOuERTuRIsA",
+            "synced": "2026-07-30T15:05:54Z"
           },
           {
             "slug": "ch-62",
             "title": "Chapter 62",
             "title_sa": "अध्यायः ६२",
             "n": 62,
-            "subject": "Meeting of Usha and Aniruddha"
+            "subject": "Meeting of Usha and Aniruddha",
+            "doc": "1V-Zdt5rb1UMIXoHzpfLSntHep3g5x4A0dqnAK6DqVAM",
+            "synced": "2026-08-01T00:14:22Z"
           },
           {
             "slug": "ch-63",
             "title": "Chapter 63",
             "title_sa": "अध्यायः ६३",
             "n": 63,
-            "subject": "Fight between Krishna and Banasura. Aniruddha’s rescue"
+            "subject": "Fight between Krishna and Banasura. Aniruddha’s rescue",
+            "doc": "1c8dZbqCkymb-JqeCXlioFF3N-1wtujWd-CCFfuQCBrI",
+            "synced": "2026-08-04T06:20:34Z"
           },
           {
             "slug": "ch-64",
             "title": "Chapter 64",
             "title_sa": "अध्यायः ६४",
             "n": 64,
-            "subject": "The Story of King Nriga"
+            "subject": "The Story of King Nriga",
+            "doc": "1wOmWgpWPweM_KFDLWEDKgLShWgZJZCXQtKiZs6j9V2E",
+            "synced": "2026-08-05T21:58:06Z"
           },
           {
             "slug": "ch-65",
             "title": "Chapter 65",
             "title_sa": "अध्यायः ६५",
             "n": 65,
-            "subject": "Balarama visits Vraja. Diverts Yamuna from her course"
+            "subject": "Balarama visits Vraja. Diverts Yamuna from her course",
+            "doc": "11-aAtkJ-PEamUyGjBeTckkugsXWQgBmcdUXnKFH-65Q",
+            "synced": "2026-08-08T06:55:58Z"
           },
           {
             "slug": "ch-66",
             "title": "Chapter 66",
             "title_sa": "अध्यायः ६६",
             "n": 66,
-            "subject": "Krishna kills Paundraka and the others"
+            "subject": "Krishna kills Paundraka and the others",
+            "doc": "1dOQtC6_WvFbCcNnh1nv99BZAXPDU3UX9Tjlhxf_8g24",
+            "synced": "2026-08-11T22:37:25Z"
           },
           {
             "slug": "ch-67",
             "title": "Chapter 67",
             "title_sa": "अध्यायः ६७",
             "n": 67,
-            "subject": "Balarama kills Dwivida"
+            "subject": "Balarama kills Dwivida",
+            "doc": "18hm0YLP0IGkelkD--BlgV8cF62R9koplfOZs5YVMtX8",
+            "synced": "2026-08-11T22:38:17Z"
           },
           {
             "slug": "ch-68",
             "title": "Chapter 68",
             "title_sa": "अध्यायः ६८",
             "n": 68,
-            "subject": "The triumph of Sankarshana (Balarama) in the form of dragging Hastinapura and Samba’s wedding"
+            "subject": "The triumph of Sankarshana (Balarama) in the form of dragging Hastinapura and Samba’s wedding",
+            "doc": "1Hj9FzUUuvaBgpoBV7wEtpkapO6nTBY7K1vAHOe6wK8I",
+            "synced": "2026-08-14T23:59:39Z"
           },
           {
             "slug": "ch-69",
             "title": "Chapter 69",
             "title_sa": "अध्यायः ६९",
             "n": 69,
-            "subject": "A glimpse into the household life of Krishna by Narada"
+            "subject": "A glimpse into the household life of Krishna by Narada",
+            "doc": "1nytDblUR_og1Ii39sV86tyJGalps1Fzh0Nn30gJSC8I",
+            "synced": "2026-08-21T21:24:20Z"
           },
           {
             "slug": "ch-70",
             "title": "Chapter 70",
             "title_sa": "अध्यायः ७०",
             "n": 70,
-            "subject": "Krishna's Daily Routine and the sending of the messenger by the kings imprisoned by Jarasandha"
+            "subject": "Krishna's Daily Routine and the sending of the messenger by the kings imprisoned by Jarasandha",
+            "doc": "1WvAVFC8kjSUFqhM3jits9YWCHFQlVq5VuqDAEKm0y-Y",
+            "synced": "2026-08-25T18:45:49Z"
           },
           {
             "slug": "ch-71",
             "title": "Chapter 71",
             "title_sa": "अध्यायः ७१",
             "n": 71,
-            "subject": "Krishna's visit to Indraprastha"
+            "subject": "Krishna's visit to Indraprastha",
+            "doc": "1RXuvky9bMNJOubI2Qa7T8ZErQppXxhrNE5htyO-MzR4",
+            "synced": "2026-09-02T01:30:16Z"
           },
           {
             "slug": "ch-72",
             "title": "Chapter 72",
             "title_sa": "अध्यायः ७२",
             "n": 72,
-            "subject": "Jarasandha killed"
+            "subject": "Jarasandha killed",
+            "doc": "1fgjXTGgtLj_Yb4Th0YXDpWNY5QgJiGbjNh4bEOh7R94",
+            "synced": "2026-09-03T07:04:14Z"
           },
           {
             "slug": "ch-73",
             "title": "Chapter 73",
             "title_sa": "अध्यायः ७३",
             "n": 73,
-            "subject": "Krishna blesses the liberated kings and returns to Indraprastha"
+            "subject": "Krishna blesses the liberated kings and returns to Indraprastha",
+            "doc": "1M9d4YGZz8vla2PfYnOqWSln-UPcYsv8sSckrtDaY7lI",
+            "synced": "2026-09-09T18:40:29Z"
           },
           {
             "slug": "ch-74",
             "title": "Chapter 74",
             "title_sa": "अध्यायः ७४",
             "n": 74,
-            "subject": "First honor of Krishna and Krishna kills Shishupala"
+            "subject": "First honor of Krishna and Krishna kills Shishupala",
+            "doc": "1UVztxp5Aks1c3W3SqSicx9Pz4io-R1xMox1v8p6-6Wg",
+            "synced": "2026-09-18T19:07:57Z"
           },
           {
             "slug": "ch-75",
             "title": "Chapter 75",
             "title_sa": "अध्यायः ७५",
             "n": 75,
-            "subject": "Conclusion of the Rajasuya sacrifice and Duryodhana’s humiliation"
+            "subject": "Conclusion of the Rajasuya sacrifice and Duryodhana’s humiliation",
+            "doc": "1xw_a0RMUZelmYG7g-uWYV8zHF7CDoPrCrj3GFVvFfB8",
+            "synced": "2026-09-23T20:05:29Z"
           },
           {
             "slug": "ch-76",
             "title": "Chapter 76",
             "title_sa": "अध्यायः ७६",
             "n": 76,
-            "subject": "Battle between Shalva and Yadavas"
+            "subject": "Battle between Shalva and Yadavas",
+            "doc": "1SALSJ-YCGcGHTYrsrboXPrPC-kiVwpgoITMgtNBQ8uc",
+            "synced": "2026-09-24T05:36:48Z"
           },
           {
             "slug": "ch-77",
             "title": "Chapter 77",
             "title_sa": "अध्यायः ७७",
             "n": 77,
-            "subject": "The deliverance of Shalva"
+            "subject": "The deliverance of Shalva",
+            "doc": "1-cSfytUP_Vo5UoiIkai91p8xesQbAP2_rR309g2_reY",
+            "synced": "2026-09-25T22:08:08Z"
           },
           {
             "slug": "ch-78",
             "title": "Chapter 78",
             "title_sa": "अध्यायः ७८",
             "n": 78,
-            "subject": "Deliverance of Dantavaktra and Viduratha"
+            "subject": "Deliverance of Dantavaktra and Viduratha",
+            "doc": "1VIZIvWnrIXRg6slVtvRJVG7_7thrZrx2lZiLTDClgVE",
+            "synced": "2026-09-27T00:49:09Z"
           },
           {
             "slug": "ch-79",
             "title": "Chapter 79",
             "title_sa": "अध्यायः ७९",
             "n": 79,
-            "subject": "Balvala killed and an account of the pilgrimage of Balarama"
+            "subject": "Balvala killed and an account of the pilgrimage of Balarama",
+            "doc": "1FOr1SMVBjqgkUP4NaHTgm5mduQH7pyQlps5SgahbTzg",
+            "synced": "2026-09-28T21:11:44Z"
           },
           {
             "slug": "ch-80",
             "title": "Chapter 80",
             "title_sa": "अध्यायः ८०",
             "n": 80,
-            "subject": "The story of Sudama"
+            "subject": "The story of Sudama",
+            "doc": "1MVd5FM2amdE4SgBQR1DeFh1U6HV9xYJp1H9Y-zj1dzI",
+            "synced": "2026-10-08T20:55:35Z"
           },
           {
             "slug": "ch-81",
             "title": "Chapter 81",
             "title_sa": "अध्यायः ८१",
             "n": 81,
-            "subject": "The story of flattened rice brought as a present to Krishna by Sudama. Krishna blesses Sudama"
+            "subject": "The story of flattened rice brought as a present to Krishna by Sudama. Krishna blesses Sudama",
+            "doc": "1EkTPvyv2RkLUH_x6rnoTaWws-w_dPkKYRPb86bVCuvM",
+            "synced": "2026-10-09T23:27:28Z"
           },
           {
             "slug": "ch-82",
             "title": "Chapter 82",
             "title_sa": "अध्यायः ८२",
             "n": 82,
-            "subject": "The Meeting of Krishna and Balarama with the Gopas and Gopis of Vraja"
+            "subject": "The Meeting of Krishna and Balarama with the Gopas and Gopis of Vraja",
+            "doc": "1qPB7kK4uyDJQ5Yvjaok5E9x4Hj-Xi-bgs9UEhvkCYuQ",
+            "synced": "2026-10-13T23:10:05Z"
           },
           {
             "slug": "ch-83",
             "title": "Chapter 83",
             "title_sa": "अध्यायः ८३",
             "n": 83,
-            "subject": "Conversation between Krishna's wives and Draupadi"
+            "subject": "Conversation between Krishna's wives and Draupadi",
+            "doc": "1iiuJqtiGJ0tWNQ7Gc9skCJa61kiTULYq_h9o65LYPmg",
+            "synced": "2026-10-16T15:44:15Z"
           },
           {
             "slug": "ch-84",
             "title": "Chapter 84",
             "title_sa": "अध्यायः ८४",
             "n": 84,
-            "subject": "The teachings of the sages; Vasudeva conducts a grand sacrifice"
+            "subject": "The teachings of the sages; Vasudeva conducts a grand sacrifice",
+            "doc": "1b_Miwy8tD6QePuwjKjPY6GGmk0FbAr1hF0xQU15IsZA",
+            "synced": "2026-10-21T22:28:30Z"
           },
           {
             "slug": "ch-85",
             "title": "Chapter 85",
             "title_sa": "अध्यायः ८५",
             "n": 85,
-            "subject": "Krishna’s teachings to Vasudeva and bringing back of His six elder brothers (who were killed by Kamsa) to life"
+            "subject": "Krishna’s teachings to Vasudeva and bringing back of His six elder brothers (who were killed by Kamsa) to life",
+            "doc": "13_BL0W9uhxrNqxBcE-u42daiRUHLFyxXeyGmToqqoH8",
+            "synced": "2026-10-26T22:13:16Z"
           },
           {
             "slug": "ch-86",
             "title": "Chapter 86",
             "title_sa": "अध्यायः ८६",
             "n": 86,
-            "subject": "Arjuna carries away Subhadra. Krishna’s grace upon Shrutadeva and Bahulashva"
+            "subject": "Arjuna carries away Subhadra. Krishna’s grace upon Shrutadeva and Bahulashva",
+            "doc": "1PrGi9PbyEmDFPxRec07lX6k7Vhfs1_zWZo_6NE1Sokw",
+            "synced": "2026-10-28T03:28:26Z"
           },
           {
             "slug": "ch-87",
             "title": "Chapter 87",
             "title_sa": "अध्यायः ८७",
             "n": 87,
-            "subject": "The song of the praises by the Vedas personified in the dialogue between Narada and Narayana"
+            "subject": "The song of the praises by the Vedas personified in the dialogue between Narada and Narayana",
+            "doc": "13VnSlSyOgZXAtlFMjPH3eL81h-jEIXJq4tzHyYA6aAk",
+            "synced": "2026-10-30T05:00:24Z"
           },
           {
             "slug": "ch-88",
             "title": "Chapter 88",
             "title_sa": "अध्यायः ८८",
             "n": 88,
-            "subject": "Lord Rudra saved from Vrikasura"
+            "subject": "Lord Rudra saved from Vrikasura",
+            "doc": "1YF436MHYQvHYmzkJ4tE8wHrXDhmpZpSxi53CbKFJhpk",
+            "synced": "2026-10-30T23:17:51Z"
           },
           {
             "slug": "ch-89",
             "title": "Chapter 89",
             "title_sa": "अध्यायः ८९",
             "n": 89,
-            "subject": "The three Lords (Brahma, Vishnu and Shiva) put to test by Sage Bhrigu. The dead sons of brahmana brought back to life by Krishna and Arjuna"
+            "subject": "The three Lords (Brahma, Vishnu and Shiva) put to test by Sage Bhrigu. The dead sons of brahmana brought back to life by Krishna and Arjuna",
+            "doc": "1AtPerL_LPgMefO_lVg-TS6nt5S6zQO31vmA_HiijgGQ",
+            "synced": "2026-11-03T06:45:56Z"
           },
           {
             "slug": "ch-90",
             "title": "Chapter 90",
             "title_sa": "अध्यायः ९०",
             "n": 90,
-            "subject": "Krishna’s pastimes with His wives, their lamentations on separation from Krishna and an account of Krishna’s descendants"
+            "subject": "Krishna’s pastimes with His wives, their lamentations on separation from Krishna and an account of Krishna’s descendants",
+            "doc": "1CEU_nM2kU-zCBXh0shqTbvRCNlIWnpkkFqiwLSQLI3E",
+            "synced": "2026-11-04T01:31:38Z"
           }
         ],
         "title": "Book 2 — उत्तरार्धः",
@@ -1250,700 +1584,900 @@
         "title": "Dashaka 1",
         "title_sa": "दशकम् १",
         "n": 1,
-        "subject": "Glory of the Lord"
+        "subject": "Glory of the Lord",
+        "doc": "1E_68u5UlTKYkckb2b51VbiRWiRfJqFJI3rkDX89zFSc",
+        "synced": "2026-10-22T21:45:56Z"
       },
       {
         "slug": "dashaka-2",
         "title": "Dashaka 2",
         "title_sa": "दशकम् २",
         "n": 2,
-        "subject": "Form of the Lord"
+        "subject": "Form of the Lord",
+        "doc": "1L8FfM_cvSHP6S_EQ2Mkse2KqjszF2MOEe4VLTmyaQn0",
+        "synced": "2026-10-22T21:46:28Z"
       },
       {
         "slug": "dashaka-3",
         "title": "Dashaka 3",
         "title_sa": "दशकम् ३",
         "n": 3,
-        "subject": "The Prayer of the Devotee"
+        "subject": "The Prayer of the Devotee",
+        "doc": "1JJCEXG6rf9F3UyHibljDCrWg40LddI2WR6lI9rf3vmU",
+        "synced": "2026-10-22T21:47:35Z"
       },
       {
         "slug": "dashaka-4",
         "title": "Dashaka 4",
         "title_sa": "दशकम् ४",
         "n": 4,
-        "subject": "The progress of the spiritual aspirant"
+        "subject": "The progress of the spiritual aspirant",
+        "doc": "1y1vTrkdW922uVI_l3iHPoHuajqdgaaUrCX6XGAkx3xI",
+        "synced": "2026-10-16T20:25:07Z"
       },
       {
         "slug": "dashaka-5",
         "title": "Dashaka 5",
         "title_sa": "दशकम् ५",
         "n": 5,
-        "subject": "The Cosmic Evolution"
+        "subject": "The Cosmic Evolution",
+        "doc": "1mCD5KJW7r9LBBr-W8oVBSDpMshtOQ3zppV1RrC0jLfI",
+        "synced": "2026-10-22T21:49:30Z"
       },
       {
         "slug": "dashaka-6",
         "title": "Dashaka 6",
         "title_sa": "दशकम् ६",
         "n": 6,
-        "subject": "Cosmos as the form of the Lord"
+        "subject": "Cosmos as the form of the Lord",
+        "doc": "1wIf_u4yvTE_gJdSpsUHb43CMhhR2sY7gwQ-sTJ9Bm9w",
+        "synced": "2026-10-22T21:50:12Z"
       },
       {
         "slug": "dashaka-7",
         "title": "Dashaka 7",
         "title_sa": "दशकम् ७",
         "n": 7,
-        "subject": "The Lord commands Brahma to create"
+        "subject": "The Lord commands Brahma to create",
+        "doc": "15LPpnraYjnFB8Cj9GXpLXHUB4mjjUVyF2hQWlxbvJJc",
+        "synced": "2026-10-20T19:43:56Z"
       },
       {
         "slug": "dashaka-8",
         "title": "Dashaka 8",
         "title_sa": "दशकम् ८",
         "n": 8,
-        "subject": "The dawn of creation"
+        "subject": "The dawn of creation",
+        "doc": "1KAJjQZGwnHS6TbWBJ6LDdS5DBW7-81o4uPpzazpwKaY",
+        "synced": "2026-10-22T21:51:35Z"
       },
       {
         "slug": "dashaka-9",
         "title": "Dashaka 9",
         "title_sa": "दशकम् ९",
         "n": 9,
-        "subject": "Brahma in his creative role"
+        "subject": "Brahma in his creative role",
+        "doc": "1i99Z4mSYuIJUP3s-VR0Fxmy8O_K3jGbPUFX4ZOsPGEY",
+        "synced": "2026-10-22T21:52:17Z"
       },
       {
         "slug": "dashaka-10",
         "title": "Dashaka 10",
         "title_sa": "दशकम् १०",
         "n": 10,
-        "subject": "Diversification of creation"
+        "subject": "Diversification of creation",
+        "doc": "1CGVtTjWtTCPARKyr2lPsvb-MKxr4loZhqAKwYd2T9k0",
+        "synced": "2026-10-22T21:45:14Z"
       },
       {
         "slug": "dashaka-11",
         "title": "Dashaka 11",
         "title_sa": "दशकम् ११",
         "n": 11,
-        "subject": "Prelude to the first incarnation"
+        "subject": "Prelude to the first incarnation",
+        "doc": "1llu2dHbb00Vn_gIKI0MEc7TFVkZ8400n0f89EF9TxvY",
+        "synced": "2026-10-23T20:03:48Z"
       },
       {
         "slug": "dashaka-12",
         "title": "Dashaka 12",
         "title_sa": "दशकम् १२",
         "n": 12,
-        "subject": "Incarnation as boar (Varaha avatara)"
+        "subject": "Incarnation as boar (Varaha avatara)",
+        "doc": "1yp_BJWtUB6s4amyDS62sK9Ez7Sdr49jp6nYct4ESr2M",
+        "synced": "2026-10-26T19:07:22Z"
       },
       {
         "slug": "dashaka-13",
         "title": "Dashaka 13",
         "title_sa": "दशकम् १३",
         "n": 13,
-        "subject": "Destruction of Hiranyaksha"
+        "subject": "Destruction of Hiranyaksha",
+        "doc": "1jS9wnEeUq9vhZaq2rAeYSru9tIUtPFJ0Tr-_qR36ykY",
+        "synced": "2026-10-27T20:46:24Z"
       },
       {
         "slug": "dashaka-14",
         "title": "Dashaka 14",
         "title_sa": "दशकम् १४",
         "n": 14,
-        "subject": "Incarnation as Kapila"
+        "subject": "Incarnation as Kapila",
+        "doc": "1ptm33o89t5P2ZU2ciHS7ognqyuH290necV-JvrhjC90",
+        "synced": "2026-10-28T19:06:37Z"
       },
       {
         "slug": "dashaka-15",
         "title": "Dashaka 15",
         "title_sa": "दशकम् १५",
         "n": 15,
-        "subject": "The message of Kapila"
+        "subject": "The message of Kapila",
+        "doc": "1Mdi27C8tnIlJUGrncjh8flMTXNll4jLn_fV9a2gLUSo",
+        "synced": "2026-10-29T17:40:22Z"
       },
       {
         "slug": "dashaka-16",
         "title": "Dashaka 16",
         "title_sa": "दशकम् १६",
         "n": 16,
-        "subject": "Nara-Narayana and Daksha-Yagna"
+        "subject": "Nara-Narayana and Daksha-Yagna",
+        "doc": "1VtMsMWpvmxTdoATokpUT9QVrMkmnZtMqF80jb6vK5bg",
+        "synced": "2026-10-30T17:42:10Z"
       },
       {
         "slug": "dashaka-17",
         "title": "Dashaka 17",
         "title_sa": "दशकम् १७",
         "n": 17,
-        "subject": "The Story of Dhruva"
+        "subject": "The Story of Dhruva",
+        "doc": "10mT5Q9D_YCGwPLoJIZSahQbYmXj5ZYxwTkfUyysGxEc",
+        "synced": "2026-10-31T19:46:08Z"
       },
       {
         "slug": "dashaka-18",
         "title": "Dashaka 18",
         "title_sa": "दशकम् १८",
         "n": 18,
-        "subject": "The Story of Prithu"
+        "subject": "The Story of Prithu",
+        "doc": "1NTFsjL2xIr5x9rLdPmRR77hFumPypj9jjeBni8Yeico",
+        "synced": "2026-11-01T23:30:45Z"
       },
       {
         "slug": "dashaka-19",
         "title": "Dashaka 19",
         "title_sa": "दशकम् १९",
         "n": 19,
-        "subject": "The Story of the Prachetas"
+        "subject": "The Story of the Prachetas",
+        "doc": "1ueqBBOp2RPC8KS5KjKhnkc9Yj7SqkgVeIAv9iyjfe2k",
+        "synced": "2026-11-02T22:54:25Z"
       },
       {
         "slug": "dashaka-20",
         "title": "Dashaka 20",
         "title_sa": "दशकम् २०",
         "n": 20,
-        "subject": "The Story of Rishabha Deva"
+        "subject": "The Story of Rishabha Deva",
+        "doc": "1AZdZ-8hz-aFia3ACNttd7HvWWCMxPw6CIga7KZE1LIE",
+        "synced": "2026-11-03T17:28:10Z"
       },
       {
         "slug": "dashaka-21",
         "title": "Dashaka 21",
         "title_sa": "दशकम् २१",
         "n": 21,
-        "subject": "Worship in different places and forms"
+        "subject": "Worship in different places and forms",
+        "doc": "1wuxK2J2P3XRBQCBsYHXUhbxtFH6OuF59dTNQDdZFvhY",
+        "synced": "2026-11-04T20:41:14Z"
       },
       {
         "slug": "dashaka-22",
         "title": "Dashaka 22",
         "title_sa": "दशकम् २२",
         "n": 22,
-        "subject": "The story of Ajamila"
+        "subject": "The story of Ajamila",
+        "doc": "17x0FGig15rhJcZckhxwJjzgxkuLic2Ptl0icUBAU96s",
+        "synced": "2026-11-05T20:17:49Z"
       },
       {
         "slug": "dashaka-23",
         "title": "Dashaka 23",
         "title_sa": "दशकम् २३",
         "n": 23,
-        "subject": "The story of Chitraketu"
+        "subject": "The story of Chitraketu",
+        "doc": "1VGTm38GYJuvyGLsY8ZcaZUothRSCIjoNt5-3Ys8DCjs",
+        "synced": "2026-11-06T22:41:00Z"
       },
       {
         "slug": "dashaka-24",
         "title": "Dashaka 24",
         "title_sa": "दशकम् २४",
         "n": 24,
-        "subject": "The story of Prahlada"
+        "subject": "The story of Prahlada",
+        "doc": "1lzw9cNBRn7PzehjgN9JNTY88WbL1ZqAGj0E0-0eOtls",
+        "synced": "2026-11-09T23:53:36Z"
       },
       {
         "slug": "dashaka-25",
         "title": "Dashaka 25",
         "title_sa": "दशकम् २५",
         "n": 25,
-        "subject": "The Incarnation as Narasimha"
+        "subject": "The Incarnation as Narasimha",
+        "doc": "1ynxiicDiWBHVDkHzzcU1fTyLKj5x3I7Tpd5CVY6vJx4",
+        "synced": "2026-11-10T21:28:54Z"
       },
       {
         "slug": "dashaka-26",
         "title": "Dashaka 26",
         "title_sa": "दशकम् २६",
         "n": 26,
-        "subject": "The liberation of Gajendra (Gajendra Moksha)"
+        "subject": "The liberation of Gajendra (Gajendra Moksha)",
+        "doc": "1cp3Lxo9HSAF3VTGWFUZaU72Y0tDUQl0rK-lVKyyriEw",
+        "synced": "2026-11-11T20:56:37Z"
       },
       {
         "slug": "dashaka-27",
         "title": "Dashaka 27",
         "title_sa": "दशकम् २७",
         "n": 27,
-        "subject": "Churning the ocean for nectar"
+        "subject": "Churning the ocean for nectar",
+        "doc": "1HrNvG5pFJDv8pmT74HcGH8321ESIlkj_YjRs6mM72AY",
+        "synced": "2026-11-12T23:38:51Z"
       },
       {
         "slug": "dashaka-28",
         "title": "Dashaka 28",
         "title_sa": "दशकम् २८",
         "n": 28,
-        "subject": "The gifts of the ocean"
+        "subject": "The gifts of the ocean",
+        "doc": "1dZOOu0pqPiGI7PmBZIej54EBD8br9x-nLC28SfgojJM",
+        "synced": "2026-10-14T18:38:56Z"
       },
       {
         "slug": "dashaka-29",
         "title": "Dashaka 29",
         "title_sa": "दशकम् २९",
         "n": 29,
-        "subject": "The incarnation as Mohini"
+        "subject": "The incarnation as Mohini",
+        "doc": "1Yvs7iCgdyV-xaIf777515Ql7-V7obWQTcg3xE9-JmGg",
+        "synced": "2026-10-14T18:39:41Z"
       },
       {
         "slug": "dashaka-30",
         "title": "Dashaka 30",
         "title_sa": "दशकम् ३०",
         "n": 30,
-        "subject": "The incarnation as Vamana"
+        "subject": "The incarnation as Vamana",
+        "doc": "1ct2mjsjShh01xVxtWw8jwwqn1luMMWjJjwVQvWHAw5c",
+        "synced": "2026-10-14T18:40:32Z"
       },
       {
         "slug": "dashaka-31",
         "title": "Dashaka 31",
         "title_sa": "दशकम् ३१",
         "n": 31,
-        "subject": "Vamana blesses Bali"
+        "subject": "Vamana blesses Bali",
+        "doc": "124oa1ZuN7fhs2OlPuKL5khzCESxygkFiROmaU89lAI0",
+        "synced": "2026-08-08T08:12:14Z"
       },
       {
         "slug": "dashaka-32",
         "title": "Dashaka 32",
         "title_sa": "दशकम् ३२",
         "n": 32,
-        "subject": "The incarnation as Fish (Matsya Avatara)"
+        "subject": "The incarnation as Fish (Matsya Avatara)",
+        "doc": "1pbl6utPGYx8KVvqyafSGe6tjE8UOn8TkZ5JZnrMgdvY",
+        "synced": "2026-08-08T17:00:42Z"
       },
       {
         "slug": "dashaka-33",
         "title": "Dashaka 33",
         "title_sa": "दशकम् ३३",
         "n": 33,
-        "subject": "The story of Ambarisha"
+        "subject": "The story of Ambarisha",
+        "doc": "1KrZ4S4ff7-CgnkdaqC9TqRwidtmQ637awlOMX_onM1w",
+        "synced": "2026-08-09T22:21:31Z"
       },
       {
         "slug": "dashaka-34",
         "title": "Dashaka 34",
         "title_sa": "दशकम् ३४",
         "n": 34,
-        "subject": "The incarnation as Rama"
+        "subject": "The incarnation as Rama",
+        "doc": "1omU2ejucGzXqclQGUvt7g8waiuARPp2UO7UN-gikhtM",
+        "synced": "2026-08-10T06:27:52Z"
       },
       {
         "slug": "dashaka-35",
         "title": "Dashaka 35",
         "title_sa": "दशकम् ३५",
         "n": 35,
-        "subject": "The incarnation as Rama (contd.)"
+        "subject": "The incarnation as Rama (contd.)",
+        "doc": "15XFJupZiJyYdbQsg97o1QVjojHaPx0uANIOHM8FGFaA",
+        "synced": "2026-08-10T21:42:47Z"
       },
       {
         "slug": "dashaka-36",
         "title": "Dashaka 36",
         "title_sa": "दशकम् ३६",
         "n": 36,
-        "subject": "The incarnation as Parashurama"
+        "subject": "The incarnation as Parashurama",
+        "doc": "1d6Z72cxUvnYR2jaqzW2WlamGXAXT_7a7Txhaj2QEgQQ",
+        "synced": "2026-08-11T19:11:14Z"
       },
       {
         "slug": "dashaka-37",
         "title": "Dashaka 37",
         "title_sa": "दशकम् ३७",
         "n": 37,
-        "subject": "Prelude to the incarnation of Krishna"
+        "subject": "Prelude to the incarnation of Krishna",
+        "doc": "1NSkHGEQhzjfPb2-Fx5VkjilcFqRZTGMzd_ec2hEJITw",
+        "synced": "2026-08-11T21:31:07Z"
       },
       {
         "slug": "dashaka-38",
         "title": "Dashaka 38",
         "title_sa": "दशकम् ३८",
         "n": 38,
-        "subject": "Birth of Krishna"
+        "subject": "Birth of Krishna",
+        "doc": "1pnFArlP2yo9bcRz82YZsZ1uytYrKFP4qRfdmQhxi4vI",
+        "synced": "2026-08-12T19:09:11Z"
       },
       {
         "slug": "dashaka-39",
         "title": "Dashaka 39",
         "title_sa": "दशकम् ३९",
         "n": 39,
-        "subject": "The story of Yogmaya"
+        "subject": "The story of Yogmaya",
+        "doc": "12FGoR5vTXuBCG9iXZLJbAppgmi91zNRdB0AkGN4erAw",
+        "synced": "2026-08-13T21:27:30Z"
       },
       {
         "slug": "dashaka-40",
         "title": "Dashaka 40",
         "title_sa": "दशकम् ४०",
         "n": 40,
-        "subject": "Salvation of Putana"
+        "subject": "Salvation of Putana",
+        "doc": "1-jTo-IymGD_H0kuihGI_uo9adCYbk-OcBsJhiLcrYWI",
+        "synced": "2026-08-13T22:09:02Z"
       },
       {
         "slug": "dashaka-41",
         "title": "Dashaka 41",
         "title_sa": "दशकम् ४१",
         "n": 41,
-        "subject": "Cremation of Putana"
+        "subject": "Cremation of Putana",
+        "doc": "14Q7-spP7TurmmEOEQhEDukhtXXxJpMXykATcZGPHW0M",
+        "synced": "2026-08-18T20:30:28Z"
       },
       {
         "slug": "dashaka-42",
         "title": "Dashaka 42",
         "title_sa": "दशकम् ४२",
         "n": 42,
-        "subject": "Destruction of Shakatasura"
+        "subject": "Destruction of Shakatasura",
+        "doc": "1_cQK-u1KHSn4OZcEz18jRJSO8T263wA4Dq_CsduOg9I",
+        "synced": "2026-08-18T21:26:55Z"
       },
       {
         "slug": "dashaka-43",
         "title": "Dashaka 43",
         "title_sa": "दशकम् ४३",
         "n": 43,
-        "subject": "Destruction of Trinavarta"
+        "subject": "Destruction of Trinavarta",
+        "doc": "1QwGL1kUIfEGS80s1lOJB00NpV6kBksR-ALD3QMdy5MQ",
+        "synced": "2026-08-18T22:58:59Z"
       },
       {
         "slug": "dashaka-44",
         "title": "Dashaka 44",
         "title_sa": "दशकम् ४४",
         "n": 44,
-        "subject": "The naming ceremony (of Krishna)"
+        "subject": "The naming ceremony (of Krishna)",
+        "doc": "14BTk7NwAhLU94U5y1fzLxL39vXKQqhxuML0PKFynqY0",
+        "synced": "2026-08-19T00:00:11Z"
       },
       {
         "slug": "dashaka-45",
         "title": "Dashaka 45",
         "title_sa": "दशकम् ४५",
         "n": 45,
-        "subject": "Childhood pranks of Krishna"
+        "subject": "Childhood pranks of Krishna",
+        "doc": "1Aw0fFBokb4WsOmMPKyyOMyp35AkJmWNFIGFLoW2HJdA",
+        "synced": "2026-08-19T21:47:57Z"
       },
       {
         "slug": "dashaka-46",
         "title": "Dashaka 46",
         "title_sa": "दशकम् ४६",
         "n": 46,
-        "subject": "Krishna reveals the Vishwaroopa form to Yashoda"
+        "subject": "Krishna reveals the Vishwaroopa form to Yashoda",
+        "doc": "1UWh8qEtwnd3bl8Tjojuz3KvzRuYCBJEa3r2Vfip-mnM",
+        "synced": "2026-08-20T20:00:34Z"
       },
       {
         "slug": "dashaka-47",
         "title": "Dashaka 47",
         "title_sa": "दशकम् ४७",
         "n": 47,
-        "subject": "Krishna bound to the mortar"
+        "subject": "Krishna bound to the mortar",
+        "doc": "1uh1NLuWpc05R3R2n6aIWlAE4DH4tRl9gRQwy9DYvnA8",
+        "synced": "2026-08-21T20:58:41Z"
       },
       {
         "slug": "dashaka-48",
         "title": "Dashaka 48",
         "title_sa": "दशकम् ४८",
         "n": 48,
-        "subject": "Salvation of Nalakubara and Manigriva"
+        "subject": "Salvation of Nalakubara and Manigriva",
+        "doc": "11CoR9xw4SKL-Q7JOm0klje7utCrnsnY8gr_C-RSzpPM",
+        "synced": "2026-08-24T21:57:56Z"
       },
       {
         "slug": "dashaka-49",
         "title": "Dashaka 49",
         "title_sa": "दशकम् ४९",
         "n": 49,
-        "subject": "Going to Vrindavana"
+        "subject": "Going to Vrindavana",
+        "doc": "1p7Y6ZQdg8m_OiR4Br4kVSDeWbgLe4ve7mY7KB17vWeI",
+        "synced": "2026-08-25T23:14:59Z"
       },
       {
         "slug": "dashaka-50",
         "title": "Dashaka 50",
         "title_sa": "दशकम् ५०",
         "n": 50,
-        "subject": "Krishna slays Vatsasura and Bakasura"
+        "subject": "Krishna slays Vatsasura and Bakasura",
+        "doc": "1IfxrM4OpJSUWvEam78kFurx_H4LGW8FQupCvnKj229M",
+        "synced": "2026-08-26T18:41:29Z"
       },
       {
         "slug": "dashaka-51",
         "title": "Dashaka 51",
         "title_sa": "दशकम् ५१",
         "n": 51,
-        "subject": "Krishna slays Aghasura"
+        "subject": "Krishna slays Aghasura",
+        "doc": "1g-obpeNvaX8pcw7HGBmjFXW3T8xE8B29c-Cv-chZ_8c",
+        "synced": "2026-08-28T00:08:17Z"
       },
       {
         "slug": "dashaka-52",
         "title": "Dashaka 52",
         "title_sa": "दशकम् ५२",
         "n": 52,
-        "subject": "Krishna humbles Brahma’s pride"
+        "subject": "Krishna humbles Brahma’s pride",
+        "doc": "1DSDpgZ7oMhbLFfRdfRq0zAOLaCtQAZI11K95bRrN2ZU",
+        "synced": "2026-08-28T21:30:45Z"
       },
       {
         "slug": "dashaka-53",
         "title": "Dashaka 53",
         "title_sa": "दशकम् ५३",
         "n": 53,
-        "subject": "Krishna slays Dhenukasura"
+        "subject": "Krishna slays Dhenukasura",
+        "doc": "10yJRJ7lMLRhQVxomGtMnQX1OTVENYRy-168NKFD6Ws0",
+        "synced": "2026-08-31T22:42:49Z"
       },
       {
         "slug": "dashaka-54",
         "title": "Dashaka 54",
         "title_sa": "दशकम् ५४",
         "n": 54,
-        "subject": "Kaliya troubles the people of Vrindavana"
+        "subject": "Kaliya troubles the people of Vrindavana",
+        "doc": "1YJRvBMjMl8Bu22HxrgNbNSJaSROudLt9q5BAEMb5Il0",
+        "synced": "2026-09-01T18:49:25Z"
       },
       {
         "slug": "dashaka-55",
         "title": "Dashaka 55",
         "title_sa": "दशकम् ५५",
         "n": 55,
-        "subject": "Krishna subdues Kaliya"
+        "subject": "Krishna subdues Kaliya",
+        "doc": "1lw2zIgNlElfTmXcyKI11GA2IbsdtVaNnVIRlq0wKM18",
+        "synced": "2026-09-02T18:23:38Z"
       },
       {
         "slug": "dashaka-56",
         "title": "Dashaka 56",
         "title_sa": "दशकम् ५६",
         "n": 56,
-        "subject": "Krishna bestows grace upon Kaliya"
+        "subject": "Krishna bestows grace upon Kaliya",
+        "doc": "19Su0WwD9ro70bhTtQUt8qUtodyx0bjpdzNb9GApb5XQ",
+        "synced": "2026-09-03T20:48:16Z"
       },
       {
         "slug": "dashaka-57",
         "title": "Dashaka 57",
         "title_sa": "दशकम् ५७",
         "n": 57,
-        "subject": "Balarama slays Pralambasura"
+        "subject": "Balarama slays Pralambasura",
+        "doc": "1BrxIeuq_pGdBl6tc_s8gcHvyN58tg0KO4BcCW6iEzy8",
+        "synced": "2026-09-08T18:14:29Z"
       },
       {
         "slug": "dashaka-58",
         "title": "Dashaka 58",
         "title_sa": "दशकम् ५८",
         "n": 58,
-        "subject": "Krishna rescues everyone from the wild fire"
+        "subject": "Krishna rescues everyone from the wild fire",
+        "doc": "1jdPtfNlRWII0Wb4EnFlA4LzYsnorgcz6YGc-yvDYrRk",
+        "synced": "2026-09-09T21:45:15Z"
       },
       {
         "slug": "dashaka-59",
         "title": "Dashaka 59",
         "title_sa": "दशकम् ५९",
         "n": 59,
-        "subject": "The song of the flute"
+        "subject": "The song of the flute",
+        "doc": "1VV9MARa_NoAaInAadUwqWEDNQDhhLKTvVzaF8G_zvD4",
+        "synced": "2026-09-09T23:34:20Z"
       },
       {
         "slug": "dashaka-60",
         "title": "Dashaka 60",
         "title_sa": "दशकम् ६०",
         "n": 60,
-        "subject": "Krishna steals the clothes of the gopis"
+        "subject": "Krishna steals the clothes of the gopis",
+        "doc": "1G1R3sCXVWVK0WYlv7EMKHqydHmqeKoX9jhlL_e7kuXY",
+        "synced": "2026-09-10T00:24:01Z"
       },
       {
         "slug": "dashaka-61",
         "title": "Dashaka 61",
         "title_sa": "दशकम् ६१",
         "n": 61,
-        "subject": "Krishna blesses the wives of the brahmanas"
+        "subject": "Krishna blesses the wives of the brahmanas",
+        "doc": "1T_Ij72NgQAtor9Pg0YjYaof2ByJyJ1cqoF-bnUkaa3I",
+        "synced": "2026-09-17T19:55:11Z"
       },
       {
         "slug": "dashaka-62",
         "title": "Dashaka 62",
         "title_sa": "दशकम् ६२",
         "n": 62,
-        "subject": "Krishna prevents the sacrifice for Indra"
+        "subject": "Krishna prevents the sacrifice for Indra",
+        "doc": "1O8kCjEXCENHArjpg8IW--V3Nxii6PsOIwzsiGkj9iXQ",
+        "synced": "2026-09-18T22:21:06Z"
       },
       {
         "slug": "dashaka-63",
         "title": "Dashaka 63",
         "title_sa": "दशकम् ६३",
         "n": 63,
-        "subject": "Krishna lifts Govardhana"
+        "subject": "Krishna lifts Govardhana",
+        "doc": "1C3y23hWCYv_8S4ddOb6OTB7w98p9djt0fH5U6jJODY4",
+        "synced": "2026-09-23T17:05:51Z"
       },
       {
         "slug": "dashaka-64",
         "title": "Dashaka 64",
         "title_sa": "दशकम् ६४",
         "n": 64,
-        "subject": "Krishna crowned as Govinda"
+        "subject": "Krishna crowned as Govinda",
+        "doc": "1aZutNXJ5A9VSKns-qXJSlKJQjyxHPQj_n_kTGr2EZAI",
+        "synced": "2026-09-22T20:35:23Z"
       },
       {
         "slug": "dashaka-65",
         "title": "Dashaka 65",
         "title_sa": "दशकम् ६५",
         "n": 65,
-        "subject": "Gopis come to Krishna for rasa-lila"
+        "subject": "Gopis come to Krishna for rasa-lila",
+        "doc": "1YblvW51Lydq95dSf8H95YpND8tXua9uLvi-KF7n8G7Y",
+        "synced": "2026-09-22T21:25:54Z"
       },
       {
         "slug": "dashaka-66",
         "title": "Dashaka 66",
         "title_sa": "दशकम् ६६",
         "n": 66,
-        "subject": "Krishna plays Rasa-Lila with the gopis"
+        "subject": "Krishna plays Rasa-Lila with the gopis",
+        "doc": "1bd9feM0pl_ACB3PxQuUrcGftd2gaDoQEECCLq1GeWRQ",
+        "synced": "2026-09-23T18:06:07Z"
       },
       {
         "slug": "dashaka-67",
         "title": "Dashaka 67",
         "title_sa": "दशकम् ६७",
         "n": 67,
-        "subject": "Krishna disappears and reappears"
+        "subject": "Krishna disappears and reappears",
+        "doc": "1kVJ4JiKqvEhGSMy8TcKX0QOctPlmSZndq2qQcALOQZ4",
+        "synced": "2026-09-23T18:50:27Z"
       },
       {
         "slug": "dashaka-68",
         "title": "Dashaka 68",
         "title_sa": "दशकम् ६८",
         "n": 68,
-        "subject": "Krishna’s reunion with the gopis"
+        "subject": "Krishna’s reunion with the gopis",
+        "doc": "1r0OkiS3QaIJpapvFMCOmWmiZB0EIsTFDPdYzGDfJNHk",
+        "synced": "2026-09-24T17:24:27Z"
       },
       {
         "slug": "dashaka-69",
         "title": "Dashaka 69",
         "title_sa": "दशकम् ६९",
         "n": 69,
-        "subject": "Krishna’s Rasa-Dance with the gopis"
+        "subject": "Krishna’s Rasa-Dance with the gopis",
+        "doc": "1l8SHv1l-SZMjHeTOAQ43uyurNbLoEuexDBrKLQIfzOc",
+        "synced": "2026-09-24T18:20:53Z"
       },
       {
         "slug": "dashaka-70",
         "title": "Dashaka 70",
         "title_sa": "दशकम् ७०",
         "n": 70,
-        "subject": "Salvation of Sudarshana and Destruction of Shankhachuda and Arishta"
+        "subject": "Salvation of Sudarshana and Destruction of Shankhachuda and Arishta",
+        "doc": "11AJSm79g11A_UWtnIQPSH55g7oryOFJk02vQmD3kndw",
+        "synced": "2026-09-24T19:22:44Z"
       },
       {
         "slug": "dashaka-71",
         "title": "Dashaka 71",
         "title_sa": "दशकम् ७१",
         "n": 71,
-        "subject": "Destruction of Keshi and Vyomasura"
+        "subject": "Destruction of Keshi and Vyomasura",
+        "doc": "1TP-TQ8E30Nmdj27Q-esP9_XBZT_Bn94vCGganan9OQE",
+        "synced": "2026-09-26T17:27:59Z"
       },
       {
         "slug": "dashaka-72",
         "title": "Dashaka 72",
         "title_sa": "दशकम् ७२",
         "n": 72,
-        "subject": "Akrura visits Vraja"
+        "subject": "Akrura visits Vraja",
+        "doc": "1nXxrmbZwPxpR9Ysh517VGN9s4pXCg_n01Xom60gN_lw",
+        "synced": "2026-09-25T19:48:01Z"
       },
       {
         "slug": "dashaka-73",
         "title": "Dashaka 73",
         "title_sa": "दशकम् ७३",
         "n": 73,
-        "subject": "Krishna’s journey to Mathura"
+        "subject": "Krishna’s journey to Mathura",
+        "doc": "1E-LB2GSm6gdINzBi66nmdWkuRXctbPrZS2rTGXLjduI",
+        "synced": "2026-09-26T18:57:46Z"
       },
       {
         "slug": "dashaka-74",
         "title": "Dashaka 74",
         "title_sa": "दशकम् ७४",
         "n": 74,
-        "subject": "Krishna’s entry into Mathura"
+        "subject": "Krishna’s entry into Mathura",
+        "doc": "12gQsfSh16Y0EoI18rD8BxDfl2I-6vg9GtXZdYlbSX2Q",
+        "synced": "2026-09-26T20:53:16Z"
       },
       {
         "slug": "dashaka-75",
         "title": "Dashaka 75",
         "title_sa": "दशकम् ७५",
         "n": 75,
-        "subject": "Krishna kills Kamsa"
+        "subject": "Krishna kills Kamsa",
+        "doc": "1-jHRON5N0dx_OTA1DfQcBJ8jqDkHDanhGLPUDFGV9eI",
+        "synced": "2026-09-26T21:55:04Z"
       },
       {
         "slug": "dashaka-76",
         "title": "Dashaka 76",
         "title_sa": "दशकम् ७६",
         "n": 76,
-        "subject": "Krishna sends a message to the gopis through Uddhava"
+        "subject": "Krishna sends a message to the gopis through Uddhava",
+        "doc": "17Yxx9nQ9ZANrR5jstAJw_xqgmwXzNRnWajs1ueoGBdI",
+        "synced": "2026-09-27T21:17:13Z"
       },
       {
         "slug": "dashaka-77",
         "title": "Dashaka 77",
         "title_sa": "दशकम् ७७",
         "n": 77,
-        "subject": "Krishna bestows grace on Trivakra. Jarasandha’s invasion"
+        "subject": "Krishna bestows grace on Trivakra. Jarasandha’s invasion",
+        "doc": "174vYYMVj0B-8Wtwa0Ngs32sJctJUzvQPZDaDDwKotdA",
+        "synced": "2026-09-27T22:25:04Z"
       },
       {
         "slug": "dashaka-78",
         "title": "Dashaka 78",
         "title_sa": "दशकम् ७८",
         "n": 78,
-        "subject": "Rukmini’s message to Krishna"
+        "subject": "Rukmini’s message to Krishna",
+        "doc": "1mrw4BHMtH8LyC_JA9JF4c70LdeO49J20WeSzA3VHWd0",
+        "synced": "2026-09-27T23:06:11Z"
       },
       {
         "slug": "dashaka-79",
         "title": "Dashaka 79",
         "title_sa": "दशकम् ७९",
         "n": 79,
-        "subject": "Krishna’s marriage to Rukmini"
+        "subject": "Krishna’s marriage to Rukmini",
+        "doc": "1UgzcHGJMnsrUiCMaNFctRpQJKPcHGQMlq6m80uSBjvA",
+        "synced": "2026-09-28T17:54:23Z"
       },
       {
         "slug": "dashaka-80",
         "title": "Dashaka 80",
         "title_sa": "दशकम् ८०",
         "n": 80,
-        "subject": "Incident of the Syamantaka gem. Krishna's marriage to Jambavati and Satyabhama"
+        "subject": "Incident of the Syamantaka gem. Krishna's marriage to Jambavati and Satyabhama",
+        "doc": "17hfr6Q25LBYiBbK3zWaq2qngad3DEJhEtcCIDF1BvSw",
+        "synced": "2026-09-29T18:12:04Z"
       },
       {
         "slug": "dashaka-81",
         "title": "Dashaka 81",
         "title_sa": "दशकम् ८१",
         "n": 81,
-        "subject": "Krishna’s marriage to Kalindi, Mitravinda, Satya (Nagnajiti), Bhadra and Lakshmanaa. Salvation of Narakasura, taking away of the Parijata tree from Indra and Krishna’s marriage to sixteen thousand women who were held captive by Narakasura"
+        "subject": "Krishna’s marriage to Kalindi, Mitravinda, Satya (Nagnajiti), Bhadra and Lakshmanaa. Salvation of Narakasura, taking away of the Parijata tree from Indra and Krishna’s marriage to sixteen thousand women who were held captive by Narakasura",
+        "doc": "1rHtllQ358gW7zi8csqb32AiSmQrNLCK2KOKVFiN1TPE",
+        "synced": "2026-09-29T18:56:48Z"
       },
       {
         "slug": "dashaka-82",
         "title": "Dashaka 82",
         "title_sa": "दशकम् ८२",
         "n": 82,
-        "subject": "Conquest over Bana and salvation of Nriga"
+        "subject": "Conquest over Bana and salvation of Nriga",
+        "doc": "1PTLSXSG4VtU1zDL6NKvHA5Zt2CqQJkyIBHRnfVk-JjY",
+        "synced": "2026-09-29T20:06:58Z"
       },
       {
         "slug": "dashaka-83",
         "title": "Dashaka 83",
         "title_sa": "दशकम् ८३",
         "n": 83,
-        "subject": "Salvation of Paundraka. Destruction of Sudakshina (the son of the king of Kashi) and Vividha (Dvividha)"
+        "subject": "Salvation of Paundraka. Destruction of Sudakshina (the son of the king of Kashi) and Vividha (Dvividha)",
+        "doc": "1nVmO4jtMELY8DWpuyBc_iSTB7y9l4brOQJuFsH7OH38",
+        "synced": "2026-09-30T06:25:06Z"
       },
       {
         "slug": "dashaka-84",
         "title": "Dashaka 84",
         "title_sa": "दशकम् ८४",
         "n": 84,
-        "subject": "Journey to Samantapanchaka and meeting with the friends and relatives"
+        "subject": "Journey to Samantapanchaka and meeting with the friends and relatives",
+        "doc": "1WYRHRaFOjxRn3Vb4dda4JJjdh4ZQD00_RjYq_lQ6KXw",
+        "synced": "2026-09-29T22:55:54Z"
       },
       {
         "slug": "dashaka-85",
         "title": "Dashaka 85",
         "title_sa": "दशकम् ८५",
         "n": 85,
-        "subject": "Destruction of Jarasandha. Krishna kills Shishupala during the Rajasuya sacrifice. Duryodhana humiliated"
+        "subject": "Destruction of Jarasandha. Krishna kills Shishupala during the Rajasuya sacrifice. Duryodhana humiliated",
+        "doc": "1Vl1TEXzprJCifk29To66HSV6TJMFIxBi0ypNuCz4UP8",
+        "synced": "2026-09-30T00:09:14Z"
       },
       {
         "slug": "dashaka-86",
         "title": "Dashaka 86",
         "title_sa": "दशकम् ८६",
         "n": 86,
-        "subject": "Destruction of Salva. Krishna saves Draupadi’s honor during the game of dice and from the wrath of Sage Durvasa. Battle of Kurukshetra"
+        "subject": "Destruction of Salva. Krishna saves Draupadi’s honor during the game of dice and from the wrath of Sage Durvasa. Battle of Kurukshetra",
+        "doc": "1Bp6bZSFkEhAWbT28METoafo0bsTnws1ePynpkM_corI",
+        "synced": "2026-09-30T17:58:01Z"
       },
       {
         "slug": "dashaka-87",
         "title": "Dashaka 87",
         "title_sa": "दशकम् ८७",
         "n": 87,
-        "subject": "Krishna bestows grace on Kuchela"
+        "subject": "Krishna bestows grace on Kuchela",
+        "doc": "1J8iC1z7qiwPV9MwAYpm-XkXxt6OVnUZcBKB4kl6No28",
+        "synced": "2026-09-30T19:18:24Z"
       },
       {
         "slug": "dashaka-88",
         "title": "Dashaka 88",
         "title_sa": "दशकम् ८८",
         "n": 88,
-        "subject": "Krishna brings the dead children of Vasudeva and Devaki and of the brahmana back to life. Krishna shows Vaikuntha to Arjuna"
+        "subject": "Krishna brings the dead children of Vasudeva and Devaki and of the brahmana back to life. Krishna shows Vaikuntha to Arjuna",
+        "doc": "1oLDypInQCweqjQDoM3_GQt_rUESw03zFJ_unUHJgxx4",
+        "synced": "2026-09-30T21:19:24Z"
       },
       {
         "slug": "dashaka-89",
         "title": "Dashaka 89",
         "title_sa": "दशकम् ८९",
         "n": 89,
-        "subject": "The story of Vrikasura and the test of Brigu"
+        "subject": "The story of Vrikasura and the test of Brigu",
+        "doc": "1vrHSAFwtqRQlFrm6AVmUZD16bpx41gOoVMOklT-SRmo",
+        "synced": "2026-09-30T23:04:13Z"
       },
       {
         "slug": "dashaka-90",
         "title": "Dashaka 90",
         "title_sa": "दशकम् ९०",
         "n": 90,
-        "subject": "Establishing the glory of Vishnu"
+        "subject": "Establishing the glory of Vishnu",
+        "doc": "1KYq0nh3O0eFAJLU99IX3r5Lb3iR9DNSjRTKdRGjRVzY",
+        "synced": "2026-10-01T05:08:15Z"
       },
       {
         "slug": "dashaka-91",
         "title": "Dashaka 91",
         "title_sa": "दशकम् ९१",
         "n": 91,
-        "subject": "The glory of Bhakti"
+        "subject": "The glory of Bhakti",
+        "doc": "1jY9NOwc_aj81slngj3Hd-6TDUeOgb5vGK0i4HlDTtP8",
+        "synced": "2026-10-05T17:21:12Z"
       },
       {
         "slug": "dashaka-92",
         "title": "Dashaka 92",
         "title_sa": "दशकम् ९२",
         "n": 92,
-        "subject": "Bhakti in Kaliyuga"
+        "subject": "Bhakti in Kaliyuga",
+        "doc": "14SpHfXjzyJLmGbPYwhl6td3zQ9e_IhVI2-zUJl9FAio",
+        "synced": "2026-10-05T22:47:00Z"
       },
       {
         "slug": "dashaka-93",
         "title": "Dashaka 93",
         "title_sa": "दशकम् ९३",
         "n": 93,
-        "subject": "The learnings from the twenty-four teachers in life"
+        "subject": "The learnings from the twenty-four teachers in life",
+        "doc": "1i0ZCF5VwbGpWJTjY6xB4I99xsebBq97PGgsKC35u_tY",
+        "synced": "2026-10-06T18:47:04Z"
       },
       {
         "slug": "dashaka-94",
         "title": "Dashaka 94",
         "title_sa": "दशकम् ९४",
         "n": 94,
-        "subject": "Enlightenment through Bhakti"
+        "subject": "Enlightenment through Bhakti",
+        "doc": "1R_lVvTT1CHvLkIzXefcntjp9SS3vLEMLxXbDgjGo39E",
+        "synced": "2026-10-06T20:18:21Z"
       },
       {
         "slug": "dashaka-95",
         "title": "Dashaka 95",
         "title_sa": "दशकम् ९५",
         "n": 95,
-        "subject": "Supremacy of the path of Bhakti"
+        "subject": "Supremacy of the path of Bhakti",
+        "doc": "19mTNwCF-1L5ue6ANkmYap8MwgfBbOyNlA_KrCIfipbg",
+        "synced": "2026-10-06T22:10:46Z"
       },
       {
         "slug": "dashaka-96",
         "title": "Dashaka 96",
         "title_sa": "दशकम् ९६",
         "n": 96,
-        "subject": "Bhakti as a self-sufficient path"
+        "subject": "Bhakti as a self-sufficient path",
+        "doc": "1r3hP08ZqLSSgG3gXlBrMHJl-aCB4-yiEXHGwVMOily4",
+        "synced": "2026-10-06T23:36:55Z"
       },
       {
         "slug": "dashaka-97",
         "title": "Dashaka 97",
         "title_sa": "दशकम् ९७",
         "n": 97,
-        "subject": "The story of Markandeya"
+        "subject": "The story of Markandeya",
+        "doc": "136m31JuxUxUVMUYDYe2WilLNYm7FQDE0ie0jXAx6_HY",
+        "synced": "2026-10-07T02:27:47Z"
       },
       {
         "slug": "dashaka-98",
         "title": "Dashaka 98",
         "title_sa": "दशकम् ९८",
         "n": 98,
-        "subject": "Praise of the Absolute Brahman"
+        "subject": "Praise of the Absolute Brahman",
+        "doc": "18tyQmqTsf4H7D_AbVQcI_tl6JkWE6sD6d9XX9TtLclw",
+        "synced": "2026-10-12T18:19:57Z"
       },
       {
         "slug": "dashaka-99",
         "title": "Dashaka 99",
         "title_sa": "दशकम् ९९",
         "n": 99,
-        "subject": "Praise to the Lord in the form of the Vedas"
+        "subject": "Praise to the Lord in the form of the Vedas",
+        "doc": "1QMHK2k15lx1gTxpB-jDQC8VX4LatP9QdsiYDlomvg_E",
+        "synced": "2026-10-07T21:57:01Z"
       },
       {
         "slug": "dashaka-100",
         "title": "Dashaka 100",
         "title_sa": "दशकम् १००",
         "n": 100,
-        "subject": "Description of Krishna"
+        "subject": "Description of Krishna",
+        "doc": "13ZRHlNtxu9XxPSgvU-jFgZqNsgdW5NPEVGkxEyt4UJo",
+        "synced": "2026-10-07T23:35:36Z"
       }
     ],
     "title": "Narayaneeyam",
@@ -1960,7 +2494,9 @@
         "title": "Kishkindhakanda Sarga 28",
         "title_sa": "किष्किन्धाकाण्डम् · सर्गः २८",
         "n": 1,
-        "subject": "Rama describes the beauty of the rainy season to Lakshmana"
+        "subject": "Rama describes the beauty of the rainy season to Lakshmana",
+        "doc": "1aXPkH2FYC_q_ByXYzYqPwxJwy4-5AFSgBUUX_vLrfZ8",
+        "synced": "2026-10-26T18:30:56Z"
       }
     ],
     "title": "Eclectic Collection",
@@ -1977,14 +2513,18 @@
         "title": "Chapter 1",
         "title_sa": "अध्यायः १",
         "n": 1,
-        "subject": "Arjuna Vishad Yoga"
+        "subject": "Arjuna Vishad Yoga",
+        "doc": "1ug5kx0fFbvvArW-n72jvhdxfrQ5VN3BozeorAxAyPns",
+        "synced": "2026-11-12T21:36:40Z"
       },
       {
         "slug": "ch-12",
         "title": "Chapter 12",
         "title_sa": "अध्यायः १२",
         "n": 12,
-        "subject": "Bhakti Yoga"
+        "subject": "Bhakti Yoga",
+        "doc": "1do1yt2z4UpS8KYxj2JGfFdEZe4sO_N5Jfw7zENwSBdI",
+        "synced": "2026-11-13T07:54:05Z"
       }
     ],
     "title": "Bhagavad Geeta",

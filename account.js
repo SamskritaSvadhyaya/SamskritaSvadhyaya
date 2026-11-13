@@ -181,6 +181,24 @@ function readingPage(user) {
   const bBtn = bar.querySelector('.sb-bookmark');
   const sBtn = bar.querySelector('.sb-studied');
 
+  // Site owner only: open this page's Google Doc (the master copy) in a new tab.
+  const docId = document.querySelector('meta[name="ss-doc"]')?.content;
+  if (docId) {
+    const addDocLink = () => {
+      if (bar.querySelector('.sb-doc')) return;
+      bar.insertAdjacentHTML('beforeend', `<a class="sb-btn sb-doc" href="https://docs.google.com/document/d/${encodeURIComponent(docId)}/edit"
+        target="_blank" rel="noopener" title="Opens the Google Doc in a new tab">↗ Edit in Google Doc</a>`);
+    };
+    let owner = null;
+    try { owner = localStorage.getItem('ss-owner'); } catch {}
+    if (owner === '1') addDocLink();
+    else if (owner === null) {                     // not checked in this browser yet: ask once
+      getDocs(collection(db, 'subscribers'))
+        .then(() => { UI.markOwner && UI.markOwner(); addDocLink(); })
+        .catch(() => { try { localStorage.setItem('ss-owner', '0'); } catch {} });
+    }
+  }
+
   const notes = document.createElement('section');
   notes.className = 'my-notes';
   notes.id = 'my-notes';
