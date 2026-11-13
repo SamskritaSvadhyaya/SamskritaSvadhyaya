@@ -513,7 +513,7 @@ def build_home(_args=None):
   <section class="hero">
     <div class="om-large">ॐ</div>
     <h1>Samskrita Svadhyaya</h1>
-    <p class="subtitle">A self-study library of Sanskrit texts — verses with meaning, anvaya, and translation</p>
+    <p class="subtitle">A self-study library of Sanskrit texts — verses with word-by-word meaning, anvaya, and translation</p>
     <div class="divider"><span class="om">ॐ</span></div>
   </section>
 
