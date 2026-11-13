@@ -181,23 +181,39 @@ function readingPage(user) {
   const bBtn = bar.querySelector('.sb-bookmark');
   const sBtn = bar.querySelector('.sb-studied');
 
+  // Is this the site owner? (Remembered per browser; checked once - only the owner may list subscribers.)
+  const isOwner = (() => {
+    let o = null;
+    try { o = localStorage.getItem('ss-owner'); } catch {}
+    if (o === '1') return Promise.resolve(true);
+    if (o === '0') return Promise.resolve(false);
+    return getDocs(collection(db, 'subscribers'))
+      .then(() => { UI.markOwner && UI.markOwner(); return true; })
+      .catch(() => { try { localStorage.setItem('ss-owner', '0'); } catch {} return false; });
+  })();
+
   // Site owner only: open this page's Google Doc (the master copy) in a new tab.
   const docId = document.querySelector('meta[name="ss-doc"]')?.content;
-  if (docId) {
-    const addDocLink = () => {
-      if (bar.querySelector('.sb-doc')) return;
-      bar.insertAdjacentHTML('beforeend', `<a class="sb-btn sb-doc" href="https://docs.google.com/document/d/${encodeURIComponent(docId)}/edit"
-        target="_blank" rel="noopener" title="Opens the Google Doc in a new tab">↗ Edit in Google Doc</a>`);
-    };
-    let owner = null;
-    try { owner = localStorage.getItem('ss-owner'); } catch {}
-    if (owner === '1') addDocLink();
-    else if (owner === null) {                     // not checked in this browser yet: ask once
-      getDocs(collection(db, 'subscribers'))
-        .then(() => { UI.markOwner && UI.markOwner(); addDocLink(); })
-        .catch(() => { try { localStorage.setItem('ss-owner', '0'); } catch {} });
-    }
-  }
+  if (docId) isOwner.then(ok => {
+    if (!ok || bar.querySelector('.sb-doc')) return;
+    bar.insertAdjacentHTML('beforeend', `<a class="sb-btn sb-doc" href="https://docs.google.com/document/d/${encodeURIComponent(docId)}/edit"
+      target="_blank" rel="noopener" title="Opens the Google Doc in a new tab">↗ Edit in Google Doc</a>`);
+  });
+
+  // Site owner only: "Mark as studied" fills in this chapter's row in the study tracker
+  // (latest cycle, today's date) and starts fresh with each new cycle.
+  const slot = (() => {
+    const p = PATH.replace(/\/$/, '');
+    let m;
+    if (/^thestoryofhanuman\/(kishkindhakanda|sundarakanda|yudhdhakanda)\/sarga-\d+$/.test(p)) return { key: 'sundarakanda', id: p };
+    if (/^narayaneeyam\/dashaka-\d+$/.test(p)) return { key: 'narayaneeyam', id: p };
+    if (/^shrimad-bhagavatam-canto-10\/book-[12]\/ch-\d+$/.test(p)) return { key: 'bhagavatam', id: p };
+    if ((m = p.match(/^bhagavad-geeta\/(ch-\d+)$/))) return { key: 'geeta', id: 'geeta/' + m[1] };
+    return null;
+  })();
+  let trk = null;                                  // { key, cell, cycle, value } once loaded
+  const localDay = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+  const dayLabel = v => v === 'done' ? '' : new Date(v + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 
   const notes = document.createElement('section');
   notes.className = 'my-notes';
@@ -213,6 +229,13 @@ function readingPage(user) {
   function paint() {
     bBtn.setAttribute('aria-pressed', String(!!state.bookmarked));
     bBtn.textContent = state.bookmarked ? '★ Bookmarked' : '☆ Bookmark';
+    if (trk) {
+      sBtn.setAttribute('aria-pressed', String(!!trk.value));
+      sBtn.textContent = trk.value ? `✓ Studied ${dayLabel(trk.value)} · Cycle ${trk.cycle}`.replace('  ', ' ')
+                                   : `○ Mark as studied · Cycle ${trk.cycle}`;
+      sBtn.title = trk.value ? 'Marked in your tracker — click to undo' : 'Marks this chapter in your tracker with today’s date';
+      return;
+    }
     sBtn.setAttribute('aria-pressed', String(!!state.studied));
     sBtn.textContent = state.studied ? '✓ Studied' : '○ Mark as studied';
   }
@@ -229,8 +252,17 @@ function readingPage(user) {
     const noteBox = notes.querySelector('.note-box');
     noteBox.innerHTML = '';
     noteEditor(noteBox, state.note || '', { placeholder: 'Your notes on this page…', status, save: v => save({ note: v }) });
-    bBtn.disabled = sBtn.disabled = false;
+    bBtn.disabled = false;
+    sBtn.disabled = !!slot;                        // until we know whether the tracker applies
     paint();
+    if (slot) isOwner.then(async ok => {
+      if (ok) {
+        const t = ((await getDoc(uref)).data()?.tracker || {})[slot.key] || {};
+        const cycle = Math.max(1, +t.cycles || 1);
+        const cell = `${slot.id}~${cycle}`;
+        trk = { key: slot.key, cell, cycle, value: (t.cells || {})[cell] || '' };
+      }
+    }).catch(() => {}).finally(() => { sBtn.disabled = false; paint(); });
     verseNotes(user, ref, info, state.verses || {});
     shlokas = findShlokas();
     placeMarks();
@@ -301,6 +333,16 @@ function readingPage(user) {
 
   bBtn.addEventListener('click', () => { save({ bookmarked: !state.bookmarked }).catch(e => alert(friendly(e))); paint(); });
   sBtn.addEventListener('click', () => {
+    if (trk) {                                      // owner: tracker cell for the latest cycle
+      const on = !trk.value;
+      trk.value = on ? localDay() : '';
+      paint();
+      Promise.all([
+        setDoc(uref, { tracker: { [trk.key]: { cells: { [trk.cell]: trk.value } } } }, { merge: true }),
+        save(on ? { studied: true, studiedAt: serverTimestamp() } : { studied: false }),
+      ]).catch(e => { alert('Not saved — ' + friendly(e)); });
+      return;
+    }
     const on = !state.studied;
     save(on ? { studied: true, studiedAt: serverTimestamp() } : { studied: false }).catch(e => alert(friendly(e)));
     paint();

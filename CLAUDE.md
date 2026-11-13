@@ -143,6 +143,10 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   Essence" (folded) from `_tracker_geeta_essence.html` = Drive PDF "Bhagavad_Gita_Essence_Summary.pdf"
   word for word. Note: anything in tracker/index.html is readable in the public repo.
   The header "Tracker" button shows only in the owner's browser (localStorage `ss-owner`).
+  For the owner, a chapter's "Mark as studied" button is tied to the tracker (account.js
+  readingPage `slot`/`trk`): it shows "○ Mark as studied · Cycle N" / "✓ Studied <date> · Cycle N"
+  for the tab's latest cycle and writes today's date into that cell (click again to undo); a new
+  cycle starts every chapter fresh. Raghuvamsha/Ganapati/Eclectic and other readers keep the plain button.
 - Cache-busting: `build.py home` (`stamp_assets`) adds `?v=<content hash>` to every page's
   style.css / script.js link and sets script.js's `ACCOUNT_JS_VERSION` from account.js's hash —
   so after editing any of those three files, run `python build.py home` before committing.
