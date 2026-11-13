@@ -104,62 +104,17 @@ function cleanNote(html) {
   };
   return walk(tpl.content).replace(/(<br>\s*)+$/, '');
 }
-// Longer notes (tracker): also keep headings, paragraphs and lists, e.g. when pasting a summary
-// from a Google Doc. Only h3, p, ul, ol, li, b, i, u, mark and br survive.
-const RICH2 = '<!--rich2-->';
-function cleanRich(html) {
-  const tpl = document.createElement('template');
-  tpl.innerHTML = html;
-  const walk = (node, inList) => {
-    let out = '';
-    for (const c of node.childNodes) {
-      if (c.nodeType === 3) { out += esc(c.textContent); continue; }
-      if (c.nodeType !== 1) continue;
-      const tag = c.tagName.toLowerCase();
-      if (tag === 'br') { out += '<br>'; continue; }
-      if (['script', 'style', 'img', 'iframe', 'object', 'svg', 'video', 'audio', 'meta', 'link', 'title'].includes(tag)) continue;
-      if (/^h[1-6]$/.test(tag)) { const t = walk(c, false).trim(); if (t) out += `<h3>${t}</h3>`; continue; }
-      if (tag === 'ul' || tag === 'ol') { const t = walk(c, true); if (t) out += `<${tag}>${t}</${tag}>`; continue; }
-      if (tag === 'li') { const t = walk(c, true).trim(); if (t) out += `<li>${t}</li>`; continue; }
-      if (['p', 'div', 'td', 'th', 'blockquote', 'section', 'article'].includes(tag)) {
-        const t = walk(c, inList).replace(/^(\s*<br>)+|(<br>\s*)+$/g, '').trim();
-        if (t) out += inList ? t + ' ' : (/^<(h3|ul|ol|p)>/.test(t) ? t : `<p>${t}</p>`);
-        continue;
-      }
-      let inner = walk(c, inList);
-      const st = c.getAttribute('style') || '';
-      const bg = st.match(/background(?:-color)?\s*:\s*([^;]+)/i);
-      if (tag === 'mark' || (bg && !/transparent|rgba\(\s*\d+,\s*\d+,\s*\d+,\s*0\s*\)|initial|inherit|none|#fff(fff)?\b|rgb\(\s*255,\s*255,\s*255\s*\)/i.test(bg[1]))) inner = `<mark>${inner}</mark>`;
-      if (tag === 'u' || /text-decoration[^;]*underline/i.test(st)) inner = `<u>${inner}</u>`;
-      if (tag === 'i' || tag === 'em' || /font-style\s*:\s*italic/i.test(st)) inner = `<i>${inner}</i>`;
-      const normal = /font-weight\s*:\s*(normal|[1-5]00)/i.test(st);     // Google Docs wraps pastes in <b style="font-weight:normal">
-      if (((tag === 'b' || tag === 'strong') && !normal) || /font-weight\s*:\s*(bold|[6-9]00)/i.test(st)) inner = `<b>${inner}</b>`;
-      out += inner;
-    }
-    return out;
-  };
-  // Loose text between blocks becomes its own paragraph.
-  let out = walk(tpl.content, false);
-  out = out.replace(/(^|<\/(?:p|h3|ul|ol)>)((?:(?!<(?:p|h3|ul|ol)>)[\s\S])+?)(?=<(?:p|h3|ul|ol)>|$)/g,
-    (m, pre, loose) => { const t = loose.replace(/^(\s*<br>)+|(<br>\s*)+$/g, '').trim(); return pre + (t ? `<p>${t}</p>` : ''); });
-  return out.replace(/<p>\s*<\/p>/g, '');
-}
-
 // Stored note -> safe HTML for display.
-const noteHtml = note => !note ? '' : note.startsWith(RICH2) ? cleanRich(note.slice(RICH2.length))
-  : note.startsWith(RICH) ? cleanNote(note.slice(RICH.length)) : esc(note).replace(/\n/g, '<br>');
+const noteHtml = note => !note ? '' : note.startsWith(RICH) ? cleanNote(note.slice(RICH.length)) : esc(note).replace(/\n/g, '<br>');
 
 // A note box with a formatting toolbar. Saves (after a pause, and on leaving the box) through
 // save(value) -> Promise; value is '' when the note is empty.
-function noteEditor(host, note, { placeholder, status, save, onBlurEmpty, structured = false, maxLen = 19000 }) {
+function noteEditor(host, note, { placeholder, status, save, onBlurEmpty }) {
   host.insertAdjacentHTML('beforeend', `<div class="note-tools" role="toolbar" aria-label="Formatting">
       <button type="button" data-cmd="bold" title="Bold (Ctrl+B)" aria-label="Bold"><b>B</b></button>
       <button type="button" data-cmd="italic" title="Italics (Ctrl+I)" aria-label="Italics"><i>I</i></button>
       <button type="button" data-cmd="underline" title="Underline (Ctrl+U)" aria-label="Underline"><u>U</u></button>
       <button type="button" data-cmd="hl" title="Highlight" aria-label="Highlight"><span class="hl-swatch">ab</span></button>
-      ${structured ? `<button type="button" data-cmd="h3" title="Heading" aria-label="Heading">H</button>
-      <button type="button" data-cmd="insertUnorderedList" title="Bulleted list" aria-label="Bulleted list">• list</button>
-      <button type="button" data-cmd="insertOrderedList" title="Numbered list" aria-label="Numbered list">1. list</button>` : ''}
       <button type="button" data-cmd="clear" title="Clear formatting" aria-label="Clear formatting">clear</button>
     </div>
     <div class="note-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true" data-placeholder="${esc(placeholder)}"></div>`);
@@ -167,13 +122,13 @@ function noteEditor(host, note, { placeholder, status, save, onBlurEmpty, struct
   const ed = host.querySelector('.note-editor');
   ed.innerHTML = noteHtml(note).replace(/<mark>/g, `<span style="background-color: ${HL};">`).replace(/<\/mark>/g, '</span>');
   let saved = note || '';
-  const value = () => !ed.textContent.trim() ? '' : structured ? RICH2 + cleanRich(ed.innerHTML) : RICH + cleanNote(ed.innerHTML);
+  const value = () => ed.textContent.trim() ? RICH + cleanNote(ed.innerHTML) : '';
   let timer = null;
   const flush = () => {
     clearTimeout(timer);
     const v = value();
     if (v === saved) return;
-    if (v.length > maxLen) { status.textContent = 'This note is too long to save — please shorten it.'; return; }
+    if (v.length > 19000) { status.textContent = 'This note is too long to save — please shorten it.'; return; }
     status.textContent = 'Saving…';
     save(v).then(() => { saved = v; status.textContent = 'Saved'; })
       .catch(e => { status.textContent = 'Not saved — ' + friendly(e); });
@@ -191,9 +146,6 @@ function noteEditor(host, note, { placeholder, status, save, onBlurEmpty, struct
       const cur = String(document.queryCommandValue('backColor') || '').replace(/\s/g, '');
       document.execCommand('backColor', false, cur === 'rgb(255,241,168)' ? 'transparent' : HL);
       css(false);
-    } else if (cmd === 'h3') {
-      const inHeading = String(document.queryCommandValue('formatBlock') || '').toLowerCase().includes('h3');
-      document.execCommand('formatBlock', false, inHeading ? 'p' : 'h3');
     } else if (cmd === 'clear') {
       document.execCommand('removeFormat');
       css(true); document.execCommand('backColor', false, 'transparent'); css(false);
@@ -204,17 +156,9 @@ function noteEditor(host, note, { placeholder, status, save, onBlurEmpty, struct
     schedule();
   });
   // Paste as plain words (no fonts, colours, links or scripts from other pages).
-  // (Structured notes keep headings, lists, bold/italics from a Google Doc - nothing else.)
   ed.addEventListener('paste', e => {
     e.preventDefault();
-    const cb = e.clipboardData || window.clipboardData;
-    const html = structured && cb.getData('text/html');
-    if (html) {
-      document.execCommand('insertHTML', false, cleanRich(html)
-        .replace(/<mark>/g, `<span style="background-color: ${HL};">`).replace(/<\/mark>/g, '</span>'));
-    } else {
-      document.execCommand('insertText', false, cb.getData('text/plain'));
-    }
+    document.execCommand('insertText', false, (e.clipboardData || window.clipboardData).getData('text/plain'));
   });
   ed.addEventListener('drop', e => e.preventDefault());
   ed.addEventListener('input', schedule);
@@ -958,7 +902,6 @@ function trackerPage() {
     const snap = await getDoc(userRef(user.uid));
     const tracker = (snap.exists() && snap.data().tracker) || {};
     let active = 0;
-    const noteOpen = {};
     try { active = Math.max(0, texts.findIndex(t => t.key === localStorage.getItem('ss-tracker-tab'))); } catch {}
     // A tab may have been saved with only some fields (e.g. a new cycle before any ticks).
     const data = k => {
@@ -984,8 +927,7 @@ function trackerPage() {
         <div class="tr-actions">
           <button type="button" class="acct-secondary tr-new">+ New cycle</button>
         </div>
-        <details class="tr-note"${noteOpen[t.key] ? ' open' : ''}><summary>${d.note ? 'My notes' : '+ Add notes'} on ${esc(t.title)}</summary>
-          <div class="tr-note-body"></div><p class="tr-note-status" aria-live="polite"></p></details>
+        ${t.note ? `<details class="tr-note"><summary>${esc(t.note_title || 'Notes')}</summary><div class="tr-note-body">${t.note}</div></details>` : ''}
         <div class="tr-scroll"><table class="tr-table">
           <thead><tr><th class="tr-no">No.</th><th class="tr-name">Name</th><th class="tr-sh">Shlokas</th>
             ${cyc.map(c => `<th class="tr-cyc">Cycle ${c}<span>${doneIn(c)} / ${t.rows.length}</span></th>`).join('')}</tr></thead>
@@ -1000,14 +942,6 @@ function trackerPage() {
           <button type="button" class="acct-link acct-danger tr-ed-clear">Clear</button>
           <button type="button" class="acct-link tr-ed-close">Close</button></div>`;
 
-      // Private notes for this text (summaries, reflections), kept in the owner's account.
-      const nbox = root.querySelector('.tr-note');
-      nbox.addEventListener('toggle', () => { noteOpen[t.key] = nbox.open; if (nbox.open) editor.focus(); });
-      const editor = noteEditor(nbox.querySelector('.tr-note-body'), d.note || '', {
-        placeholder: `Your notes on ${t.title} — type, or paste from a Google Doc (headings, lists and bold are kept)…`,
-        status: nbox.querySelector('.tr-note-status'), structured: true, maxLen: 300000,
-        save: v => { d.note = v; return setDoc(userRef(user.uid), { tracker: { [t.key]: { note: v } } }, { merge: true }); },
-      });
       root.querySelectorAll('.tr-tabs .note-tab').forEach(b => b.addEventListener('click', () => {
         active = +b.dataset.i; try { localStorage.setItem('ss-tracker-tab', texts[active].key); } catch {}
         render();
