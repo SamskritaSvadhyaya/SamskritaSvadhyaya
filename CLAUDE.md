@@ -128,7 +128,9 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   shloka counts from the pages; noindex). account.js `trackerPage` shows it only if the signed-in
   account can list `subscribers` (= site owner); data in `users/{uid}.tracker[text].{cycles,cells}`.
   Tabs: The Story of Hanuman (KK/SK/YK), Narayaneeyam, Shrimad Bhagavatam, Bhagavad Geeta (tracker-only
-  rows from tracker_tag - not on the site, no links).
+  rows from tracker_tag; chapters link once on the site). The Geeta tab shows "Bhagavad Gita: The
+  Essence" (folded) from `_tracker_geeta_essence.html` = Drive PDF "Bhagavad_Gita_Essence_Summary.pdf"
+  word for word. Note: anything in tracker/index.html is readable in the public repo.
   The header "Tracker" button shows only in the owner's browser (localStorage `ss-owner`).
 - Cache-busting: `build.py home` (`stamp_assets`) adds `?v=<content hash>` to every page's
   style.css / script.js link and sets script.js's `ACCOUNT_JS_VERSION` from account.js's hash —

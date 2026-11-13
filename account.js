@@ -927,6 +927,7 @@ function trackerPage() {
         <div class="tr-actions">
           <button type="button" class="acct-secondary tr-new">+ New cycle</button>
         </div>
+        ${t.note ? `<details class="tr-note"><summary>${esc(t.note_title || 'Notes')}</summary><div class="tr-note-body">${t.note}</div></details>` : ''}
         <div class="tr-scroll"><table class="tr-table">
           <thead><tr><th class="tr-no">No.</th><th class="tr-name">Name</th><th class="tr-sh">Shlokas</th>
             ${cyc.map(c => `<th class="tr-cyc">Cycle ${c}<span>${doneIn(c)} / ${t.rows.length}</span></th>`).join('')}</tr></thead>
