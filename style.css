@@ -1263,5 +1263,11 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
 .tr-note-body { padding: .4rem 1.1rem .9rem; font-family: var(--read); font-size: .95rem; line-height: 1.6; color: var(--ink); }
 .tr-note-body h3 { font-size: 1.02rem; color: var(--accent-strong); margin: 1.1rem 0 .4rem; }
 .tr-note-body p, .tr-note-body li { margin: .35rem 0; }
-.tr-note-body .tr-essence { margin: 0 0 .8rem 1rem; color: var(--ink-soft); }
-.tr-note-body .tr-note-lead { font-style: italic; color: var(--ink-soft); }
+
+/* Tracker: private notes per text (structured editor) */
+.tr-note .tr-note-body { padding: .6rem .9rem .2rem; }
+.tr-note .note-editor { min-height: 6rem; max-height: 70vh; overflow-y: auto; font-family: var(--read); font-size: .95rem; line-height: 1.6; }
+.tr-note .note-editor h3 { font-size: 1.02rem; color: var(--accent-strong); margin: 1rem 0 .35rem; }
+.tr-note .note-editor p, .tr-note .note-editor li { margin: .35rem 0; }
+.tr-note .note-editor :is(ul, ol) { padding-left: 1.4rem; }
+.tr-note-status { margin: 0 .9rem .6rem; font-size: .8rem; color: var(--ink-soft); min-height: 1em; }

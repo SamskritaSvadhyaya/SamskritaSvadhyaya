@@ -765,10 +765,8 @@ def tracker_tag():
             row.update(nolink=False, href=f"bhagavad-geeta/ch-{i}")
         return row
 
-    essence = ROOT / "_tracker_geeta_essence.html"
-    note = re.sub(r"<!--.*?-->", "", essence.read_text(encoding="utf-8"), flags=re.S).strip() if essence.exists() else ""
     texts.append({"key": "geeta", "title": "Bhagavad Geeta",
-                  "note_title": "Bhagavad Gita: The Essence, Chapter by Chapter", "note": note,
+
                   "rows": [geeta_row(i, n, k) for i, (n, k) in enumerate(geeta, 1)]})
     return ('<script type="application/json" id="tracker-data">'
             + json.dumps(texts, ensure_ascii=False, separators=(",", ":")) + "</script>")
