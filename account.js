@@ -1207,6 +1207,7 @@ if (UI.isTrackerPage) {
     if (!user) { UI.renderSignedOut(); return; }
     if (started) return;
     started = true;
+    checkStudier();                                 // study members get the Tracker button on any page
     if (UI.studyBar) readingPage(user);
     markIndex(user).catch(() => {});
     homeContinue(user).catch(() => {});
