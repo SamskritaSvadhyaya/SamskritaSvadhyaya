@@ -1289,3 +1289,14 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
   background: color-mix(in srgb, #c2185b 5%, transparent); font-size: 1.12rem; line-height: 1.75; color: var(--ink);
   font-family: var(--devanagari); font-weight: 600; }
 main.account .fav-verse { font-family: var(--devanagari); }
+
+/* Account page, site owner: Study members */
+.acct-members .members-list li { display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+.acct-members .members-add { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .7rem; margin-top: .6rem; }
+.acct-members .members-add input { flex: 1 1 14rem; font-family: var(--read); font-size: .95rem; padding: .4rem .6rem;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--bg-card); color: var(--ink); }
+main.account .acct-members .members-add .acct-secondary { font-size: .9rem; padding: .4rem 1rem; }
+.acct-members .members-msg { font-size: .85rem; color: var(--ink-soft); }
+main.account .acct-members { margin-top: 1rem; }
+main.account .acct-members .members-list { margin: .4rem 0 0; padding: 0; }
+main.account .acct-members .members-list li { font-size: .95rem; padding: .3rem 0; border-bottom: 1px dashed var(--rule); }

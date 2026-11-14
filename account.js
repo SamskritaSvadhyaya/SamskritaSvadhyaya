@@ -174,7 +174,8 @@ function noteEditor(host, note, { placeholder, status, save, onBlurEmpty }) {
 
 // ---------------------------------------------------------------- study members
 // The study features (tracker, cycle-aware "Mark as studied") are for the site owner and the
-// study accounts named in firestore.rules (isStudyMember): they may read config/study. The site
+// study members the owner lists on the Account page (config/members, checked by firestore.rules
+// isStudyMember): they may read config/study. The site
 // owner (may list subscribers) always counts, even before the rules are updated. Remembered per
 // browser when yes; a "no" is only remembered for the browser session.
 let studierCheck = null;
@@ -1068,6 +1069,56 @@ async function adminPanel(el) {
     });
     a.click();
   });
+  membersPanel(el.closest('.acct-small-row') || el);
+}
+
+// Site owner: who gets the study features (tracker, cycle-aware "Mark as studied"). The list is
+// config/members { emails: [...] }; firestore.rules lets only the site owner read or change it,
+// and treats every address on it as a study member (each with their own tracker).
+async function membersPanel(after) {
+  const ref = doc(db, 'config', 'members');
+  const box = document.createElement('section');
+  box.className = 'acct-section acct-members';
+  after.after(box);
+  let emails = [];
+  try {
+    const snap = await getDoc(ref);
+    emails = (snap.exists() && Array.isArray(snap.data().emails)) ? snap.data().emails : [];
+  } catch {
+    box.innerHTML = `<h2>Study members</h2><p class="acct-fine">To manage study members here, the new Firebase rules need to be published first.</p>`;
+    return;
+  }
+  const render = (msg = '') => {
+    box.innerHTML = `<h2>Study members <span class="acct-count">${emails.length}</span></h2>
+      <p class="acct-fine">These accounts get the study tracker and “Mark as studied · Cycle”, each with their own tracker. They need to sign in with this email address (Google sign-in, or a confirmed email).</p>
+      ${emails.length ? `<ul class="acct-list members-list">${emails.map(e => `<li><span>${esc(e)}</span>
+        <button type="button" class="acct-link acct-danger" data-email="${esc(e)}">Remove</button></li>`).join('')}</ul>` : ''}
+      <form class="members-add">
+        <input type="email" required placeholder="name@gmail.com" aria-label="Email address to add" autocomplete="off">
+        <button type="submit" class="acct-secondary">Add</button>
+        <span class="members-msg" aria-live="polite">${esc(msg)}</span>
+      </form>`;
+    const save = async (list, done) => {
+      box.querySelectorAll('button, input').forEach(x => { x.disabled = true; });
+      try {
+        await setDoc(ref, { emails: list, updated: serverTimestamp() });
+        emails = list;
+        render(done);
+      } catch (e) { render('Not saved — ' + friendly(e)); }
+    };
+    box.querySelector('form').addEventListener('submit', e => {
+      e.preventDefault();
+      const v = box.querySelector('input').value.trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { box.querySelector('.members-msg').textContent = 'Please enter an email address.'; return; }
+      if (emails.includes(v)) { box.querySelector('.members-msg').textContent = 'Already on the list.'; return; }
+      save([...emails, v], `Added ${v}.`);
+    });
+    box.querySelectorAll('[data-email]').forEach(b => b.addEventListener('click', () => {
+      if (!confirm(`Remove ${b.dataset.email} from the study members? Their tracker is kept, but they won't see it until added again.`)) return;
+      save(emails.filter(x => x !== b.dataset.email), `Removed ${b.dataset.email}.`);
+    }));
+  };
+  render();
 }
 
 // ---------------------------------------------------------------- study tracker (site owner only)

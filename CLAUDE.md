@@ -147,10 +147,12 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   word for word. Note: anything in tracker/index.html is readable in the public repo.
   The header "Tracker" button shows only in the owner's browser (localStorage `ss-owner`).
   **Study members**: the tracker, its header button and the cycle-aware "Mark as studied" are for
-  the owner AND the study accounts listed in firestore.rules `isStudyMember()` (gitignored; edit
-  the list there and republish the rules in the Firebase console). account.js `checkStudier()`
-  = can read `config/study` (or is the site owner); each member has their own tracker in their
-  own `users/{uid}`. Owner-only stays owner-only: the Site owner box and "Edit in Google Doc".
+  the owner AND the study members the owner lists on the Account page ("Study members" box under
+  the Site owner box; stored in `config/members {emails}`, readable/writable by the site owner
+  only; firestore.rules `isStudyMember()` checks it). account.js `checkStudier()` = can read
+  `config/study` (or is the site owner); each member has their own tracker in their own
+  `users/{uid}`. firestore.rules has NO comments on purpose: comments broke when pasted into the
+  console (line breaks lost) - copy it with PowerShell `Get-Content -Raw firestore.rules | Set-Clipboard`. Owner-only stays owner-only: the Site owner box and "Edit in Google Doc".
   For study members (owner included), a chapter's "Mark as studied" button is tied to the tracker (account.js
   readingPage `slot`/`trk`): it shows "○ Mark as studied · Cycle N" / "✓ Studied <date> · Cycle N"
   for the tab's latest cycle and writes today's date into that cell (click again to undo); a new
