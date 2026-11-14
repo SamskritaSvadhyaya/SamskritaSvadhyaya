@@ -70,6 +70,12 @@ const subOf = sub => {
   while (parts.length > 1 && /[\u0900-\u097F]/.test(parts[0]) && !/[A-Za-z]/.test(parts[0])) parts.shift();
   return parts.join(' · ');
 };
+// A chapter's description as it is now (from the build), else the one saved with the bookmark/note.
+let SUBS = null;
+const subFor = p => {
+  if (SUBS === null) { try { SUBS = JSON.parse(document.getElementById('chapter-subs')?.textContent || '{}'); } catch { SUBS = {}; } }
+  return (p && SUBS[p.path]) || subOf(p && p.sub);
+};
 
 // ---------------------------------------------------------------- rich notes
 // Notes can have bold, italics, underline and highlight. Stored as cleaned HTML behind a
@@ -572,7 +578,7 @@ function stoppedItem(p) {
   const col = COLLECTIONS[collectionOf(p.path)] || '';
   const title = displayTitle(p);
   const label = col && !title.startsWith(col) ? `${col} — ${title}` : title;
-  return `<li><a href="${esc(BASE + p.path)}#mark">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(subOf(p.sub))}</span>` : ''}
+  return `<li><a href="${esc(BASE + p.path)}#mark">${esc(label)}</a>${subFor(p) ? ` <span class="acct-sub">${esc(subFor(p))}</span>` : ''}
     <div class="stopped-shloka">🔖 from ${markWhere(p.mark)}</div></li>`;
 }
 
@@ -592,7 +598,7 @@ async function homeContinue(user) {
   box.className = 'continue-box';
   box.innerHTML = (lp ? `
     <span class="continue-label">${first ? `Namaste ${first} — c` : 'C'}ontinue where you left off</span>
-    <a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${lp.sub ? ` <span class="continue-sub">${esc(subOf(lp.sub))}</span>` : ''} →</a>${markLine(lp)}`
+    <a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${subFor(lp) ? ` <span class="continue-sub">${esc(subFor(lp))}</span>` : ''} →</a>${markLine(lp)}`
     : `<span class="continue-label">${first ? `Namaste ${first}! ` : ''}Pick a text below to begin.</span>`)
     + (others.length ? `<div class="stopped-box"><span class="continue-label">Where I stopped in my other texts</span>
         <ul class="stopped-list">${others.map(stoppedItem).join('')}</ul></div>` : '')
@@ -676,7 +682,7 @@ function accountPage() {
       return;
     }
     const byTime = (a, b) => (b.updated?.seconds || 0) - (a.updated?.seconds || 0);
-    const link = p => `<a href="${esc(BASE + p.path)}">${esc(displayTitle(p))}</a>${p.sub ? ` <span class="acct-sub">${esc(subOf(p.sub))}</span>` : ''}`;
+    const link = p => `<a href="${esc(BASE + p.path)}">${esc(displayTitle(p))}</a>${subFor(p) ? ` <span class="acct-sub">${esc(subFor(p))}</span>` : ''}`;
     const bookmarks = pages.filter(p => p.bookmarked).sort(byTime);
     const stopped = stoppedPlaces(pages);
     const studied = pages.filter(p => p.studied);
@@ -698,13 +704,13 @@ function accountPage() {
       const no = +((slugOf(p).match(/(\d+)$/) || [])[1] || 0);
       if (!unit || !no) return shortTitle(p);
       // Dashakas saved before 13 Nov 2026 have the name as their title, later ones as the description.
-      const subject = unit === 'Dashaka' && !/^Dashaka \d/.test(shortTitle(p)) ? shortTitle(p) : subOf(p.sub).replace(/^[^A-Za-z]*$/, '');
+      const subject = unit === 'Dashaka' && !/^Dashaka \d/.test(shortTitle(p)) ? shortTitle(p) : subFor(p).replace(/^[^A-Za-z]*$/, '');
       return `${unit} ${no}` + (subject ? ` — ${subject.length > 60 ? subject.slice(0, 58) + '…' : subject}` : '');
     };
     const shortTitle = p => { const parts = displayTitle(p).split(' · '); return parts.length > 1 ? parts.slice(1).join(' · ') : parts[0]; };
     const shortLink = p => {
       const label = shortTitle(p);
-      return `<a href="${esc(BASE + p.path)}">${esc(label)}</a>${p.sub ? ` <span class="acct-sub">${esc(subOf(p.sub))}</span>` : ''}`;
+      return `<a href="${esc(BASE + p.path)}">${esc(label)}</a>${subFor(p) ? ` <span class="acct-sub">${esc(subFor(p))}</span>` : ''}`;
     };
     const chapterNo = p => +((p.path.match(/(\d+)\/?$/) || [])[1] || 0);
     const noteGroups = list => {
@@ -772,7 +778,7 @@ function accountPage() {
       </div>
 
       ${lp ? `<section class="acct-section"><h2>Continue where you left off</h2>
-        <p><a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${lp.sub ? ` <span class="continue-sub">${esc(subOf(lp.sub))}</span>` : ''} →</a>${markLine(lp)}</p></section>` : ''}
+        <p><a class="continue-link" href="${esc(BASE + lp.path)}#continue">${esc(displayTitle(lp))}${subFor(lp) ? ` <span class="continue-sub">${esc(subFor(lp))}</span>` : ''} →</a>${markLine(lp)}</p></section>` : ''}
 
       ${stopped.length ? `<section class="acct-section"><h2>🔖 Where I stopped <span class="acct-count">one per text</span></h2>
         <ul class="acct-list stopped-list">${stopped.map(stoppedItem).join('')}</ul></section>` : ''}

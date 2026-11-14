@@ -537,7 +537,7 @@ def build_home(_args=None):
   <main class="home">
     <div class="home-grid">
 """
-    body_main = hero + grid + "\n    </div>\n  </main>\n"
+    body_main = hero + grid + "\n    </div>\n    " + subjects_tag() + "\n  </main>\n"
 
     html = render_chrome(
         "Samskrita Svadhyaya — Sanskrit Text Library",
@@ -822,6 +822,24 @@ def tracker_tag():
             + json.dumps(texts, ensure_ascii=False, separators=(",", ":")) + "</script>")
 
 
+def subjects_tag():
+    """Each chapter's current description, for the Account page and the home page's
+    "continue" box (saved bookmarks/notes keep the description from when they were saved)."""
+    subs = {}
+    for e in load_manifest():
+        if is_parent(e):
+            for w in e.get("works", []):
+                for c in w.get("chapters", []):
+                    if c.get("subject"):
+                        subs[f"{e['slug']}/{w['slug']}/{c['slug']}/"] = c["subject"]
+        elif is_work(e):
+            for c in e.get("chapters", []):
+                if c.get("subject"):
+                    subs[f"{e['slug']}/{c['slug']}/"] = c["subject"]
+    return ('<script type="application/json" id="chapter-subs">'
+            + json.dumps(subs, ensure_ascii=False, separators=(",", ":")) + "</script>")
+
+
 def build_static_pages():
     """Reader account page (sign-in / bookmarks / notes, driven by account.js) and the
     privacy policy (body from _privacy_body.html)."""
@@ -847,7 +865,8 @@ def build_static_pages():
     totals_tag = ('<script type="application/json" id="text-totals">'
                   + json.dumps(totals, separators=(",", ":")) + "</script>"
                   + '<script type="application/json" id="text-labels">'
-                  + json.dumps(labels, ensure_ascii=False, separators=(",", ":")) + "</script>")
+                  + json.dumps(labels, ensure_ascii=False, separators=(",", ":")) + "</script>"
+                  + subjects_tag())
     pages = [
         ("account", "Your account", "Bookmarks, progress and private notes",
          "Your account | Samskrita Svadhyaya",
