@@ -1173,6 +1173,7 @@ function trackerPage() {
           `<button type="button" class="note-tab" role="tab" aria-selected="${i === active}" data-i="${i}">${esc(x.title)}</button>`).join('')}</div>
         <div class="tr-actions">
           <button type="button" class="acct-secondary tr-new">+ New cycle</button>
+          <button type="button" class="acct-link tr-set">Set number of cycles</button>
         </div>
         ${t.note ? `<details class="tr-note"><summary>${esc(t.note_title || 'Notes')}</summary><div class="tr-note-body">${t.note}</div></details>` : ''}
         <div class="tr-scroll"><table class="tr-table">
@@ -1212,6 +1213,59 @@ function trackerPage() {
           }
         });
         bar.querySelector('.tr-yes').focus();
+      });
+      // "Set number of cycles": jump straight to cycle N (e.g. someone already on their fourth
+      // reading), optionally marking every chapter "Done" in the earlier cycles (empty cells only).
+      root.querySelector('.tr-set').addEventListener('click', () => {
+        const bar = root.querySelector('.tr-actions');
+        bar.innerHTML = `<label class="tr-ask">Number of cycles for ${esc(t.title)}:
+            <input type="number" class="tr-n" min="1" max="50" value="${d.cycles}"></label>
+          <label class="tr-ask tr-fill-label"><input type="checkbox" class="tr-fill">
+            <span class="tr-fill-text"></span></label>
+          <button type="button" class="acct-secondary tr-yes">Save</button>
+          <button type="button" class="acct-link tr-no">Cancel</button> <span class="tr-err" aria-live="polite"></span>`;
+        const inp = bar.querySelector('.tr-n'), fill = bar.querySelector('.tr-fill'), err = bar.querySelector('.tr-err');
+        const fillLabel = bar.querySelector('.tr-fill-label');
+        const upd = () => {
+          const n = Math.floor(+inp.value || 0);
+          fillLabel.hidden = !(n >= 2);
+          bar.querySelector('.tr-fill-text').textContent = n === 2
+            ? 'Mark every chapter as done in Cycle 1'
+            : `Mark every chapter as done in Cycles 1–${n - 1}`;
+        };
+        inp.addEventListener('input', upd);
+        upd();
+        bar.querySelector('.tr-no').addEventListener('click', render);
+        bar.querySelector('.tr-yes').addEventListener('click', async e => {
+          const n = Math.floor(+inp.value || 0);
+          if (!(n >= 1 && n <= 50)) { err.textContent = 'Please enter a number from 1 to 50.'; return; }
+          // Fewer cycles only if the columns that would go have no ticks.
+          for (let c = n + 1; c <= d.cycles; c++) {
+            if (t.rows.some(r => d.cells[`${r.id}~${c}`])) {
+              err.textContent = `Cycle ${c} has ticks — clear them first, or keep at least ${c} cycles.`;
+              return;
+            }
+          }
+          const cells = {};
+          if (fill.checked && n >= 2) {
+            for (let c = 1; c < n; c++) for (const r of t.rows) {
+              const k = `${r.id}~${c}`;
+              if (!d.cells[k]) cells[k] = 'done';
+            }
+          }
+          e.target.disabled = true;
+          try {
+            await setDoc(userRef(user.uid), { tracker: { [t.key]: { cycles: n, ...(Object.keys(cells).length ? { cells } : {}) } } }, { merge: true });
+            d.cycles = n;
+            Object.assign(d.cells, cells);
+            render();
+          } catch (x) {
+            err.textContent = 'Couldn’t save — ' + friendly(x);
+            e.target.disabled = false;
+          }
+        });
+        inp.focus();
+        inp.select();
       });
       // Cell editor: empty cell -> done today; filled cell -> change date / done without date / clear.
       const ed = root.querySelector('.tr-editor');

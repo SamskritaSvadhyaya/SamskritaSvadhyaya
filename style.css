@@ -1300,3 +1300,10 @@ main.account .acct-members .members-add .acct-secondary { font-size: .9rem; padd
 main.account .acct-members { margin-top: 1rem; }
 main.account .acct-members .members-list { margin: .4rem 0 0; padding: 0; }
 main.account .acct-members .members-list li { font-size: .95rem; padding: .3rem 0; border-bottom: 1px dashed var(--rule); }
+
+/* Tracker: Set number of cycles */
+.tr-actions .tr-n { width: 4.2rem; margin-left: .35rem; font-family: var(--read); font-size: .95rem; padding: .25rem .4rem;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--bg-card); color: var(--ink); }
+.tr-actions .tr-fill-label { display: inline-flex; align-items: center; gap: .35rem; font-size: .88rem; }
+.tr-actions .tr-fill-label[hidden] { display: none; }
+main.account .tr-actions .tr-set { font-size: .88rem; }
