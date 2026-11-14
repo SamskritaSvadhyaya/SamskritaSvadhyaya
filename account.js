@@ -823,24 +823,11 @@ function accountPage() {
         + `<span class="ap-count">${complete ? 'completed' : `<strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied`}</span></li>`;
     };
 
-    // Favourites: one block per text (site order), chapters in order, shlokas in order.
-    const favSections = list => {
-      const chNo = p => Number((slugOf(p).match(/(\d+)$/) || [])[1] || 0);
-      const groups = new Map();
-      for (const p of [...list].sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }))) {
-        const key = textKey(p);
-        if (!groups.has(key)) groups.set(key, { label: textName(key, p), items: [] });
-        const chapter = displayTitle(p).split(' · ').slice(-1)[0];
-        Object.entries(p.favs).sort((x, y) => Number(x[0]) - Number(y[0])).forEach(([, v]) => {
-          const where = v.num ? `<a class="acct-verse-num" href="${esc(BASE + p.path)}#shloka-${encodeURIComponent(v.num)}">${esc(v.num)}</a>`
-            : `<a class="acct-verse-num" href="${esc(BASE + p.path)}">${esc(chapter)}</a>`;
-          groups.get(key).items.push({ n: chNo(p), html: `<li>${where} <span class="fav-words" lang="sa">${esc(v.t)}…</span> <span class="acct-sub">${esc(chapter)}</span></li>` });
-        });
-      }
-      const order = Object.keys(TEXT_LABELS);
-      return [...groups.entries()].sort((a, b) => (order.indexOf(a[0]) + 1 || 999) - (order.indexOf(b[0]) + 1 || 999))
-        .map(([, g]) => `<h3 class="fav-text">${esc(g.label)}</h3><ul class="acct-list fav-list">${g.items.map(x => x.html).join('')}</ul>`).join('');
-    };
+    // One chapter's favourite shlokas: "Shloka 24.5 — opening words…" (linked to the shloka).
+    const favList = p => Object.entries(p.favs || {}).sort((x, y) => Number(x[0]) - Number(y[0]))
+      .map(([, v]) => `<div class="acct-snippet">${v.num
+        ? `<a class="acct-verse-num" href="${esc(BASE + p.path)}#shloka-${encodeURIComponent(v.num)}" title="Read shloka ${esc(v.num)}">Shloka ${esc(v.num)}</a> — `
+        : `<a class="acct-verse-num" href="${esc(BASE + p.path)}">♥</a> `}<span class="fav-words" lang="sa">${esc(v.t)}…</span></div>`).join('');
 
     const unverified = user.providerData.some(p => p.providerId === 'password') && !user.emailVerified;
     root.innerHTML = `
@@ -861,14 +848,26 @@ function accountPage() {
         ${bookmarks.length ? `<ul class="acct-list">${bookmarks.map(p => `<li>${link(p)}</li>`).join('')}</ul>`
           : '<p class="acct-empty">No bookmarks yet. Use “☆ Bookmark” at the top of any chapter.</p>'}</section>
 
-      ${favPages.length ? `<section class="acct-section"><h2>♥ Favourite shlokas <span class="acct-count">${favPages.reduce((k, p) => k + Object.keys(p.favs).length, 0)}</span></h2>
-        ${favSections(favPages)}</section>` : ''}
+      ${favPages.length ? `<section class="acct-section acct-favs"><h2>♥ Favourite shlokas <span class="acct-count">${favPages.reduce((k, p) => k + Object.keys(p.favs).length, 0)}</span></h2>
+        ${(() => {
+          const gs = noteGroups(favPages);
+          return `<div class="note-tabs" role="tablist" aria-label="Favourite shlokas by text">${gs.map((g, i) =>
+            `<button type="button" class="note-tab" role="tab" id="fav-tab-${i}" aria-controls="fav-panel-${i}" aria-selected="false" data-key="${esc(g.key)}">${esc(g.label)}</button>`).join('')}</div>`
+            + gs.map((g, i) => `<div class="note-panel" role="tabpanel" id="fav-panel-${i}" aria-labelledby="fav-tab-${i}" hidden>
+              <label class="ch-pick"><span class="sr-only">Chapter</span>
+                <select class="ch-select" data-panel="${i}">
+                  <option value="">Choose a ${unitWord(g.items[0])}…</option>
+                  ${g.items.map((p, j) => `<option value="${j}" data-path="${esc(p.path)}">${esc(chapterLabel(p))}</option>`).join('')}
+                </select></label>
+              ${g.items.map((p, j) => `<div class="ch-panel" hidden>
+                <ul class="acct-list acct-notes"><li>${shortLink(p)}${favList(p)}</li></ul></div>`).join('')}</div>`).join('');
+        })()}</section>` : ''}
 
       <section class="acct-section"><h2>✓ Progress <span class="acct-count">${studied.length} studied</span></h2>
         ${groups.size ? `<ul class="acct-progress-list">${[...groups.values()].map(progressItem).join('')}</ul>`
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
-      <section class="acct-section"><h2>✎ My notes</h2>
+      <section class="acct-section acct-mynotes"><h2>✎ My notes</h2>
         ${notes.length ? (() => {
           const gs = noteGroups(notes);
           return `<div class="note-tabs" role="tablist" aria-label="Notes by text">${gs.map((g, i) =>
@@ -903,34 +902,36 @@ function accountPage() {
       catch (e) { ann.checked = !ann.checked; saved.textContent = friendly(e); }
     });
     root.querySelector('.acct-delete').addEventListener('click', () => deleteAccount(user, pages));
-    const tabs = [...root.querySelectorAll('.note-tab')];
-    if (tabs.length) {
+    // Tabs per text + chapter dropdown (My notes, Favourite shlokas); each box remembers its choice.
+    const wireBox = (box, store) => {
+      if (!box) return;
+      const tabs = [...box.querySelectorAll('.note-tab')];
+      if (!tabs.length) return;
       const show = (tab, remember = true) => {
         tabs.forEach(t => {
           const on = t === tab;
           t.setAttribute('aria-selected', String(on));
           document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
         });
-        if (remember) { try { localStorage.setItem('ss-notes-tab', tab ? tab.dataset.key : ''); } catch {} }
+        if (remember) { try { localStorage.setItem(store + '-tab', tab ? tab.dataset.key : ''); } catch {} }
       };
       tabs.forEach(t => t.addEventListener('click', () => show(t.getAttribute('aria-selected') === 'true' ? null : t)));
       let saved = null;
-      try { saved = localStorage.getItem('ss-notes-tab'); } catch {}
+      try { saved = localStorage.getItem(store + '-tab'); } catch {}
       show(saved === '' ? null : (tabs.find(t => t.dataset.key === saved) || tabs[0]), false);
 
-      // Chapter dropdown inside a text: shows the chosen chapter's shloka numbers and notes.
+      // Chapter dropdown inside a text: shows the chosen chapter's entries.
       const pick = (select, remember = true) => {
-        const i = select.dataset.panel;
         select.closest('.note-panel').querySelectorAll('.ch-panel').forEach((pnl, j) => { pnl.hidden = String(j) !== select.value; });
         if (remember) {
           const opt = select.selectedOptions[0];
-          try { localStorage.setItem('ss-notes-ch', opt && opt.dataset.path ? opt.dataset.path : ''); } catch {}
+          try { localStorage.setItem(store + '-ch', opt && opt.dataset.path ? opt.dataset.path : ''); } catch {}
         }
       };
-      root.querySelectorAll('.ch-select').forEach(sel => sel.addEventListener('change', () => pick(sel)));
+      box.querySelectorAll('.ch-select').forEach(sel => sel.addEventListener('change', () => pick(sel)));
       let savedCh = null;
-      try { savedCh = localStorage.getItem('ss-notes-ch'); } catch {}
-      const opt = savedCh && [...root.querySelectorAll('.ch-select option')].find(o => o.dataset.path === savedCh);
+      try { savedCh = localStorage.getItem(store + '-ch'); } catch {}
+      const opt = savedCh && [...box.querySelectorAll('.ch-select option')].find(o => o.dataset.path === savedCh);
       if (opt) {
         // Reopen the remembered chapter inside its own text's tab.
         const sel = opt.closest('select');
@@ -939,7 +940,9 @@ function accountPage() {
         sel.value = opt.value;
         pick(sel, false);
       }
-    }
+    };
+    wireBox(root.querySelector('.acct-mynotes'), 'ss-notes');
+    wireBox(root.querySelector('.acct-favs'), 'ss-favs');
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
       const g = groups.get(btn.dataset.key);
       if (!g) return;
