@@ -1139,7 +1139,12 @@ function trackerPage() {
 
   async function load(user) {
     if (!(await checkStudier())) {                                   // owner + study members only
-      root.innerHTML = '<p class="acct-empty">This page is private.</p>'; return;
+      // Say which account this is (the usual reason: signed in with a different address,
+      // or an email/password account whose address isn't confirmed yet).
+      root.innerHTML = `<p class="acct-empty">This page is private.</p>
+        <p class="acct-fine">You're signed in as <strong>${esc(user.email || '')}</strong>${user.emailVerified ? '' : ' (email address not confirmed yet)'}.</p>`;
+      try { sessionStorage.removeItem('ss-study'); } catch {}      // check again on the next visit
+      return;
     }
     const snap = await getDoc(userRef(user.uid));
     const tracker = (snap.exists() && snap.data().tracker) || {};
