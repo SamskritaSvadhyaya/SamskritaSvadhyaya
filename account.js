@@ -272,12 +272,65 @@ function readingPage(user) {
     verseNotes(user, ref, info, state.verses || {});
     shlokas = findShlokas();
     placeMarks();
+    placeFavs();
     if (location.hash === '#mark') {
       const go = () => goToMark();
       if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
     }
     return state;
   }).catch(err => { status.textContent = 'Couldn’t load your notes: ' + friendly(err); return state; });
+
+  // ---- ♥ Favourite shlokas (any number per chapter) ----
+  // Saved as favs: { n: { t: opening words, num: printed number } } and matched back like the
+  // ribbon and notes (opening words, then number, then position), so they survive re-imports.
+  const HEART = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 20.3s-7.4-4.5-9.2-9C1.5 8 3.6 4.6 7 4.6c2 0 3.6 1.1 5 2.9 1.4-1.8 3-2.9 5-2.9 3.4 0 5.5 3.4 4.2 6.7-1.8 4.5-9.2 9-9.2 9z"/></svg>';
+  const favIdx = new Set();
+  function placeFavs() {
+    const saved = state.favs || {};
+    const placed = {};
+    let moved = false;
+    for (const [n, v] of Object.entries(saved)) {
+      if (!v) continue;
+      const i = matchShloka(shlokas, { t: v.t, num: v.num, n: Number(n) });
+      if (i < 0 || favIdx.has(i)) { if (!placed[n]) placed[n] = v; continue; }
+      favIdx.add(i);
+      const key = String(i + 1);
+      const fresh = { t: firstWords(shlokas[i].el), num: verseNum(shlokas[i].el) };
+      if (key !== n || fresh.t !== v.t || fresh.num !== (v.num || '')) moved = true;
+      placed[key] = fresh;
+    }
+    state.favs = placed;
+    if (moved) setDoc(ref, { favs: placed }, { mergeFields: ['favs'] }).catch(() => {});
+    shlokas.forEach((sh, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'verse-fav';
+      b.innerHTML = HEART;
+      b.addEventListener('click', () => toggleFav(i).catch(e => alert(friendly(e))));
+      sh.el.appendChild(b);
+    });
+    paintFavs();
+  }
+  function paintFavs() {
+    shlokas.forEach((sh, i) => {
+      const b = sh.el.querySelector('.verse-fav');
+      if (!b) return;
+      const on = favIdx.has(i);
+      b.setAttribute('aria-pressed', String(on));
+      b.title = on ? 'A favourite shloka — tap to remove' : 'Add to my favourite shlokas';
+      b.setAttribute('aria-label', b.title);
+    });
+  }
+  async function toggleFav(i) {
+    const key = String(i + 1);
+    const favs = { ...(state.favs || {}) };
+    if (favIdx.has(i)) { favIdx.delete(i); delete favs[key]; }
+    else { favIdx.add(i); favs[key] = { t: firstWords(shlokas[i].el), num: verseNum(shlokas[i].el) }; }
+    state.favs = favs;
+    paintFavs();
+    await setDoc(ref, { favs, path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() },
+      { mergeFields: ['favs', 'path', 'title', 'sub', 'updated'] });
+  }
 
   // ---- "I stopped here" ribbon beside each shloka (one per chapter) ----
   const RIBBON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
@@ -528,7 +581,8 @@ async function markIndex(user) {
     const d = byPath.get(p);
     if (!d) continue;
     if (d.studied) studied++;
-    const marks = [d.studied && '<span title="Studied">✓</span>', d.bookmarked && '<span title="Bookmarked">★</span>', (d.note || hasVerseNotes(d)) && '<span title="You have notes here">✎</span>'].filter(Boolean);
+    const marks = [d.studied && '<span title="Studied">✓</span>', d.bookmarked && '<span title="Bookmarked">★</span>', (d.note || hasVerseNotes(d)) && '<span title="You have notes here">✎</span>',
+      Object.keys(d.favs || {}).length && '<span title="Favourite shlokas here">♥</span>'].filter(Boolean);
     if (marks.length) a.insertAdjacentHTML('beforeend', `<span class="card-marks">${marks.join('')}</span>`);
   }
   const grid = document.querySelector('.chapter-grid');
@@ -687,6 +741,7 @@ function accountPage() {
     const stopped = stoppedPlaces(pages);
     const studied = pages.filter(p => p.studied);
     const notes = pages.filter(p => (p.note || '').trim() || hasVerseNotes(p)).sort(byTime);
+    const favPages = pages.filter(p => Object.keys(p.favs || {}).length);
     // Text names from the build (they say which collection a part belongs to).
     let TEXT_LABELS = {};
     try { TEXT_LABELS = JSON.parse(document.getElementById('text-labels')?.textContent || '{}'); } catch {}
@@ -768,6 +823,25 @@ function accountPage() {
         + `<span class="ap-count">${complete ? 'completed' : `<strong>${g.n}</strong>${g.total ? ` of ${g.total}` : ''} studied`}</span></li>`;
     };
 
+    // Favourites: one block per text (site order), chapters in order, shlokas in order.
+    const favSections = list => {
+      const chNo = p => Number((slugOf(p).match(/(\d+)$/) || [])[1] || 0);
+      const groups = new Map();
+      for (const p of [...list].sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }))) {
+        const key = textKey(p);
+        if (!groups.has(key)) groups.set(key, { label: textName(key, p), items: [] });
+        const chapter = displayTitle(p).split(' · ').slice(-1)[0];
+        Object.entries(p.favs).sort((x, y) => Number(x[0]) - Number(y[0])).forEach(([, v]) => {
+          const where = v.num ? `<a class="acct-verse-num" href="${esc(BASE + p.path)}#shloka-${encodeURIComponent(v.num)}">${esc(v.num)}</a>`
+            : `<a class="acct-verse-num" href="${esc(BASE + p.path)}">${esc(chapter)}</a>`;
+          groups.get(key).items.push({ n: chNo(p), html: `<li>${where} <span class="fav-words" lang="sa">${esc(v.t)}…</span> <span class="acct-sub">${esc(chapter)}</span></li>` });
+        });
+      }
+      const order = Object.keys(TEXT_LABELS);
+      return [...groups.entries()].sort((a, b) => (order.indexOf(a[0]) + 1 || 999) - (order.indexOf(b[0]) + 1 || 999))
+        .map(([, g]) => `<h3 class="fav-text">${esc(g.label)}</h3><ul class="acct-list fav-list">${g.items.map(x => x.html).join('')}</ul>`).join('');
+    };
+
     const unverified = user.providerData.some(p => p.providerId === 'password') && !user.emailVerified;
     root.innerHTML = `
       <div class="acct-card acct-me">
@@ -786,6 +860,9 @@ function accountPage() {
       <section class="acct-section"><h2>★ Bookmarks <span class="acct-count">${bookmarks.length}</span></h2>
         ${bookmarks.length ? `<ul class="acct-list">${bookmarks.map(p => `<li>${link(p)}</li>`).join('')}</ul>`
           : '<p class="acct-empty">No bookmarks yet. Use “☆ Bookmark” at the top of any chapter.</p>'}</section>
+
+      ${favPages.length ? `<section class="acct-section"><h2>♥ Favourite shlokas <span class="acct-count">${favPages.reduce((k, p) => k + Object.keys(p.favs).length, 0)}</span></h2>
+        ${favSections(favPages)}</section>` : ''}
 
       <section class="acct-section"><h2>✓ Progress <span class="acct-count">${studied.length} studied</span></h2>
         ${groups.size ? `<ul class="acct-progress-list">${[...groups.values()].map(progressItem).join('')}</ul>`

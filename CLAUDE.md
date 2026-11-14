@@ -131,7 +131,10 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   the site owner gets a CSV download button on the Account page).
 - Progress box shows only bars per text ("N of TOTAL studied" / "completed"); the earlier
   reading-cycles and past-readings features were removed at the owner's request (Nov 2026).
-  Page docs are near the rules' 12-field limit (11 used) — raise it in firestore.rules first.
+  `favs: {n: {t, num}}` = ♥ favourite shlokas (heart under each ribbon; matched back like the
+  ribbon; listed on the Account page under "♥ Favourite shlokas", ♥ on chapter cards).
+  Page docs are AT the rules' 12-field limit (12 used incl. favs) — raise it in firestore.rules
+  (and republish the rules in the Firebase console) before adding any new page-doc field.
 - Notes are formatted (bold / italics / underline / highlight): account.js `noteEditor` (toolbar +
   contenteditable), stored as `<!--rich-->` + HTML cleaned by `cleanNote` (only b, i, u, mark, br);
   older plain-text notes still display/edit (no marker). Paste is plain text only.
