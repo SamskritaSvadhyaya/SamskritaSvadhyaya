@@ -1282,3 +1282,10 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
 @media print { .verse-fav { display: none !important; } }
 .fav-text { font-size: .95rem; color: var(--accent-strong); margin: .8rem 0 .3rem; }
 .fav-list .fav-words { font-size: .95rem; }
+
+/* Account page: a favourite shloka in full */
+.fav-item { margin: .5rem 0 .9rem; }
+.fav-verse { margin: .3rem 0 0; padding: .45rem .8rem; border-left: 3px solid #c2185b; border-radius: 4px;
+  background: color-mix(in srgb, #c2185b 5%, transparent); font-size: 1.12rem; line-height: 1.75; color: var(--ink);
+  font-family: var(--devanagari); font-weight: 600; }
+main.account .fav-verse { font-family: var(--devanagari); }

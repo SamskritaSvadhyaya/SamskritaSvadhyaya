@@ -479,8 +479,7 @@ function matchShloka(shlokas, ref) {
   return ref.n >= 1 && ref.n <= shlokas.length ? ref.n - 1 : -1;
 }
 
-function findShlokas() {
-  const main = document.getElementById('content');
+function findShlokas(main = document.getElementById('content')) {
   if (!main) return [];
   const els = [...main.children];
   const centred = el => el.tagName === 'P' && /text-align:\s*center/.test(el.getAttribute('style') || '');
@@ -568,6 +567,25 @@ function verseNotes(user, ref, info, saved) {
 }
 
 const hasVerseNotes = d => Object.values(d.verses || {}).some(v => (v?.note || '').trim());
+
+// Account page, favourites: replace each favourite's opening words with the whole shloka, read
+// from its chapter page (matched like everywhere else: opening words, then number, then position).
+async function fillFavVerses(panel) {
+  if (panel.dataset.loaded) return;
+  panel.dataset.loaded = '1';
+  try {
+    const html = await (await fetch(BASE + panel.dataset.path)).text();
+    const page = new DOMParser().parseFromString(html, 'text/html');
+    page.querySelectorAll('#content br').forEach(b => b.replaceWith('\n'));
+    const shlokas = findShlokas(page.getElementById('content'));
+    panel.querySelectorAll('.fav-item').forEach(item => {
+      const i = matchShloka(shlokas, { t: item.dataset.t, num: item.dataset.num, n: Number(item.dataset.key) });
+      if (i < 0) return;
+      const lines = shlokas[i].el.textContent.split('\n').map(x => x.replace(/\s+/g, ' ').trim()).filter(Boolean);
+      item.querySelector('.fav-verse').innerHTML = lines.map(esc).join('<br>');
+    });
+  } catch { delete panel.dataset.loaded; }
+}
 
 // ---------------------------------------------------------------- index pages: ✓ / ★ on chapter cards
 async function markIndex(user) {
@@ -825,9 +843,10 @@ function accountPage() {
 
     // One chapter's favourite shlokas: "Shloka 24.5 — opening words…" (linked to the shloka).
     const favList = p => Object.entries(p.favs || {}).sort((x, y) => Number(x[0]) - Number(y[0]))
-      .map(([, v]) => `<div class="acct-snippet">${v.num
-        ? `<a class="acct-verse-num" href="${esc(BASE + p.path)}#shloka-${encodeURIComponent(v.num)}" title="Read shloka ${esc(v.num)}">Shloka ${esc(v.num)}</a> — `
-        : `<a class="acct-verse-num" href="${esc(BASE + p.path)}">♥</a> `}<span class="fav-words" lang="sa">${esc(v.t)}…</span></div>`).join('');
+      .map(([n, v]) => `<div class="acct-snippet fav-item" data-key="${esc(n)}" data-t="${esc(v.t)}" data-num="${esc(v.num || '')}">${v.num
+        ? `<a class="acct-verse-num" href="${esc(BASE + p.path)}#shloka-${encodeURIComponent(v.num)}" title="Read shloka ${esc(v.num)} in its chapter">♥ Shloka ${esc(v.num)}</a>`
+        : `<a class="acct-verse-num" href="${esc(BASE + p.path)}">♥ Shloka</a>`}
+        <div class="fav-verse" lang="sa">${esc(v.t)}…</div></div>`).join('');
 
     const unverified = user.providerData.some(p => p.providerId === 'password') && !user.emailVerified;
     root.innerHTML = `
@@ -859,7 +878,7 @@ function accountPage() {
                   <option value="">Choose a ${unitWord(g.items[0])}…</option>
                   ${g.items.map((p, j) => `<option value="${j}" data-path="${esc(p.path)}">${esc(chapterLabel(p))}</option>`).join('')}
                 </select></label>
-              ${g.items.map((p, j) => `<div class="ch-panel" hidden>
+              ${g.items.map((p, j) => `<div class="ch-panel" data-path="${esc(p.path)}" hidden>
                 <ul class="acct-list acct-notes"><li>${shortLink(p)}${favList(p)}</li></ul></div>`).join('')}</div>`).join('');
         })()}</section>` : ''}
 
@@ -903,7 +922,7 @@ function accountPage() {
     });
     root.querySelector('.acct-delete').addEventListener('click', () => deleteAccount(user, pages));
     // Tabs per text + chapter dropdown (My notes, Favourite shlokas); each box remembers its choice.
-    const wireBox = (box, store) => {
+    const wireBox = (box, store, onShow) => {
       if (!box) return;
       const tabs = [...box.querySelectorAll('.note-tab')];
       if (!tabs.length) return;
@@ -922,7 +941,10 @@ function accountPage() {
 
       // Chapter dropdown inside a text: shows the chosen chapter's entries.
       const pick = (select, remember = true) => {
-        select.closest('.note-panel').querySelectorAll('.ch-panel').forEach((pnl, j) => { pnl.hidden = String(j) !== select.value; });
+        select.closest('.note-panel').querySelectorAll('.ch-panel').forEach((pnl, j) => {
+          pnl.hidden = String(j) !== select.value;
+          if (!pnl.hidden && onShow) onShow(pnl);
+        });
         if (remember) {
           const opt = select.selectedOptions[0];
           try { localStorage.setItem(store + '-ch', opt && opt.dataset.path ? opt.dataset.path : ''); } catch {}
@@ -942,7 +964,7 @@ function accountPage() {
       }
     };
     wireBox(root.querySelector('.acct-mynotes'), 'ss-notes');
-    wireBox(root.querySelector('.acct-favs'), 'ss-favs');
+    wireBox(root.querySelector('.acct-favs'), 'ss-favs', fillFavVerses);
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
       const g = groups.get(btn.dataset.key);
       if (!g) return;
