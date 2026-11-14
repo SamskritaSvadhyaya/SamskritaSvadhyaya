@@ -292,7 +292,7 @@
   // the account page or for readers who have signed in on this device before.
   const AUTH_FLAG = 'ss-signed-in';
   // Bump when account.js changes so browsers fetch the new copy instead of a cached one.
-  const ACCOUNT_JS_VERSION = '62be5edc8a';
+  const ACCOUNT_JS_VERSION = 'd8860ac000';
   const scriptEl = document.currentScript || document.querySelector('script[src$="script.js"]');
   const base = scriptEl.src.replace(/script\.js(\?.*)?$/, '');
   const pathOf = url => {
@@ -338,7 +338,7 @@
       if (!window.ssUI.signOut) await import(base + 'account.js?v=' + ACCOUNT_JS_VERSION);
       await window.ssUI.signOut();
     } catch {}
-    try { localStorage.removeItem(AUTH_FLAG); localStorage.removeItem(NAME_KEY); localStorage.removeItem('ss-owner'); } catch {}
+    try { localStorage.removeItem(AUTH_FLAG); localStorage.removeItem(NAME_KEY); localStorage.removeItem('ss-owner'); localStorage.removeItem('ss-study'); sessionStorage.removeItem('ss-study'); } catch {}
     location.reload();
   });
   if (controls) acctLink.after(outBtn);
@@ -358,7 +358,7 @@
     acctLink.before(trackerLink);
     return trackerLink;
   };
-  try { if (flagged() && localStorage.getItem('ss-owner') === '1') addTrackerLink(); } catch {}
+  try { if (flagged() && (localStorage.getItem('ss-study') === '1' || localStorage.getItem('ss-owner') === '1')) addTrackerLink(); } catch {}
   const current = isTrackerPage ? trackerLink : isAccountPage ? acctLink : (['privacy', 'disclaimer'].includes(here) ? null : textsLink);
   if (current) { current.classList.add('is-current'); current.setAttribute('aria-current', 'page'); }   // (no "Signed in as …" in the header, at the owner's request)
 
@@ -393,9 +393,11 @@
   window.ssUI = {
     base, path, pathOf, isAccountPage, isTrackerPage, studyBar, pageInfo, renderSignedOut,
     // Called once the signed-in account is confirmed as the site owner.
-    markOwner() { try { localStorage.setItem('ss-owner', '1'); } catch {} addTrackerLink(); },
+    markOwner() { try { localStorage.setItem('ss-owner', '1'); localStorage.setItem('ss-study', '1'); } catch {} addTrackerLink(); },
+    // Called once the signed-in account is confirmed as a study member (tracker etc.).
+    markStudy() { try { localStorage.setItem('ss-study', '1'); } catch {} addTrackerLink(); },
     setSignedIn(user) {
-      try { user ? localStorage.setItem(AUTH_FLAG, '1') : (localStorage.removeItem(AUTH_FLAG), localStorage.removeItem('ss-owner')); } catch {}
+      try { user ? localStorage.setItem(AUTH_FLAG, '1') : (localStorage.removeItem(AUTH_FLAG), localStorage.removeItem('ss-owner'), localStorage.removeItem('ss-study'), sessionStorage.removeItem('ss-study')); } catch {}
       acctLink.textContent = user ? 'Account' : 'Sign in';
       if (user) acctLink.href = base + 'account/';
       outBtn.hidden = whoEl.hidden = !user;

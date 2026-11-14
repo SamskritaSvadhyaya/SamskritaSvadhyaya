@@ -172,6 +172,28 @@ function noteEditor(host, note, { placeholder, status, save, onBlurEmpty }) {
   return { ed, flush, focus: () => ed.focus() };
 }
 
+// ---------------------------------------------------------------- study members
+// The study features (tracker, cycle-aware "Mark as studied") are for the site owner and the
+// study accounts named in firestore.rules (isStudyMember): they may read config/study. The site
+// owner (may list subscribers) always counts, even before the rules are updated. Remembered per
+// browser when yes; a "no" is only remembered for the browser session.
+let studierCheck = null;
+function checkStudier() {
+  if (studierCheck) return studierCheck;
+  let f = null;
+  try { f = localStorage.getItem('ss-study') || sessionStorage.getItem('ss-study'); } catch {}
+  if (f === '1') return (studierCheck = Promise.resolve(true));
+  if (f === '0') return (studierCheck = Promise.resolve(false));
+  studierCheck = getDoc(doc(db, 'config', 'study')).then(() => true)
+    .catch(() => getDocs(collection(db, 'subscribers')).then(() => { UI.markOwner && UI.markOwner(); return true; }).catch(() => false))
+    .then(ok => {
+      try { ok ? localStorage.setItem('ss-study', '1') : sessionStorage.setItem('ss-study', '0'); } catch {}
+      if (ok) UI.markStudy && UI.markStudy();
+      return ok;
+    });
+  return studierCheck;
+}
+
 // ---------------------------------------------------------------- chapter pages
 function readingPage(user) {
   const bar = UI.studyBar;
@@ -206,7 +228,7 @@ function readingPage(user) {
       target="_blank" rel="noopener" title="Opens the Google Doc in a new tab">↗ Edit in Google Doc</a>`);
   });
 
-  // Site owner only: "Mark as studied" fills in this chapter's row in the study tracker
+  // Study members: "Mark as studied" fills in this chapter's row in their own study tracker
   // (latest cycle, today's date) and starts fresh with each new cycle.
   const slot = (() => {
     const p = PATH.replace(/\/$/, '');
@@ -261,7 +283,7 @@ function readingPage(user) {
     bBtn.disabled = false;
     sBtn.disabled = !!slot;                        // until we know whether the tracker applies
     paint();
-    if (slot) isOwner.then(async ok => {
+    if (slot) checkStudier().then(async ok => {
       if (ok) {
         const t = ((await getDoc(uref)).data()?.tracker || {})[slot.key] || {};
         const cycle = Math.max(1, +t.cycles || 1);
@@ -981,6 +1003,7 @@ function accountPage() {
       } catch (e) { btn.disabled = false; alert(friendly(e)); }
     }));
     adminPanel(root.querySelector('.acct-admin'));
+    checkStudier();                                 // shows the Tracker button for study members
   }
 
   onAuthStateChanged(auth, user => {
@@ -1051,7 +1074,7 @@ async function adminPanel(el) {
 // tracker/: one table per text (Sundarakanda with KK 66-67, Narayaneeyam, Shrimad Bhagavatam),
 // one column per cycle. Saved in the owner's own user document:
 //   users/{uid}.tracker[textKey] = { cycles: N, cells: { "<chapter path>~<cycle>": "YYYY-MM-DD" | "done" | "" } }
-// The page is only shown to the site owner (the account that may list the announcements list).
+// The page is only shown to the site owner and the study members (checkStudier); each has their own tracker.
 function trackerPage() {
   const root = document.getElementById('tracker-app');
   let texts = [];
@@ -1064,9 +1087,9 @@ function trackerPage() {
   };
 
   async function load(user) {
-    try { await getDocs(collection(db, 'subscribers')); }            // only the site owner may
-    catch { root.innerHTML = '<p class="acct-empty">This page is private.</p>'; return; }
-    UI.markOwner && UI.markOwner();
+    if (!(await checkStudier())) {                                   // owner + study members only
+      root.innerHTML = '<p class="acct-empty">This page is private.</p>'; return;
+    }
     const snap = await getDoc(userRef(user.uid));
     const tracker = (snap.exists() && snap.data().tracker) || {};
     let active = 0;
