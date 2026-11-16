@@ -552,6 +552,8 @@ def build_home(_args=None):
     build_static_pages()
     chapter_nav()
     doc_meta()
+    import themes                                   # Bhagavad Geeta theme pages + "Theme:" links
+    themes.build({"render_chrome": render_chrome, "fill": fill})
     verse_index()
     stamp_assets()
 

@@ -1307,3 +1307,22 @@ main.account .acct-members .members-list li { font-size: .95rem; padding: .3rem 
 .tr-actions .tr-fill-label { display: inline-flex; align-items: center; gap: .35rem; font-size: .88rem; }
 .tr-actions .tr-fill-label[hidden] { display: none; }
 main.account .tr-actions .tr-set { font-size: .88rem; }
+
+/* ---------- Bhagavad Geeta themes ---------- */
+.themes-link { text-align: center; font-family: var(--read); margin: 0 auto 1.4rem; color: var(--ink-soft); }
+.themes-link a { font-weight: 600; }
+.themes-lead { text-align: center; color: var(--ink-soft); font-style: italic; }
+.theme-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: .8rem; margin-top: 1.2rem; }
+.theme-card { display: flex; flex-direction: column; gap: .2rem; padding: .9rem 1rem; border: 1px solid var(--rule);
+  border-radius: var(--radius); background: var(--bg-card); text-decoration: none; transition: border-color .2s, box-shadow .2s; }
+.theme-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.theme-card .theme-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--accent-strong); }
+.theme-card .theme-count { font-family: var(--read); font-size: .85rem; color: var(--ink-soft); }
+.theme-intro { font-style: italic; color: var(--ink-soft); margin-bottom: 1.4rem; }
+.theme-shloka { padding: 1rem 0 .6rem; border-top: 1px solid var(--rule); scroll-margin-top: 90px; }
+.theme-shloka:first-of-type { border-top: none; }
+.theme-ref { display: inline-block; font-family: var(--read); font-size: .88rem; font-weight: 600; margin-bottom: .3rem; }
+.content p .shloka-theme { display: block; margin-top: .35rem; font-family: var(--read); font-size: .8rem; font-weight: 400;
+  color: var(--ink-soft); text-align: center; }
+.content p .shloka-theme a { color: var(--accent-strong); }
+@media print { .shloka-theme { display: none !important; } }

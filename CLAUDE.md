@@ -101,6 +101,18 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - Downloading many Drive docs in parallel: tool-result files finishing in the same millisecond
   overwrite each other — copy each result out right after download and verify none is missing.
 
+## Bhagavad Geeta themes
+
+`themes.py`: shlokas on one idea gathered across chapters (public pages). Source = the owner's
+Google Doc "Geeta Themes" in the Bhagavad Geeta Drive folder: each theme is a heading (or a bold
+line), optional intro lines, then shloka numbers ("2.47, 2.48, 9.26-27"). Update with
+`python themes.py import <download.json>` (-> `geeta-themes.json`, commit it) then
+`python build.py home`, which builds `bhagavad-geeta/themes/` + `themes/<slug>/` (shloka + its
+"Simple meaning" paragraph, read from the chapter pages; shlokas of unpublished chapters are left
+out until the chapter is on the site), the "Themes" link on the Geeta page, `<script id="shloka-themes">`
+in chapter heads (script.js shows "Theme: …" under those shlokas) and the sitemap entries.
+No geeta-themes.json = no theme pages.
+
 ## Disclaimer and Credits
 
 `disclaimer/` page, built by `build.py home` (`build_static_pages`) from `_disclaimer_body.html`,

@@ -177,6 +177,19 @@ def pages():
             info["title"] = f"{e['title']} ({e.get('title_sa', '')}) — with word-by-word meaning, anvaya and translation | {NAME}"
             yield f"{p}index.html", p, info
 
+    # Bhagavad Geeta theme pages (built by themes.py): title/description as written there.
+    tdir = ROOT / "bhagavad-geeta" / "themes"
+    if (tdir / "index.html").exists():
+        for f in [tdir / "index.html", *sorted(tdir.glob("*/index.html"))]:
+            s = f.read_text(encoding="utf-8")
+            t = re.search(r"<title>(.*?)</title>", s, re.S)
+            d = re.search(r'<meta name="description" content="([^"]*)"', s)
+            rel = f.relative_to(ROOT).as_posix()
+            yield rel, rel[: -len("index.html")], {
+                "title": html.unescape(t.group(1)) if t else NAME,
+                "desc": html.unescape(d.group(1)) if d else "",
+                "image": "", "type": "article"}
+
 
 def apply(path, url_path, info):
     f = ROOT / path

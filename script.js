@@ -189,6 +189,21 @@
   goToHash();
   addEventListener('hashchange', goToHash);
 
+  // ---- Bhagavad Geeta themes: "Theme: …" under shlokas that are on a theme page (themes.py) ----
+  try {
+    const tags = JSON.parse(document.getElementById('shloka-themes')?.textContent || 'null');
+    const escT = x => String(x).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    if (tags) for (const [ref, list] of Object.entries(tags)) {
+      const el = findVerse(ref);
+      if (!el || el.querySelector('.shloka-theme')) continue;
+      const span = document.createElement('span');
+      span.className = 'shloka-theme';
+      span.innerHTML = (list.length > 1 ? 'Themes: ' : 'Theme: ') + list.map(x =>
+        `<a href="../themes/${encodeURIComponent(x.s)}/#shloka-${ref}">${escT(x.t)}</a>`).join(' · ');
+      el.appendChild(span);
+    }
+  } catch {}
+
   // ---- Header "Go to shloka": text -> chapter -> shloka ----
   const VERSES_VERSION = '370e5ef4ea';
   (() => {
