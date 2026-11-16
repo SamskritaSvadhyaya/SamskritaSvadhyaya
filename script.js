@@ -379,7 +379,8 @@
 
   // A readable page (chapter, sarga, dashaka, single text) — not an index or the account page.
   const main = document.querySelector('main.content');
-  const readable = main && !isAccountPage && !main.classList.contains('static-page');
+  // Chapters only (not the account, static or Geeta theme pages).
+  const readable = main && !isAccountPage && !['static-page', 'theme-page', 'themes-page'].some(c => main.classList.contains(c));
   let studyBar = null;
   if (readable) {
     studyBar = document.createElement('div');

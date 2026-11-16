@@ -62,16 +62,29 @@ def parse_doc(download):
         return spans and all(re.search(r"font-weight\s*:\s*(700|bold)", s.get("style", "")) for s in spans)
 
     themes, cur = [], None
+    shlokas_label = re.compile(r"^\s*shlokas?\s*[:\-–]\s*(.*)$", re.I)
+
+    def drop_empty_label():
+        # "This teaches:" with nothing written after it yet
+        if cur and cur["intro"] and cur["intro"][-1].rstrip().endswith(":"):
+            cur["intro"].pop()
+
     for b in blocks:
         text = re.sub(r"\s+", " ", b.get_text(" ", strip=True)).strip()
         if not text:
             continue
-        if (b.name != "p") if use_headings else is_bold_line(b):
-            cur = {"title": plain(text), "intro": [], "refs": []}
+        label = shlokas_label.match(text)                      # "Shlokas: 9.4, 9.16 …"
+        if not label and ((b.name != "p") if use_headings else is_bold_line(b)):
+            drop_empty_label()
+            title = re.sub(r"^\s*\d+\s*[.)]\s*", "", text)     # "1. People act …" -> "People act …"
+            cur = {"title": plain(title), "intro": [], "refs": []}
             themes.append(cur)
         elif cur is None:
             continue                                           # anything before the first theme
-        elif is_refs(text):
+        elif label or is_refs(text):
+            drop_empty_label()
+            if label:
+                text = label.group(1)
             for m in REF.finditer(text):
                 ch, a, z = int(m.group(1)), int(m.group(2)), int(m.group(3) or m.group(2))
                 for v in range(a, max(a, z) + 1):
@@ -80,7 +93,8 @@ def parse_doc(download):
                         cur["refs"].append(r)
         else:
             cur["intro"].append(html.escape(plain(text), quote=False))
-    themes = [t for t in themes if t["refs"]]                  # e.g. the doc's own title line
+    drop_empty_label()
+    # Themes with no shloka numbers yet stay in the data but get no page (build skips them).
     seen = set()
     for t in themes:
         s = base = slugify(t["title"])
