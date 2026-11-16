@@ -190,7 +190,7 @@
   addEventListener('hashchange', goToHash);
 
   // ---- Header "Go to shloka": text -> chapter -> shloka ----
-  const VERSES_VERSION = '20392fb0dc';
+  const VERSES_VERSION = '370e5ef4ea';
   (() => {
     const controls = document.querySelector('.controls');
     const header = document.querySelector('.site-header');
