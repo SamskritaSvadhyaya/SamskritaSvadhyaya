@@ -1326,3 +1326,6 @@ main.account .tr-actions .tr-set { font-size: .88rem; }
   color: var(--ink-soft); text-align: center; }
 .content p .shloka-theme a { color: var(--accent-strong); }
 @media print { .shloka-theme { display: none !important; } }
+.themes-link a { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; }
+.themes-link a:hover { color: var(--accent); }
+.content a.theme-card { color: inherit; text-decoration: none; }
