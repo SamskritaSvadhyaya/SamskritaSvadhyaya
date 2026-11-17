@@ -47,8 +47,8 @@ def parse_doc(download):
     body = soup.body or soup
     for div in body.find_all("div", recursive=False):      # Google's page header / footer
         div.decompose()
-    blocks = body.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p"])
-    use_headings = any(b.name != "p" and b.get_text(strip=True) for b in blocks)
+    blocks = body.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "li"])
+    use_headings = any(b.name not in ("p", "li") and b.get_text(strip=True) for b in blocks)
 
     def is_refs(text):
         rest = REF.sub("", text)
@@ -74,14 +74,15 @@ def parse_doc(download):
         if not text:
             continue
         label = shlokas_label.match(text)                      # "Shlokas: 9.4, 9.16 …"
-        if not label and ((b.name != "p") if use_headings else is_bold_line(b)):
+        refs_only = cur is not None and is_refs(text)          # shloka list carried onto the next line
+        if not label and not refs_only and b.name != "li" and ((b.name != "p") if use_headings else is_bold_line(b)):
             drop_empty_label()
             title = re.sub(r"^\s*\d+\s*[.)]\s*", "", text)     # "1. People act …" -> "People act …"
             cur = {"title": plain(title), "intro": [], "refs": []}
             themes.append(cur)
         elif cur is None:
             continue                                           # anything before the first theme
-        elif label or is_refs(text):
+        elif label or refs_only:
             drop_empty_label()
             if label:
                 text = label.group(1)
@@ -91,6 +92,8 @@ def parse_doc(download):
                     r = f"{ch}.{v}"
                     if r not in cur["refs"]:
                         cur["refs"].append(r)
+        elif b.name == "li":                                   # "This teaches:" bullet points
+            cur["intro"].append("<li>" + html.escape(plain(text), quote=False))
         else:
             cur["intro"].append(html.escape(plain(text), quote=False))
     drop_empty_label()
@@ -193,7 +196,15 @@ def build(helpers):
     for t, items in built:
         if not items:
             continue
-        intro = "".join(f"    <p>{p}</p>\n" for p in t["intro"])
+        intro = ""
+        for i, p in enumerate(t["intro"]):
+            prev_li = i > 0 and t["intro"][i - 1].startswith("<li>")
+            next_li = i + 1 < len(t["intro"]) and t["intro"][i + 1].startswith("<li>")
+            if p.startswith("<li>"):
+                intro += ("    <ul>\n" if not prev_li else "") + f"      <li>{p[4:]}</li>\n" \
+                    + ("    </ul>\n" if not next_li else "")
+            else:
+                intro += f"    <p>{p}</p>\n"
         body = []
         for ref, ch, verse, meaning in items:
             body.append(

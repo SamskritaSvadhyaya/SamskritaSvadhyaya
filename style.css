@@ -1319,6 +1319,8 @@ main.account .tr-actions .tr-set { font-size: .88rem; }
 .theme-card .theme-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--accent-strong); }
 .theme-card .theme-count { font-family: var(--read); font-size: .85rem; color: var(--ink-soft); }
 .theme-intro { font-style: italic; color: var(--ink-soft); margin-bottom: 1.4rem; }
+.theme-intro ul { margin: .2rem 0 .8rem 1.4rem; padding: 0; }
+.theme-intro li { margin: .15rem 0; }
 .theme-shloka { padding: 1rem 0 .6rem; border-top: 1px solid var(--rule); scroll-margin-top: 90px; }
 .theme-shloka:first-of-type { border-top: none; }
 .theme-ref { display: inline-block; font-family: var(--read); font-size: .88rem; font-weight: 600; margin-bottom: .3rem; }
