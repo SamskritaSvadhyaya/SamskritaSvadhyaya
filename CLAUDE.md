@@ -48,6 +48,16 @@ Static site of Sanskrit texts, published with GitHub Pages.
   import-drive.py handles Narayaneeyam, Sundarakanda, KK, Yudhdhakanda ("Yudhdhakanda - Sarga N [...]"),
   Bhagavatam and Bhagavad Geeta ("BG-N <yoga>", new chapters allowed); Raghuvamsha, the Eclectic
   Collection sarga and Ganapati are rebuilt by hand.
+- **`update-website.py` — the owner's one-click updater** (desktop shortcut "Update website" runs it with
+  pythonw): she downloads a doc via File -> Download -> Web page (.html, zipped), picks the zip(s) in the
+  window; the doc is recognised by the FILE NAME (= doc title, " (1)" suffixes ignored) and routed to
+  import-drive.py, or by hand-coded rules for Raghuvamsha sargas, the Eclectic KK Sarga 28, Ganapati,
+  "Geeta Themes" and "Disclaimer and Credits" (converter reproduces `_disclaimer_body.html` exactly);
+  then `build.py home`, git pull/commit/push. Refuses to start if the folder has uncommitted changes;
+  on any error it resets the folder (nothing published). CLI: `python update-website.py FILE... --no-publish`.
+  The browser zip has no doc id: import-drive.py then keeps the chapter's known `doc` (synced refreshed).
+  Keep it working when adding texts/patterns. Her plain-English guide is the Google Doc
+  "How to update the website without Claude".
 - Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
   "Shri Ganapati Atharvashirsha" in folder "Shri Ganapati Collection". Update with
   `gdoc_to_body.py <json> <tmp-media>` then `build.py page --slug ganapati-atharvashirsha --title

@@ -86,7 +86,7 @@ def main():
         held = ROOT / "_unreleased" / f"{work}.json"
         if held.exists() and any(c["slug"] == slug for c in json.loads(held.read_text(encoding="utf-8"))):
             raise SystemExit(f"{work}/{slug} is still withheld; run `release.py next {work}` first.")
-        if parent is None and work not in NEW_CHAPTERS_OK:
+        if work not in NEW_CHAPTERS_OK:
             raise SystemExit(f"{work}/{slug} is not on the site yet.")
 
     new_title = f"{unit_en} {n}"
@@ -112,8 +112,9 @@ def main():
             "--title", new_title, "--title-sa", new_title_sa, "--body", str(body)]
     if name:
         page += ["--subject", name]
-    if doc.get("id"):
-        page += ["--doc", doc["id"]]           # remembered for the owner's "Edit in Google Doc" link
+    doc_id = doc.get("id") or (old or {}).get("doc")   # a browser download has no id: keep the known one
+    if doc_id:
+        page += ["--doc", doc_id]              # remembered for the owner's "Edit in Google Doc" link
     if parent:
         page[1:1] = ["--parent", parent]
     run("build.py", *page, quiet=True)
