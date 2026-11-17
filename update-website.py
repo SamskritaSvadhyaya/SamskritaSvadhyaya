@@ -65,7 +65,46 @@ def read_download(path):
         data = p.read_bytes()
     else:
         raise Problem(f"{p.name}: choose the .zip from File -> Download -> Web page (.html, zipped).")
-    return title, data
+    return title, inline_classes(data)
+
+
+def inline_classes(data):
+    """A browser download keeps the doc's formatting in a <style> list of classes (.c12{…});
+    the Drive export the importers were written for has it inline (style="…"). Copy each
+    class's rules (and the plain p/h1…/li rules) onto the elements, so both read the same."""
+    text = data.decode("utf-8")
+    m = re.search(r"<style[^>]*>(.*?)</style>", text, re.S)
+    if not m or not re.search(r'class="[^"]*\bc\d+', text):
+        return data
+    css = re.sub(r"@import[^;]*;", "", m.group(1))
+    cls, tag = {}, {}
+    for sel, rules in re.findall(r"([^{}]+)\{([^{}]*)\}", css):
+        for s in sel.split(","):
+            s = s.strip()
+            if re.fullmatch(r"\.c\d+", s):
+                cls[s[1:]] = cls.get(s[1:], "") + rules.strip().rstrip(";") + ";"
+            elif re.fullmatch(r"p|h[1-6]|li", s):
+                tag[s] = tag.get(s, "") + rules.strip().rstrip(";") + ";"
+
+    def fix(mt):
+        name, attrs = mt.group(1), mt.group(2)
+        cm = re.search(r'\sclass="([^"]*)"', attrs)
+        if not cm:
+            return mt.group(0)
+        style = tag.get(name.lower(), "") + "".join(cls.get(c, "") for c in cm.group(1).split())
+        if not style:
+            return mt.group(0)
+        sm = re.search(r'\sstyle="([^"]*)"', attrs)
+        if sm:                                                 # the element's own style wins
+            attrs = attrs.replace(sm.group(0), "")
+            style += sm.group(1)
+        attrs = attrs.replace(cm.group(0), "")
+        return f'<{name}{attrs} style="{html.escape(style, quote=True)}">'
+
+    body_at = text.find("<body")
+    head, body = text[:body_at], text[body_at:]
+    body = re.sub(r"<(\w+)(\s[^<>]*?)?>", lambda mt: fix(mt) if mt.group(2) else mt.group(0), body)
+    return (head + body).encode("utf-8")
 
 
 def manifest():
