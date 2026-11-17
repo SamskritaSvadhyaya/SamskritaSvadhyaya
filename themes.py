@@ -198,7 +198,7 @@ def build(helpers):
         for ref, ch, verse, meaning in items:
             body.append(
                 f'    <section class="theme-shloka" id="shloka-{ref}">\n'
-                f'      <a class="theme-ref" href="../../ch-{ch}/#shloka-{ref}">Shloka {ref} · Chapter {ch} →</a>\n'
+                f'      <a class="theme-ref" href="../../ch-{ch}/#shloka-{ref}">Chapter {ch} · Shloka {ref} →</a>\n'
                 f'      {verse}\n      {meaning}\n    </section>')
         main = ('  <main class="content theme-page" id="content">\n'
                 + (f'    <div class="theme-intro">\n{intro}    </div>\n' if intro else "")
