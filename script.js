@@ -189,17 +189,18 @@
   goToHash();
   addEventListener('hashchange', goToHash);
 
-  // ---- Bhagavad Geeta themes: "Theme: …" under shlokas that are on a theme page (themes.py) ----
+  // ---- Themes: "Theme: …" under shlokas that are on a theme page (themes.py) ----
   try {
     const tags = JSON.parse(document.getElementById('shloka-themes')?.textContent || 'null');
     const escT = x => String(x).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    const themesBase = (document.querySelector('.controls .home-link')?.getAttribute('href') || '../') + 'themes/';
     if (tags) for (const [ref, list] of Object.entries(tags)) {
       const el = findVerse(ref);
       if (!el || el.querySelector('.shloka-theme')) continue;
       const span = document.createElement('span');
       span.className = 'shloka-theme';
       span.innerHTML = (list.length > 1 ? 'Themes: ' : 'Theme: ') + list.map(x =>
-        `<a href="../themes/${encodeURIComponent(x.s)}/#shloka-${ref}">${escT(x.t)}</a>`).join(' · ');
+        `<a href="${themesBase}${encodeURIComponent(x.s)}/#shloka-${ref}">${escT(x.t)}</a>`).join(' · ');
       el.appendChild(span);
     }
   } catch {}

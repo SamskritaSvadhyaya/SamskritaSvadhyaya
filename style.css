@@ -1311,6 +1311,10 @@ main.account .tr-actions .tr-set { font-size: .88rem; }
 /* ---------- Bhagavad Geeta themes ---------- */
 .themes-link { text-align: center; font-family: var(--read); margin: 0 auto 1.4rem; color: var(--ink-soft); }
 .themes-link a { font-weight: 600; }
+.home-themes { margin: 1.6rem auto .4rem; }
+.theme-text { font-family: var(--serif); color: var(--accent-strong); font-size: 1.35rem; text-align: center;
+  margin: 2rem 0 .4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.theme-intro + .theme-text, .theme-page > .theme-text:first-child { border-top: none; margin-top: .6rem; }
 .themes-lead { text-align: center; color: var(--ink-soft); font-style: italic; }
 .theme-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: .8rem; margin-top: 1.2rem; }
 .theme-card { display: flex; flex-direction: column; gap: .2rem; padding: .9rem 1rem; border: 1px solid var(--rule);

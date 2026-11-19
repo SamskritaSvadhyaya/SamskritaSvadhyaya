@@ -177,8 +177,8 @@ def pages():
             info["title"] = f"{e['title']} ({e.get('title_sa', '')}) — with word-by-word meaning, anvaya and translation | {NAME}"
             yield f"{p}index.html", p, info
 
-    # Bhagavad Geeta theme pages (built by themes.py): title/description as written there.
-    tdir = ROOT / "bhagavad-geeta" / "themes"
+    # Theme pages (built by themes.py): title/description as written there.
+    tdir = ROOT / "themes"
     if (tdir / "index.html").exists():
         for f in [tdir / "index.html", *sorted(tdir.glob("*/index.html"))]:
             s = f.read_text(encoding="utf-8")

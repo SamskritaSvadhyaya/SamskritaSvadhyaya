@@ -111,17 +111,24 @@ Static site of Sanskrit texts, published with GitHub Pages.
 - Downloading many Drive docs in parallel: tool-result files finishing in the same millisecond
   overwrite each other — copy each result out right after download and verify none is missing.
 
-## Bhagavad Geeta themes
+## Themes (across texts)
 
-`themes.py`: shlokas on one idea gathered across chapters (public pages). Source = the owner's
+`themes.py`: shlokas on one idea gathered across chapters AND texts (public pages at `themes/`;
+the first address `bhagavad-geeta/themes/…` is rebuilt as redirect stubs). Source = the owner's
 Google Doc "Geeta Themes" in the Bhagavad Geeta Drive folder: each theme is a heading (or a bold
-line), optional intro lines, then shloka numbers ("2.47, 2.48, 9.26-27"; a list may run onto the next line). "This teaches:" bullet points are shown as a list. Update with
-`python themes.py import <download.json>` (-> `geeta-themes.json`, commit it) then
-`python build.py home`, which builds `bhagavad-geeta/themes/` + `themes/<slug>/` (shloka + its
-"Simple meaning" paragraph, read from the chapter pages; shlokas of unpublished chapters are left
-out until the chapter is on the site), the "Themes" link on the Geeta page, `<script id="shloka-themes">`
-in chapter heads (script.js shows "Theme: …" under those shlokas) and the sitemap entries.
-No geeta-themes.json = no theme pages.
+line), optional intro lines and "This teaches:" bullets, then "Shlokas: …" (a list may run onto the
+next line). Each number may carry a text label: BG (default; a bare number = Geeta), N (Narayaneeyam
+32.4), SB (10.11.5 or 11.5), SK/KK/YK (5.38.33 or 38.33; KK 28.x = the Eclectic Collection sarga),
+VR (any full Ramayana number), RV (Raghuvamsha), GA (Ganapati); an unlabelled number takes the
+label before it on the same line; ranges "9.26-27". Update with `python themes.py import
+<download.json>` (-> `themes.json`, commit it; prints "!" lines for unknown labels/odd numbers) then
+`python build.py home` (verse_index runs first: themes find chapters through verses.json by the
+printed-number prefix). Pages show each shloka + its "Simple meaning" paragraph, grouped by text,
+linked to the chapter; shlokas of unpublished chapters are left out. Chapter pages of any text get
+`<script id="shloka-themes">` (script.js shows "Theme: …", links via the header's home-link base).
+"Themes" links: home page (`<!-- home-themes -->` placeholder in build.py) and the Geeta page.
+The update button (update-website.py) accepts a doc titled "Geeta Themes" or "Themes".
+No themes.json = no theme pages.
 
 ## Disclaimer and Credits
 

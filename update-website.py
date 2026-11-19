@@ -183,9 +183,12 @@ def update_one(path, log):
     title, data = read_download(path)
     log(f"• {title}")
     with tempfile.TemporaryDirectory() as tmp:
-        if re.fullmatch(r"Geeta\s+Themes", title, re.I):
+        if re.fullmatch(r"(Geeta\s+)?Themes", title, re.I):
             out = run("themes.py", "import", wrap(title, data, tmp))
-            log("  Geeta Themes: " + out.splitlines()[-1].split(";")[0])
+            for line in out.splitlines():
+                if line.strip().startswith("!"):
+                    log("  Check in the doc: " + line.strip()[1:].strip())
+            log("  Themes: " + out.splitlines()[-1].split(";")[0])
             return "Geeta Themes"
 
         if re.fullmatch(r"Disclaimer\s+and\s+Credits", title, re.I):

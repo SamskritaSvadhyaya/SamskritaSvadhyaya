@@ -537,7 +537,7 @@ def build_home(_args=None):
   <main class="home">
     <div class="home-grid">
 """
-    body_main = hero + grid + "\n    </div>\n    " + subjects_tag() + "\n  </main>\n"
+    body_main = hero + grid + "\n    </div>\n    <!-- home-themes -->\n    " + subjects_tag() + "\n  </main>\n"
 
     html = render_chrome(
         "Samskrita Svadhyaya — Sanskrit Text Library",
@@ -552,9 +552,9 @@ def build_home(_args=None):
     build_static_pages()
     chapter_nav()
     doc_meta()
-    import themes                                   # Bhagavad Geeta theme pages + "Theme:" links
+    verse_index()                                   # before themes: it finds shlokas through verses.json
+    import themes                                   # theme pages (across texts) + "Theme:" links
     themes.build({"render_chrome": render_chrome, "fill": fill})
-    verse_index()
     stamp_assets()
 
     # Every build flow ends with `home`, so refresh search metadata + sitemap here.
