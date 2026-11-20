@@ -129,9 +129,10 @@ linked to the chapter; shlokas of unpublished chapters are left out. Chapter pag
 "Themes" links: home page (`<!-- home-themes -->` placeholder in build.py) and the Geeta page.
 The update button (update-website.py) accepts a doc titled "Geeta Themes" or "Themes".
 No themes.json = no theme pages.
-**Owner-only for now (owner's choice 2026-11-20; she may open it to everyone later)**: themes.py
+**Owner + study members only for now (owner's choice 2026-11-20; she may open it to everyone later)**: themes.py
 `OWNER_ONLY = True` makes theme pages noindex + `<html class="owner-only-page">` and keeps them out of the
-sitemap; script.js `THEMES_OWNER_ONLY = true` puts `ss-owner` on `<html>` only for the signed-in owner, and
+sitemap; script.js `THEMES_OWNER_ONLY = true` puts `ss-themes` on `<html>` only for the signed-in owner and
+the study members (same list as the tracker: localStorage `ss-owner`/`ss-study`, markOwner/markStudy), and
 style.css hides the header "Themes" button, the "Themes" links and the "Theme: …" lines (and blanks theme
 pages: "This page is not available.") for everyone else. Soft hiding only — the files are still in the
 public repo. To make Themes public: set both flags to false, `python build.py home`, commit.

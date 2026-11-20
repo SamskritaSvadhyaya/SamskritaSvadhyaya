@@ -1,9 +1,10 @@
 (() => {
-  // Themes are for the site owner only for now (owner's choice). Going public: set false here AND
-  // OWNER_ONLY = False in themes.py. style.css hides theme links/pages unless <html> has .ss-owner.
+  // Themes are for the site owner and the study members only for now (owner's choice). Going public:
+  // set false here AND OWNER_ONLY = False in themes.py. style.css hides theme links/pages unless
+  // <html> has .ss-themes.
   const THEMES_OWNER_ONLY = true;
-  const setOwnerClass = on => document.documentElement.classList.toggle('ss-owner', !!on || !THEMES_OWNER_ONLY);
-  try { setOwnerClass(localStorage.getItem('ss-signed-in') && localStorage.getItem('ss-owner') === '1'); } catch { setOwnerClass(false); }
+  const setOwnerClass = on => document.documentElement.classList.toggle('ss-themes', !!on || !THEMES_OWNER_ONLY);
+  try { setOwnerClass(localStorage.getItem('ss-signed-in') && (localStorage.getItem('ss-owner') === '1' || localStorage.getItem('ss-study') === '1')); } catch { setOwnerClass(false); }
   const STORAGE = {
     theme: 'ga-theme',
     size: 'ga-size',
@@ -424,7 +425,7 @@
     // Called once the signed-in account is confirmed as the site owner.
     markOwner() { try { localStorage.setItem('ss-owner', '1'); localStorage.setItem('ss-study', '1'); } catch {} setOwnerClass(true); addTrackerLink(); },
     // Called once the signed-in account is confirmed as a study member (tracker etc.).
-    markStudy() { try { localStorage.setItem('ss-study', '1'); } catch {} addTrackerLink(); },
+    markStudy() { try { localStorage.setItem('ss-study', '1'); } catch {} setOwnerClass(true); addTrackerLink(); },
     setSignedIn(user) {
       try { user ? localStorage.setItem(AUTH_FLAG, '1') : (localStorage.removeItem(AUTH_FLAG), localStorage.removeItem('ss-owner'), localStorage.removeItem('ss-study'), sessionStorage.removeItem('ss-study')); } catch {}
       if (!user) setOwnerClass(false);
