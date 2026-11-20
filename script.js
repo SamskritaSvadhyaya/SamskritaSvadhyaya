@@ -223,6 +223,13 @@
     link.textContent = 'Go to shloka';
     link.setAttribute('aria-expanded', 'false');
     textsLink.after(link);
+    // "Themes" (themes.py pages: shlokas on one idea across the texts), next to "Go to shloka".
+    const themesLink = document.createElement('a');
+    themesLink.className = 'home-link themes-nav';
+    themesLink.href = siteBase + 'themes/';
+    themesLink.textContent = 'Themes';
+    if (here === 'themes/' || here.startsWith('themes/')) themesLink.setAttribute('aria-current', 'page');
+    link.after(themesLink);
     const panel = document.createElement('div');
     panel.className = 'jump-panel';
     panel.hidden = true;
