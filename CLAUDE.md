@@ -129,6 +129,13 @@ linked to the chapter; shlokas of unpublished chapters are left out. Chapter pag
 "Themes" links: home page (`<!-- home-themes -->` placeholder in build.py) and the Geeta page.
 The update button (update-website.py) accepts a doc titled "Geeta Themes" or "Themes".
 No themes.json = no theme pages.
+**"+ Theme" button (site owner only)**: account.js `themeAdders` puts "+ Theme" under every numbered shloka
+for the owner; it reads the Themes doc through the Google Docs API (token: a second Firebase app instance
+"docs" + signInWithPopup with the documents scope, cached 50 min in sessionStorage `ss-docs-token`; the
+reader sign-in is untouched) and appends "LABEL num" to the chosen theme's Shlokas line, or adds a new
+numbered bold heading (+ optional quote) with a Shlokas line at the end of the doc (writeControl revision
+guard). The doc stays the master copy; publishing is still "update themes" / the update button. Needs the
+Google Docs API enabled in Google Cloud project samskrita-svadhyaya. THEMES_DOC id is in account.js.
 
 ## Disclaimer and Credits
 

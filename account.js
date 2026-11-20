@@ -8,7 +8,7 @@
 //   users/{uid}/pages/{key}   { path, title, sub, bookmarked, studied, note, updated }
 //   subscribers/{uid}         { email, name, at }   — exists only while opted in to announcements
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
 import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   GoogleAuthProvider, signInWithPopup, signOut, sendPasswordResetEmail, sendEmailVerification,
@@ -296,6 +296,7 @@ function readingPage(user) {
     shlokas = findShlokas();
     placeMarks();
     placeFavs();
+    isOwner.then(ok => { if (ok) themeAdders(shlokas); });   // "+ Theme" (owner only)
     if (location.hash === '#mark') {
       const go = () => goToMark();
       if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
@@ -517,6 +518,226 @@ function findShlokas(main = document.getElementById('content')) {
     }
   });
   return out;
+}
+
+// ---- Site owner only: "+ Theme" under each shloka writes it into the Themes Google Doc ----
+// The doc stays the master copy (themes.py builds the theme pages from it). The browser gets a
+// short-lived Google token for the Docs API through a separate Firebase app instance, so the
+// reader sign-in itself is never touched.
+const THEMES_DOC = '16Az_fz6eqcTgLxkMc1Fzo9T58VQu7OAiQJ7NaThGlpE';
+const DOCS_API = 'https://docs.googleapis.com/v1/documents/' + THEMES_DOC;
+const T_LABELS = { BG: ['', 2], N: ['', 2], SB: ['10.', 3], SK: ['5.', 3], KK: ['4.', 3], YK: ['6.', 3], VR: ['', 3], RV: ['', 2], GA: ['', 1] };
+const T_ALIAS = { GITA: 'BG', GEETA: 'BG', NA: 'N', NAR: 'N', BHAG: 'SB', R: 'VR', RAM: 'VR', RAGHU: 'RV', GAN: 'GA' };
+const T_REF = /(?:\b([A-Za-z]{1,6})\.?\s*)?(\d{1,3}(?:\s*\.\s*\d{1,3}){0,2})(?:\s*[-–]\s*(\d{1,3}))?/g;
+
+// The doc's way of writing this page's shloka: "BG 9.22", "SK 5.38.33", "N 33.2", "GA 5"…
+function themeRef(el) {
+  const p = PATH.replace(/\/$/, '');
+  let num = verseNum(el);
+  if (!num) { const m = verseText(el).match(/॥\s*([0-9]{1,3})\s*॥/); num = m ? m[1] : ''; }
+  if (!num) return null;
+  const label = p.startsWith('bhagavad-geeta/') ? 'BG' : p.startsWith('narayaneeyam/') ? 'N'
+    : p.startsWith('shrimad-bhagavatam-canto-10/') ? 'SB' : p.startsWith('raghuvamsha/') ? 'RV'
+    : p.startsWith('ganapati-atharvashirsha') ? 'GA'
+    : /^(thestoryofhanuman\/kishkindhakanda|eclectic-collection\/kishkindhakanda)/.test(p) ? 'KK'
+    : p.startsWith('thestoryofhanuman/sundarakanda/') ? 'SK' : p.startsWith('thestoryofhanuman/yudhdhakanda/') ? 'YK' : null;
+  return label ? `${label} ${num.replace('–', '-')}` : null;
+}
+
+// "SK 38.33-35, N 32.4" -> Set{"SK 5.38.33", …} (same rules as themes.py refs_in)
+function themeRefsIn(text) {
+  const out = new Set();
+  let cur = 'BG';
+  for (const m of text.matchAll(T_REF)) {
+    if (m[1]) {
+      const w = m[1].toUpperCase(), lab = T_ALIAS[w] || w;
+      if (!T_LABELS[lab]) continue;
+      cur = lab;
+    }
+    const [prefix, parts] = T_LABELS[cur];
+    let num = m[2].replace(/\s+/g, '');
+    if (num.split('.').length === parts - (prefix ? 1 : 0)) num = prefix + num;
+    if (num.split('.').length !== parts) continue;
+    const head = num.includes('.') ? num.slice(0, num.lastIndexOf('.') + 1) : '';
+    const a = +num.slice(head.length), z = m[3] ? +m[3] : a;
+    let lab = cur;
+    if (lab === 'VR') lab = { 4: 'KK', 5: 'SK', 6: 'YK' }[num.split('.')[0]] || 'VR';
+    for (let v = a; v <= Math.max(a, z); v++) out.add(`${lab} ${head}${v}`);
+  }
+  return out;
+}
+const isRefsLine = t => /\d/.test(t) && !t.replace(T_REF, (m0, w) => (!w || T_LABELS[T_ALIAS[w.toUpperCase()] || w.toUpperCase()]) ? '' : m0)
+  .replace(/[\s,;.&]|and/gi, '');
+
+async function docsToken(interactive) {
+  try {
+    const t = JSON.parse(sessionStorage.getItem('ss-docs-token') || 'null');
+    if (t && t.exp > Date.now() + 60000) return t.tok;
+  } catch {}
+  if (!interactive) return null;
+  const app2 = getApps().find(a => a.name === 'docs') || initializeApp(app.options, 'docs');
+  const a2 = getAuth(app2);
+  const provider = new GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/documents');
+  provider.setCustomParameters({ login_hint: auth.currentUser?.email || '' });
+  let cred;
+  try { cred = GoogleAuthProvider.credentialFromResult(await signInWithPopup(a2, provider)); }
+  catch (e) { cred = GoogleAuthProvider.credentialFromError(e); if (!cred?.accessToken) throw e; }
+  signOut(a2).catch(() => {});
+  try { sessionStorage.setItem('ss-docs-token', JSON.stringify({ tok: cred.accessToken, exp: Date.now() + 50 * 60000 })); } catch {}
+  return cred.accessToken;
+}
+
+async function docsCall(tok, url, body) {
+  const r = await fetch(url, body ? { method: 'POST', headers: { Authorization: 'Bearer ' + tok, 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+    : { headers: { Authorization: 'Bearer ' + tok } });
+  if (r.ok) return r.json();
+  let msg = '';
+  try { msg = (await r.json()).error?.message || ''; } catch {}
+  if (r.status === 401) { try { sessionStorage.removeItem('ss-docs-token'); } catch {} }
+  if (/has not been used|is disabled/i.test(msg)) throw new Error('The Google Docs API is not switched on yet for this website. '
+    + 'Open https://console.cloud.google.com/apis/library/docs.googleapis.com?project=samskrita-svadhyaya, click “Enable”, wait a minute and try again.');
+  throw new Error(msg || `Google Docs answered ${r.status}`);
+}
+
+// Read the Themes doc: [{title, start, end (of the theme's last paragraph), refsPara (last "Shlokas" paragraph), refs:Set}]
+function themesFromDoc(d) {
+  const paras = (d.body?.content || []).filter(c => c.paragraph).map(c => {
+    const runs = (c.paragraph.elements || []).filter(e => e.textRun);
+    const text = runs.map(e => e.textRun.content).join('').replace(/\s+/g, ' ').trim();
+    const inked = runs.filter(e => e.textRun.content.trim());
+    const bold = inked.length && inked.every(e => e.textRun.textStyle?.bold);
+    const heading = /^HEADING_|^TITLE$/.test(c.paragraph.paragraphStyle?.namedStyleType || '');
+    const raw = runs.map(e => e.textRun.content).join('').replace(/\n$/, '');
+    return { text, raw, bold, heading, bullet: !!c.paragraph.bullet, start: c.startIndex, end: c.endIndex };
+  });
+  const useHeadings = paras.some(p => p.heading && p.text);
+  const out = [];
+  let cur = null;
+  for (const p of paras) {
+    if (!p.text) continue;
+    const label = /^\s*shlokas?\s*[:\-–]\s*(.*)$/i.exec(p.text);
+    const refsOnly = cur && isRefsLine(p.text);
+    if (!label && !refsOnly && !p.bullet && (useHeadings ? p.heading : (p.bold && p.text.length <= 250))) {
+      cur = { title: p.text.replace(/^\s*\d+\s*[.)]\s*/, ''), start: p.start, end: p.end, refsPara: null, refs: new Set() };   // end = its last line with text
+      out.push(cur);
+      continue;
+    }
+    if (!cur) continue;
+    cur.end = p.end;
+    if (label || refsOnly) {
+      const found = themeRefsIn(label ? label[1] : p.text);
+      cur.refsPara = { ...p, empty: !found.size };   // an empty "Shlokas:" line gets no leading comma
+      found.forEach(r => cur.refs.add(r));
+    }
+  }
+  return out;
+}
+
+function themeAdders(shlokas) {
+  shlokas.forEach(sh => {
+    const ref = themeRef(sh.el);
+    if (!ref) return;
+    const row = document.createElement('div');
+    row.className = 'verse-theme';
+    row.innerHTML = '<button type="button" class="verse-theme-add" title="Add this shloka to a theme (site owner only)">+ Theme</button><div class="theme-pop" hidden></div>';
+    const anchor = sh.end.nextElementSibling?.classList.contains('verse-note') ? sh.end.nextElementSibling : sh.end;
+    anchor.after(row);
+    const pop = row.querySelector('.theme-pop');
+    const btn = row.querySelector('.verse-theme-add');
+    const mine = themeRefsIn(ref);
+    const say = (html, cls = '') => { pop.innerHTML = `<p class="theme-pop-msg ${cls}">${html}</p>`; };
+
+    async function load(interactive) {
+      say('Reading your Themes doc…');
+      const tok = await docsToken(interactive);
+      const d = await docsCall(tok, DOCS_API);
+      return { tok, d, themes: themesFromDoc(d) };
+    }
+    function menu({ themes }) {
+      pop.innerHTML = `<p class="theme-pop-head">Add <strong>${esc(ref)}</strong> to a theme:</p>
+        <div class="theme-pop-list">${themes.map((t, i) => {
+          const has = [...mine].every(r => t.refs.has(r));
+          return `<button type="button" data-i="${i}" ${has ? 'disabled' : ''}>${has ? '✓ ' : ''}${esc(t.title)}</button>`;
+        }).join('')}</div>
+        <button type="button" class="theme-pop-new">+ New theme…</button>
+        <p class="theme-pop-foot"><a href="https://docs.google.com/document/d/${THEMES_DOC}/edit" target="_blank" rel="noopener">Open the Themes doc ↗</a>
+        · <button type="button" class="theme-pop-close">Close</button></p>`;
+      pop.querySelectorAll('.theme-pop-list button').forEach(b => b.addEventListener('click', () => add(+b.dataset.i)));
+      pop.querySelector('.theme-pop-new').addEventListener('click', newForm);
+      pop.querySelector('.theme-pop-close').addEventListener('click', () => { pop.hidden = true; });
+    }
+    function newForm() {
+      pop.innerHTML = `<p class="theme-pop-head">New theme with <strong>${esc(ref)}</strong></p>
+        <label>Title<input type="text" class="tp-title" maxlength="200" placeholder="e.g. Surrender to the Lord"></label>
+        <label>One-line quote (optional)<input type="text" class="tp-quote" maxlength="200" placeholder="e.g. Take refuge in Him alone"></label>
+        <p class="theme-pop-foot"><button type="button" class="tp-add">Add theme</button> · <button type="button" class="theme-pop-close">Cancel</button></p>`;
+      pop.querySelector('.tp-title').focus();
+      pop.querySelector('.theme-pop-close').addEventListener('click', () => { pop.hidden = true; });
+      pop.querySelector('.tp-add').addEventListener('click', () => {
+        const title = pop.querySelector('.tp-title').value.trim();
+        if (!title) { pop.querySelector('.tp-title').focus(); return; }
+        addNew(title, pop.querySelector('.tp-quote').value.trim());
+      });
+    }
+    const done = what => say(`✓ Added <strong>${esc(ref)}</strong> ${what} in your Themes doc. `
+      + 'The theme pages change when you publish: ask Claude to “update themes”, or use your Update website button. '
+      + `<a href="https://docs.google.com/document/d/${THEMES_DOC}/edit" target="_blank" rel="noopener">Open the doc ↗</a>`, 'ok');
+
+    async function add(i) {
+      try {
+        const { tok, d, themes } = await load(true);           // read again: the doc may have changed
+        const t = themes[i];
+        if (!t) throw new Error('The doc changed — please try again.');
+        if ([...mine].every(r => t.refs.has(r))) { say(`${esc(ref)} is already in “${esc(t.title)}”.`); return; }
+        let at, text, boldFrom;
+        if (t.refsPara) { at = t.refsPara.end - 1; text = (t.refsPara.empty ? (/\s$/.test(t.refsPara.raw) ? '' : ' ') : ', ') + ref; boldFrom = at; }
+        else { at = t.end - 1; text = '\nShlokas: ' + ref; boldFrom = at + 1; }
+        await docsCall(tok, DOCS_API + ':batchUpdate', {
+          writeControl: { requiredRevisionId: d.revisionId },
+          requests: [
+            { insertText: { location: { index: at }, text } },
+            { updateTextStyle: { range: { startIndex: boldFrom, endIndex: at + text.length }, textStyle: { bold: true }, fields: 'bold' } },
+            ...(t.refsPara ? [] : [{ deleteParagraphBullets: { range: { startIndex: at + 1, endIndex: at + text.length } } }]),
+          ],
+        });
+        done(`to “${esc(t.title)}”`);
+      } catch (e) { say(esc(e.message || e), 'err'); }
+    }
+    async function addNew(title, quote) {
+      try {
+        const { tok, d, themes } = await load(true);
+        const last = (d.body.content || []).at(-1);
+        const at = last.endIndex - 1;
+        const head = `${themes.length + 1}. ${title}`;
+        const q = quote ? `“${quote.replace(/^["“]|["”]$/g, '')}”` : '';
+        const text = '\n\n' + head + (q ? '\n' + q : '') + '\nShlokas: ' + ref;
+        const hs = at + 2, he = hs + head.length;
+        const qs = he + 1, qe = qs + q.length;
+        const ss = (q ? qe : he) + 1;
+        await docsCall(tok, DOCS_API + ':batchUpdate', {
+          writeControl: { requiredRevisionId: d.revisionId },
+          requests: [
+            { insertText: { location: { index: at }, text } },
+            { deleteParagraphBullets: { range: { startIndex: at + 1, endIndex: at + text.length } } },
+            { updateParagraphStyle: { range: { startIndex: at + 1, endIndex: at + text.length }, paragraphStyle: { namedStyleType: 'NORMAL_TEXT' }, fields: 'namedStyleType' } },
+            { updateTextStyle: { range: { startIndex: at, endIndex: at + text.length }, textStyle: { bold: false }, fields: 'bold' } },
+            { updateTextStyle: { range: { startIndex: hs, endIndex: he }, textStyle: { bold: true }, fields: 'bold' } },
+            { updateTextStyle: { range: { startIndex: ss, endIndex: at + text.length }, textStyle: { bold: true }, fields: 'bold' } },
+          ],
+        });
+        done(`as a new theme “${esc(title)}”`);
+      } catch (e) { say(esc(e.message || e), 'err'); }
+    }
+
+    btn.addEventListener('click', async () => {
+      if (!pop.hidden && pop.querySelector('.theme-pop-list')) { pop.hidden = true; return; }
+      pop.hidden = false;
+      try {
+        menu(await load(true));            // the first time this session, Google asks for permission in a small window
+      } catch (e) { say(esc(friendly(e)), 'err'); }
+    });
+  });
 }
 
 function verseNotes(user, ref, info, saved) {
