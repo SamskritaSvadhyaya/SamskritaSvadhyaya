@@ -292,7 +292,7 @@ def build(helpers):
             + ", ".join(all_texts) + ") — " + ", ".join(t["title"] for t, items in built if items) + ".")
     page = render_chrome(f"{title} | Samskrita Svadhyaya", html.escape(desc), "../",
                          hero(crumb("../", "Home"), "Themes", " · ".join(all_texts)), main)
-    (OUT / "index.html").write_text(page, encoding="utf-8")
+    (OUT / "index.html").write_text(_private(page), encoding="utf-8")
     pages.append(("themes/index.html", "themes/", title + " | Samskrita Svadhyaya", desc))
 
     # one page per theme
@@ -330,13 +330,25 @@ def build(helpers):
                              hero(crumb("../", "Themes"), t["title"], " · ".join(names)), main)
         d = OUT / t["slug"]
         d.mkdir(parents=True, exist_ok=True)
-        (d / "index.html").write_text(page, encoding="utf-8")
+        (d / "index.html").write_text(_private(page), encoding="utf-8")
         pages.append((f"themes/{t['slug']}/index.html", f"themes/{t['slug']}/",
                       f'{t["title"]} — Themes | Samskrita Svadhyaya', desc))
     _redirects([t["slug"] for t, items in built if items])
     _chapter_tags(tagged)
     _links(any(items for _, items in built))
     return pages
+
+
+OWNER_ONLY = True       # owner's choice (2026-11-20): Themes only for the site owner for now.
+                        # Going public: set False here AND THEMES_OWNER_ONLY = false in script.js.
+
+
+def _private(html_page):
+    """Owner-only theme page: not indexed, hidden by CSS unless the site owner is signed in."""
+    if not OWNER_ONLY:
+        return html_page
+    return (html_page.replace('<html lang="en">', '<html lang="en" class="owner-only-page">', 1)
+                     .replace("</head>", '  <meta name="robots" content="noindex" />\n</head>', 1))
 
 
 def _redirects(slugs):

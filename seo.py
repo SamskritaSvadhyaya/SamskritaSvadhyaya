@@ -179,7 +179,8 @@ def pages():
 
     # Theme pages (built by themes.py): title/description as written there.
     tdir = ROOT / "themes"
-    if (tdir / "index.html").exists():
+    import themes as _themes                          # owner-only for now: not in the sitemap
+    if (tdir / "index.html").exists() and not _themes.OWNER_ONLY:
         for f in [tdir / "index.html", *sorted(tdir.glob("*/index.html"))]:
             s = f.read_text(encoding="utf-8")
             t = re.search(r"<title>(.*?)</title>", s, re.S)

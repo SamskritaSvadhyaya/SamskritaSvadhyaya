@@ -1367,3 +1367,9 @@ main.account .tr-actions .tr-set { font-size: .88rem; }
 /* "4 of 18 chapters so far" on a work that is still growing (build.py progress_notes) */
 .work-progress { text-align: center; font-family: var(--read); color: var(--ink-soft); font-size: .95rem; margin: 0 auto .6rem; }
 .work-progress strong { color: var(--accent-strong); font-weight: 600; font-family: var(--read); }
+
+/* Themes: site owner only for now (script.js THEMES_OWNER_ONLY sets html.ss-owner for the owner) */
+html:not(.ss-owner) .themes-link, html:not(.ss-owner) .themes-nav, html:not(.ss-owner) .shloka-theme { display: none !important; }
+html.owner-only-page:not(.ss-owner) .hero, html.owner-only-page:not(.ss-owner) main.content > * { display: none !important; }
+html.owner-only-page:not(.ss-owner) main.content::before { content: "This page is not available."; display: block;
+  text-align: center; font-family: var(--read); color: var(--ink-soft); padding: 3rem 1rem; }
