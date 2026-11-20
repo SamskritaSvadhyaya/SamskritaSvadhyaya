@@ -43,7 +43,9 @@
    "<li>Focus on effort",
    "<li>Inner steadiness"
   ],
-  "refs": [],
+  "refs": [
+   "BG 2.47"
+  ],
   "slug": "you-have-control-only-over-action-not-results"
  },
  {
@@ -96,7 +98,43 @@
   "intro": [
    "“The body perishes but the Soul does not”"
   ],
-  "refs": [],
+  "refs": [
+   "BG 2.18",
+   "BG 2.19",
+   "BG 2.20",
+   "BG 2.22",
+   "BG 2.30"
+  ],
   "slug": "immortality-of-the-soul"
+ },
+ {
+  "title": "The pleasure and pain we feel is due to our association with our senses and they are temporary",
+  "intro": [
+   "“Learn to be an observer and not a participator”"
+  ],
+  "refs": [
+   "BG 2.14"
+  ],
+  "slug": "the-pleasure-and-pain-we-feel-is-due-to-our-association-with"
+ },
+ {
+  "title": "Death is inevitable to the one who is born",
+  "intro": [
+   "“Do not grieve”"
+  ],
+  "refs": [
+   "BG 2.27"
+  ],
+  "slug": "death-is-inevitable-to-the-one-who-is-born"
+ },
+ {
+  "title": "Do your duty",
+  "intro": [
+   "“Follow your svadharma ”"
+  ],
+  "refs": [
+   "BG 2.31"
+  ],
+  "slug": "do-your-duty"
  }
 ]
