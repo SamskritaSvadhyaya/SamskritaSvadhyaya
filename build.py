@@ -555,6 +555,7 @@ def build_home(_args=None):
     verse_index()                                   # before themes: it finds shlokas through verses.json
     import themes                                   # theme pages (across texts) + "Theme:" links
     themes.build({"render_chrome": render_chrome, "fill": fill})
+    progress_notes()
     stamp_assets()
 
     # Every build flow ends with `home`, so refresh search metadata + sitemap here.
@@ -574,6 +575,30 @@ STATIC_HERO = """
 
 NAV_RE = re.compile(r"\s*<!-- chapter-nav -->.*?<!-- /chapter-nav -->", re.S)
 UNITS = {"sarga": "sargas", "dashaka": "dashakas", "ch": "chapters"}
+
+
+PROGRESS_RE = re.compile(r"\s*<!-- progress -->.*?<!-- /progress -->", re.S)
+WORK_TOTALS = {"bhagavad-geeta": 18}                   # works still being added chapter by chapter
+
+
+def progress_notes():
+    """"4 of 18 chapters so far — more are added as the study continues." above the chapter list of
+    a work that is still growing (WORK_TOTALS); gone once every chapter is on the site."""
+    for e in load_manifest():
+        total = WORK_TOTALS.get(e["slug"])
+        page = ROOT / e["slug"] / "index.html"
+        if not total or not page.exists():
+            continue
+        text = page.read_text(encoding="utf-8")
+        new = PROGRESS_RE.sub("", text)
+        have = len(e.get("chapters", []))
+        if have < total:
+            note = (f'<!-- progress --><p class="work-progress"><strong>{have} of {total} chapters so far</strong>'
+                    ' — more are added as the study continues.</p><!-- /progress -->')
+            anchor = "<!-- themes-link -->" if "<!-- themes-link -->" in new else '<div class="chapter-grid">'
+            new = new.replace(anchor, note + "\n    " + anchor, 1)
+        if new != text:
+            page.write_text(new, encoding="utf-8")
 
 
 def chapter_nav():

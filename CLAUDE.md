@@ -137,6 +137,12 @@ numbered bold heading (+ optional quote) with a Shlokas line at the end of the d
 guard). The doc stays the master copy; publishing is still "update themes" / the update button. Needs the
 Google Docs API enabled in Google Cloud project samskrita-svadhyaya. THEMES_DOC id is in account.js.
 
+## Work in progress note
+
+`build.py home` → `progress_notes()`: works listed in `WORK_TOTALS` (only `bhagavad-geeta`: 18) get
+"N of 18 chapters so far — more are added as the study continues." above their chapter list (owner's
+wording choice: no "soon"); it disappears once all chapters are on the site. Owner chose the Geeta only.
+
 ## Disclaimer and Credits
 
 `disclaimer/` page, built by `build.py home` (`build_static_pages`) from `_disclaimer_body.html`,

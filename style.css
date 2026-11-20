@@ -1363,3 +1363,7 @@ main.account .tr-actions .tr-set { font-size: .88rem; }
 .theme-pop-msg.ok strong { color: #2e7d32; }
 .theme-pop-msg.err { color: #b3261e; }
 @media print { .verse-theme { display: none !important; } }
+
+/* "4 of 18 chapters so far" on a work that is still growing (build.py progress_notes) */
+.work-progress { text-align: center; font-family: var(--read); color: var(--ink-soft); font-size: .95rem; margin: 0 auto .6rem; }
+.work-progress strong { color: var(--accent-strong); font-weight: 600; font-family: var(--read); }
