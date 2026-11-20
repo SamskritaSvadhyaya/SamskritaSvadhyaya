@@ -60,7 +60,10 @@ REF = re.compile(r"(?:\b([A-Za-z]{1,6})\.?\s*)?(\d{1,3}(?:\s*\.\s*\d{1,3}){0,2})
 
 
 def slugify(s):
-    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-") or "theme"
+    s = re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-") or "theme"
+    if len(s) > 60:                                     # a sentence-long heading: keep the address short
+        s = s[:61].rsplit("-", 1)[0]
+    return s
 
 
 def label_of(word):
@@ -117,7 +120,7 @@ def parse_doc(download):
 
     def is_bold_line(b):
         t = b.get_text(" ", strip=True)
-        if not t or len(t) > 90:
+        if not t or len(t) > 250:                         # a heading can be a whole sentence
             return False
         spans = [s for s in b.find_all("span") if s.get_text(strip=True)]
         return spans and all(re.search(r"font-weight\s*:\s*(700|bold)", s.get("style", "")) for s in spans)
