@@ -44,7 +44,8 @@
    "<li>Inner steadiness"
   ],
   "refs": [
-   "BG 2.47"
+   "BG 2.47",
+   "BG 2.51"
   ],
   "slug": "you-have-control-only-over-action-not-results"
  },
@@ -108,14 +109,25 @@
   "slug": "immortality-of-the-soul"
  },
  {
-  "title": "The pleasure and pain we feel is due to our association with our senses and they are temporary",
+  "title": "The dualities we feel is due to our association with our senses and they are temporary",
+  "intro": [],
+  "refs": [],
+  "slug": "the-dualities-we-feel-is-due-to-our-association-with-our"
+ },
+ {
+  "title": "Dualities",
   "intro": [
-   "“Learn to be an observer and not a participator”"
+   "<li>Pleasure and pain",
+   "<li>Success and failure",
+   "<li>Heat and cold",
+   "<li>Praise and insult",
+   "“Be steady. Learn to be an observer and not a participator”"
   ],
   "refs": [
-   "BG 2.14"
+   "BG 2.14",
+   "BG 2.48"
   ],
-  "slug": "the-pleasure-and-pain-we-feel-is-due-to-our-association-with"
+  "slug": "dualities"
  },
  {
   "title": "Death is inevitable to the one who is born",
