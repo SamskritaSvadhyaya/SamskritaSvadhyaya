@@ -7,7 +7,7 @@ title/mimeType/content) and works out where it goes from the document's title:
     "Dashaka N - <name>"        -> narayaneeyam/dashaka-N/        title "Dashaka N", description <name>
     "Sundarakanda Sarga N"      -> thestoryofhanuman/sundarakanda/sarga-N/
     "KK - Sarga N - [<name>]"   -> thestoryofhanuman/kishkindhakanda/sarga-N/
-    "Yudhdhakanda - Sarga N..." -> thestoryofhanuman/yudhdhakanda/sarga-N/
+    "Yuddhakanda - Sarga N..." (older spelling "Yudhdhakanda" also works) -> thestoryofhanuman/yudhdhakanda/sarga-N/
 
 The chapter's name (Narayaneeyam: from the document title) and its description
 (the subject line under the heading) are refreshed from the document every time,

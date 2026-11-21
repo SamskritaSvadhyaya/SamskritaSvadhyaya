@@ -22,7 +22,7 @@ Static site of Sanskrit texts, published with GitHub Pages.
 ## Layout
 
 - `texts.json` — manifest. Top-level entries: `raghuvamsha` (work), `ganapati-atharvashirsha`
-  (text), `thestoryofhanuman` (parent: Kishkindhakanda/Sundarakanda/Yudhdhakanda sargas),
+  (text), `thestoryofhanuman` (parent: Kishkindhakanda/Sundarakanda/Yuddhakanda sargas (Yuddhakanda keeps the URL slug `yudhdhakanda` - its old spelling - so links, bookmarks and notes keep working)),
   `shrimad-bhagavatam-canto-10` (parent: `book-1` पूर्वार्धः ch-1–49, `book-2` उत्तरार्धः
   ch-50–90; Drive folders "Book1 - …" / "Book2 - …" under "Shrimad Bhagavatam Canto 10", docs
   "श्रीमद्भागवतमहापुराणम् Ch.N"), `narayaneeyam` (work), `eclectic-collection` (work), `bhagavad-geeta` (work, `ch-N`).
@@ -33,7 +33,7 @@ Static site of Sanskrit texts, published with GitHub Pages.
   `work-index`, `parent-index`, `home`.
 - **`import-drive.py <download.json>`** — the standard way to (re-)upload one chapter from Drive:
   works out the target from the doc title (Dashaka N / Sundarakanda Sarga N / KK - Sarga N /
-  Yudhdhakanda - Sarga N), replaces the old page, refreshes the name (Narayaneeyam: the dashaka name from the doc
+  Yuddhakanda - Sarga N), replaces the old page, refreshes the name (Narayaneeyam: the dashaka name from the doc
   title, shown under the "Dashaka N" heading) and description from the doc, rebuilds indexes, home, SEO and sitemap. `--dry-run` shows
   what would change. Refuses withheld dashakas (release first) and unknown docs. Keep scratch
   files (diffs, staging) OUT of the repo — `*.diff` is gitignored after strays got published.
@@ -45,7 +45,7 @@ Static site of Sanskrit texts, published with GitHub Pages.
   JSON), `python sync-status.py <listing.json>` prints the pages whose doc changed since `synced`;
   re-import each. ALWAYS put the doc's `"id"` in the download JSON you hand to import-drive.py (it
   passes `--doc`, which refreshes `synced`); for pages built by hand use `build.py page ... --doc <id>`.
-  import-drive.py handles Narayaneeyam, Sundarakanda, KK, Yudhdhakanda ("Yudhdhakanda - Sarga N [...]"),
+  import-drive.py handles Narayaneeyam, Sundarakanda, KK, Yuddhakanda ("Yuddhakanda - Sarga N [...]"; old spelling Yudhdhakanda also matches),
   Bhagavatam and Bhagavad Geeta ("BG-N <yoga>", new chapters allowed); Raghuvamsha, the Eclectic
   Collection sarga and Ganapati are rebuilt by hand.
 - **`update-website.py` — the owner's one-click updater** (desktop shortcut "Update website" runs it with
@@ -81,7 +81,7 @@ Static site of Sanskrit texts, published with GitHub Pages.
   all 100 — run `release.py hold narayaneeyam --after <n>` afterwards.
 - Previous / Next buttons at the bottom of every chapter page: `build.py home` (`chapter_nav`)
   rewrites a `<!-- chapter-nav -->` block after `</main>` on each chapter, in texts.json order,
-  running on across a parent's works (Kishkindhakanda → Sundarakanda → Yudhdhakanda; Book 1 →
+  running on across a parent's works (Kishkindhakanda → Sundarakanda → Yuddhakanda; Book 1 →
   Book 2). Automatic for new/re-imported chapters; stable on re-runs.
   script.js builds from that block: fixed side arrows ‹ › (screens ≥1000px, hover label), a
   ‹ Previous · All · Next › row under the heading (narrower screens), and the ← / → keys.
@@ -118,7 +118,7 @@ the first address `bhagavad-geeta/themes/…` is rebuilt as redirect stubs). Sou
 Google Doc "Geeta Themes" in the Bhagavad Geeta Drive folder: each theme is a heading (or a bold
 line), optional intro lines and "This teaches:" bullets, then "Shlokas: …" (a list may run onto the
 next line). Each number may carry a text label: BG (default; a bare number = Geeta), N (Narayaneeyam
-32.4), SB (10.11.5 or 11.5), SK/KK/YK (5.38.33 or 38.33; KK 28.x = the Eclectic Collection sarga),
+32.4), SB (10.11.5 or 11.5), SK/KK/YK (YK = Yuddhakanda) (5.38.33 or 38.33; KK 28.x = the Eclectic Collection sarga),
 VR (any full Ramayana number), RV (Raghuvamsha), GA (Ganapati); an unlabelled number takes the
 label before it on the same line; ranges "9.26-27". Update with `python themes.py import
 <download.json>` (-> `themes.json`, commit it; prints "!" lines for unknown labels/odd numbers) then

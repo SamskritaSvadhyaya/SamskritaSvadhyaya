@@ -219,7 +219,7 @@
   } catch {}
 
   // ---- Header "Go to shloka": text -> chapter -> shloka ----
-  const VERSES_VERSION = 'ae84f0bbfb';
+  const VERSES_VERSION = 'cba5b11e14';
   (() => {
     const controls = document.querySelector('.controls');
     const header = document.querySelector('.site-header');

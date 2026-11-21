@@ -6,7 +6,7 @@ In Google Docs: File -> Download -> Web page (.html, zipped). Then double-click
 it works out which page each doc is, rebuilds the site and publishes it.
 
 Knows: every chapter import-drive.py knows (Narayaneeyam, Sundarakanda, KK,
-Yudhdhakanda, Bhagavatam, Bhagavad Geeta), Raghuvamsha sargas, the Eclectic
+Yuddhakanda, Bhagavatam, Bhagavad Geeta), Raghuvamsha sargas, the Eclectic
 Collection's KK Sarga 28, Shri Ganapati Atharvashirsha, "Geeta Themes" and
 "Disclaimer and Credits". The doc is recognised by its file name (= the doc title).
 

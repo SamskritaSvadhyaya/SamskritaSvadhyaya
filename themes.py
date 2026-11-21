@@ -12,7 +12,7 @@ Source: the owner's Google Doc "Geeta Themes" (Drive folder "Bhagavad Geeta"; an
   BG  Bhagavad Geeta (the default: a number with no label is a Geeta shloka)
   N   Narayaneeyam                    32.4  (dashaka.shloka)
   SB  Shrimad Bhagavatam Canto 10     10.11.5 or 11.5
-  SK  Sundarakanda                    5.38.33 or 38.33     (KK = Kishkindhakanda, YK = Yudhdhakanda,
+  SK  Sundarakanda                    5.38.33 or 38.33     (KK = Kishkindhakanda, YK = Yuddhakanda,
   VR  any Valmiki Ramayana number     5.38.33)             KK 28.x finds the Eclectic Collection sarga)
   RV  Raghuvamsha                     12.3
   GA  Shri Ganapati Atharvashirsha    5

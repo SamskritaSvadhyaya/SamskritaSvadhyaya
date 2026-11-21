@@ -604,7 +604,7 @@ def progress_notes():
 def chapter_nav():
     """Previous / Next buttons at the bottom of every chapter page, in texts.json order.
     Within a parent collection the sequence runs on across its works (Kishkindhakanda ->
-    Sundarakanda -> Yudhdhakanda; Book 1 -> Book 2). Rewritten on every build, so new or
+    Sundarakanda -> Yuddhakanda; Book 1 -> Book 2). Rewritten on every build, so new or
     re-imported chapters always get correct links."""
     import os
 
@@ -787,7 +787,7 @@ def tracker_tag():
 
     def count_shlokas(nums):
         # Shlokas on the page. A full sarga numbers every verse (a missing number or two still
-        # means the highest number is the count); a selection (e.g. Yudhdhakanda 101) is counted.
+        # means the highest number is the count); a selection (e.g. Yuddhakanda 101) is counted.
         if not nums:
             return ""
         n, top = len(set(nums)), max(nums)
