@@ -29,6 +29,8 @@ from google.auth.transport.requests import Request
 ROOT = Path(__file__).resolve().parent
 STATE = ROOT / "drive-sync.json"
 API = "https://www.googleapis.com/drive/v3"
+# Website pages that are not chapters (no shlokas, not in texts.json): always handled.
+SPECIAL = re.compile(r"(Geeta\s+)?Themes$|Disclaimer\s+and\s+Credits$", re.I)
 
 spec = importlib.util.spec_from_file_location("updater", ROOT / "update-website.py")
 uw = importlib.util.module_from_spec(spec)
@@ -125,8 +127,7 @@ def main():
         print("Every page already matches its Google Doc - nothing to update.")
     done, skipped = [], []
     if dry:                                                       # the check: website pages first
-        special = re.compile(r"(Geeta\s+)?Themes$|Disclaimer\s+and\s+Credits$", re.I)
-        pages = [d for d in todo if d["id"] in synced or special.match(d["name"].strip())]
+        pages = [d for d in todo if d["id"] in synced or SPECIAL.match(d["name"].strip())]
         others = [d for d in todo if d not in pages]
         print("\nWEBSITE PAGES whose doc was edited - these will be updated:")
         for d in pages:
@@ -141,7 +142,7 @@ def main():
         title = re.sub(r'[\\/:*?"<>|]', " ", d["name"]).strip()
         r = s.get(f"{API}/files/{d['id']}/export", params={"mimeType": "text/html"})
         r.raise_for_status()
-        if d["id"] not in synced and "॥".encode() not in r.content:
+        if d["id"] not in synced and not SPECIAL.match(d["name"].strip()) and "॥".encode() not in r.content:
             skipped.append(d["name"])                             # not a page yet and no shlokas yet (an empty
             continue                                              # BG-N doc, notes): never made into a page
         with tempfile.TemporaryDirectory() as tmp:
