@@ -1278,10 +1278,19 @@ async function adminPanel(el) {
   try { snap = await getDocs(collection(db, 'subscribers')); } catch { return; }
   const rows = snap.docs.map(d => d.data()).sort((a, b) => (a.at?.seconds || 0) - (b.at?.seconds || 0));
   UI.markOwner && UI.markOwner();
-  el.innerHTML = `<section class="acct-section acct-small"><h2>Site owner</h2>
+  // Everything for the site owner sits in one folded "Admin" box at the end of the page (owner's
+  // request), so the page itself shows only her own reading: notes, bookmarks, progress. Open/closed
+  // is remembered in this browser.
+  const panel = document.createElement('details');
+  panel.className = 'acct-admin-panel';
+  try { panel.open = localStorage.getItem('ss-admin-open') === '1'; } catch {}
+  panel.addEventListener('toggle', () => { try { localStorage.setItem('ss-admin-open', panel.open ? '1' : '0'); } catch {} });
+  panel.innerHTML = `<summary>Admin <span class="acct-count">only you see this</span></summary>
+    <div class="acct-admin-body"><section class="acct-section acct-small"><h2>Announcements</h2>
     <p>Announcements list: <strong>${rows.length}</strong> reader${rows.length === 1 ? '' : 's'} opted in.</p>
-    <button type="button" class="acct-secondary">Download list (CSV)</button></section>`;
-  el.querySelector('button').addEventListener('click', () => {
+    <button type="button" class="acct-secondary">Download list (CSV)</button></section></div>`;
+  (el.closest('.acct-small-row') || el).after(panel);
+  panel.querySelector('button').addEventListener('click', () => {
     const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
     const csv = 'Name,Email,Joined\r\n' + rows.map(r => [r.name, r.email, r.at ? new Date(r.at.seconds * 1000).toISOString().slice(0, 10) : ''].map(q).join(',')).join('\r\n');
     const a = Object.assign(document.createElement('a'), {
@@ -1290,7 +1299,7 @@ async function adminPanel(el) {
     });
     a.click();
   });
-  membersPanel(el.closest('.acct-small-row') || el);
+  membersPanel(panel.querySelector('.acct-admin-body > section'));
 }
 
 // Site owner: who gets the study features (tracker, cycle-aware "Mark as studied"). The list is

@@ -209,6 +209,8 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   `config/study` (or is the site owner); each member has their own tracker in their own
   `users/{uid}`. firestore.rules has NO comments on purpose: comments broke when pasted into the
   console (line breaks lost) - copy it with PowerShell `Get-Content -Raw firestore.rules | Set-Clipboard`. Owner-only stays owner-only: the Site owner box and "Edit in Google Doc".
+  Account page: the owner's boxes (Announcements CSV + Study members) sit in one folded `<details class="acct-admin-panel">`
+  "Admin" at the end (account.js adminPanel; open/closed remembered in localStorage `ss-admin-open`), so the page shows her own reading first.
   For study members (owner included), a chapter's "Mark as studied" button is tied to the tracker (account.js
   readingPage `slot`/`trk`): it shows "○ Mark as studied · Cycle N" / "✓ Studied <date> · Cycle N"
   for the tab's latest cycle and writes today's date into that cell (click again to undo); a new
