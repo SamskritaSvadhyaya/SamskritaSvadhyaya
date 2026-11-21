@@ -58,6 +58,15 @@ Static site of Sanskrit texts, published with GitHub Pages.
   The browser zip has no doc id: import-drive.py then keeps the chapter's known `doc` (synced refreshed).
   Keep it working when adding texts/patterns. Her plain-English guide is the Google Doc
   "How to update the website without Claude".
+- **Phone button "Update website"** (`.github/workflows/update-website.yml`, run from the GitHub app: Actions ->
+  Update website -> Run workflow; tick "Only show which docs changed" for a check without publishing):
+  `drive-update.py` signs in to Drive as a Google service account (JSON key in the repo secret
+  `GDRIVE_SA_KEY`; the owner shares her Drive folders with that account's email as Viewer), lists every doc
+  it can see, re-imports each one edited since `drive-sync.json` (doc id -> modifiedTime handled) or, for
+  chapters, since texts.json `synced`, through update-website.py's `update_one` (same routing as the laptop
+  button; the doc id is passed in), skips docs it doesn't recognise, runs `build.py home`; the workflow
+  commits (no attribution), pushes and requests a Pages build. It publishes EVERY doc edited since its page
+  was made. Keep drive-sync.json committed.
 - Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
   "Shri Ganapati Atharvashirsha" in folder "Shri Ganapati Collection". Update with
   `gdoc_to_body.py <json> <tmp-media>` then `build.py page --slug ganapati-atharvashirsha --title

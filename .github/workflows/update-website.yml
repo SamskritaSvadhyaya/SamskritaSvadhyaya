@@ -1,0 +1,64 @@
+# The owner's "Update website" button for the phone (GitHub app: Actions -> Update website -> Run workflow).
+# Re-imports every Google Doc edited since it was last put on the website (drive-update.py), then publishes.
+name: Update website
+
+on:
+  workflow_dispatch:
+    inputs:
+      check_only:
+        description: "Only show which docs changed (publish nothing)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: update-website
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install beautifulsoup4 google-auth requests
+
+      - name: Check Google Drive
+        if: ${{ inputs.check_only }}
+        env:
+          GDRIVE_SA_KEY: ${{ secrets.GDRIVE_SA_KEY }}
+          PYTHONIOENCODING: utf-8
+        run: python drive-update.py --dry-run
+
+      - name: Update from Google Drive
+        id: update
+        if: ${{ !inputs.check_only }}
+        env:
+          GDRIVE_SA_KEY: ${{ secrets.GDRIVE_SA_KEY }}
+          PYTHONIOENCODING: utf-8
+        run: python drive-update.py
+
+      - name: Publish
+        if: ${{ !inputs.check_only }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SUMMARY: ${{ steps.update.outputs.summary }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then echo "Nothing changed."; exit 0; fi
+          git config user.name "Samskrita Svadhyaya"
+          git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Update from Google Docs (phone): $SUMMARY"
+          git push -q
+          # A push made from here does not always start the GitHub Pages build by itself.
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" > /dev/null || true
+          echo "Published: $SUMMARY"
