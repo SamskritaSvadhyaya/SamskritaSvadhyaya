@@ -77,6 +77,22 @@ def chapter_synced():
     return out
 
 
+def page_docs():
+    """{page path: doc id} for every page made from a doc."""
+    out = {}
+    for e in json.loads((ROOT / "texts.json").read_text(encoding="utf-8")):
+        if e.get("doc"):
+            out[e["slug"]] = e["doc"]
+        for w in e.get("works", []):
+            for c in w.get("chapters", []):
+                if c.get("doc"):
+                    out[f"{e['slug']}/{w['slug']}/{c['slug']}"] = c["doc"]
+        for c in e.get("chapters", []):
+            if c.get("doc"):
+                out[f"{e['slug']}/{c['slug']}"] = c["doc"]
+    return out
+
+
 def norm(t):                    # "2026-11-21T19:07:31.102Z" / "2026-11-21T19:07:31Z" -> comparable
     return (t or "")[:19]
 
@@ -92,6 +108,13 @@ def main():
     synced = chapter_synced()
     docs = all_docs(s)
     print(f"Google Drive ({who}): {len(docs)} docs shared with the website.")
+    unseen = set(synced) - {d["id"] for d in docs}
+    if unseen:                       # e.g. a doc moved into a folder that is not shared with the robot
+        print(f"\nWARNING: {len(unseen)} website page(s) have a doc the button cannot see (moved to a folder not"
+              " shared with it?) - they are not updated from the phone:")
+        for path, doc in sorted(page_docs().items()):
+            if doc in unseen:
+                print("   " + path)
     todo = []
     for d in docs:
         seen = state.get(d["id"]) or synced.get(d["id"])
