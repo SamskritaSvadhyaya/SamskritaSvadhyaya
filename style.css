@@ -1373,3 +1373,6 @@ html:not(.ss-themes) .themes-link, html:not(.ss-themes) .themes-nav, html:not(.s
 html.owner-only-page:not(.ss-themes) .hero, html.owner-only-page:not(.ss-themes) main.content > * { display: none !important; }
 html.owner-only-page:not(.ss-themes) main.content::before { content: "This page is not available."; display: block;
   text-align: center; font-family: var(--read); color: var(--ink-soft); padding: 3rem 1rem; }
+
+/* Copyright + licence line in the footer (script.js) */
+.site-footer .footer-copy { margin-top: .5rem; font-size: .82rem; }

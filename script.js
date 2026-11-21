@@ -413,6 +413,10 @@
   if (foot) {
     foot.insertAdjacentHTML('beforeend', ' · <a href="' + base + 'privacy/">Privacy</a>'
       + ' · <a href="' + base + 'disclaimer/">Disclaimer and Credits</a>');
+    // Copyright + licence (owner's request 2026-11-20): free for study, with credit, not for sale.
+    foot.insertAdjacentHTML('afterend', '<div class="footer-copy">© 2025–' + Math.max(2026, new Date().getFullYear())
+      + ' Samskrita Svadhyaya. Free to use for personal study, with credit. '
+      + '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></div>');
   }
 
   const renderSignedOut = () => {

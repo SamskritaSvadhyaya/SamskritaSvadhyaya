@@ -150,6 +150,12 @@ Google Docs API enabled in Google Cloud project samskrita-svadhyaya. THEMES_DOC 
 "N of 18 chapters so far — more are added as the study continues." above their chapter list (owner's
 wording choice: no "soon"); it disappears once all chapters are on the site. Owner chose the Geeta only.
 
+## Copyright and licence
+
+Owner's choice (2026-11-20), named "Samskrita Svadhyaya" (not her own name): script.js adds a footer line
+on every page, "© 2025–<year> Samskrita Svadhyaya. Free to use for personal study, with credit. CC BY-NC-SA 4.0"
+(year updates itself); `LICENSE.md` in the repo states the same licence.
+
 ## Disclaimer and Credits
 
 `disclaimer/` page, built by `build.py home` (`build_static_pages`) from `_disclaimer_body.html`,
