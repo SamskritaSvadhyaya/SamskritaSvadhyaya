@@ -1233,7 +1233,8 @@ main.account .tr-actions .acct-secondary { font-size: .88rem; padding: .35rem .9
 .controls .tracker-link.is-current { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* ---------- Header "Go to shloka" (text -> chapter -> shloka) ---------- */
-.controls .jump-link[aria-expanded="true"] { color: var(--accent-strong); border-color: var(--accent); }
+.controls .jump-link[aria-expanded="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.controls .jump-link[aria-expanded="true"]:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: #fff; }
 .jump-panel { border-top: 1px solid var(--rule); }
 .jump-panel[hidden] { display: none; }
 .jump-inner { max-width: var(--content-width); margin: 0 auto; padding: .6rem 1rem .75rem;
