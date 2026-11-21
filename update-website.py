@@ -155,7 +155,11 @@ def disclaimer_body(data):
             if text.strip() and re.search(r"font-weight:\s*(700|bold)", span.get("style", "")):
                 text = f"<strong>{text.strip()}</strong>"
             out.append(text)
-        return re.sub(r"\s+", " ", "".join(out).replace("\xa0", " ")).strip()
+        text = re.sub(r"\s+", " ", "".join(out).replace("\xa0", " ")).strip()
+        # Google splits one link into pieces (e.g. a linked space + the linked words): join them,
+        # and keep a space at the start of a link outside it.
+        text = re.sub(r'(<a href="[^"]*"[^>]*>)([^<]*)</a>\1', r"\1\2", text)
+        return re.sub(r'(<a [^>]*>) +', r" \1", text).replace("  <a", " <a")
 
     blocks = []                                                # (kind, html)
     for el in body.find_all(["p", "ol", "ul"], recursive=False):

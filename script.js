@@ -12,6 +12,11 @@
 
   // ---- Theme (dark/light) ----
   const themeBtn = document.getElementById('toggle-theme');
+  // Hover descriptions for the header buttons (owner's request); the page files carry older short ones.
+  const tip = (sel, text) => { const el = document.querySelector(sel); if (el) el.title = text; };
+  tip('.controls .home-link', 'Home page: all the texts on this website');
+  tip('#size-down', 'Make the reading text smaller');
+  tip('#size-up', 'Make the reading text bigger');
   const root = document.documentElement;
 
   function applyTheme(theme) {
@@ -19,10 +24,12 @@
       root.setAttribute('data-theme', 'dark');
       themeBtn.setAttribute('aria-pressed', 'true');
       themeBtn.textContent = '☀ Light';
+      themeBtn.title = 'Switch to light colours (dark text on a light page)';
     } else {
       root.removeAttribute('data-theme');
       themeBtn.setAttribute('aria-pressed', 'false');
       themeBtn.textContent = '☾ Dark';
+      themeBtn.title = 'Switch to dark colours (light text on a dark page), easier on the eyes at night';
     }
   }
 
@@ -227,6 +234,7 @@
     link.className = 'home-link jump-link';
     link.href = '#';
     link.textContent = 'Go to shloka';
+    link.title = 'Jump straight to any shloka: choose the text, chapter and shloka number';
     link.setAttribute('aria-expanded', 'false');
     textsLink.after(link);
     // "Themes" (themes.py pages: shlokas on one idea across the texts), next to "Go to shloka".
@@ -234,6 +242,7 @@
     themesLink.className = 'home-link themes-nav';
     themesLink.href = siteBase + 'themes/';
     themesLink.textContent = 'Themes';
+    themesLink.title = 'Shlokas on the same idea, gathered across chapters and texts';
     if (here === 'themes/' || here.startsWith('themes/')) themesLink.setAttribute('aria-current', 'page');
     link.after(themesLink);
     const panel = document.createElement('div');
@@ -339,7 +348,10 @@
   const acctLink = document.createElement('a');
   acctLink.className = 'home-link account-link';
   acctLink.href = base + 'account/' + (isAccountPage || !path ? '' : '?next=' + encodeURIComponent(path));
+  const acctTip = on => on ? 'Your account: bookmarks, studied chapters, notes and favourite shlokas'
+    : 'Sign in to bookmark pages, mark chapters as studied and keep your own notes';
   acctLink.textContent = flagged() ? 'Account' : 'Sign in';
+  acctLink.title = acctTip(flagged());
   if (controls) controls.insertBefore(acctLink, controls.querySelector('button'));
 
   // Header "Signed in as <name>" + "Sign out", shown on every page while signed in.
@@ -384,6 +396,7 @@
     trackerLink.className = 'home-link tracker-link';
     trackerLink.href = base + 'tracker/';
     trackerLink.textContent = 'Tracker';
+    trackerLink.title = 'Study tracker: the dates each chapter was studied, cycle by cycle';
     acctLink.before(trackerLink);
     return trackerLink;
   };
@@ -435,6 +448,7 @@
       try { user ? localStorage.setItem(AUTH_FLAG, '1') : (localStorage.removeItem(AUTH_FLAG), localStorage.removeItem('ss-owner'), localStorage.removeItem('ss-study'), sessionStorage.removeItem('ss-study')); } catch {}
       if (!user) setOwnerClass(false);
       acctLink.textContent = user ? 'Account' : 'Sign in';
+      acctLink.title = acctTip(user);
       if (user) acctLink.href = base + 'account/';
       outBtn.hidden = whoEl.hidden = !user;
       const name = user ? (user.displayName || user.email || '') : '';
