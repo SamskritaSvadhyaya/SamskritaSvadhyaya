@@ -182,7 +182,8 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   the new position (verses map rewritten with updateDoc, so no duplicates); a shloka = centred Devanagari block followed by a
   left-aligned meaning paragraph; `mark: {n, t}` = the shloka the reader ribboned as "I stopped
   here" + `markAt`, also copied into `lastPage.mark`; home + Account list the latest mark per
-  top-level text ("Where I stopped", links `#mark`)), `subscribers/{uid}` (announcements list;
+  top-level text ("Where I stopped", links `#mark`); the home-page box (continue / where I stopped /
+  bookmarks link, account.js `homeContinue`) is switched OFF at the owner's request - the Account page is enough), `subscribers/{uid}` (announcements list;
   the site owner gets a CSV download button on the Account page).
 - Progress box shows only bars per text ("N of TOTAL studied" / "completed"); the earlier
   reading-cycles and past-readings features were removed at the owner's request (Nov 2026).

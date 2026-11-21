@@ -1541,6 +1541,7 @@ if (UI.isTrackerPage) {
     checkStudier();                                 // study members get the Tracker button on any page
     if (UI.studyBar) readingPage(user);
     markIndex(user).catch(() => {});
-    homeContinue(user).catch(() => {});
+    // (home-page "Continue where you left off" box removed at the owner's request 2026-11-20: the
+    // Account page has the same - continue, where I stopped, bookmarks. homeContinue() kept for a revert.)
   });
 }
