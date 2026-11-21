@@ -388,7 +388,8 @@
     return trackerLink;
   };
   try { if (flagged() && (localStorage.getItem('ss-study') === '1' || localStorage.getItem('ss-owner') === '1')) addTrackerLink(); } catch {}
-  const current = isTrackerPage ? trackerLink : isAccountPage ? acctLink : (['privacy', 'disclaimer'].includes(here) ? null : textsLink);
+  const current = isTrackerPage ? trackerLink : isAccountPage ? acctLink : here === 'themes' ? controls?.querySelector('.themes-nav')
+    : (['privacy', 'disclaimer'].includes(here) ? null : textsLink);
   if (current) { current.classList.add('is-current'); current.setAttribute('aria-current', 'page'); }   // (no "Signed in as …" in the header, at the owner's request)
 
   // A readable page (chapter, sarga, dashaka, single text) — not an index or the account page.
