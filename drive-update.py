@@ -113,7 +113,7 @@ def main():
             try:
                 done.append(uw.update_one(path, print))
             except uw.Problem as e:
-                if "Don't know which page" not in str(e):
+                if not re.search(r"Don't know which page|not on the website yet", str(e)):
                     raise                                         # a real failure: stop, publish nothing
                 skipped.append(d["name"])
             finally:
