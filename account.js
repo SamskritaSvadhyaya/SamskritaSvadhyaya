@@ -1278,6 +1278,9 @@ async function adminPanel(el) {
   try { snap = await getDocs(collection(db, 'subscribers')); } catch { return; }
   const rows = snap.docs.map(d => d.data()).sort((a, b) => (a.at?.seconds || 0) - (b.at?.seconds || 0));
   UI.markOwner && UI.markOwner();
+  // The owner sends the announcements, so no "Email me when new chapters are released" for her.
+  const mine = el.closest('.acct-small-row')?.querySelector('.acct-small');
+  mine?.querySelectorAll('.acct-check, .acct-saved').forEach(x => x.remove());
   // Everything for the site owner sits in one folded "Admin" box at the end of the page (owner's
   // request), so the page itself shows only her own reading: notes, bookmarks, progress. Open/closed
   // is remembered in this browser.
