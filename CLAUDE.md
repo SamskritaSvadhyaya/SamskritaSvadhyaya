@@ -66,7 +66,9 @@ Static site of Sanskrit texts, published with GitHub Pages.
   chapters, since texts.json `synced`, through update-website.py's `update_one` (same routing as the laptop
   button; the doc id is passed in), skips docs it doesn't recognise, runs `build.py home`; the workflow
   commits (no attribution), pushes and requests a Pages build. It publishes EVERY doc edited since its page
-  was made. Keep drive-sync.json committed.
+  was made. NEW chapters only with the tick-box "Also add new chapters" (env SS_ALLOW_NEW; otherwise it sets
+  SS_NO_NEW_CHAPTERS, which import-drive.py obeys), and never from a doc without any ॥ (empty BG-N docs).
+  Skipped docs are not recorded, so they are checked again next time. Keep drive-sync.json committed.
 - Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
   "Shri Ganapati Atharvashirsha" in folder "Shri Ganapati Collection". Update with
   `gdoc_to_body.py <json> <tmp-media>` then `build.py page --slug ganapati-atharvashirsha --title
