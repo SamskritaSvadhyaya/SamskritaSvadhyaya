@@ -36,7 +36,7 @@ spec.loader.exec_module(uw)
 
 
 def session():
-    info = json.loads(os.environ["GDRIVE_SA_KEY"])
+    info = json.loads(os.environ["GDRIVE_SA_KEY"].lstrip("Feff").strip())
     creds = service_account.Credentials.from_service_account_info(
         info, scopes=["https://www.googleapis.com/auth/drive.readonly"])
     creds.refresh(Request())
