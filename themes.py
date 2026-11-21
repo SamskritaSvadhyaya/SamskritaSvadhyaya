@@ -390,13 +390,11 @@ LINK = re.compile(r"\s*<!-- themes-link -->.*?<!-- /themes-link -->", re.S)
 
 
 def _links(on):
-    """"Themes" link on the Bhagavad Geeta page. (The home page one, under the texts, was removed at the
-    owner's request 2026-11-20 - the header has a Themes button; LINK.sub still clears it from index.html.)"""
+    """Clears the old "Themes" links from the home page and the Bhagavad Geeta page: removed at the
+    owner's request 2026-11-20 (the header has a Themes button). Give a spot a link to bring one back."""
     spots = [
         (ROOT / "index.html", "<!-- home-themes -->", None),
-        (ROOT / "bhagavad-geeta" / "index.html", '<div class="chapter-grid">',
-         '<p class="themes-link"><a href="../themes/">Themes</a> — shlokas on the same idea, '
-         'gathered across chapters and texts</p>'),
+        (ROOT / "bhagavad-geeta" / "index.html", '<div class="chapter-grid">', None),
     ]
     for page, anchor, link in spots:
         if not page.exists():

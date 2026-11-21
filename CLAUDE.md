@@ -126,7 +126,7 @@ label before it on the same line; ranges "9.26-27". Update with `python themes.p
 printed-number prefix). Pages show each shloka + its "Simple meaning" paragraph, grouped by text,
 linked to the chapter; shlokas of unpublished chapters are left out. Chapter pages of any text get
 `<script id="shloka-themes">` (script.js shows "Theme: …", links via the header's home-link base).
-"Themes" links: the header button (every page) and the Geeta page (the home-page link under the texts was removed at the owner's request).
+"Themes" link: only the header button (every page); the home-page and Geeta-page links were removed at the owner's request.
 The update button (update-website.py) accepts a doc titled "Geeta Themes" or "Themes".
 No themes.json = no theme pages.
 **Owner + study members only for now (owner's choice 2026-11-20; she may open it to everyone later)**: themes.py
