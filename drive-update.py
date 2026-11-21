@@ -101,11 +101,21 @@ def main():
     if not todo:
         print("Every page already matches its Google Doc - nothing to update.")
     done, skipped = [], []
+    if dry:                                                       # the check: website pages first
+        special = re.compile(r"(Geeta\s+)?Themes$|Disclaimer\s+and\s+Credits$", re.I)
+        pages = [d for d in todo if d["id"] in synced or special.match(d["name"].strip())]
+        others = [d for d in todo if d not in pages]
+        print("\nWEBSITE PAGES whose doc was edited - these will be updated:")
+        for d in pages:
+            print(f"   {d['name'].strip()}   (edited {d['modifiedTime'][:10]})")
+        if not pages:
+            print("   none - every page matches its doc")
+        print("\nOther docs edited (not on the website - skipped; a new chapter is added only with"
+              " 'Also add new chapters' ticked and only if it has shlokas):")
+        print("   " + ("; ".join(d["name"].strip() for d in others) or "none"))
+        return
     for d in todo:
         title = re.sub(r'[\\/:*?"<>|]', " ", d["name"]).strip()
-        if dry:
-            print(f"edited since last update: {d['name']}  ({d['modifiedTime'][:10]})")
-            continue
         r = s.get(f"{API}/files/{d['id']}/export", params={"mimeType": "text/html"})
         r.raise_for_status()
         if d["id"] not in synced and "॥".encode() not in r.content:
