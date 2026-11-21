@@ -390,11 +390,10 @@ LINK = re.compile(r"\s*<!-- themes-link -->.*?<!-- /themes-link -->", re.S)
 
 
 def _links(on):
-    """"Themes" links: on the home page (under the texts) and on the Bhagavad Geeta page."""
+    """"Themes" link on the Bhagavad Geeta page. (The home page one, under the texts, was removed at the
+    owner's request 2026-11-20 - the header has a Themes button; LINK.sub still clears it from index.html.)"""
     spots = [
-        (ROOT / "index.html", "<!-- home-themes -->",
-         '<p class="themes-link home-themes"><a href="themes/">Themes</a> — shlokas on the same idea, '
-         'gathered across the texts</p>'),
+        (ROOT / "index.html", "<!-- home-themes -->", None),
         (ROOT / "bhagavad-geeta" / "index.html", '<div class="chapter-grid">',
          '<p class="themes-link"><a href="../themes/">Themes</a> — shlokas on the same idea, '
          'gathered across chapters and texts</p>'),
@@ -404,7 +403,7 @@ def _links(on):
             continue
         text = page.read_text(encoding="utf-8")
         new = LINK.sub("", text)
-        if on and anchor in new:
+        if on and link and anchor in new:
             block = f"<!-- themes-link -->{link}<!-- /themes-link -->"
             new = new.replace(anchor, (anchor + block) if anchor.startswith("<!--") else (block + "\n    " + anchor), 1)
         if new != text:
