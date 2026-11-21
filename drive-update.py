@@ -84,6 +84,9 @@ def norm(t):                    # "2026-11-21T19:07:31.102Z" / "2026-11-21T19:07
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     dry = "--dry-run" in sys.argv
+    allow_new = bool(os.environ.get("SS_ALLOW_NEW"))     # workflow tick-box "Also add new chapters"
+    if not allow_new:
+        uw.ENV["SS_NO_NEW_CHAPTERS"] = "1"                # import-drive.py then refuses new chapters
     s, who = session()
     state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
     synced = chapter_synced()
@@ -101,10 +104,13 @@ def main():
     for d in todo:
         title = re.sub(r'[\\/:*?"<>|]', " ", d["name"]).strip()
         if dry:
-            print(f"would check: {d['name']}  (edited {d['modifiedTime']})")
+            print(f"edited since last update: {d['name']}  ({d['modifiedTime'][:10]})")
             continue
         r = s.get(f"{API}/files/{d['id']}/export", params={"mimeType": "text/html"})
         r.raise_for_status()
+        if d["id"] not in synced and "॥".encode() not in r.content:
+            skipped.append(d["name"])                             # not a page yet and no shlokas yet (an empty
+            continue                                              # BG-N doc, notes): never made into a page
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / f"{title}.html"
             path.write_bytes(r.content)
@@ -115,17 +121,17 @@ def main():
             except uw.Problem as e:
                 if not re.search(r"Don't know which page|not on the website yet", str(e)):
                     raise                                         # a real failure: stop, publish nothing
-                skipped.append(d["name"])
+                skipped.append(d["name"])                         # not recorded: checked again next time
+                continue
             finally:
                 uw.wrap = real_wrap
         state[d["id"]] = d["modifiedTime"]
     if dry:
         return
-    for d in docs:                                                # remember every doc as handled
-        state.setdefault(d["id"], d["modifiedTime"])
     STATE.write_text(json.dumps(dict(sorted(state.items())), indent=1) + "\n", encoding="utf-8")
     if skipped:
-        print("Not website pages (skipped): " + "; ".join(skipped))
+        print("Skipped (not a page on the website" + ("" if allow_new else ", or a new chapter - tick"
+              " 'Also add new chapters' to add those") + "): " + "; ".join(skipped))
     if done:
         print("Rebuilding the website…")
         uw.run("build.py", "home")

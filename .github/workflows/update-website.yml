@@ -9,6 +9,10 @@ on:
         description: "Only show which docs changed (publish nothing)"
         type: boolean
         default: false
+      add_new_chapters:
+        description: "Also add new chapters (e.g. a new Geeta chapter)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -45,6 +49,7 @@ jobs:
         env:
           GDRIVE_SA_KEY: ${{ secrets.GDRIVE_SA_KEY }}
           PYTHONIOENCODING: utf-8
+          SS_ALLOW_NEW: ${{ inputs.add_new_chapters && '1' || '' }}
         run: python drive-update.py
 
       - name: Publish

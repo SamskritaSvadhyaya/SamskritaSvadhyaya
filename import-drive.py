@@ -24,6 +24,7 @@ Usage:
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -86,7 +87,7 @@ def main():
         held = ROOT / "_unreleased" / f"{work}.json"
         if held.exists() and any(c["slug"] == slug for c in json.loads(held.read_text(encoding="utf-8"))):
             raise SystemExit(f"{work}/{slug} is still withheld; run `release.py next {work}` first.")
-        if work not in NEW_CHAPTERS_OK:
+        if work not in NEW_CHAPTERS_OK or os.environ.get("SS_NO_NEW_CHAPTERS"):   # phone button: only when asked
             raise SystemExit(f"{work}/{slug} is not on the site yet.")
 
     new_title = f"{unit_en} {n}"
