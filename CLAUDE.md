@@ -46,8 +46,11 @@ Static site of Sanskrit texts, published with GitHub Pages.
   re-import each. ALWAYS put the doc's `"id"` in the download JSON you hand to import-drive.py (it
   passes `--doc`, which refreshes `synced`); for pages built by hand use `build.py page ... --doc <id>`.
   import-drive.py handles Narayaneeyam, Sundarakanda, KK, Yuddhakanda ("Yuddhakanda - Sarga N [...]"; old spelling Yudhdhakanda also matches),
-  Bhagavatam and Bhagavad Geeta ("BG-N <yoga>", new chapters allowed); Raghuvamsha, the Eclectic
-  Collection sarga and Ganapati are rebuilt by hand.
+  Bhagavatam and Bhagavad Geeta ("BG-N <yoga>"); NEW chapters of every one of these are allowed
+  (within each work's number range, NEW_CHAPTERS_OK). Raghuvamsha (new sargas too: update-website.py),
+  the Eclectic Collection sarga and Ganapati are rebuilt by hand; "KK-Sarga N" (no space before the
+  hyphen, the Kavyakusumanjali copies) is refused unless N = 28, so it never lands in Kishkindhakanda.
+  A brand-new TEXT or kanda (new folder) is not automatic yet - the owner tells Claude.
 - **`update-website.py` — the owner's one-click updater** (desktop shortcut "Update website" runs it with
   pythonw): she downloads a doc via File -> Download -> Web page (.html, zipped), picks the zip(s) in the
   window; the doc is recognised by the FILE NAME (= doc title, " (1)" suffixes ignored) and routed to
@@ -67,7 +70,10 @@ Static site of Sanskrit texts, published with GitHub Pages.
   button; the doc id is passed in), skips docs it doesn't recognise, runs `build.py home`; the workflow
   commits (no attribution), pushes and requests a Pages build. It publishes EVERY doc edited since its page
   was made. NEW chapters only with the tick-box "Also add new chapters" (env SS_ALLOW_NEW; otherwise it sets
-  SS_NO_NEW_CHAPTERS, which import-drive.py obeys), and never from a doc without any ॥ (empty BG-N docs).
+  SS_NO_NEW_CHAPTERS, which import-drive.py and update-website.py's Raghuvamsha rule obey), never from a
+  doc without any ॥ (empty BG-N docs; Google's export may write it as `&#2405;`, so the check unescapes),
+  and only from a Drive folder that already holds a page's doc (notes and stray copies elsewhere never
+  become chapters; the check lists these as "Possible NEW chapters").
   Skipped docs are not recorded, so they are checked again next time. Keep drive-sync.json committed.
 - Shri Ganapati Atharvashirsha (standalone text, not handled by import-drive.py): Drive doc
   "Shri Ganapati Atharvashirsha" in folder "Shri Ganapati Collection". Update with

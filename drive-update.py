@@ -14,6 +14,7 @@ chapter's `synced` time in texts.json (if it is a chapter's doc), else handled o
     python drive-update.py            # needs GDRIVE_SA_KEY (the service account's JSON key)
     python drive-update.py --dry-run  # only list what would be updated
 """
+import html
 import importlib.util
 import json
 import os
@@ -52,7 +53,7 @@ def all_docs(s):
     while True:
         r = s.get(f"{API}/files", params={
             "q": "mimeType='application/vnd.google-apps.document' and trashed=false",
-            "fields": "nextPageToken, files(id, name, modifiedTime)", "pageSize": 1000,
+            "fields": "nextPageToken, files(id, name, modifiedTime, parents)", "pageSize": 1000,
             "includeItemsFromAllDrives": "true", "supportsAllDrives": "true",
             **({"pageToken": token} if token else {})})
         r.raise_for_status()
@@ -123,26 +124,38 @@ def main():
         if not seen or norm(d["modifiedTime"]) > norm(seen):
             todo.append(d)
     todo.sort(key=lambda d: d["modifiedTime"])
+    # A new chapter only from a folder that already holds a page's doc (its text's folder):
+    # a stray doc elsewhere (notes, a Kavyakusumanjali copy...) never becomes a chapter.
+    page_folders = {p for d in docs if d["id"] in synced for p in d.get("parents", [])}
+    stray = lambda d: (d["id"] not in synced and not SPECIAL.match(d["name"].strip())
+                       and not page_folders & set(d.get("parents", [])))
     if not todo:
         print("Every page already matches its Google Doc - nothing to update.")
     done, skipped = [], []
     if dry:                                                       # the check: website pages first
         pages = [d for d in todo if d["id"] in synced or SPECIAL.match(d["name"].strip())]
-        others = [d for d in todo if d not in pages]
+        new = [d for d in todo if d not in pages and not stray(d)]
+        others = [d for d in todo if d not in pages and d not in new]
         print("\nWEBSITE PAGES whose doc was edited - these will be updated:")
         for d in pages:
             print(f"   {d['name'].strip()}   (edited {d['modifiedTime'][:10]})")
         if not pages:
             print("   none - every page matches its doc")
-        print("\nOther docs edited (not on the website - skipped; a new chapter is added only with"
-              " 'Also add new chapters' ticked and only if it has shlokas):")
+        print("\nPossible NEW chapters (in a text's folder; added only with 'Also add new chapters' ticked"
+              " and only if the doc has shlokas):")
+        print("   " + ("; ".join(d["name"].strip() for d in new) or "none"))
+        print("\nOther docs edited (not in a website text's folder - skipped):")
         print("   " + ("; ".join(d["name"].strip() for d in others) or "none"))
         return
     for d in todo:
         title = re.sub(r'[\\/:*?"<>|]', " ", d["name"]).strip()
+        if stray(d):
+            skipped.append(d["name"])
+            continue
         r = s.get(f"{API}/files/{d['id']}/export", params={"mimeType": "text/html"})
         r.raise_for_status()
-        if d["id"] not in synced and not SPECIAL.match(d["name"].strip()) and "॥".encode() not in r.content:
+        if (d["id"] not in synced and not SPECIAL.match(d["name"].strip())       # ॥ may come as &#2405;
+                and "॥" not in html.unescape(r.content.decode("utf-8", "replace"))):
             skipped.append(d["name"])                             # not a page yet and no shlokas yet (an empty
             continue                                              # BG-N doc, notes): never made into a page
         with tempfile.TemporaryDirectory() as tmp:

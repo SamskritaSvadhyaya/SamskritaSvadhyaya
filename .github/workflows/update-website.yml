@@ -10,7 +10,7 @@ on:
         type: boolean
         default: false
       add_new_chapters:
-        description: "Also add new chapters (e.g. a new Geeta chapter)"
+        description: "Also add new chapters (to any text already on the site)"
         type: boolean
         default: false
 

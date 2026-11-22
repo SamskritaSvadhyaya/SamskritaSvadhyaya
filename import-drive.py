@@ -50,8 +50,8 @@ PATTERNS = [
     # Bhagavad Geeta docs: "BG-12 Bhakti Yoga" (the yoga's name becomes the description).
     (r"BG\s*-\s*(\d+)\s*(.*)", None, "bhagavad-geeta", "ch", "Chapter", "अध्यायः", True, (1, 18)),
 ]
-# Works whose chapters may be added for the first time by this script (the others only update).
-NEW_CHAPTERS_OK = {"bhagavad-geeta"}
+# Works whose chapters may be added for the first time by this script (within each work's number range).
+NEW_CHAPTERS_OK = {p[2] for p in PATTERNS}
 
 
 def run(*cmd, quiet=False):

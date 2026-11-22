@@ -6,7 +6,7 @@ In Google Docs: File -> Download -> Web page (.html, zipped). Then double-click
 it works out which page each doc is, rebuilds the site and publishes it.
 
 Knows: every chapter import-drive.py knows (Narayaneeyam, Sundarakanda, KK,
-Yuddhakanda, Bhagavatam, Bhagavad Geeta), Raghuvamsha sargas, the Eclectic
+Yuddhakanda, Bhagavatam, Bhagavad Geeta - new chapters too), Raghuvamsha sargas (new too), the Eclectic
 Collection's KK Sarga 28, Shri Ganapati Atharvashirsha, "Geeta Themes" and
 "Disclaimer and Credits". The doc is recognised by its file name (= the doc title).
 
@@ -212,8 +212,11 @@ def update_one(path, log):
         if m:
             n = int(m.group(1))
             c = next((c for c in entry("raghuvamsha").get("chapters", []) if c["n"] == n), None)
-            if c is None:
-                raise Problem(f"Raghuvamsha Sarga {n} is not on the website yet - adding a new sarga needs help.")
+            if c is None:                                         # a new sarga (phone button: only when asked)
+                if ENV.get("SS_NO_NEW_CHAPTERS"):
+                    raise Problem(f"Raghuvamsha Sarga {n} is not on the website yet.")
+                c = {"slug": f"sarga-{n}", "title": f"Sarga {n}", "title_sa": f"सर्गः {str(n).translate(DEV)}"}
+                log(f"  New sarga: Raghuvamsha Sarga {n}")
             j = wrap(title, data, tmp, c.get("doc"))
             run("build.py", "page", "--work", "raghuvamsha", "--slug", c["slug"], "--n", str(n),
                 "--title", c["title"], "--title-sa", c["title_sa"], "--body", body_from(j, tmp),
@@ -222,6 +225,10 @@ def update_one(path, log):
             log(f"  Raghuvamsha Sarga {n} updated.")
             return f"Raghuvamsha Sarga {n}"
 
+        m = re.match(r"KK-Sarga\s*(\d+)\b", title, re.I)            # "KK-Sarga N" (no space) = Kavyakusumanjali
+        if m and m.group(1) != "28":
+            raise Problem(f"Kavyakusumanjali {title.split(' - ')[0]} is not on the website yet"
+                          " - a new Kavyakusumanjali chapter needs help.")
         if re.match(r"KK\s*-\s*Sarga\s*28\b", title, re.I):          # lives in the Eclectic Collection
             c = next(c for c in entry("eclectic-collection")["chapters"] if c["slug"] == "kishkindhakanda-sarga-28")
             j = wrap(title, data, tmp, c.get("doc"))
