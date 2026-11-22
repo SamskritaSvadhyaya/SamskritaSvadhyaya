@@ -21,6 +21,7 @@ import os
 import re
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 import requests
@@ -61,6 +62,16 @@ def all_docs(s):
         token = r.json().get("nextPageToken")
         if not token:
             return docs
+
+
+def export(s, doc_id):
+    """The doc as HTML; a few retries when Google is busy (403/429 rate limits, 5xx)."""
+    for wait in (0, 5, 15, 40):
+        time.sleep(wait)
+        r = s.get(f"{API}/files/{doc_id}/export", params={"mimeType": "text/html"})
+        if r.ok or r.status_code not in (403, 429, 500, 502, 503, 504):
+            return r
+    return r
 
 
 def chapter_synced():
@@ -152,12 +163,19 @@ def main():
         if stray(d):
             skipped.append(d["name"])
             continue
-        r = s.get(f"{API}/files/{d['id']}/export", params={"mimeType": "text/html"})
-        r.raise_for_status()
+        r = export(s, d["id"])
+        if not r.ok:
+            why = f"{d['name'].strip()}: Google Drive said {r.status_code} {r.text[:300]}"
+            if d["id"] in synced:
+                raise SystemExit("Could not download a website page's doc - " + why)
+            print("  (skipped - could not download it) " + why)        # not a page: never stop for it
+            skipped.append(d["name"])
+            continue
         if (d["id"] not in synced and not SPECIAL.match(d["name"].strip())       # ॥ may come as &#2405;
                 and "॥" not in html.unescape(r.content.decode("utf-8", "replace"))):
             skipped.append(d["name"])                             # not a page yet and no shlokas yet (an empty
-            continue                                              # BG-N doc, notes): never made into a page
+            state[d["id"]] = d["modifiedTime"]                    # BG-N doc, notes): never made into a page;
+            continue                                              # looked at again only once it is edited
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / f"{title}.html"
             path.write_bytes(r.content)
