@@ -1130,7 +1130,7 @@ function accountPage() {
         ${groups.size ? `<ul class="acct-progress-list">${[...groups.values()].map(progressItem).join('')}</ul>`
           : '<p class="acct-empty">Nothing marked yet. Use “○ Mark as studied” at the top of a chapter when you finish it.</p>'}</section>
 
-      <section class="acct-section acct-mynotes"><h2>✎ My notes</h2>
+      <section class="acct-section acct-mynotes"><h2>✎ My notes${notes.length ? ' <button type="button" class="acct-link acct-copy-notes" title="Copies every note, by text, chapter and shloka, to paste into a Google Doc as a backup">Copy all my notes</button>' : ''}</h2>
         ${notes.length ? (() => {
           const gs = noteGroups(notes);
           return `<div class="note-tabs" role="tablist" aria-label="Notes by text">${gs.map((g, i) =>
@@ -1208,6 +1208,55 @@ function accountPage() {
       }
     };
     wireBox(root.querySelector('.acct-mynotes'), 'ss-notes');
+    // "Copy all my notes": every note as formatted text (headings per text and chapter, each
+    // shloka's number + opening words + link) for pasting into a Google Doc - the reader's own backup.
+    root.querySelector('.acct-copy-notes')?.addEventListener('click', async e => {
+      const btn = e.currentTarget;
+      const url = p => new URL(BASE + p.path, location.href).href;
+      const hl = h => h.replace(/<mark>/g, '<mark style="background-color:#fff59d">');
+      const day = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      let out = `<h1>My shloka notes</h1><p><i>Copied from Samskrita Svadhyaya on ${esc(day)}.</i></p>`;
+      for (const g of noteGroups(notes)) {
+        out += `<h2>${esc(g.label)}</h2>`;
+        for (const p of g.items) {
+          out += `<h3><a href="${esc(url(p))}">${esc(shortTitle(p))}</a>${subFor(p) ? ' — ' + esc(subFor(p)) : ''}</h3>`;
+          if ((p.note || '').trim()) out += `<p><b>Chapter note:</b></p><p>${hl(noteHtml(p.note))}</p>`;
+          for (const [key, v] of Object.entries(p.verses || {}).sort((a, b) => a[0] - b[0])) {
+            if (!(v?.note || '').trim()) continue;
+            const where = v.num ? `${url(p)}#shloka-${encodeURIComponent(v.num)}` : `${url(p)}#note-${key}`;
+            out += `<p><b><a href="${esc(where)}">${v.num ? 'Shloka ' + esc(v.num) : 'Shloka'}</a></b> — <span lang="sa">${esc(v.t || '')}…</span></p>`
+              + `<p>${hl(noteHtml(v.note))}</p>`;
+          }
+        }
+      }
+      const box = document.createElement('div');
+      box.innerHTML = out;
+      const txt = document.createElement('div');            // plain-text version: one line per block
+      txt.innerHTML = out.replace(/<\/(h1|h2|h3|p)>/g, '\n\n').replace(/<br\s*\/?>/g, '\n');
+      const plain = txt.textContent.replace(/\n{3,}/g, '\n\n').trim();
+      const done = ok => {
+        btn.textContent = ok ? '✓ Copied - now paste into a Google Doc' : 'Could not copy - please try again';
+        setTimeout(() => { btn.textContent = 'Copy all my notes'; }, 6000);
+      };
+      try {
+        await navigator.clipboard.write([new ClipboardItem({
+          'text/html': new Blob([out], { type: 'text/html' }), 'text/plain': new Blob([plain], { type: 'text/plain' }) })]);
+        return done(true);
+      } catch {}
+      // Older browsers: select a hidden copy and use the copy command.
+      Object.assign(box.style, { position: 'fixed', left: '-9999px', top: '0' });
+      document.body.appendChild(box);
+      const range = document.createRange();
+      range.selectNodeContents(box);
+      const sel = getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch {}
+      sel.removeAllRanges();
+      box.remove();
+      done(ok);
+    });
     wireBox(root.querySelector('.acct-favs'), 'ss-favs', fillFavVerses);
     root.querySelectorAll('.acct-again').forEach(btn => btn.addEventListener('click', async () => {
       const g = groups.get(btn.dataset.key);

@@ -811,6 +811,8 @@ main.account { max-width: var(--content-width); margin: 0 auto 4rem; padding: 0 
 .acct-section { box-shadow: none; }
 .acct-section h2 { font-family: var(--serif); color: var(--accent-strong); margin: 0 0 .6rem; font-size: 1.4rem; }
 .acct-count { font-family: var(--read); font-size: .85rem; color: var(--ink-soft); font-weight: 400; margin-left: .35rem; }
+/* "Copy all my notes" on the My notes heading line, at the right. */
+.acct-section h2 .acct-copy-notes { float: right; font-family: var(--read); font-size: .9rem; font-weight: 400; margin-top: .45rem; }
 .acct-tabs { display: flex; border-bottom: 1px solid var(--rule); margin-bottom: 1.25rem; }
 .acct-tabs button {
   flex: 1; font: inherit; font-size: 1rem; background: none; border: none; cursor: pointer;

@@ -208,6 +208,9 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   ribbon; listed on the Account page under "♥ Favourite shlokas", ♥ on chapter cards).
   Page docs are AT the rules' 12-field limit (12 used incl. favs) — raise it in firestore.rules
   (and republish the rules in the Firebase console) before adding any new page-doc field.
+- "Copy all my notes" (Account page, on the "✎ My notes" heading, every signed-in reader): copies all the
+  reader's notes as formatted text (text -> chapter -> "Shloka N — opening words…" + note, links back) for
+  pasting into a Google Doc. The owner's backup: notes live ONLY in Firestore (free plan, no backups).
 - Notes are formatted (bold / italics / underline / highlight): account.js `noteEditor` (toolbar +
   contenteditable), stored as `<!--rich-->` + HTML cleaned by `cleanNote` (only b, i, u, mark, br);
   older plain-text notes still display/edit (no marker). Paste is plain text only.
