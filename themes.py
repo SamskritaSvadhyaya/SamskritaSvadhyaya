@@ -109,6 +109,8 @@ def parse_doc(download):
     body = soup.body or soup
     for div in body.find_all("div", recursive=False):      # Google's page header / footer
         div.decompose()
+    for a in body.find_all("a", href=re.compile(r"^#cmnt\d+$")):   # the doc's comment markers [a], [b]...
+        a.decompose()
     blocks = body.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "li"])
     use_headings = any(b.name not in ("p", "li") and b.get_text(strip=True) for b in blocks)
 

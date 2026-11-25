@@ -137,6 +137,8 @@ def disclaimer_body(data):
     body = soup.body
     for div in body.find_all("div", recursive=False):     # page header / footer
         div.decompose()
+    for a in body.find_all("a", href=re.compile(r"^#cmnt\d+$")):   # the doc's comment markers [a], [b]...
+        a.decompose()
 
     from urllib.parse import unquote
     MARK = "\u0001"                                          # keeps finished link HTML apart from text

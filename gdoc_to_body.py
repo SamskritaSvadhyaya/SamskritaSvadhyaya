@@ -194,6 +194,11 @@ def main():
             return "<br>"
         if node.name == "img":
             return handle_img(node)
+        # The owner's comments in the doc: Google's export marks each one with "[a]", "[b]"...
+        # (a link to #cmnt1...) and puts the comment text at the end (left out like the
+        # footer). Comments are notes to herself - none of it goes on the site.
+        if node.name == "a" and re.match(r"#cmnt\d+$", node.get("href", "")):
+            return ""
 
         style = node.get("style", "")
         color = parse_color(style) or inherited
