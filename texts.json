@@ -19,7 +19,7 @@
         "n": 2,
         "subject": "Sankhya Yoga",
         "doc": "1FhjWvRSiRA-1FBw2z2JLGNn9OJx-AnMNDUqnD_O4VYk",
-        "synced": "2026-11-23T20:47:49Z"
+        "synced": "2026-11-25T23:47:05Z"
       },
       {
         "slug": "ch-9",
@@ -28,7 +28,7 @@
         "n": 9,
         "subject": "Raj Vidya Raj Guhya Yoga",
         "doc": "1gRWG1Z5LTk8sdfKv_pPtBWhEMifH__RuCvJ2QI59XOk",
-        "synced": "2026-11-23T03:23:29Z"
+        "synced": "2026-11-25T23:46:52Z"
       },
       {
         "slug": "ch-10",
@@ -37,7 +37,7 @@
         "n": 10,
         "subject": "Vibhuti Yoga",
         "doc": "1vvIR-OOugyFr_6_p-rLyrIII9FIDkFfzDgTTg_a1q2k",
-        "synced": "2026-11-25T21:09:08Z"
+        "synced": "2026-11-25T23:47:20Z"
       },
       {
         "slug": "ch-12",
@@ -93,9 +93,9 @@
             "title": "Sarga 1",
             "title_sa": "सर्गः १",
             "n": 1,
-            "subject": "Hanuman crosses the ocean, reaches Lanka",
+            "subject": "Hanuman overcomes the obstacles on the way, crosses the ocean and reaches Lanka",
             "doc": "1KJeXsMwGnmir8o-uRuQOSeZFp1f4pubjILhFLleLWnE",
-            "synced": "2026-11-01T22:12:45Z"
+            "synced": "2026-11-25T23:47:34Z"
           },
           {
             "slug": "sarga-2",
@@ -608,7 +608,7 @@
             "n": 58,
             "subject": "Hanuman narrates all the incidents starting from his departure for Lanka till his return",
             "doc": "1qtJebcoFC0f0y-e1D98WV8qU7qJgOB0hCXCAX53fwFA",
-            "synced": "2026-11-09T23:15:30Z"
+            "synced": "2026-11-25T23:44:56Z"
           },
           {
             "slug": "sarga-59",
@@ -734,7 +734,7 @@
             "n": 128,
             "subject": "Coronation of Rama",
             "doc": "1PwNa_EKITtG2J_45sX4CxHDpRJiOvE_AS0MLgRtFn5I",
-            "synced": "2026-11-23T20:48:00Z"
+            "synced": "2026-11-25T23:45:40Z"
           }
         ],
         "title": "Yuddhakanda",
@@ -965,7 +965,7 @@
         "n": 24,
         "subject": "The story of Prahlada",
         "doc": "1lzw9cNBRn7PzehjgN9JNTY88WbL1ZqAGj0E0-0eOtls",
-        "synced": "2026-11-09T23:53:36Z"
+        "synced": "2026-11-25T23:45:55Z"
       },
       {
         "slug": "dashaka-25",
@@ -983,7 +983,7 @@
         "n": 26,
         "subject": "The liberation of Gajendra (Gajendra Moksha)",
         "doc": "1cp3Lxo9HSAF3VTGWFUZaU72Y0tDUQl0rK-lVKyyriEw",
-        "synced": "2026-11-11T20:56:37Z"
+        "synced": "2026-11-25T23:46:09Z"
       },
       {
         "slug": "dashaka-27",
@@ -1064,7 +1064,7 @@
         "n": 35,
         "subject": "The incarnation as Rama (contd.)",
         "doc": "15XFJupZiJyYdbQsg97o1QVjojHaPx0uANIOHM8FGFaA",
-        "synced": "2026-11-24T00:04:04Z"
+        "synced": "2026-11-25T23:46:23Z"
       },
       {
         "slug": "dashaka-36",
@@ -1073,7 +1073,7 @@
         "n": 36,
         "subject": "The incarnation as Parashurama",
         "doc": "1d6Z72cxUvnYR2jaqzW2WlamGXAXT_7a7Txhaj2QEgQQ",
-        "synced": "2026-11-25T00:16:43Z"
+        "synced": "2026-11-25T23:46:37Z"
       },
       {
         "slug": "dashaka-37",
@@ -1082,7 +1082,7 @@
         "n": 37,
         "subject": "Prelude to the incarnation of Krishna",
         "doc": "1NSkHGEQhzjfPb2-Fx5VkjilcFqRZTGMzd_ec2hEJITw",
-        "synced": "2026-08-11T21:31:07Z"
+        "synced": "2026-11-25T23:48:02Z"
       },
       {
         "slug": "dashaka-38",
@@ -1699,7 +1699,7 @@
             "n": 4,
             "subject": "Yogamaya slips from the grip of Kamsa, ascends to the heavens and utters a prophecy. Atrocities of Kamsa",
             "doc": "1VR8AkLcqKNbkj5xSlKR7kvLgNivWqRUl0PHgYDf6beE",
-            "synced": "2026-11-10T04:45:37Z"
+            "synced": "2026-11-25T23:45:25Z"
           },
           {
             "slug": "ch-5",
@@ -1717,7 +1717,7 @@
             "n": 6,
             "subject": "Deliverance of Putana",
             "doc": "1sH7sifvCoolk5OUzvl8ytGIgZfiBSvbe5FZRi04yo14",
-            "synced": "2026-11-12T02:33:59Z"
+            "synced": "2026-11-25T23:45:11Z"
           },
           {
             "slug": "ch-7",
@@ -2523,7 +2523,7 @@
         "n": 12,
         "subject": "Rama kills Ravana",
         "doc": "1vPnVnlQjbNV1_0Y6gXpwC6BZCvWlorpvIcEm2m3QKTY",
-        "synced": "2026-11-16T18:00:07Z"
+        "synced": "2026-11-25T23:43:55Z"
       }
     ],
     "title": "Raghuvamsha — Kalidasa's Ramayana",
