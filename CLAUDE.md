@@ -85,6 +85,9 @@ Static site of Sanskrit texts, published with GitHub Pages.
   into a page body, keeping colours, alignment, sizes.
 - **No doc page headers/footers on the site**: gdoc_to_body.py skips Google's header/footer
   (the `<div>`s directly under `<body>` in the HTML export); they stay in the docs.
+- **Doc comments never reach the site**: the export puts comment text in those same end `<div>`s
+  (skipped) and a "[a]" link (`href="#cmnt1"`) in the text; gdoc_to_body.py, themes.py and the
+  disclaimer converter drop those links. The owner may comment freely in her docs.
 - **Plain English spelling, no diacritics** (owner's style): `plain_english.py` turns IAST letters into
   plain spelling (Raghuvaṃśa → Raghuvamsha, Kālidāsa → Kalidasa, Śrīla → Shrila; ś/ṣ → sh, ṛ → ri).
   gdoc_to_body.py applies it to every upload; `python plain_english.py` fixes the whole site.
