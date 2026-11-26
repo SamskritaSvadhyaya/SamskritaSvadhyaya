@@ -1,6 +1,6 @@
 [
  {
-  "title": "People act according to their nature",
+  "title": "People act according to their nature (Prakriti/Gunas)",
   "intro": [
    "“We cannot control others”",
    "This teaches:",
@@ -9,8 +9,11 @@
    "<li>Clarity in relationships",
    "It removes the burden of trying to “fix” others."
   ],
-  "refs": [],
-  "slug": "people-act-according-to-their-nature"
+  "refs": [
+   "BG 3.27",
+   "BG 3.33"
+  ],
+  "slug": "people-act-according-to-their-nature-prakriti-gunas"
  },
  {
   "title": "Krishna is the source of everything",
@@ -60,6 +63,7 @@
   ],
   "refs": [
    "BG 3.9",
+   "BG 3.30",
    "BG 9.27",
    "BG 12.6",
    "BG 12.7",
@@ -149,7 +153,8 @@
    "“Follow your svadharma ”"
   ],
   "refs": [
-   "BG 2.31"
+   "BG 2.31",
+   "BG 3.35"
   ],
   "slug": "do-your-duty"
  },
@@ -163,5 +168,14 @@
    "YK 6.128.93"
   ],
   "slug": "do-not-succumb-to-the-pleasures-of-the-senses"
+ },
+ {
+  "title": "The wise should not disturb such people but should help them progress gradually",
+  "intro": [],
+  "refs": [
+   "BG 3.26",
+   "BG 3.29"
+  ],
+  "slug": "the-wise-should-not-disturb-such-people-but-should-help-them"
  }
 ]
