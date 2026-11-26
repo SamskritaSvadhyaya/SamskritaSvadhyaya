@@ -211,6 +211,12 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   ribbon; listed on the Account page under "♥ Favourite shlokas", ♥ on chapter cards).
   Page docs are AT the rules' 12-field limit (12 used incl. favs) — raise it in firestore.rules
   (and republish the rules in the Firebase console) before adding any new page-doc field.
+- "✎ Add doc comments to my notes" (site owner only, chapter study bar next to "Edit in Google Doc"): account.js
+  `commentsToNotes` reads the chapter doc's comments (Drive API comments.list; token from docsToken, which asks for
+  documents + drive.readonly; cached in sessionStorage `ss-gtoken`), finds each comment's highlighted text in a
+  shloka block (shloka + its meanings) and appends the comment (+ replies) to that shloka's note; anything else goes
+  to the page note. Already-present text is skipped, so it can be pressed again. Needs the Drive API enabled in
+  project samskrita-svadhyaya. The doc itself is not changed.
 - "Copy all my notes" (Account page, on the "✎ My notes" heading, every signed-in reader): copies all the
   reader's notes as formatted text (text -> chapter -> "Shloka N — opening words…" + note, links back) for
   pasting into a Google Doc. The owner's backup: notes live ONLY in Firestore (free plan, no backups).

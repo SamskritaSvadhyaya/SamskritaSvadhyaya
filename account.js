@@ -226,7 +226,23 @@ function readingPage(user) {
   if (docId) isOwner.then(ok => {
     if (!ok || bar.querySelector('.sb-doc')) return;
     bar.insertAdjacentHTML('beforeend', `<a class="sb-btn sb-doc" href="https://docs.google.com/document/d/${encodeURIComponent(docId)}/edit"
-      target="_blank" rel="noopener" title="Opens the Google Doc in a new tab">↗ Edit in Google Doc</a>`);
+      target="_blank" rel="noopener" title="Opens the Google Doc in a new tab">↗ Edit in Google Doc</a>
+      <button type="button" class="sb-btn sb-comments" title="Adds the comments you wrote in this chapter's Google Doc to your notes under each shloka">✎ Add doc comments to my notes</button>`);
+    const cb = bar.querySelector('.sb-comments');
+    cb.addEventListener('click', async () => {
+      cb.disabled = true;
+      const was = cb.textContent;
+      cb.textContent = 'Reading the doc’s comments…';
+      try {
+        const r = await commentsToNotes(docId, ref, info);
+        cb.textContent = r;
+        if (/^✓ Added/.test(r)) setTimeout(() => location.reload(), 2500);
+        else setTimeout(() => { cb.textContent = was; cb.disabled = false; }, 6000);
+      } catch (e) {
+        cb.textContent = was; cb.disabled = false;
+        alert('Could not read the comments: ' + (e.message || e));
+      }
+    });
   });
 
   // Study members: "Mark as studied" fills in this chapter's row in their own study tracker
@@ -571,7 +587,7 @@ const isRefsLine = t => /\d/.test(t) && !t.replace(T_REF, (m0, w) => (!w || T_LA
 
 async function docsToken(interactive) {
   try {
-    const t = JSON.parse(sessionStorage.getItem('ss-docs-token') || 'null');
+    const t = JSON.parse(sessionStorage.getItem('ss-gtoken') || 'null');
     if (t && t.exp > Date.now() + 60000) return t.tok;
   } catch {}
   if (!interactive) return null;
@@ -579,12 +595,13 @@ async function docsToken(interactive) {
   const a2 = getAuth(app2);
   const provider = new GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/documents');
+  provider.addScope('https://www.googleapis.com/auth/drive.readonly');   // reading a doc's comments
   provider.setCustomParameters({ login_hint: auth.currentUser?.email || '' });
   let cred;
   try { cred = GoogleAuthProvider.credentialFromResult(await signInWithPopup(a2, provider)); }
   catch (e) { cred = GoogleAuthProvider.credentialFromError(e); if (!cred?.accessToken) throw e; }
   signOut(a2).catch(() => {});
-  try { sessionStorage.setItem('ss-docs-token', JSON.stringify({ tok: cred.accessToken, exp: Date.now() + 50 * 60000 })); } catch {}
+  try { sessionStorage.setItem('ss-gtoken', JSON.stringify({ tok: cred.accessToken, exp: Date.now() + 50 * 60000 })); } catch {}
   return cred.accessToken;
 }
 
@@ -594,7 +611,7 @@ async function docsCall(tok, url, body) {
   if (r.ok) return r.json();
   let msg = '';
   try { msg = (await r.json()).error?.message || ''; } catch {}
-  if (r.status === 401) { try { sessionStorage.removeItem('ss-docs-token'); } catch {} }
+  if (r.status === 401) { try { sessionStorage.removeItem('ss-gtoken'); } catch {} }
   if (/has not been used|is disabled/i.test(msg)) throw new Error('The Google Docs API is not switched on yet for this website. '
     + 'Open https://console.cloud.google.com/apis/library/docs.googleapis.com?project=samskrita-svadhyaya, click “Enable”, wait a minute and try again.');
   throw new Error(msg || `Google Docs answered ${r.status}`);
@@ -738,6 +755,85 @@ function themeAdders(shlokas) {
       } catch (e) { say(esc(friendly(e)), 'err'); }
     });
   });
+}
+
+// ---- Site owner only: the comments in a chapter's Google Doc -> her private notes ----
+// Each comment goes into the note of the shloka whose text it is attached to (the highlighted
+// words are looked for in the shloka and its meanings); a comment on anything else (heading,
+// introduction) goes into the page's own note. A comment already in the note is not added again,
+// so the button can be pressed again after adding more comments. The doc is not changed.
+async function commentsToNotes(docId, ref, info) {
+  const tok = await docsToken(true);
+  const comments = [];
+  let page = '';
+  do {
+    const r = await fetch(`https://www.googleapis.com/drive/v3/files/${encodeURIComponent(docId)}/comments?pageSize=100`
+      + '&fields=nextPageToken,comments(content,deleted,quotedFileContent,replies(content,deleted))' + (page ? '&pageToken=' + page : ''),
+      { headers: { Authorization: 'Bearer ' + tok } });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      const msg = j.error?.message || `Google Drive answered ${r.status}`;
+      if (r.status === 401 || r.status === 403) { try { sessionStorage.removeItem('ss-gtoken'); } catch {} }
+      if (/has not been used|is disabled/i.test(msg)) throw new Error('The Google Drive API is not switched on yet for this website. '
+        + 'Open https://console.cloud.google.com/apis/library/drive.googleapis.com?project=samskrita-svadhyaya, click “Enable”, wait a minute and try again.');
+      if (/insufficient|scope/i.test(msg)) throw new Error('Google did not give permission to read the comments - press the button again and allow it.');
+      throw new Error(msg);
+    }
+    comments.push(...(j.comments || []));
+    page = j.nextPageToken || '';
+  } while (page);
+  const live = comments.filter(c => !c.deleted && (c.content || '').trim());
+  if (!live.length) return 'No comments in this doc';
+
+  const norm = t => (t || '').normalize('NFC').replace(/[​-‍﻿]/g, '').replace(/\s+/g, ' ').trim();
+  const shlokas = findShlokas();
+  const blockText = shlokas.map(s => {
+    let t = '', el = s.el;
+    for (;;) { t += ' ' + (el.innerText || el.textContent); if (el === s.end) break; el = el.nextElementSibling; }
+    return norm(t);
+  });
+  const where = q => {
+    q = norm(q);
+    if (!q) return -1;
+    for (const part of [q, q.slice(0, 30), q.slice(-30)]) {
+      if (part.length < 4 && part !== q) continue;
+      const i = blockText.findIndex(b => b.includes(part));
+      if (i >= 0) return i;
+    }
+    return -1;
+  };
+
+  const data = (await getDoc(ref)).data() || {};
+  const saved = data.verses || {};
+  const keyOf = i => Object.keys(saved).find(k => (saved[k]?.note || '').trim()
+    && matchShloka(shlokas, { t: saved[k].t, num: saved[k].num, n: Number(k) }) === i) || String(i + 1);
+  const plainOf = note => { const d = document.createElement('div'); d.innerHTML = noteHtml(note); return norm(d.textContent); };
+  const verses = {};
+  let pageNote = data.note || '', added = 0, toPage = 0, already = 0;
+  const append = (note, text) => {
+    if (plainOf(note).includes(norm(text))) { already++; return null; }
+    const old = noteHtml(note);
+    return RICH + cleanNote((old ? old + '<br><br>' : '') + esc(text).replace(/\n/g, '<br>'));
+  };
+  for (const c of live) {
+    const text = [c.content, ...(c.replies || []).filter(r => !r.deleted && (r.content || '').trim()).map(r => r.content)].join('\n').trim();
+    const q = c.quotedFileContent?.value || '';
+    const i = where(q);
+    if (i >= 0) {
+      const k = keyOf(i);
+      const cur = verses[k] ? verses[k].note : (saved[k]?.note || '');
+      const next = append(cur, text);
+      if (next) { verses[k] = { t: firstWords(shlokas[i].el), num: verseNum(shlokas[i].el), note: next }; added++; }
+    } else {
+      const quote = norm(q) ? `On “${norm(q).slice(0, 80)}${norm(q).length > 80 ? '…' : ''}”: ` : '';
+      const next = append(pageNote, quote + text);
+      if (next) { pageNote = next; added++; toPage++; }
+    }
+  }
+  if (!added) return `✓ All ${live.length} comment(s) are already in your notes`;
+  await setDoc(ref, { ...(Object.keys(verses).length ? { verses } : {}), ...(toPage ? { note: pageNote } : {}),
+    path: PATH, title: info.title, sub: info.sub, updated: serverTimestamp() }, { merge: true });
+  return `✓ Added ${added} comment(s)` + (toPage ? ` (${toPage} to the page note)` : '') + (already ? `, ${already} already there` : '') + ' - reloading…';
 }
 
 function verseNotes(user, ref, info, saved) {
