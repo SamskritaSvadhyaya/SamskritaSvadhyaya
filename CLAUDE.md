@@ -217,9 +217,6 @@ account; Authentication: Email/Password + Google; Firestore, lite SDK 11.10.0 fr
   shloka block (shloka + its meanings) and appends the comment (+ replies) to that shloka's note; anything else goes
   to the page note. Already-present text is skipped, so it can be pressed again. Needs the Drive API enabled in
   project samskrita-svadhyaya. The doc itself is not changed.
-- "Copy all my notes" (Account page, on the "✎ My notes" heading, every signed-in reader): copies all the
-  reader's notes as formatted text (text -> chapter -> "Shloka N — opening words…" + note, links back) for
-  pasting into a Google Doc. The owner's backup: notes live ONLY in Firestore (free plan, no backups).
 - Notes are formatted (bold / italics / underline / highlight): account.js `noteEditor` (toolbar +
   contenteditable), stored as `<!--rich-->` + HTML cleaned by `cleanNote` (only b, i, u, mark, br);
   older plain-text notes still display/edit (no marker). Paste is plain text only.
